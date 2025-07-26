@@ -1,0 +1,187 @@
+/* Main App layout */
+.App {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  grid-template-rows: 1fr;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+  background: var(--bg-primary);
+  transition: all 0.3s ease;
+}
+
+/* Prevent layout shifts during screen transitions */
+.App > * {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Ensure consistent layout across all screens */
+.App > div {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Transitioning state to prevent glitching */
+.App.transitioning {
+  pointer-events: none;
+}
+
+.App.transitioning > * {
+  opacity: 0.8;
+  transform: scale(0.98);
+}
+
+/* Left panel styles */
+.left-panel {
+  background: var(--bg-primary);
+  border-right: 2px solid var(--border-color);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  min-height: 100vh;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Right panel styles */
+.right-panel {
+  background: var(--bg-primary);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 100vh;
+  transition: all 0.3s ease;
+}
+
+/* Header styles */
+.screen-header {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--text-primary);
+  padding: 10px;
+  background: var(--bg-secondary);
+  border-radius: 5px;
+  border: 1px solid var(--border-color);
+}
+
+/* Navigation buttons container */
+.nav-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 20px;
+}
+
+.nav-buttons .btn {
+  flex: 1;
+  margin: 0;
+}
+
+/* Analysis table styles */
+.analysis-table {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  flex: 1;
+  min-height: 0;
+  height: 100%;
+  width: 100%;
+}
+
+/* Analysis grid styles for scored screen (5 columns) */
+.analysis-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  flex: 1;
+  min-height: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.analysis-column {
+  background: var(--bg-secondary);
+  padding: 15px;
+  border-radius: 5px;
+  border: 1px solid var(--border-color);
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  max-height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.analysis-column h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: var(--text-primary);
+  font-size: 21px;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.analysis-bullet {
+  margin-bottom: 12px;
+  padding-left: 15px;
+  position: relative;
+  line-height: 1.4;
+  font-size: 14px;
+}
+
+.analysis-bullet::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--accent-color);
+  font-weight: bold;
+}
+
+/* WelcomeScreen instructions specific styling */
+.welcome-instructions .analysis-bullet {
+  font-size: 21px !important;
+  line-height: 1.6;
+  margin-bottom: 16px;
+  padding-left: 15px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .App {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+  }
+  
+  .left-panel {
+    border-right: none;
+    border-bottom: 2px solid #ddd;
+  }
+  
+  .analysis-table {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .analysis-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+} 
