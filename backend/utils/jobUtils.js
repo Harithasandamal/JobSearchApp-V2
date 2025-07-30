@@ -1,5 +1,5 @@
 /**
- * Unified Job Processing Utilities
+ * Unified Job Processing Utilities - REAL DATA ONLY, NO FALLBACK
  * Centralizes all job data cleaning and formatting logic
  */
 
@@ -10,8 +10,8 @@ class JobUtils {
    * @returns {string} - Cleaned location
    */
   static cleanLocation(location) {
-    if (!location || location === 'N/A' || location === 'Unknown Location') {
-      return 'Melbourne';
+    if (!location || location === 'N/A') {
+      return null; // NO FALLBACK - return null if no real location
     }
     
     let cleaned = location.trim();
@@ -34,7 +34,7 @@ class JobUtils {
    */
   static formatPostedAgo(timeString) {
     if (!timeString || typeof timeString !== 'string') {
-      return timeString;
+      return null; // NO FALLBACK - return null if no real time data
     }
     
     // Remove " ago" suffix first
@@ -69,19 +69,25 @@ class JobUtils {
   }
 
   /**
-   * Process a single job object - SINGLE source of truth for job processing
+   * Process a single job object - REAL DATA ONLY, NO FALLBACK
    * @param {Object} job - Raw job object
-   * @returns {Object} - Cleaned job object
+   * @returns {Object|null} - Cleaned job object or null if insufficient data
    */
   static processJob(job) {
     if (!job) return null;
     
-    return {
+    // ACCURACY CHECK: Only process jobs with real title data
+    if (!job.title || job.title.trim() === '' || job.title === 'Error loading job') {
+      console.log('❌ JobUtils.processJob - Rejecting job with no valid title:', job.title);
+      return null; // NO FALLBACK - reject jobs without real titles
+    }
+    
+    const processed = {
       id: job.id || job.url || `${job.title}-${job.company}-${job.location}`,
-      title: job.title || 'Unknown Title',
-      company: job.company || 'Unknown Company',
-      location: JobUtils.cleanLocation(job.location),
-      postedAgo: JobUtils.formatPostedAgo(job.postedAgo),
+      title: job.title.trim(),
+      company: job.company && job.company.trim() !== '' ? job.company.trim() : 'Company not specified',
+      location: JobUtils.cleanLocation(job.location) || 'Location not specified',
+      postedAgo: JobUtils.formatPostedAgo(job.postedAgo) || 'Time not specified',
       url: job.url || '',
       // Preserve any additional fields
       ...Object.fromEntries(
@@ -90,19 +96,32 @@ class JobUtils {
         )
       )
     };
+    
+    console.log('✅ JobUtils.processJob - Successfully processed job:', {
+      title: processed.title,
+      company: processed.company,
+      location: processed.location,
+      postedAgo: processed.postedAgo
+    });
+    
+    return processed;
   }
 
   /**
-   * Process array of jobs - SINGLE source of truth for job array processing
+   * Process array of jobs - REAL DATA ONLY, NO FALLBACK
    * @param {Array} jobs - Array of raw job objects
-   * @returns {Array} - Array of cleaned job objects
+   * @returns {Array} - Array of cleaned job objects with real data only
    */
   static processJobs(jobs) {
     if (!Array.isArray(jobs)) return [];
     
-    return jobs
+    const processed = jobs
       .map(job => JobUtils.processJob(job))
-      .filter(job => job !== null);
+      .filter(job => job !== null); // Filter out rejected jobs
+    
+    console.log(`📊 JobUtils.processJobs - Processed ${processed.length}/${jobs.length} jobs (rejected ${jobs.length - processed.length} jobs with insufficient data)`);
+    
+    return processed;
   }
 }
 

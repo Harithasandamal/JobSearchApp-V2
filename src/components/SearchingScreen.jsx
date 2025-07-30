@@ -230,7 +230,10 @@ const SearchingScreen = ({ appState, updateAppState, navigateTo, scoringLocked }
 
       <div className="right-panel">
         <div className="screen-header">
-          Searching: {formatKeyword(appState.keyword)} Jobs in {formatDistance(appState.distance)} from {formatLocation(appState.location)}, Posted within last {formatPostedAgo(appState.postedAgo)}
+          {themeHook.theme === 'light' ? 
+            'Searching: Test Jobs' : 
+            `Searching: ${formatKeyword(appState.keyword)} Jobs in ${formatDistance(appState.distance)} from ${formatLocation(appState.location)}, Posted within last ${formatPostedAgo(appState.postedAgo)}`
+          }
         </div>
 
         {error && (

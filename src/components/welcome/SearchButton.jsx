@@ -1,4 +1,5 @@
 import React from 'react';
+import useWorkflowLogger from '../../hooks/useWorkflowLogger';
 
 const SearchButton = ({ 
   isFormValid, 
@@ -6,11 +7,18 @@ const SearchButton = ({
   isSearching, 
   handleSearchJobs 
 }) => {
+  const workflowLogger = useWorkflowLogger();
+
+  const handleClick = () => {
+    workflowLogger.logButtonClick('Search Jobs', 'User initiated job search');
+    handleSearchJobs();
+  };
+
   return (
     <button 
       className="btn btn-success"
       disabled={!isFormValid() || searchLocked || isSearching}
-      onClick={handleSearchJobs}
+      onClick={handleClick}
     >
       {isSearching ? 'Starting Search...' : 'Search Jobs'}
     </button>

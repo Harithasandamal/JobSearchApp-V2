@@ -5,8 +5,10 @@ import AnalysisColumns from './analyzed/AnalysisColumns';
 import AnalyzedStatusDisplay from './analyzed/AnalyzedStatusDisplay';
 import AnalyzedActionButtons from './analyzed/AnalyzedActionButtons';
 import useAnalyzedScreen from '../hooks/useAnalyzedScreen';
+import useTheme from '../hooks/useTheme';
 
 const AnalyzedScreen = ({ appState, updateAppState, navigateTo }) => {
+  const { theme } = useTheme();
   const { resumeFile, handleBack, handleExit } = useAnalyzedScreen({ 
     appState, 
     navigateTo 
@@ -38,7 +40,10 @@ const AnalyzedScreen = ({ appState, updateAppState, navigateTo }) => {
 
       <div className="right-panel">
         <div className="screen-header">
-          Analyzed: {analysisData?.jobTitle || 'Job'} at {analysisData?.company || 'Company'}
+          {theme === 'light' ? 
+            'Analyzed: Test Job' : 
+            `Analyzed: ${analysisData?.jobTitle || 'Job'} at ${analysisData?.company || 'Company'}`
+          }
         </div>
         
         <AnalysisColumns analysisData={analysisData} />

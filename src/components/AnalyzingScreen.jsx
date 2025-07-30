@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import ProgressChecklist from './common/ProgressChecklist';
 import ResumeLabel from './common/ResumeLabel';
+import useTheme from '../hooks/useTheme';
 import { formatLocation, formatDistance, formatPostedAgo, formatKeyword } from '../utils/formatters';
 
 const AnalyzingScreen = ({ appState, updateAppState, navigateTo }) => {
+  const { theme } = useTheme();
   const [progress, setProgress] = useState(0);
   const [currentStep, setCurrentStep] = useState(0);
   const [analysisData, setAnalysisData] = useState(null);
@@ -168,7 +170,10 @@ const AnalyzingScreen = ({ appState, updateAppState, navigateTo }) => {
 
       <div className="right-panel">
         <div className="screen-header">
-          Analyzing: {appState.selectedJobForAnalysis?.title || 'Job'} at {appState.selectedJobForAnalysis?.company || 'Company'}
+          {theme === 'light' ? 
+            'Analyzing: Test Job' : 
+            `Analyzing: ${appState.selectedJobForAnalysis?.title || 'Job'} at ${appState.selectedJobForAnalysis?.company || 'Company'}`
+          }
         </div>
 
         <ProgressChecklist items={analyzingSteps} />

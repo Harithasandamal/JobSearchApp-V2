@@ -1,6 +1,6 @@
 const { startJobSearch } = require('./jobSearchController');
 const { getSearchStatus, getJobDetails } = require('./searchStatusController');
-const { getTestJobs } = require('./testJobsController');
+const { getTestJobs, testManualJobScraping, getMockScoredJobs, getMockAnalysis } = require('./testJobsController');
 const { activeProcesses } = require('./sharedData');
 
 module.exports = {
@@ -8,5 +8,8 @@ module.exports = {
   getSearchStatus,
   getJobDetails,
   getTestJobs,
+  testManualJobScraping,
+  getMockScoredJobs,
+  getMockAnalysis,
   activeProcesses
 }; 

@@ -3,9 +3,11 @@ import ResumeLabel from './common/ResumeLabel';
 import JobTable from './ui/JobTable';
 import AnalysisGrid from './ui/AnalysisGrid';
 import useJobSelection from '../hooks/useJobSelection';
+import useTheme from '../hooks/useTheme';
 import { formatLocation, formatDistance, formatPostedAgo, formatKeyword } from '../utils/formatters';
 
 const ScoredScreen = ({ appState, updateAppState, navigateTo }) => {
+  const { theme } = useTheme();
   const [resumeFile, setResumeFile] = useState({
     name: appState.resume || 'Shamalka Resume v2.pdf',
     file: null,
@@ -128,7 +130,10 @@ const ScoredScreen = ({ appState, updateAppState, navigateTo }) => {
 
       <div className="right-panel">
         <div className="screen-header">
-          Scored: {appState.scoredJobs?.length || 0} of {formatKeyword(appState.keyword)} Jobs in {formatDistance(appState.distance)} from {formatLocation(appState.location)}, Posted within last {formatPostedAgo(appState.postedAgo)}
+          {theme === 'light' ? 
+            `Scored: ${appState.scoredJobs?.length || 0} Test Jobs` : 
+            `Scored: ${appState.scoredJobs?.length || 0} of ${formatKeyword(appState.keyword)} Jobs in ${formatDistance(appState.distance)} from ${formatLocation(appState.location)}, Posted within last ${formatPostedAgo(appState.postedAgo)}`
+          }
         </div>
         
         <div style={{ display: 'flex', flexDirection: 'column', height: '100%', gap: '20px' }}>

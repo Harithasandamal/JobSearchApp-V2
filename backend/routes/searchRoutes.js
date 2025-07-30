@@ -1,44 +1,73 @@
 const express = require('express');
-const searchController = require('../controllers/search');
-const fs = require('fs');
-
 const router = express.Router();
 
-// API endpoint to start SEEK job search
-router.post('/search-jobs', searchController.startJobSearch);
+const { 
+  startJobSearch, 
+  getSearchStatus, 
+  getJobDetails,
+  getTestJobs, 
+  testManualJobScraping,
+  getMockScoredJobs, 
+  getMockAnalysis 
+} = require('../controllers/search');
 
-// API endpoint to get search progress and results
-router.get('/search-status/:processId', searchController.getSearchStatus);
+const workflowLogger = require('../utils/WorkflowLogger');
 
-// API endpoint to stop a search
-router.delete('/search-stop/:processId', (req, res) => {
-  const { processId } = req.params;
-  const processInfo = searchController.activeProcesses.get(processId);
-  
-  if (!processInfo) {
-    return res.status(404).json({ error: 'Process not found' });
-  }
+// Job search endpoints
+router.post('/search-jobs', startJobSearch);
+router.get('/search-status/:processId', getSearchStatus);
+router.get('/job-details/:processId', getJobDetails);
 
-  // Kill the process
-  processInfo.process.kill('SIGTERM');
-  processInfo.status = 'stopped';
-  
-  // Clean up
+// Test and mock endpoints
+router.get('/test-jobs', getTestJobs);
+router.get('/mock-scored-jobs', getMockScoredJobs);
+router.get('/mock-analysis', getMockAnalysis);
+router.get('/test-manual-scraping', testManualJobScraping);
+
+// Unified workflow logging endpoint
+router.post('/workflow-log', (req, res) => {
   try {
-    fs.unlinkSync(processInfo.configPath);
-  } catch (err) {
-    console.error('Error deleting config file:', err);
+    const { eventType, data } = req.body;
+    
+    switch (eventType) {
+      case 'navigation':
+        workflowLogger.navigateToScreen(data.toScreen, data.fromScreen);
+        break;
+      case 'action':
+        workflowLogger.logAction(data.action, data.details);
+        break;
+      case 'click':
+        workflowLogger.logAction(`Clicked: ${data.buttonName}`, data.context);
+        break;
+      case 'input':
+        workflowLogger.logAction(`Input: ${data.field}`, `Value: ${data.value}`);
+        break;
+      case 'form':
+        workflowLogger.logAction(`Form submitted: ${data.formName}`, `Data: ${JSON.stringify(data.data)}`);
+        break;
+      case 'screenLoad':
+        const loadTimeText = data.loadTime ? ` (${data.loadTime}ms)` : '';
+        workflowLogger.logAction(`Screen loaded: ${data.screenName}${loadTimeText}`);
+        break;
+      case 'error':
+        workflowLogger.logError(data.error, data.context);
+        break;
+      default:
+        workflowLogger.log(`Frontend event: ${eventType}`, 'info');
+    }
+    
+    res.json({ status: 'logged' });
+  } catch (error) {
+    console.error('Workflow logging error:', error);
+    res.status(500).json({ error: 'Logging failed' });
   }
-  
-  searchController.activeProcesses.delete(processId);
-  
-  res.json({ message: 'Search stopped' });
 });
 
-// API endpoint for test jobs with real metadata
-router.get('/test-jobs', searchController.getTestJobs);
-
-// API endpoint to get job details for a specific process ID
-router.get('/job-details/:processId', searchController.getJobDetails);
+// Shutdown endpoint
+router.post('/shutdown', (req, res) => {
+  workflowLogger.logSessionSummary();
+  res.json({ message: 'Server shutting down' });
+  setTimeout(() => process.exit(0), 1000);
+});
 
 module.exports = router; 

@@ -38,8 +38,8 @@ class UrlBuilder {
   static enrichLocationWithPostcode(location) {
     const suburbs = this.getMelbourneSuburbsData();
     
-    console.log(`🔍 Attempting to enrich location: "${location}"`);
-    console.log(`📋 Available suburbs count: ${suburbs.length}`);
+
+
     
     // Handle complex area names that should NOT be enriched (preserve detailed area names)
     if (location.includes('&') || location.includes(' and ') || 
@@ -56,11 +56,8 @@ class UrlBuilder {
       const beforeComma = location.split(',')[0].trim();
       const afterComma = location.split(',')[1] ? location.split(',')[1].trim() : '';
       
-      console.log(`🔍 Comma-separated location - Before: "${beforeComma}", After: "${afterComma}"`);
-      
       // If before comma is a complex area name, use the whole thing
       if (beforeComma.length > 10 && (beforeComma.includes('&') || beforeComma.includes(' and ') || beforeComma.split(' ').length >= 3)) {
-        console.log(`✅ Using complex area name: "${beforeComma}"`);
         return location; // Use the full location as-is
       }
       
@@ -98,8 +95,6 @@ class UrlBuilder {
     if (matchedSuburb) {
       // Build the exact format that SEEK uses: "SuburbName VIC PostCode"
       const enrichedLocation = `${matchedSuburb.name} VIC ${matchedSuburb.postcode}`;
-      console.log(`✅ Successfully enriched location: "${location}" → "${enrichedLocation}"`);
-      console.log(`🎯 This should match SEEK dropdown format exactly`);
       return enrichedLocation;
     }
     
@@ -108,12 +103,10 @@ class UrlBuilder {
     const hasPostcodePattern = location.match(/\b\d{4}\b/);
     
     if (hasStatePattern && hasPostcodePattern) {
-      console.log(`✅ Location already has complete state and postcode info: "${location}"`);
       return location;
     }
     
     if (hasStatePattern && !hasPostcodePattern) {
-      console.log(`⚠️ Location has state but missing postcode: "${location}" - using as-is`);
       return location;
     }
     
@@ -213,29 +206,19 @@ class UrlBuilder {
     params.append('sortmode', 'ListedDate'); // Sort by newest first
     
     const url = `${baseUrl}?${params.toString()}`;
-    console.log(`✅ FINAL SEEK URL: ${url}`);
-    console.log(`📊 URL Analysis:`);
-    console.log(`   - Matches SEEK dropdown format: ${enrichedLocation.includes('VIC') && enrichedLocation.match(/\d{4}/) ? '✅' : '❌'}`);
-    console.log(`   - Has proper location encoding: ${locationPath.includes('-') ? '✅' : '❌'}`);
-    console.log(`   - Includes all required parameters: ✅`);
-    console.log(`🎯 This URL should produce results identical to manually selecting "${enrichedLocation}" from SEEK's dropdown\n`);
-    
     return url;
   }
   
   // Parse posted ago text to days for filtering
   static parsePostedAgoToDays(postedAgo) {
     if (!postedAgo || typeof postedAgo !== 'string') {
-      console.log(`⚠️ Invalid postedAgo input: "${postedAgo}"`);
       return Infinity;
     }
     
     const lower = postedAgo.toLowerCase().trim();
-    console.log(`🔍 Parsing date: "${postedAgo}"`);
     
     // Handle featured jobs - return special value to indicate they need detail scraping
     if (lower.includes('featured') || lower.includes('sponsor') || lower.includes('promoted')) {
-      console.log(`🌟 Detected featured job: "${postedAgo}" - marking for detail scraping`);
       return -1; // Special value to indicate featured job that needs detail scraping
     }
     

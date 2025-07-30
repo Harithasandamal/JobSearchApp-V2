@@ -3,9 +3,11 @@ import ResumeLabel from './common/ResumeLabel';
 import ProgressChecklist from './common/ProgressChecklist';
 import ProgressBar from './ui/ProgressBar';
 import useScoring from '../hooks/useScoring';
+import useTheme from '../hooks/useTheme';
 import { formatLocation, formatDistance, formatPostedAgo, formatKeyword } from '../utils/formatters';
 
 const ScoringScreen = ({ appState, updateAppState, navigateTo }) => {
+  const { theme } = useTheme();
   const [resumeFile, setResumeFile] = useState({
     name: appState.resume || 'Shamalka Resume v2.pdf',
     file: null,
@@ -93,7 +95,10 @@ const ScoringScreen = ({ appState, updateAppState, navigateTo }) => {
 
       <div className="right-panel">
         <div className="screen-header">
-          Scoring: {appState.selectedJobs?.length || 0} of {formatKeyword(appState.keyword)} Jobs in {formatDistance(appState.distance)} from {formatLocation(appState.location)}, Posted within last {formatPostedAgo(appState.postedAgo)}
+          {theme === 'light' ? 
+            `Scoring: ${appState.selectedJobs?.length || 0} Test Jobs` : 
+            `Scoring: ${appState.selectedJobs?.length || 0} of ${formatKeyword(appState.keyword)} Jobs in ${formatDistance(appState.distance)} from ${formatLocation(appState.location)}, Posted within last ${formatPostedAgo(appState.postedAgo)}`
+          }
         </div>
         
         {error && (

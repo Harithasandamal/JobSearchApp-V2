@@ -5,9 +5,11 @@ import JobsTable from './searched/JobsTable';
 import JobStatusIndicator from './searched/JobStatusIndicator';
 import SearchActionButtons from './searched/SearchActionButtons';
 import useSearchedScreen from '../hooks/useSearchedScreen';
+import useTheme from '../hooks/useTheme';
 import { formatLocation, formatDistance, formatPostedAgo, formatKeyword } from '../utils/formatters';
 
 const SearchedScreen = ({ appState, updateAppState, navigateTo, scoringLocked }) => {
+  const { theme } = useTheme();
   const {
     selectedJobs,
     resumeFile,
@@ -48,7 +50,10 @@ const SearchedScreen = ({ appState, updateAppState, navigateTo, scoringLocked })
 
       <div className="right-panel">
         <div className="screen-header">
-          Searched: {formatKeyword(appState.keyword)} Jobs in {formatDistance(appState.distance)} from {formatLocation(appState.location)}, Posted within last {formatPostedAgo(appState.postedAgo)}
+          {theme === 'light' ? 
+            'Searched: Test Jobs' : 
+            `Searched: ${formatKeyword(appState.keyword)} Jobs in ${formatDistance(appState.distance)} from ${formatLocation(appState.location)}, Posted within last ${formatPostedAgo(appState.postedAgo)}`
+          }
         </div>
         
         <div className="table-container">

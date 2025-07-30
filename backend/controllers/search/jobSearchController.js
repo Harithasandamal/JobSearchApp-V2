@@ -3,319 +3,282 @@ const path = require('path');
 const { spawn } = require('child_process');
 const JobUtils = require('../../utils/jobUtils');
 const { validateJobUrl } = require('../../utils/urlUtils');
-const { createDemoJobs, readFromFile } = require('../../utils/dataUtils');
+const { readFromFile } = require('../../utils/dataUtils');
 const { activeProcesses, activeJobDetails } = require('./sharedData');
+const { scrapeJobDetails } = require('./jobScrapingUtils');
+const { getJobUrlsForSearch, scrapeBasicJobInfoFromSearchResults } = require('./searchResultsScraper');
+const { batchScrapeJobs } = require('./optimizedJobScrapingUtils');
+const UrlBuilder = require('../../scrapers/UrlBuilder');
+const workflowLogger = require('../../utils/WorkflowLogger');
 
 /**
- * Start job search process
- * @param {Object} req - Express request object
- * @param {Object} res - Express response object
+ * Start a new job search process
  */
 const startJobSearch = async (req, res) => {
-  console.log('🔍 ===== SEARCH REQUEST RECEIVED =====');
-  console.log('🔍 Server received request body:', JSON.stringify(req.body, null, 2));
-  
-  const { keyword, location, distance, postedAgo, testMode } = req.body;
-  
-  console.log('🔍 Server extracted parameters:');
-  console.log('  - keyword:', keyword);
-  console.log('  - location:', location);
-  console.log('  - distance:', distance);
-  console.log('  - postedAgo:', postedAgo);
-  console.log('  - testMode:', testMode);
+  try {
+    const { keyword = 'developer', location = 'Melbourne', distance = 50, postedAgo = '7' } = req.body;
+    const { testMode = false } = req.body;
+    
+    workflowLogger.log(`Search request received: ${testMode ? 'TEST MODE' : 'REAL SEARCH'}`, 'system');
+    workflowLogger.log(`Parameters: ${keyword} in ${location} (${distance}km, ${postedAgo} days)`, 'system');
 
   if (testMode) {
-    console.log('🧪 TEST MODE - Simulating search process');
+      workflowLogger.startProcess('TEST MODE Job Search', 'Using working scraper logic');
     
-    // Generate unique process ID for test mode
-    const processId = 'test-mode-' + Date.now();
+      // TEST MODE - Use working scraper logic (NO DEMO DATA)
+      console.log('🧪 TEST MODE - Using working scraper logic (NO DEMO DATA)');
+      const processId = 'test-search-' + Date.now();
     activeProcesses.set(processId, {
       status: 'running',
-      progress: 0,
+        progress: 10,
       jobs: [],
-      configPath: null
+        searchParams: { keyword, location, distance, postedAgo }
     });
 
-    // Simulate async job creation with realistic timing
+      // Start async test search using working scraper logic
     setTimeout(async () => {
       try {
-        console.log('🧪 TEST MODE - Creating sample jobs...');
-        const sampleJobs = createDemoJobs(15, { location: 'Various Locations', keyword });
+          workflowLogger.logProgress('TEST MODE Search', 30, 100, 'Initializing scraper');
+          
+          // Update progress
+          const processInfo = activeProcesses.get(processId);
+          if (processInfo) processInfo.progress = 30;
+          
+          // Use the same URLs that work in test mode - Updated with verified working links
+          const sampleUrls = [
+            'https://www.seek.com.au/job/85981995?ref=recom-homepage&pos=4&sp=3&origin=jobTitle#sol=941dd2919d55ebc790f6017d3e00d197d7ce28a0',
+            'https://www.seek.com.au/job/85994049?ref=search-standalone&type=standard&origin=jobTitle#sol=f5c442d9c765b69183c0a9f36e76c3773779cff4',
+            'https://www.seek.com.au/job/85907804?ref=search-standalone&type=standard&origin=jobTitle#sol=ac705abd43f8e7aa11c57e26bdd7ef8de3e67313'
+          ];
+          
+          const jobs = [];
+          
+          // Update progress
+          if (processInfo) processInfo.progress = 50;
+          workflowLogger.logProgress('TEST MODE Search', 50, 100, 'Starting parallel scraping');
+          
+          console.log('🧪 TEST MODE - Using unified parallel scraping...');
+          workflowLogger.startProcess('Unified Parallel Job Scraping', `${sampleUrls.length} URLs`);
+          
+                  // ✅ UNIFIED PARALLEL SCRAPING - Same as real search, no delays, true parallel
+        try {
+          const startTime = Date.now();
+          
+          // Pass search criteria for featured job validation (use test parameters)
+          const searchCriteria = { keyword, location, distance, postedAgo };
+          const validJobs = await batchScrapeJobs(sampleUrls, searchCriteria);
+          
+          const endTime = Date.now();
+          const duration = ((endTime - startTime) / 1000).toFixed(1);
+          
+          console.log(`⚡ TEST MODE - Unified parallel scraping completed in ${duration} seconds!`);
+          jobs.push(...validJobs);
+          
+          console.log(`🚀 TEST MODE - Unified scraping completed! ${validJobs.length}/${sampleUrls.length} jobs successfully scraped`);
+          workflowLogger.endProcess('Unified Parallel Job Scraping', 'completed', `${validJobs.length}/${sampleUrls.length} jobs scraped in ${duration}s`);
+        } catch (error) {
+          console.error('❌ TEST MODE - Unified parallel scraping failed:', error);
+          workflowLogger.endProcess('Unified Parallel Job Scraping', 'failed', error.message);
+        }
         
         // Update process with completed jobs
-        const processInfo = activeProcesses.get(processId);
         if (processInfo) {
           processInfo.status = 'completed';
           processInfo.progress = 100;
-          processInfo.jobs = sampleJobs;
-          console.log(`🧪 TEST MODE - Completed with ${sampleJobs.length} sample jobs`);
-        }
+            processInfo.jobs = jobs;
+            console.log(`✅ TEST MODE - Completed with ${jobs.length} real job details (NO DEMO DATA)`);
+            workflowLogger.endProcess('TEST MODE Job Search', 'completed', `${jobs.length} jobs found`);
+            workflowLogger.logProgress('TEST MODE Search', 100, 100, 'Search completed');
+          }
+          
       } catch (error) {
-        console.error('🧪 TEST MODE ERROR:', error);
+          console.error('❌ TEST MODE - Search failed:', error);
+          workflowLogger.logError(error.message, 'TEST MODE Search');
+          workflowLogger.endProcess('TEST MODE Job Search', 'failed', error.message);
+          
         const processInfo = activeProcesses.get(processId);
         if (processInfo) {
           processInfo.status = 'failed';
           processInfo.progress = 100;
+            processInfo.jobs = []; // NO FALLBACK DATA - empty array
+          }
         }
-      }
-    }, 6000); // 6 seconds to allow progress simulation to complete
+      }, 2000);
 
     return res.json({ 
       processId: processId, 
-      message: 'Test mode search started', 
+        message: 'Test search started with working scraper (NO DEMO DATA)',
       status: 'running' 
     });
   }
 
+    // REAL SEARCH MODE - Use working scraping logic (NO FALLBACK DATA)
+    workflowLogger.startProcess('REAL SEARCH Job Search', 'Using working scraper logic');
+    console.log('🌙 REAL SEARCH MODE - Using working scraper logic (NO FALLBACK DATA)');
+
   // Generate unique process ID
-  const processId = Date.now().toString();
+    const processId = 'real-search-' + Date.now();
   
   console.log(`🚀 Starting real search process with ID: ${processId}`);
   console.log(`🔍 Search parameters:`, { keyword, location, distance, postedAgo });
   
-  // Create temporary config file for the scraper
-  const config = {
-    site: 'SEEK',
-    distance: distance,
-    location: location,
-    postedAgo: postedAgo,
-    keyword: keyword || '',
-    maxResults: 20
-  };
-  
-  console.log('🔍 Search config created:', JSON.stringify(config, null, 2));
-
-  // Write config to temporary file in backend directory
-  const configPath = path.join(__dirname, '../../', `config_${processId}.json`);
-  console.log(`📝 Writing config to: ${configPath}`);
-  
-  try {
-    fs.writeFileSync(configPath, JSON.stringify(config, null, 2));
-    console.log(`✅ Config file written successfully`);
-  } catch (error) {
-    console.error(`❌ Failed to write config file: ${error.message}`);
-    return res.status(500).json({ error: `Failed to write config file: ${error.message}` });
-  }
-
-  // Check if SeekSearch.cjs exists
-  const seekSearchPath = path.join(__dirname, '../../', 'SeekSearch.cjs');
-  if (!fs.existsSync(seekSearchPath)) {
-    console.error(`❌ SeekSearch.cjs not found at: ${seekSearchPath}`);
-    return res.status(500).json({ error: 'SeekSearch.cjs not found' });
-  }
-  console.log(`✅ SeekSearch.cjs found at: ${seekSearchPath}`);
-
-  // Spawn the SEEK scraper process
-  console.log(`🌙 Spawning scraper process...`);
-  const scraperProcess = spawn('node', [seekSearchPath, configPath], {
-    cwd: path.join(__dirname, '../../'),
-    stdio: ['pipe', 'pipe', 'pipe']
-  });
-
-  console.log(`🔄 Scraper process spawned with PID: ${scraperProcess.pid}`);
-
-  // Store process reference
+    // Store process reference with initial state
   activeProcesses.set(processId, {
-    process: scraperProcess,
-    configPath: configPath,
     status: 'running',
-    progress: 0,
-    jobs: []
-  });
+      progress: 10,
+      jobs: [],
+      searchParams: { keyword, location, distance, postedAgo }
+    });
 
-  // Handle process output
-  let output = '';
-
-  scraperProcess.stdout.on('data', (data) => {
-    const outputStr = data.toString();
-    output += outputStr;
-    
-    console.log(`🔍 Scraper stdout: ${outputStr.substring(0, 200)}...`);
-    
-    // Update progress based on output
-    if (outputStr.includes('Progress:')) {
-      const match = outputStr.match(/Progress:\s*(\d+)%/);
-      if (match) {
+    // Start async real search using working scraper logic
+    setTimeout(async () => {
+      try {
+        console.log('🔍 REAL SEARCH - Starting scraping process...');
+        
+        // Update progress
         const processInfo = activeProcesses.get(processId);
-        if (processInfo) {
-          processInfo.progress = parseInt(match[1]);
-          console.log(`📊 Progress updated to: ${processInfo.progress}%`);
-        }
-      }
-    }
-
-    // Mark as completed when jobs are found
-    if (outputStr.includes('Found') && outputStr.includes('jobs')) {
-      const match = outputStr.match(/Found (\d+) jobs/);
-      if (match) {
-        const processInfo = activeProcesses.get(processId);
-        if (processInfo) {
-          processInfo.progress = 100;
-          console.log(`✅ Found ${match[1]} jobs, marking as completed`);
-        }
-      }
-    }
-  });
-
-  // Handle stderr output
-  scraperProcess.stderr.on('data', (data) => {
-    const errorStr = data.toString();
-    console.error(`❌ Scraper stderr: ${errorStr}`);
-    
-    // Update process status on critical errors
-    const processInfo = activeProcesses.get(processId);
-    if (processInfo && errorStr.includes('Error')) {
-      processInfo.status = 'failed';
-      processInfo.progress = 100;
-    }
-  });
-
-  // Handle process errors
-  scraperProcess.on('error', (error) => {
-    console.error(`❌ Scraper process error: ${error.message}`);
-    const processInfo = activeProcesses.get(processId);
-    if (processInfo) {
-      processInfo.status = 'failed';
-      processInfo.progress = 100;
-    }
-  });
-
-  scraperProcess.on('close', (code) => {
-    const processInfo = activeProcesses.get(processId);
-    if (processInfo) {
-      processInfo.status = code === 0 ? 'completed' : 'failed';
-      
-      // If completed successfully, try to read results file
-      if (code === 0) {
-        try {
-          const resultsPath = processInfo.configPath.replace('.json', '_results.json');
-          console.log(`📄 Looking for results file: ${resultsPath}`);
+        if (processInfo) processInfo.progress = 30;
+        
+        // ✅ REAL DYNAMIC SEARCH - Build search URL and scrape job listings from search results
+        console.log(`🎯 REAL SEARCH - Performing dynamic search for: "${keyword}" in "${location}"`);
+        workflowLogger.log(`🎯 Real search: "${keyword}" in "${location}" (${distance}, ${postedAgo})`, 'system');
+        
+        // Build the search URL using user parameters
+        const searchUrl = UrlBuilder.buildSeekUrl(keyword, location, distance, postedAgo);
+        console.log(`🌐 Built search URL: ${searchUrl}`);
+        
+        // Get job URLs from search results (limit to 15 for initial implementation)
+        console.log('🔍 REAL SEARCH - Getting job URLs from search results...');
+        workflowLogger.startProcess('Search Results Scraping', 'Extracting job URLs from search page');
+        
+        const jobUrls = await getJobUrlsForSearch(keyword, location, distance, postedAgo, 15);
+        
+        if (jobUrls.length === 0) {
+          console.log('❌ REAL SEARCH - No job URLs found from search results');
+          workflowLogger.endProcess('Search Results Scraping', 'failed', 'No job URLs found');
           
-          if (fs.existsSync(resultsPath)) {
-            console.log('📄 Found results file, reading...');
-            const resultsData = readFromFile(resultsPath);
-            console.log('📄 Results data:', JSON.stringify(resultsData, null, 2).substring(0, 500));
-            
-            if (resultsData.jobs && Array.isArray(resultsData.jobs)) {
-              processInfo.jobs = resultsData.jobs;
-              activeJobDetails[processId] = resultsData.jobs;
-              console.log(`✅ Loaded ${resultsData.jobs.length} jobs from results file`);
-              
-              // Apply location cleaning to all job results
-              processInfo.jobs = processInfo.jobs.map(job => {
-                if (job.location && job.location !== 'N/A' && job.location !== 'Unknown Location') {
-                  const originalLocation = job.location;
-                  // Clean the extracted location using simple rule
-                  let cleanedLocation = originalLocation;
-                  
-                  // Simple rule: Take everything before the comma (if comma exists)
-                  if (cleanedLocation.includes(',')) {
-                    cleanedLocation = cleanedLocation.split(',')[0].trim();
-                  } else if (cleanedLocation.match(/^Melbourne(\s+VIC)?(\s+\d+)?$/i)) {
-                    // Only if the entire location is just "Melbourne VIC" or "Melbourne" with no comma
-                    cleanedLocation = 'Melbourne';
-                  }
-                  
-                  console.log(`🏘️ Location cleaned: "${originalLocation}" → "${cleanedLocation}"`);
-                  
-                  return { ...job, location: cleanedLocation };
-                }
-                return job;
-              });
-              
-              // Update activeJobDetails with cleaned locations too
-              activeJobDetails[processId] = processInfo.jobs;
-              
-              // Debug: Log first few job URLs
-              resultsData.jobs.slice(0, 3).forEach((job, index) => {
-                console.log(`🔗 Server Job ${index + 1} URL: ${job.url || 'NO URL'}`);
-                console.log(`🔗 Server Job ${index + 1} Title: ${job.title || 'NO TITLE'}`);
-              });
-              
-              // Validate and fix URLs if needed
-              processInfo.jobs.forEach(job => {
-                job.url = validateJobUrl(job.url, job.title);
-              });
-            } else {
-              console.log('⚠️ No jobs array found in results file');
-            }
-            
-            // Clean up results file
-            fs.unlinkSync(resultsPath);
-            console.log('🗑️ Cleaned up results file');
-          } else {
-            console.log('⚠️ Results file not found, trying console output parsing...');
-            // Fallback to console output parsing if file doesn't exist
-            try {
-              const lines = output.split('\n');
-              let inTable = false;
-              let jobIndex = 0;
-              
-              for (const line of lines) {
-                if (line.includes('Job Title') && line.includes('Company') && line.includes('Location')) {
-                  inTable = true;
-                  continue;
-                }
-                
-                if (inTable && line.trim() && line.includes('│') && 
-                    !line.includes('═') && !line.includes('─') && 
-                    !line.includes('Job Title') && !line.includes('Company')) {
-                  
-                  const parts = line.split('│').map(p => p.trim()).filter(p => p);
-                  
-                  if (parts.length >= 4) {
-                    const rawLocation = parts[2] || 'N/A';
-                    
-                    processInfo.jobs.push({
-                      id: jobIndex + 1,
-                      title: parts[0] || 'N/A',
-                      company: parts[1] || 'N/A', 
-                      location: rawLocation,
-                      postedAgo: parts[3] || 'N/A'
-                    });
-                    jobIndex++;
-                  }
-                }
-              }
-              console.log(`📋 Parsed ${processInfo.jobs.length} jobs from console output`);
-            } catch (parseError) {
-              console.error('Error parsing console output:', parseError);
-            }
+          if (processInfo) {
+            processInfo.status = 'failed';
+            processInfo.progress = 100;
+            processInfo.jobs = [];
           }
-        } catch (error) {
-          console.error('Error reading results file:', error);
-          
-          // SIMPLIFIED: Process any jobs we have with unified utilities
-          if (processInfo.jobs.length > 0) {
-            processInfo.jobs = JobUtils.processJobs(processInfo.jobs);
-          }
+          return;
         }
         
-        // SIMPLIFIED: Process all jobs with unified utilities
-        if (processInfo.jobs.length > 0) {
-          console.log(`🔄 Processing ${processInfo.jobs.length} jobs with unified JobUtils...`);
-          processInfo.jobs = JobUtils.processJobs(processInfo.jobs);
+        console.log(`✅ REAL SEARCH - Found ${jobUrls.length} job URLs from search results`);
+        workflowLogger.endProcess('Search Results Scraping', 'completed', `${jobUrls.length} job URLs found`);
+        
+        const sampleUrls = jobUrls;
+        
+        const jobs = [];
+        
+        // Update progress
+        if (processInfo) processInfo.progress = 50;
+        
+        console.log('🚀 REAL SEARCH - Using unified parallel scraping...');
+        workflowLogger.startProcess('Unified Parallel Job Scraping', `${sampleUrls.length} URLs`);
+        
+        // ✅ UNIFIED PARALLEL SCRAPING - Same as light mode, no delays, true parallel
+        try {
+          const startTime = Date.now();
+          
+          // Pass search criteria for featured job validation
+          const searchCriteria = { keyword, location, distance, postedAgo };
+          const validJobs = await batchScrapeJobs(sampleUrls, searchCriteria);
+          
+          const endTime = Date.now();
+          const duration = ((endTime - startTime) / 1000).toFixed(1);
+          
+          console.log(`⚡ REAL SEARCH - Unified parallel scraping completed in ${duration} seconds!`);
+          jobs.push(...validJobs);
+          
+          console.log(`🚀 REAL SEARCH - Unified scraping completed! ${validJobs.length}/${sampleUrls.length} jobs successfully scraped`);
+          workflowLogger.endProcess('Unified Parallel Job Scraping', 'completed', `${validJobs.length}/${sampleUrls.length} jobs scraped in ${duration}s`);
+        } catch (error) {
+          console.error('❌ REAL SEARCH - Unified parallel scraping failed:', error);
+          workflowLogger.endProcess('Unified Parallel Job Scraping', 'failed', error.message);
         }
-      }
-      
-      // Clean up config file
-      try {
-        if (fs.existsSync(processInfo.configPath)) {
-          fs.unlinkSync(processInfo.configPath);
-          console.log('🗑️ Cleaned up config file');
+        
+        // Sort jobs by posted time (most recent first) - works for both regular and featured jobs
+        if (jobs.length > 0) {
+          console.log('🔄 REAL SEARCH - Sorting all jobs by posted time (featured jobs included)...');
+          
+          // Count featured jobs for logging
+          const featuredCount = jobs.filter(job => job.isFeatured).length;
+          if (featuredCount > 0) {
+            console.log(`🌟 Found ${featuredCount} featured jobs that passed validation - will be sorted with regular jobs`);
+          }
+          jobs.sort((a, b) => {
+            const parseTime = (timeStr) => {
+              if (!timeStr || timeStr === 'Unknown' || timeStr === 'Time not specified') return Infinity;
+              
+              // Extract number and unit from strings like "3d ago", "1d ago", "4d ago"
+              const match = timeStr.match(/(\d+)\s*([dhm])/);
+              if (match) {
+                const num = parseInt(match[1]);
+                const unit = match[2];
+                
+                // Convert to minutes for comparison
+                switch (unit) {
+                  case 'm': return num; // minutes
+                  case 'h': return num * 60; // hours to minutes
+                  case 'd': return num * 60 * 24; // days to minutes
+                  default: return Infinity;
+                }
+              }
+              
+              // Handle "today", "yesterday" etc
+              if (timeStr.toLowerCase().includes('today')) return 0;
+              if (timeStr.toLowerCase().includes('yesterday')) return 60 * 24;
+              
+              return Infinity; // Unknown format, put at end
+            };
+            
+            const aTime = parseTime(a.postedAgo);
+            const bTime = parseTime(b.postedAgo);
+            
+            return aTime - bTime; // Ascending order (most recent = smallest number)
+          });
         }
-      } catch (cleanupError) {
-        console.error('Error cleaning up config file:', cleanupError);
+        
+        // Update process with completed jobs
+        if (processInfo) {
+          processInfo.status = 'completed';
+          processInfo.progress = 100;
+          processInfo.jobs = jobs;
+          console.log(`✅ REAL SEARCH - Completed with ${jobs.length} real job details (NO FALLBACK DATA)`);
+          if (jobs.length > 0) {
+            console.log('📋 REAL SEARCH - Sorted job list:', jobs.map(j => ({ id: j.id, title: j.title, postedAgo: j.postedAgo })));
+          } else {
+            console.log('📋 REAL SEARCH - No jobs successfully scraped');
+          }
+          workflowLogger.endProcess('REAL SEARCH Job Search', 'completed', `${jobs.length} jobs found`);
+          workflowLogger.logProgress('REAL SEARCH Search', 100, 100, 'Search completed');
+        }
+        
+      } catch (error) {
+        console.error('❌ REAL SEARCH - Critical error:', error);
+        const processInfo = activeProcesses.get(processId);
+        if (processInfo) {
+          processInfo.status = 'failed';
+          processInfo.progress = 100;
+          processInfo.jobs = []; // NO FALLBACK DATA - empty array
+        }
+        workflowLogger.logError(error.message, 'REAL SEARCH Search');
+        workflowLogger.endProcess('REAL SEARCH Job Search', 'failed', error.message);
       }
-    }
-  });
+    }, 2000); // Start after 2 seconds
 
-  // Return process ID immediately
-  res.json({ 
+    return res.json({ 
     processId: processId,
-    message: 'Job search process started',
+      message: 'Real search started with working scraper (NO FALLBACK DATA)', 
     status: 'running'
   });
+  } catch (error) {
+    console.error('❌ Overall search failed:', error);
+    workflowLogger.logError(error.message, 'Overall Search');
+    return res.status(500).json({ message: 'Failed to start search process', error: error.message });
+  }
 };
 
 module.exports = {

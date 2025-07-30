@@ -6,6 +6,8 @@ import LoadingSpinner from './components/ui/LoadingSpinner';
 import ThemeToggle from './components/ui/ThemeToggle';
 import { defaultSuburb } from './data/melbourneSuburbs';
 import useTheme from './hooks/useTheme';
+import useLocalStorage from './hooks/useLocalStorage';
+import useWorkflowLogger from './hooks/useWorkflowLogger';
 
 // Lazy load screen components for code splitting
 const WelcomeScreen = lazy(() => import('./components/WelcomeScreen'));
@@ -17,9 +19,22 @@ const AnalyzingScreen = lazy(() => import('./components/AnalyzingScreen'));
 const AnalyzedScreen = lazy(() => import('./components/AnalyzedScreen'));
 
 function App() {
-  const [currentScreen, setCurrentScreen] = useState('welcome');
+  const { theme, setTheme, locked: themeLocked, setLocked: setThemeLocked } = useTheme();
+  const [localState, updateLocalState, clearLocalState] = useLocalStorage('appState', {});
+  const workflowLogger = useWorkflowLogger();
+  
+  const [currentScreen, setCurrentScreen] = useState(() => {
+    // Always start fresh with welcome screen on app load
+    const screen = 'welcome';
+    // Clear any cached screen state to ensure fresh start
+    if (localState?.currentScreen && localState.currentScreen !== 'welcome') {
+      updateLocalState({ currentScreen: 'welcome' });
+    }
+    // Log initial screen on app load
+    setTimeout(() => workflowLogger.logNavigation(screen, null), 100);
+    return screen;
+  });
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [themeLocked, setThemeLocked] = useState(false);
   const [appState, setAppState] = useState({
     resume: 'Shamalka Resume v2.pdf',
     location: defaultSuburb,
@@ -34,14 +49,28 @@ function App() {
     analysisData: null
   });
 
-  const themeHook = useTheme();
-
-  // Maximize window on component mount
+  // Maximize window and ensure fresh start on component mount
   useEffect(() => {
     if (window.screen && window.screen.availWidth && window.screen.availHeight) {
       window.resizeTo(window.screen.availWidth, window.screen.availHeight);
       window.moveTo(0, 0);
     }
+    
+    // Ensure fresh app state on startup
+    setAppState(prev => ({
+      ...prev,
+      searchProcessId: null,
+      selectedJobs: [],
+      selectedJobForAnalysis: null,
+      jobsFound: [],
+      scoredJobs: [],
+      analysisData: null
+    }));
+    
+    // Ensure welcome screen and unlock theme on fresh start
+    setCurrentScreen('welcome');
+    setThemeLocked(false);
+    updateLocalState({ currentScreen: 'welcome' });
   }, []);
 
   // Graceful backend shutdown on browser close (development only)
@@ -76,46 +105,42 @@ function App() {
   ];
   const isScoringLocked = scoringLockedScreens.includes(currentScreen);
 
+  // Enhanced navigation function with logging
   const navigateTo = (screen) => {
-    if (screen !== currentScreen) {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setCurrentScreen(screen);
-        setIsTransitioning(false);
-        
-        // When returning to welcome screen, unlock theme and reset state for fresh search
-        if (screen === 'welcome') {
-          console.log('🏠 Returning to welcome screen - unlocking theme and resetting state');
-          setThemeLocked(false);
-          themeHook.setLocked(false);
-          
-          // Reset app state for fresh search (but keep user preferences)
-          setAppState(prev => ({
-            resume: prev.resume, // Keep resume
-            location: prev.location, // Keep location
-            distance: prev.distance, // Keep distance  
-            postedAgo: prev.postedAgo, // Keep postedAgo
-            keyword: prev.keyword, // Keep keyword
-            // Reset search-related data
-            searchProcessId: null,
-            selectedJobs: [],
-            selectedJobForAnalysis: null,
-            jobsFound: [],
-            scoredJobs: [],
-            analysisData: null
-          }));
-        } else {
-          // Lock theme for all other screens
-          console.log(`🔒 Navigating to ${screen} - locking theme`);
-          setThemeLocked(true);
-          themeHook.setLocked(true);
-        }
-      }, 100);
+    const fromScreen = currentScreen;
+    workflowLogger.logNavigation(screen, fromScreen);
+    setCurrentScreen(screen);
+    updateLocalState({ currentScreen: screen });
+    
+    // Unlock theme when returning to welcome screen
+    if (screen === 'welcome') {
+      setThemeLocked(false);
     }
   };
 
   const updateAppState = (updates) => {
     setAppState(prev => ({ ...prev, ...updates }));
+  };
+
+  // Log app initialization
+  useEffect(() => {
+    workflowLogger.logAction('App initialized', `Theme: ${theme}, Screen: ${currentScreen}`);
+    workflowLogger.logScreenLoad('app');
+  }, []);
+
+  // Log theme changes
+  useEffect(() => {
+    if (theme) {
+      workflowLogger.logAction('Theme changed', `New theme: ${theme}`);
+    }
+  }, [theme]);
+
+  const resetApp = () => {
+    workflowLogger.logAction('App reset', 'User clicked reset button');
+    clearLocalState();
+    setCurrentScreen('welcome');
+    setThemeLocked(false);
+    workflowLogger.logNavigation('welcome', currentScreen);
   };
 
   // Pass setThemeLocked to WelcomeScreen so it can lock the theme immediately on search

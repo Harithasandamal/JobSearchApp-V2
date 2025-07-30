@@ -68,28 +68,34 @@ const useSearchHandler = ({ updateAppState, navigateTo, setThemeLocked }) => {
       searchProcessId: null
     });
 
-    // LIGHT MODE: Show sample jobs, skip SearchingScreen
+    // LIGHT MODE: Show SearchingScreen with progress, then display test jobs
     if (currentTheme === 'light') {
-      console.log('🌞 LIGHT MODE - Fetching 3 sample jobs (ignoring user parameters)');
+      console.log('🌞 LIGHT MODE - Starting search with progress simulation');
+      
+      // Navigate to searching screen first
+      navigateTo('searching');
+      
       try {
-        const jobs = await seekApiService.fetchRealTestJobs();
-        console.log('✅ Sample jobs loaded:', jobs.length, 'jobs');
+        // Start simulated light mode search process
+        const response = await seekApiService.startSearch(localState, true); // testMode = true
+        console.log('🌞 Light mode search process started:', response.processId);
         
-        updateAppState({ jobsFound: jobs });
+        updateAppState({ searchProcessId: response.processId });
         setIsSearching(false);
-        navigateTo('searched');
-      } catch (err) {
-        console.error('❌ Sample jobs failed:', err);
-        setIsSearching(false);
+        
+      } catch (error) {
+        console.error('❌ Light mode search failed:', error);
+        alert(`Light mode search failed: ${error.message}`);
         if (setThemeLocked) setThemeLocked(false);
-        alert('Failed to load sample jobs: ' + err.message);
+        navigateTo('welcome');
+        setIsSearching(false);
       }
       return;
     }
 
-    // DARK MODE: Real search with user parameters
+    // DARK MODE: Real search with working scraper logic
     if (currentTheme === 'dark') {
-      console.log('🌙 DARK MODE - Real search with user parameters');
+      console.log('🌙 DARK MODE - Real search with working scraper logic');
       
       const searchParams = {
         ...localState,
@@ -129,7 +135,8 @@ const useSearchHandler = ({ updateAppState, navigateTo, setThemeLocked }) => {
       navigateTo('searching');
       
       try {
-        const response = await seekApiService.startSearch(searchParams);
+        // Use real search with working scraper (testMode = false, but using good scraping logic)
+        const response = await seekApiService.startSearch(searchParams, false);
         console.log('🔍 Real search process started:', response.processId);
         
         updateAppState({ searchProcessId: response.processId });
