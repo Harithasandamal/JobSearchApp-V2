@@ -68,22 +68,9 @@ function App() {
       window.moveTo(0, 0);
     }
     
-    // Ensure fresh app state on startup
-    setAppState(prev => ({
-      ...prev,
-      searchProcessId: null,
-      selectedJobs: [],
-      selectedJobForAnalysis: null,
-      jobsFound: [],
-      scoredJobs: [],
-      analysisData: null
-    }));
-    
-    // Ensure welcome screen and unlock theme on fresh start
-    setCurrentScreen('welcome');
+    // Unlock theme on fresh start
     setThemeLocked(false);
-    updateLocalState({ currentScreen: 'welcome' });
-  }, []);
+  }, [setThemeLocked]);
 
   // Graceful backend shutdown on browser close (development only)
   useEffect(() => {
