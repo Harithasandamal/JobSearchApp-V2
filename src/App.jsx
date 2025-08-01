@@ -113,10 +113,16 @@ function App() {
     setAppState(prev => ({ ...prev, ...updates }));
   };
 
-  // Log app initialization
+  // Log app initialization and ensure default location
   useEffect(() => {
     workflowLogger.logAction('App initialized', `Theme: ${theme}, Screen: ${currentScreen}`);
     workflowLogger.logScreenLoad('app');
+    
+    // Ensure default location is Dandenong (reset any cached Carlton)
+    if (appState.location !== defaultSuburb) {
+      console.log(`🔄 Resetting location from "${appState.location}" to default "${defaultSuburb}"`);
+      updateAppState({ location: defaultSuburb });
+    }
   }, []);
 
   // Log theme changes
