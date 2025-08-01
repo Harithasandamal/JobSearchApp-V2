@@ -135,17 +135,16 @@ async function testDarkModeNoKeyword() {
     
     console.log(`✅ Found ${jobUrls.length} job URLs`);
     
-    // Test scraping first few jobs
+    // Test scraping first few jobs IN PARALLEL
     const urlsToTest = jobUrls.slice(0, Math.min(MAX_JOBS_TO_TEST, jobUrls.length));
-    console.log(`\n🧪 Testing scraping of first ${urlsToTest.length} jobs...`);
+    console.log(`\n🧪 Testing PARALLEL scraping of ${urlsToTest.length} jobs...`);
     
     const startTime = Date.now();
-    const results = [];
     
-    for (let i = 0; i < urlsToTest.length; i++) {
-      const result = await scrapeJobSafely(urlsToTest[i], i);
-      results.push(result);
-    }
+    // TRUE PARALLEL EXECUTION - all jobs scraped simultaneously
+    const results = await Promise.all(
+      urlsToTest.map((url, index) => scrapeJobSafely(url, index))
+    );
     
     const endTime = Date.now();
     const duration = ((endTime - startTime) / 1000).toFixed(1);
@@ -221,17 +220,16 @@ async function testDarkModeWithKeyword() {
     
     console.log(`✅ Found ${jobUrls.length} job URLs`);
     
-    // Test scraping first few jobs
+    // Test scraping first few jobs IN PARALLEL
     const urlsToTest = jobUrls.slice(0, Math.min(MAX_JOBS_TO_TEST, jobUrls.length));
-    console.log(`\n🧪 Testing scraping of first ${urlsToTest.length} jobs...`);
+    console.log(`\n🧪 Testing PARALLEL scraping of ${urlsToTest.length} jobs...`);
     
     const startTime = Date.now();
-    const results = [];
     
-    for (let i = 0; i < urlsToTest.length; i++) {
-      const result = await scrapeJobSafely(urlsToTest[i], i);
-      results.push(result);
-    }
+    // TRUE PARALLEL EXECUTION - all jobs scraped simultaneously
+    const results = await Promise.all(
+      urlsToTest.map((url, index) => scrapeJobSafely(url, index))
+    );
     
     const endTime = Date.now();
     const duration = ((endTime - startTime) / 1000).toFixed(1);
