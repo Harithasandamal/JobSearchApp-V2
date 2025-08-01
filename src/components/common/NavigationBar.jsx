@@ -19,8 +19,8 @@ const NavigationBar = ({
 }) => {
   const { theme } = useTheme();
 
-  // Don't show navigation bar on welcome screen unless there's a session to manage
-  if (currentScreen === 'welcome' && !hasExistingSession) {
+  // Don't show navigation bar on welcome screen
+  if (currentScreen === 'welcome') {
     return null;
   }
 

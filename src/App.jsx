@@ -8,9 +8,7 @@ import { defaultSuburb } from './data/melbourneSuburbs';
 import useTheme from './hooks/useTheme';
 import useLocalStorage from './hooks/useLocalStorage';
 import useWorkflowLogger from './hooks/useWorkflowLogger';
-import useSessionPersistence from './hooks/useSessionPersistence';
 import NavigationBar from './components/common/NavigationBar';
-import SessionContinuityBanner from './components/common/SessionContinuityBanner';
 
 // Lazy load screen components for code splitting
 const WelcomeScreen = lazy(() => import('./components/WelcomeScreen'));
@@ -26,40 +24,25 @@ function App() {
   const [localState, updateLocalState, clearLocalState] = useLocalStorage('appState', {});
   const workflowLogger = useWorkflowLogger();
   
-  // Enhanced session persistence and navigation
-  const {
-    sessionData,
-    updateSession,
-    clearSession,
-    navigateWithHistory,
-    navigateBack,
-    navigateForward,
-    canNavigateBack,
-    canNavigateForward,
-    previousScreen,
-    nextScreen,
-    hasExistingSession,
-    sessionAge
-  } = useSessionPersistence();
+  // Simple in-session navigation state
+  const [navigationHistory, setNavigationHistory] = useState(['welcome']);
+  const [historyIndex, setHistoryIndex] = useState(0);
+  const [currentScreen, setCurrentScreen] = useState('welcome');
   
-  // Use session data for current screen (with fallback to session persistence)
-  const currentScreen = sessionData.currentScreen || 'welcome';
   const [isTransitioning, setIsTransitioning] = useState(false);
-  
-  // Use session data for app state (enhanced with persistence)
-  const appState = {
-    resume: sessionData.searchParams?.resume || 'Shamalka Resume v2.pdf',
-    location: sessionData.searchParams?.location || defaultSuburb,
-    distance: sessionData.searchParams?.distance || '5 km',
-    postedAgo: sessionData.searchParams?.postedAgo || '3 days',
-    keyword: sessionData.searchParams?.keyword || '',
-    searchProcessId: sessionData.searchProcessId,
-    selectedJobs: sessionData.selectedJobs || [],
-    selectedJobForAnalysis: sessionData.selectedJobForAnalysis,
-    jobsFound: sessionData.jobsFound || [],
-    scoredJobs: sessionData.scoredJobs || [],
-    analysisData: sessionData.analysisData
-  };
+  const [appState, setAppState] = useState({
+    resume: 'Shamalka Resume v2.pdf',
+    location: defaultSuburb,
+    distance: '5 km',
+    postedAgo: '3 days',
+    keyword: '',
+    searchProcessId: null,
+    selectedJobs: [],
+    selectedJobForAnalysis: null,
+    jobsFound: [],
+    scoredJobs: [],
+    analysisData: null
+  });
 
   // Maximize window and ensure fresh start on component mount
   useEffect(() => {
@@ -104,13 +87,20 @@ function App() {
   ];
   const isScoringLocked = scoringLockedScreens.includes(currentScreen);
 
-  // Enhanced navigation function with session persistence and logging
+  // Simple navigation with in-session history
   const navigateTo = (screen) => {
     const fromScreen = currentScreen;
     workflowLogger.logNavigation(screen, fromScreen);
     
-    // Use session-aware navigation with history
-    navigateWithHistory(screen);
+    // Add to navigation history
+    setNavigationHistory(prev => {
+      const newHistory = [...prev.slice(0, historyIndex + 1), screen];
+      setHistoryIndex(newHistory.length - 1);
+      return newHistory;
+    });
+    
+    setCurrentScreen(screen);
+    updateLocalState({ currentScreen: screen });
     
     // Unlock theme when returning to welcome screen
     if (screen === 'welcome') {
@@ -118,37 +108,9 @@ function App() {
     }
   };
 
-  // Enhanced app state updater with session persistence
+  // Simple app state updater
   const updateAppState = (updates) => {
-    // Update session data based on the type of updates
-    const sessionUpdates = {};
-    
-    // Handle search parameters
-    if (updates.location || updates.distance || updates.postedAgo || updates.keyword || updates.resume) {
-      sessionUpdates.searchParams = {
-        ...sessionData.searchParams,
-        ...(updates.location && { location: updates.location }),
-        ...(updates.distance && { distance: updates.distance }),
-        ...(updates.postedAgo && { postedAgo: updates.postedAgo }),
-        ...(updates.keyword && { keyword: updates.keyword }),
-        ...(updates.resume && { resume: updates.resume })
-      };
-    }
-    
-    // Handle job data
-    if (updates.jobsFound !== undefined) sessionUpdates.jobsFound = updates.jobsFound;
-    if (updates.selectedJobs !== undefined) sessionUpdates.selectedJobs = updates.selectedJobs;
-    if (updates.scoredJobs !== undefined) sessionUpdates.scoredJobs = updates.scoredJobs;
-    
-    // Handle analysis data
-    if (updates.analysisData !== undefined) sessionUpdates.analysisData = updates.analysisData;
-    if (updates.selectedJobForAnalysis !== undefined) sessionUpdates.selectedJobForAnalysis = updates.selectedJobForAnalysis;
-    
-    // Handle process tracking
-    if (updates.searchProcessId !== undefined) sessionUpdates.searchProcessId = updates.searchProcessId;
-    
-    // Update session with all changes
-    updateSession(sessionUpdates);
+    setAppState(prev => ({ ...prev, ...updates }));
   };
 
   // Log app initialization
@@ -167,33 +129,48 @@ function App() {
   const resetApp = () => {
     workflowLogger.logAction('App reset', 'User clicked reset button');
     clearLocalState();
-    clearSession(); // Clear session data instead of just local state
+    setAppState({
+      resume: 'Shamalka Resume v2.pdf',
+      location: defaultSuburb,
+      distance: '5 km',
+      postedAgo: '3 days',
+      keyword: '',
+      searchProcessId: null,
+      selectedJobs: [],
+      selectedJobForAnalysis: null,
+      jobsFound: [],
+      scoredJobs: [],
+      analysisData: null
+    });
+    setCurrentScreen('welcome');
+    setNavigationHistory(['welcome']);
+    setHistoryIndex(0);
     setThemeLocked(false);
     workflowLogger.logNavigation('welcome', currentScreen);
   };
 
-  // Session continuity handlers
-  const handleContinueSession = () => {
-    workflowLogger.logAction('Session continued', `Resuming from ${currentScreen}`);
-    // Already using session data, so just navigate to the current screen
-    navigateTo(currentScreen);
-  };
+  // Navigation history handlers
+  const canNavigateBack = historyIndex > 0;
+  const canNavigateForward = historyIndex < navigationHistory.length - 1;
+  const previousScreen = canNavigateBack ? navigationHistory[historyIndex - 1] : null;
+  const nextScreen = canNavigateForward ? navigationHistory[historyIndex + 1] : null;
 
-  const handleStartFresh = () => {
-    workflowLogger.logAction('Started fresh session', 'User chose to start new session');
-    clearSession();
-    navigateTo('welcome');
-  };
-
-  // Enhanced navigation handlers with logging
   const handleNavigateBack = () => {
-    workflowLogger.logAction('Navigation back', `From ${currentScreen} to ${previousScreen}`);
-    navigateBack();
+    if (canNavigateBack) {
+      workflowLogger.logAction('Navigation back', `From ${currentScreen} to ${previousScreen}`);
+      const newIndex = historyIndex - 1;
+      setHistoryIndex(newIndex);
+      setCurrentScreen(navigationHistory[newIndex]);
+    }
   };
 
   const handleNavigateForward = () => {
-    workflowLogger.logAction('Navigation forward', `From ${currentScreen} to ${nextScreen}`);
-    navigateForward();
+    if (canNavigateForward) {
+      workflowLogger.logAction('Navigation forward', `From ${currentScreen} to ${nextScreen}`);
+      const newIndex = historyIndex + 1;
+      setHistoryIndex(newIndex);
+      setCurrentScreen(navigationHistory[newIndex]);
+    }
   };
 
   // Pass setThemeLocked to WelcomeScreen so it can lock the theme immediately on search
@@ -227,16 +204,7 @@ function App() {
     <div className={`App ${isTransitioning ? 'transitioning' : ''} ${theme}`}>
       <ThemeToggle locked={themeLocked || isSearchLocked} />
       
-      {/* Session Continuity Banner - shows when user has existing session data */}
-      <SessionContinuityBanner
-        hasExistingSession={hasExistingSession}
-        sessionData={sessionData}
-        onContinueSession={handleContinueSession}
-        onStartFresh={handleStartFresh}
-        sessionAge={sessionAge}
-      />
-      
-      {/* Navigation Bar - provides back/forward navigation */}
+      {/* Navigation Bar - provides back/forward navigation within session */}
       <NavigationBar
         canNavigateBack={canNavigateBack}
         canNavigateForward={canNavigateForward}
@@ -245,7 +213,7 @@ function App() {
         onNavigateBack={handleNavigateBack}
         onNavigateForward={handleNavigateForward}
         currentScreen={currentScreen}
-        hasExistingSession={hasExistingSession}
+        hasExistingSession={false}
         onClearSession={resetApp}
       />
       
