@@ -17,7 +17,7 @@ const AnalyzedScreen = ({ appState, updateAppState, navigateTo }) => {
   const analysisData = appState.analysisData;
 
   return (
-    <div className="screen-container">
+    <>
       <div className="left-panel">
         {/* Resume Section */}
         <div className="form-group">
@@ -48,7 +48,7 @@ const AnalyzedScreen = ({ appState, updateAppState, navigateTo }) => {
         
         <AnalysisColumns analysisData={analysisData} />
       </div>
-    </div>
+    </>
   );
 };
 

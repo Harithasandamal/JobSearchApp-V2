@@ -8,7 +8,7 @@ import { defaultSuburb } from './data/melbourneSuburbs';
 import useTheme from './hooks/useTheme';
 import useLocalStorage from './hooks/useLocalStorage';
 import useWorkflowLogger from './hooks/useWorkflowLogger';
-import NavigationBar from './components/common/NavigationBar';
+// Session continuity removed - using simple in-session navigation only
 
 // Lazy load screen components for code splitting
 const WelcomeScreen = lazy(() => import('./components/WelcomeScreen'));
@@ -24,25 +24,24 @@ function App() {
   const [localState, updateLocalState, clearLocalState] = useLocalStorage('appState', {});
   const workflowLogger = useWorkflowLogger();
   
-  // Simple in-session navigation state
-  const [navigationHistory, setNavigationHistory] = useState(['welcome']);
-  const [historyIndex, setHistoryIndex] = useState(0);
+  // Simple in-session state management (no cross-browser persistence)
   const [currentScreen, setCurrentScreen] = useState('welcome');
-  
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [appState, setAppState] = useState({
-    resume: 'Shamalka Resume v2.pdf',
-    location: defaultSuburb,
-    distance: '5 km',
-    postedAgo: '3 days',
-    keyword: '',
-    searchProcessId: null,
-    selectedJobs: [],
-    selectedJobForAnalysis: null,
-    jobsFound: [],
-    scoredJobs: [],
-    analysisData: null
-  });
+  
+  // App state using existing localStorage hook
+  const appState = {
+    resume: localState.resume || 'Shamalka Resume v2.pdf',
+    location: localState.location || defaultSuburb,
+    distance: localState.distance || '5 km',
+    postedAgo: localState.postedAgo || '3 days',
+    keyword: localState.keyword || '',
+    searchProcessId: localState.searchProcessId,
+    selectedJobs: localState.selectedJobs || [],
+    selectedJobForAnalysis: localState.selectedJobForAnalysis,
+    jobsFound: localState.jobsFound || [],
+    scoredJobs: localState.scoredJobs || [],
+    analysisData: localState.analysisData
+  };
 
   // Maximize window and ensure fresh start on component mount
   useEffect(() => {
@@ -87,20 +86,12 @@ function App() {
   ];
   const isScoringLocked = scoringLockedScreens.includes(currentScreen);
 
-  // Simple navigation with in-session history
+  // Simple navigation
   const navigateTo = (screen) => {
     const fromScreen = currentScreen;
     workflowLogger.logNavigation(screen, fromScreen);
     
-    // Add to navigation history
-    setNavigationHistory(prev => {
-      const newHistory = [...prev.slice(0, historyIndex + 1), screen];
-      setHistoryIndex(newHistory.length - 1);
-      return newHistory;
-    });
-    
     setCurrentScreen(screen);
-    updateLocalState({ currentScreen: screen });
     
     // Unlock theme when returning to welcome screen
     if (screen === 'welcome') {
@@ -108,21 +99,18 @@ function App() {
     }
   };
 
-  // Simple app state updater
+  // Simple app state updater using localStorage
   const updateAppState = (updates) => {
-    setAppState(prev => ({ ...prev, ...updates }));
+    updateLocalState(prevState => ({
+      ...prevState,
+      ...updates
+    }));
   };
 
-  // Log app initialization and ensure default location
+  // Log app initialization
   useEffect(() => {
     workflowLogger.logAction('App initialized', `Theme: ${theme}, Screen: ${currentScreen}`);
     workflowLogger.logScreenLoad('app');
-    
-    // Ensure default location is Dandenong (reset any cached Carlton)
-    if (appState.location !== defaultSuburb) {
-      console.log(`🔄 Resetting location from "${appState.location}" to default "${defaultSuburb}"`);
-      updateAppState({ location: defaultSuburb });
-    }
   }, []);
 
   // Log theme changes
@@ -135,51 +123,12 @@ function App() {
   const resetApp = () => {
     workflowLogger.logAction('App reset', 'User clicked reset button');
     clearLocalState();
-    // Clear any cached location data to ensure default is used
-    localStorage.removeItem('appState');
-    setAppState({
-      resume: 'Shamalka Resume v2.pdf',
-      location: defaultSuburb, // Ensure Dandenong is used as default
-      distance: '5 km',
-      postedAgo: '3 days',
-      keyword: '',
-      searchProcessId: null,
-      selectedJobs: [],
-      selectedJobForAnalysis: null,
-      jobsFound: [],
-      scoredJobs: [],
-      analysisData: null
-    });
-    setCurrentScreen('welcome');
-    setNavigationHistory(['welcome']);
-    setHistoryIndex(0);
     setThemeLocked(false);
+    setCurrentScreen('welcome');
     workflowLogger.logNavigation('welcome', currentScreen);
   };
 
-  // Navigation history handlers
-  const canNavigateBack = historyIndex > 0;
-  const canNavigateForward = historyIndex < navigationHistory.length - 1;
-  const previousScreen = canNavigateBack ? navigationHistory[historyIndex - 1] : null;
-  const nextScreen = canNavigateForward ? navigationHistory[historyIndex + 1] : null;
-
-  const handleNavigateBack = () => {
-    if (canNavigateBack) {
-      workflowLogger.logAction('Navigation back', `From ${currentScreen} to ${previousScreen}`);
-      const newIndex = historyIndex - 1;
-      setHistoryIndex(newIndex);
-      setCurrentScreen(navigationHistory[newIndex]);
-    }
-  };
-
-  const handleNavigateForward = () => {
-    if (canNavigateForward) {
-      workflowLogger.logAction('Navigation forward', `From ${currentScreen} to ${nextScreen}`);
-      const newIndex = historyIndex + 1;
-      setHistoryIndex(newIndex);
-      setCurrentScreen(navigationHistory[newIndex]);
-    }
-  };
+  // Navigation handlers removed - using original screen-based navigation
 
   // Pass setThemeLocked to WelcomeScreen so it can lock the theme immediately on search
   const renderCurrentScreen = () => {
@@ -211,19 +160,6 @@ function App() {
   return (
     <div className={`App ${isTransitioning ? 'transitioning' : ''} ${theme}`}>
       <ThemeToggle locked={themeLocked || isSearchLocked} />
-      
-      {/* Navigation Bar - provides back/forward navigation within session */}
-      <NavigationBar
-        canNavigateBack={canNavigateBack}
-        canNavigateForward={canNavigateForward}
-        previousScreen={previousScreen}
-        nextScreen={nextScreen}
-        onNavigateBack={handleNavigateBack}
-        onNavigateForward={handleNavigateForward}
-        currentScreen={currentScreen}
-        hasExistingSession={false}
-        onClearSession={resetApp}
-      />
       
       <Suspense fallback={<LoadingSpinner />}>
         {renderCurrentScreen()}

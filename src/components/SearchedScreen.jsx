@@ -22,7 +22,7 @@ const SearchedScreen = ({ appState, updateAppState, navigateTo, scoringLocked })
   } = useSearchedScreen({ appState, updateAppState, navigateTo });
 
   return (
-    <div className="screen-container">
+    <>
       <div className="left-panel">
         {/* Resume Section */}
         <div className="form-group">
@@ -64,7 +64,7 @@ const SearchedScreen = ({ appState, updateAppState, navigateTo, scoringLocked })
           />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

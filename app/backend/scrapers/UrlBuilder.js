@@ -6,7 +6,7 @@ class UrlBuilder {
   static getMelbourneSuburbsData() {
     try {
       // Load the suburbs data from the frontend data file
-      const suburbsPath = path.join(__dirname, '../../src/data/melbourneSuburbs.js');
+      const suburbsPath = path.join(__dirname, '../../../src/data/melbourneSuburbs.js');
       const suburbsContent = fs.readFileSync(suburbsPath, 'utf8');
       
       // Extract the JSON data from the export statement, handling comments
@@ -126,90 +126,48 @@ class UrlBuilder {
     return location;
   }
 
-  // Convert postedAgo to SEEK's daterange format
-  static convertPostedAgoToSeekFormat(postedAgo) {
-    switch (postedAgo) {
-      case '1 day':
-        return '1';
-      case '3 days':
-        return '3';
-      case '7 days':
-        return '7';
-      case '14 days':
-        return '14';
-      case '30 days':
-        return '30';
-      default:
-        return '3'; // default to 3 days
-    }
+  // Extract numeric values from form inputs
+  static extractDays(postedAgo) {
+    return postedAgo.replace(/[^\d]/g, '') || '3'; // Extract numbers, default to 3
   }
 
-  // Convert distance to SEEK's distance format
-  static convertDistanceToSeekFormat(distance) {
-    return distance.replace(' km', '');
+  static extractDistance(distance) {
+    return distance.replace(/[^\d]/g, '') || '25'; // Extract numbers, default to 25
   }
 
-  // Build SEEK search URL with parameters - using exact user-specified format
+  // Build SEEK search URL - Simple structure for 2 cases
   static buildSeekUrl(keyword, location, distance, postedAgo) {
-    // Reduced verbosity - only log the final URL
-    // console.log(`\n🏗️ BUILDING SEEK URL:`);
-    // console.log(`📥 Input parameters:`);
-    // console.log(`   - Keyword: "${keyword || 'none'}"`);
-    // console.log(`   - Location: "${location}"`);
-    // console.log(`   - Distance: "${distance}"`);
-    // console.log(`   - Posted Ago: "${postedAgo}"`);
+    // Extract numeric values from form inputs
+    const days = this.extractDays(postedAgo);
+    const distanceKm = this.extractDistance(distance);
     
-    const daterange = this.convertPostedAgoToSeekFormat(postedAgo);
-    const distanceValue = this.convertDistanceToSeekFormat(distance);
-    
-    // console.log(`🔧 Converted parameters:`);
-    // console.log(`   - Daterange: "${daterange}"`);
-    // console.log(`   - Distance Value: "${distanceValue}"`);
-    
-    // Enrich location with postcode information for better SEEK compatibility
+    // Enrich location with postcode
     const enrichedLocation = this.enrichLocationWithPostcode(location);
-    // console.log(`🎯 Final enriched location: "${enrichedLocation}"`);
     
-    // Format location for URL path - handle special characters and ensure proper encoding
-    // Example: "Dandenong VIC 3175" becomes "Dandenong-VIC-3175"
+    // Clean location for URL path: "Dandenong VIC 3175" → "Dandenong-VIC-3175"
     const locationPath = enrichedLocation
       .replace(/\s+/g, '-')
-      .replace(/,/g, '')
-      .replace(/[^a-zA-Z0-9\-]/g, '') // Remove any special characters except hyphens
-      .replace(/-+/g, '-'); // Replace multiple hyphens with single hyphen
+      .replace(/[^a-zA-Z0-9\-]/g, '')
+      .replace(/-+/g, '-');
     
-    // console.log(`🛣️ Location path for URL: "${locationPath}"`);
-    
+    // Build URL structure based on keyword presence
     let baseUrl;
     if (keyword && keyword.trim()) {
-      // Format: https://www.seek.com.au/Engineer-jobs/in-Dandenong-VIC-3175
-      // Note: Keep first letter capitalized for keyword as per SEEK's standard
+      // WITH KEYWORD: https://www.seek.com.au/[Keyword]-jobs/in-[Location]
       const keywordPath = keyword.trim()
-        .toLowerCase()
-        .replace(/[^a-zA-Z0-9\s]/g, '') // Remove special characters
-        .replace(/\s+/g, '-') // Replace spaces with hyphens
-        .replace(/-+/g, '-') // Replace multiple hyphens with single hyphen
-        .replace(/^./, keyword.trim().charAt(0).toUpperCase()); // Capitalize first letter
-      
-      // console.log(`🔤 Keyword path for URL: "${keywordPath}"`);
+        .replace(/[^a-zA-Z0-9\s]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/^./, keyword.trim().charAt(0).toUpperCase());
       baseUrl = `https://www.seek.com.au/${keywordPath}-jobs/in-${locationPath}`;
     } else {
-      // Format: https://www.seek.com.au/jobs/in-Dandenong-VIC-3175
+      // WITHOUT KEYWORD: https://www.seek.com.au/jobs/in-[Location]
       baseUrl = `https://www.seek.com.au/jobs/in-${locationPath}`;
     }
     
-    // console.log(`🌐 Base URL: "${baseUrl}"`);
+    // Add query parameters
+    const url = `${baseUrl}?daterange=${days}&distance=${distanceKm}&sortmode=ListedDate`;
     
-    // Build URL parameters exactly as SEEK expects them
-    const params = new URLSearchParams();
-    params.append('daterange', daterange);
-    params.append('distance', distanceValue);
-    params.append('sortmode', 'ListedDate'); // Sort by newest first
-    
-    const url = `${baseUrl}?${params.toString()}`;
-    
-    // Only log the final built URL for reference (reduced verbosity)
-    console.log(`🌐 Final SEEK URL: ${url}`);
+    console.log(`🌐 SEEK URL: ${url}`);
     return url;
   }
   

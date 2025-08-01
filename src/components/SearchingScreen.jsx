@@ -19,11 +19,11 @@ const SearchingScreen = ({ appState, updateAppState, navigateTo, scoringLocked }
     isDefault: appState.resume === 'Shamalka Resume v2.pdf' || appState.resume === 'Default Resume.pdf'
   });
   
-  // Updated search steps reflecting actual scraping events
+  // Unified search steps for both light and dark modes
   const [searchSteps, setSearchSteps] = useState([
-    { id: 1, text: 'Launching Web Browser Engine', status: 'pending' },
-    { id: 2, text: 'Connecting to SEEK Website', status: 'pending' },
-    { id: 3, text: 'Loading Job Listings Page', status: 'pending' },
+    { id: 1, text: 'Initializing Browser Engine', status: 'pending' },
+    { id: 2, text: 'Connecting to Job Sources', status: 'pending' },
+    { id: 3, text: 'Loading Job Listings', status: 'pending' },
     { id: 4, text: 'Extracting Job Information', status: 'pending' },
     { id: 5, text: 'Processing & Validating Results', status: 'pending' }
   ]);
@@ -43,14 +43,61 @@ const SearchingScreen = ({ appState, updateAppState, navigateTo, scoringLocked }
   useEffect(() => {
     if (appState.searchProcessId) {
       console.log('🎬 Initializing search progress...');
-      setCurrentStep(1);
-      setProgress(5);
-      setSearchSteps(prev => prev.map((step, index) => ({
-        ...step,
-        status: index === 0 ? 'in-progress' : 'pending'
-      })));
+      
+      // Light mode: Auto-tick steps quickly since we already have hardcoded URLs
+      if (themeHook.theme === 'light') {
+        console.log('🌞 Light mode: Auto-advancing steps (URLs already available)');
+        
+        // Step 1: Browser Engine
+        setCurrentStep(1);
+        setProgress(10);
+        setSearchSteps(prev => prev.map((step, index) => ({
+          ...step,
+          status: index === 0 ? 'in-progress' : 'pending'
+        })));
+        
+        // Auto-advance through steps since URLs are hardcoded
+        setTimeout(() => {
+          // Step 2: Job Sources
+          setCurrentStep(2);
+          setProgress(25);
+          setSearchSteps(prev => prev.map((step, index) => ({
+            ...step,
+            status: index <= 0 ? 'completed' : index === 1 ? 'in-progress' : 'pending'
+          })));
+        }, 800);
+        
+        setTimeout(() => {
+          // Step 3: Loading Listings (URLs ready)
+          setCurrentStep(3);
+          setProgress(40);
+          setSearchSteps(prev => prev.map((step, index) => ({
+            ...step,
+            status: index <= 1 ? 'completed' : index === 2 ? 'in-progress' : 'pending'
+          })));
+        }, 1600);
+        
+        setTimeout(() => {
+          // Step 4: Ready for actual scraping
+          setCurrentStep(4);
+          setProgress(55);
+          setSearchSteps(prev => prev.map((step, index) => ({
+            ...step,
+            status: index <= 2 ? 'completed' : index === 3 ? 'in-progress' : 'pending'
+          })));
+        }, 2400);
+        
+      } else {
+        // Dark mode: Normal initialization
+        setCurrentStep(1);
+        setProgress(5);
+        setSearchSteps(prev => prev.map((step, index) => ({
+          ...step,
+          status: index === 0 ? 'in-progress' : 'pending'
+        })));
+      }
     }
-  }, [appState.searchProcessId]);
+  }, [appState.searchProcessId, themeHook.theme]);
 
   // Clear error when searchProcessId is received
   useEffect(() => {
@@ -176,7 +223,7 @@ const SearchingScreen = ({ appState, updateAppState, navigateTo, scoringLocked }
   };
 
   return (
-    <div className="screen-container">
+    <>
       <div className="left-panel">
         {/* Resume Section */}
         <div className="form-group">
@@ -277,7 +324,7 @@ const SearchingScreen = ({ appState, updateAppState, navigateTo, scoringLocked }
           </span>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
