@@ -14,8 +14,6 @@ const getTestJobs = async (req, res) => {
     workflowLogger.log('🌞 LIGHT MODE test jobs request received', 'system');
     workflowLogger.startProcess('LIGHT MODE Job Scraping', 'Unified parallel scraping');
     
-    console.log('🌞 LIGHT MODE - Using unified parallel scraping');
-    
     // Use current active sample URLs for testing - Updated January 2025 with verified working links
     const sampleUrls = [
       'https://www.seek.com.au/job/85981995?ref=recom-homepage&pos=4&sp=3&origin=jobTitle#sol=941dd2919d55ebc790f6017d3e00d197d7ce28a0',
@@ -25,7 +23,6 @@ const getTestJobs = async (req, res) => {
     
     let jobs = [];
     
-    console.log('🚀 LIGHT MODE - Using unified parallel batch scraping...');
     workflowLogger.startProcess('Unified Parallel Batch Scraping', `${sampleUrls.length} URLs`);
       
     try {
@@ -48,13 +45,13 @@ const getTestJobs = async (req, res) => {
             batches.push(sampleUrls.slice(i, i + batchSize));
           }
           
-          console.log(`🚀 Processing ${sampleUrls.length} test jobs in ${batches.length} batches of ${batchSize}`);
+          // Processing test jobs in batches
           
           for (let batchIndex = 0; batchIndex < batches.length; batchIndex++) {
             const batch = batches[batchIndex];
             const batchStartIndex = batchIndex * batchSize;
             
-                      console.log(`📦 Processing test batch ${batchIndex + 1}/${batches.length} (${batch.length} jobs)`);
+                      // Processing batch
           if (batchIndex === 0) {
             workflowLogger.log(`Using proven SEEK scraper for test jobs in ${batches.length} optimized batches`, 'process');
           }
@@ -98,7 +95,7 @@ const getTestJobs = async (req, res) => {
               }
             });
             
-            console.log(`✅ Test batch ${batchIndex + 1} completed: ${batchResults.filter(r => r !== null).length}/${batch.length} successful`);
+            // Batch completed
           }
           
           const validJobs = jobs;
@@ -106,13 +103,12 @@ const getTestJobs = async (req, res) => {
       const endTime = Date.now();
       const duration = ((endTime - startTime) / 1000).toFixed(1);
       
-      console.log(`⚡ LIGHT MODE - Job loading completed in ${duration} seconds!`);
-      console.log(`📊 Final results: ${validJobs.length} jobs loaded successfully out of ${sampleUrls.length} attempts`);
+      // Job loading completed
       
       // Add fallback jobs if we have fewer than 3 jobs (for reliable testing)
       if (validJobs.length < 3) {
         const missingCount = 3 - validJobs.length;
-        console.log(`⚠️  LIGHT MODE - Only ${validJobs.length}/3 jobs scraped successfully. Adding ${missingCount} fallback job(s) for testing`);
+        // Adding fallback jobs if needed
         
         const fallbackJobs = [
           {
@@ -151,7 +147,7 @@ const getTestJobs = async (req, res) => {
     }
     
     // Sort jobs by posted time (most recent first) - works for both regular and featured jobs
-    console.log('🔄 LIGHT MODE - Sorting all jobs by posted time (featured jobs included)...');
+    // Sorting jobs by posted time
     
     // Count featured jobs for logging
     const featuredCount = validJobs.filter(job => job.isFeatured).length;
@@ -190,8 +186,7 @@ const getTestJobs = async (req, res) => {
       return aTime - bTime; // Ascending order (most recent = smallest number)
     });
     
-    console.log(`✅ LIGHT MODE - Completed scraping and sorting. Returning ${validJobs.length} job details`);
-    console.log('📋 LIGHT MODE - Sorted job list:', validJobs.map(j => ({ id: j.id, title: j.title, postedAgo: j.postedAgo })));
+    // Completed scraping and sorting
     
     // Return the processed jobs
     return res.json({ jobs: validJobs });
@@ -200,7 +195,7 @@ const getTestJobs = async (req, res) => {
     console.error('❌ LIGHT MODE - Critical error:', error);
     
     // NO EMERGENCY FALLBACK - return empty array for accuracy
-    console.log('❌ LIGHT MODE - Returning empty array due to critical error (NO FALLBACK)');
+    // Returning empty array due to critical error
     res.json({ jobs: [] });
   }
 };
@@ -213,7 +208,7 @@ const testManualJobScraping = async (req, res) => {
     // Default to a recent job URL if none provided
     const testUrl = req.body.url || req.query.url || 'https://www.seek.com.au/job/85994049?ref=search-standalone&type=standard&origin=jobTitle#sol=f5c442d9c765b69183c0a9f36e76c3773779cff4';
     
-    console.log('🧪 MANUAL TEST - Testing scraper with URL:', testUrl);
+    // Testing scraper with manual URL
     
     const jobDetails = await Promise.race([
       scrapeJobDetails(testUrl),
@@ -222,12 +217,7 @@ const testManualJobScraping = async (req, res) => {
       )
     ]);
     
-    console.log('✅ MANUAL TEST - Successfully scraped:', {
-      title: jobDetails.title,
-      company: jobDetails.company,
-      location: jobDetails.location,
-      postedAgo: jobDetails.postedAgo
-    });
+    // Manual test successful
     
     res.json({
       success: true,
@@ -258,7 +248,7 @@ const testManualJobScraping = async (req, res) => {
  */
 const getMockScoredJobs = async (req, res) => {
   try {
-    console.log('🎯 Generating mock scored jobs for testing');
+    // Generating mock scored jobs
     
     const mockScoredJobs = [
       {
@@ -323,7 +313,7 @@ const getMockScoredJobs = async (req, res) => {
       }
     ];
     
-    console.log(`✅ Returning ${mockScoredJobs.length} mock scored jobs`);
+    // Returning mock scored jobs
     res.json({ scoredJobs: mockScoredJobs });
     
   } catch (error) {
@@ -337,7 +327,7 @@ const getMockScoredJobs = async (req, res) => {
  */
 const getMockAnalysis = async (req, res) => {
   try {
-    console.log('🧠 Generating mock analysis data for testing');
+    // Generating mock analysis data
     
     const mockAnalysisData = {
       jobTitle: 'Senior Software Engineer',
@@ -366,7 +356,7 @@ const getMockAnalysis = async (req, res) => {
       ]
     };
     
-    console.log('✅ Returning mock analysis data');
+    // Returning mock analysis data
     res.json(mockAnalysisData);
     
   } catch (error) {
