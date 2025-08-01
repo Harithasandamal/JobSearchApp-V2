@@ -71,7 +71,7 @@ class WorkflowLogger {
     const screenDepth = this.getScreenDepth(screenName);
     const currentDepth = this.getScreenDepth(this.currentScreen);
     
-    // Get user-friendly screen names according to unified levels 1-3
+    // Get user-friendly screen names according to 5-level system
     const friendlyNames = {
       welcome: '📱 Welcome Screen',           // Level 1: theme toggle, input parameters, built URL
       searching: '🔍 Searching Screen',       // Level 1: search result page loading, URL collection, navigation, scraping
@@ -79,7 +79,7 @@ class WorkflowLogger {
       scoring: '🎯 Scoring Screen',           // Level 2: N jobs selected for scoring, scoring steps
       scored: '📊 Scored Results Screen',     // Level 3: Y jobs scored, job selection
       analyzing: '🔬 Analyzing Screen',       // Level 3: analyzing steps for selected job
-      analyzed: '✅ Analysis Complete Screen' // Level 3: final results
+      analyzed: '✅ Analysis Complete Screen' // Level 4: final results (deepest workflow level)
     };
     
     const friendlyName = friendlyNames[screenName] || screenName;
@@ -101,15 +101,14 @@ class WorkflowLogger {
   }
   
   /**
-   * Get screen depth for indentation logic
-   * Main workflow phases: welcome(0) -> searched(1) -> scored(2) -> analyzed(3)
-   * Processing screens have +1 depth from their result screens
+   * Get screen depth for 5-level indentation system
+   * Level 0: Main steps/server/API checks (system-wide)
+   * Level 1: Welcome/Searching screens  
+   * Level 2: Searched/Scoring screens
+   * Level 3: Scored/Analyzing screens
+   * Level 4: Analyzed screen (final results)
    */
   getScreenDepth(screenName) {
-    // Level 0: System/Server actions (shown anywhere)
-    // Level 1: Welcome Screen & Searching Screen  
-    // Level 2: Searched Screen & Scoring Screen
-    // Level 3: Scored Screen & Analyzing Screen
     const depths = {
       welcome: 1,          // Level 1: Welcome Screen - theme toggle, input parameters, built URL
       searching: 1,        // Level 1: Searching Screen - search result page loading, URL collection, navigation, scraping
@@ -117,7 +116,7 @@ class WorkflowLogger {
       scoring: 2,          // Level 2: Scoring Screen - N jobs selected for scoring, scoring steps
       scored: 3,           // Level 3: Scored Screen - Y jobs scored, job selection
       analyzing: 3,        // Level 3: Analyzing Screen - analyzing steps for selected job
-      analyzed: 3          // Level 3: Analysis Complete Screen - final results
+      analyzed: 4          // Level 4: Analysis Complete Screen - final results (deepest level)
     };
     return depths[screenName] || 0;
   }
@@ -131,7 +130,7 @@ class WorkflowLogger {
   }
   
   /**
-   * Start a new process (with increased indentation)
+   * Start a new process (with increased indentation for sub-steps)
    */
   startProcess(processName, details = '') {
     this.indentLevel++;
@@ -139,6 +138,17 @@ class WorkflowLogger {
     // Clean, user-friendly process messages
     const detailsText = details ? ` - ${details}` : '';
     this.log(`${processName}${detailsText}`, 'process');
+  }
+
+  /**
+   * Log sub-steps within screens with additional indentation
+   */
+  logSubStep(stepName, details = '', type = 'info') {
+    const originalIndent = this.indentLevel;
+    this.indentLevel++; // Additional indentation for sub-steps
+    const detailsText = details ? ` - ${details}` : '';
+    this.log(`${stepName}${detailsText}`, type);
+    this.indentLevel = originalIndent;
   }
   
   /**
@@ -234,6 +244,38 @@ class WorkflowLogger {
     const originalIndent = this.indentLevel;
     this.indentLevel = 0;
     this.log(`🖥️ Server: ${message}`, type, true);
+    this.indentLevel = originalIndent;
+  }
+
+  /**
+   * Log workflow phase transitions with appropriate level indicators
+   */
+  logPhaseTransition(fromPhase, toPhase) {
+    const phaseMap = {
+      welcome: 'Level 1',
+      searching: 'Level 1', 
+      searched: 'Level 2',
+      scoring: 'Level 2',
+      scored: 'Level 3', 
+      analyzing: 'Level 3',
+      analyzed: 'Level 4'
+    };
+    
+    const fromLevel = phaseMap[fromPhase] || 'Unknown';
+    const toLevel = phaseMap[toPhase] || 'Unknown';
+    
+    if (fromLevel !== toLevel) {
+      this.systemLog(`Workflow transition: ${fromLevel} → ${toLevel}`, 'navigation');
+    }
+  }
+
+  /**
+   * Enhanced method for logging with explicit level control
+   */
+  logAtLevel(level, message, type = 'info') {
+    const originalIndent = this.indentLevel;
+    this.indentLevel = level;
+    this.log(message, type);
     this.indentLevel = originalIndent;
   }
 }
