@@ -1,10 +1,11 @@
 /**
- * Search Results Scraper - Scrapes job listings from SEEK search result pages
- * This module handles extracting job URLs from search result pages
+ * Search Results Scraper - Simplified main scraper
+ * Scrapes job listings from SEEK search result pages using modular utilities
  */
 
 const puppeteer = require('puppeteer');
 const UrlBuilder = require('../../scrapers/UrlBuilder');
+const { extractJobUrls, checkForBlocking } = require('../../utils/pageEvaluators');
 
 /**
  * Scrape job URLs from a SEEK search results page
@@ -39,75 +40,15 @@ async function scrapeJobUrlsFromSearchResults(searchUrl, maxJobs = 30) {
     
     // console.log(`🔗 Extracting job URLs...`);
     
-    const jobUrls = await page.evaluate((maxJobs) => {
-      const urls = [];
-      const seenJobIds = new Set(); // Track job IDs to prevent duplicates of same job
-      
-      // Function to extract job ID from SEEK URL
-      const extractJobId = (url) => {
-        const match = url.match(/\/job\/(\d+)/);
-        return match ? match[1] : null;
-      };
-      
-      // Try multiple selector strategies for SEEK job links
-      const linkSelectors = [
-        '[data-automation="jobTitle"] a',           // Standard job title links
-        '[data-automation="normalJob"] a[href*="/job/"]',    // Links within normal job cards
-        '[data-automation="premiumJob"] a[href*="/job/"]',   // Links within premium job cards
-        '[data-automation="featuredJob"] a[href*="/job/"]',  // Links within featured job cards
-        'h3 a[href*="/job/"]',                      // Job title links in h3
-        'h2 a[href*="/job/"]',                      // Job title links in h2
-        'a[href*="/job/"]',                         // Any link containing /job/
-        '.job-tile a',                              // Links within job tiles
-        'article a[href*="/job/"]'                  // Links within article elements
-      ];
-      
-      let jobLinks = [];
-      
-      // Try each selector until we find job links
-      for (const selector of linkSelectors) {
-        jobLinks = document.querySelectorAll(selector);
-        if (jobLinks.length > 0) {
-          console.log(`Found ${jobLinks.length} job links using selector: ${selector}`);
-          break;
-        }
-      }
-      
-      // Extract URLs and ensure they're complete
-      const baseUrl = 'https://www.seek.com.au';
-      
-      jobLinks.forEach((link, index) => {
-        if (urls.length >= maxJobs) return; // Stop when we have enough URLs
-        
-        try {
-          let href = link.getAttribute('href');
-          if (href) {
-            // Ensure URL is complete
-            if (href.startsWith('/')) {
-              href = baseUrl + href;
-            } else if (!href.startsWith('http')) {
-              href = baseUrl + '/' + href;
-            }
-            
-            // Extract job ID and check for duplicates based on job ID
-            if (href.includes('/job/')) {
-              const jobId = extractJobId(href);
-              if (jobId && !seenJobIds.has(jobId)) {
-                seenJobIds.add(jobId);
-                urls.push(href);
-                console.log(`Added unique job ${jobId}: ${href.substring(0, 100)}...`);
-              } else if (jobId) {
-                console.log(`Skipped duplicate job ${jobId}: ${href}`);
-              }
-            }
-          }
-        } catch (error) {
-          console.log(`Error processing link ${index + 1}:`, error.message);
-        }
-      });
-      
-      return urls;
-    }, maxJobs);
+    // Check for blocking first
+    const blockCheck = await page.evaluate(checkForBlocking);
+    if (blockCheck.blocked) {
+      console.log(`⚠️ Page appears to be blocked: ${blockCheck.message}`);
+      throw new Error(`Page blocked: ${blockCheck.message}`);
+    }
+    
+    // Extract job URLs using modular page evaluator
+    const jobUrls = await page.evaluate(extractJobUrls, maxJobs);
     
     // Filter and validate URLs
     const validJobUrls = jobUrls
