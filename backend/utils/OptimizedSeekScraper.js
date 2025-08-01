@@ -8,7 +8,7 @@ const workflowLogger = require('./WorkflowLogger');
 class OptimizedSeekScraper {
   constructor() {
     this.browserPool = [];
-    this.maxBrowsers = 3; // Limit to 3 browsers for speed and resource control
+    this.maxBrowsers = 5; // Use 5 browsers for optimal speed as requested
     this.currentIteration = 0;
     this.optimizationData = [];
   }
@@ -29,8 +29,14 @@ class OptimizedSeekScraper {
         '--disable-backgrounding-occluded-windows',
         '--disable-renderer-backgrounding',
         '--memory-pressure-off',
-        '--single-process', // Reduce memory usage
-        '--window-size=1366,768' // Smaller window
+        '--disable-features=TranslateUI',
+        '--disable-extensions',
+        '--disable-plugins',
+        '--window-size=1366,768',
+        '--disable-logging',
+        '--disable-dev-tools',
+        '--no-first-run',
+        '--ignore-certificate-errors'
       ]
     });
   }
@@ -45,14 +51,25 @@ class OptimizedSeekScraper {
     try {
       page = await browser.newPage();
       
-      // Optimize page settings
+      // Optimize page settings for stability
       await page.setViewport({ width: 1366, height: 768 });
-      await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36');
+      await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
       
-      // Navigate with optimized timeout
+      // Disable images and CSS for faster loading
+      await page.setRequestInterception(true);
+      page.on('request', (req) => {
+        const resourceType = req.resourceType();
+        if (resourceType === 'image' || resourceType === 'stylesheet' || resourceType === 'font') {
+          req.abort();
+        } else {
+          req.continue();
+        }
+      });
+      
+      // Navigate with 10s timeout as requested
       await page.goto(url, {
         waitUntil: 'domcontentloaded',
-        timeout: 15000 // Increased timeout to 15 seconds
+        timeout: 10000 // 10 seconds maximum timeout
       });
       
       // Note: removed static wait to speed up scraping
@@ -134,16 +151,37 @@ class OptimizedSeekScraper {
         browsers.push(browser);
       }
       
-      // Map jobs to browsers in round-robin fashion
+      // Map jobs to browsers in round-robin fashion with individual timeouts
       const jobPromises = urls.map((url, index) => {
         const browserIndex = index % browserCount;
         const browser = browsers[browserIndex];
-        return this.scrapeJobWithProvenSelectors(url, browser, index);
+        
+        // Wrap each job with 10s timeout protection
+        return Promise.race([
+          this.scrapeJobWithProvenSelectors(url, browser, index),
+          new Promise((_, reject) => 
+            setTimeout(() => reject(new Error(`Timeout after 10000ms`)), 10000)
+          )
+        ]).catch(error => {
+          console.log(`❌ Job ${index + 1}: ${error.message}`);
+          return {
+            title: '', company: '', location: '', postedAgo: '', 
+            url: url, success: false, error: error.message, scrapeDuration: 10000
+          };
+        });
       });
       
-      // Execute ALL jobs in parallel
+      // Execute ALL jobs in parallel with timeout protection
       console.log(`⚡ Processing all ${urls.length} jobs in parallel...`);
-      const results = await Promise.all(jobPromises);
+      const totalTimeout = Math.max(10000, urls.length * 2000); // At least 10s, or 2s per job
+      console.log(`⏱️ Total operation timeout: ${totalTimeout/1000}s`);
+      
+      const results = await Promise.race([
+        Promise.all(jobPromises),
+        new Promise((_, reject) => 
+          setTimeout(() => reject(new Error(`Total operation timeout after ${totalTimeout/1000}s`)), totalTimeout)
+        )
+      ]);
       
       const endTime = Date.now();
       const totalDuration = endTime - startTime;

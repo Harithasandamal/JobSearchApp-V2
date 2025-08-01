@@ -3,6 +3,7 @@
  * Light mode: Visit 3 sample job URLs to collect actual job details - NO FALLBACK DATA
  */
 const { scrapeJobDetails } = require('./jobScrapingUtils');
+const { SAMPLE_URLS } = require('../../constants/sampleUrls');
 
 const workflowLogger = require('../../utils/WorkflowLogger');
 
@@ -14,12 +15,8 @@ const getTestJobs = async (req, res) => {
     workflowLogger.log('🌞 LIGHT MODE test jobs request received', 'system');
     workflowLogger.startProcess('LIGHT MODE Job Scraping', 'Unified parallel scraping');
     
-    // Use current active sample URLs for testing - Updated January 2025 with verified working links
-    const sampleUrls = [
-      'https://www.seek.com.au/job/85981995?ref=recom-homepage&pos=4&sp=3&origin=jobTitle#sol=941dd2919d55ebc790f6017d3e00d197d7ce28a0',
-      'https://www.seek.com.au/job/85994049?ref=search-standalone&type=standard&origin=jobTitle#sol=f5c442d9c765b69183c0a9f36e76c3773779cff4',
-      'https://www.seek.com.au/job/85907804?ref=search-standalone&type=standard&origin=jobTitle#sol=ac705abd43f8e7aa11c57e26bdd7ef8de3e67313'
-    ];
+    // Use centralized sample URLs from constants
+    const sampleUrls = [...SAMPLE_URLS]; // Create copy to avoid modification
     
     let jobs = [];
     

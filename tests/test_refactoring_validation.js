@@ -8,7 +8,7 @@
  * 3. Dark mode with keyword (analyst, Dandenong, 25km, 7 days)
  */
 
-const { scrapeJobDetails } = require('../backend/controllers/search/jobScrapingUtils');
+const { scrapeJobDetails, scrapeAllJobsUnified } = require('../backend/controllers/search/jobScrapingUtils');
 const { scrapeJobUrlsFromSearchResults } = require('../backend/controllers/search/searchResultsScraper');
 const UrlBuilder = require('../backend/scrapers/UrlBuilder');
 
@@ -141,10 +141,21 @@ async function testDarkModeNoKeyword() {
     
     const startTime = Date.now();
     
-    // TRUE PARALLEL EXECUTION - all jobs scraped simultaneously
-    const results = await Promise.all(
-      urlsToTest.map((url, index) => scrapeJobSafely(url, index))
-    );
+    // UNIFIED PARALLEL EXECUTION - all jobs scraped with unified engine
+    console.log(`🚀 Using unified scraping engine for ${urlsToTest.length} jobs...`);
+    const scrapedJobs = await scrapeAllJobsUnified(urlsToTest);
+    
+    // Convert to expected result format
+    const results = urlsToTest.map((url, index) => {
+      const job = scrapedJobs.find(j => j.url === url);
+      if (job && job.title && job.company) {
+        console.log(`   ✅ Job ${index + 1}: "${job.title}" at "${job.company}"`);
+        return { success: true, data: job, url };
+      } else {
+        console.log(`   ❌ Job ${index + 1}: Failed to scrape job from ${url}`);
+        return { success: false, error: 'Failed to scrape', url };
+      }
+    });
     
     const endTime = Date.now();
     const duration = ((endTime - startTime) / 1000).toFixed(1);
@@ -226,10 +237,21 @@ async function testDarkModeWithKeyword() {
     
     const startTime = Date.now();
     
-    // TRUE PARALLEL EXECUTION - all jobs scraped simultaneously
-    const results = await Promise.all(
-      urlsToTest.map((url, index) => scrapeJobSafely(url, index))
-    );
+    // UNIFIED PARALLEL EXECUTION - all jobs scraped with unified engine
+    console.log(`🚀 Using unified scraping engine for ${urlsToTest.length} jobs...`);
+    const scrapedJobs = await scrapeAllJobsUnified(urlsToTest);
+    
+    // Convert to expected result format
+    const results = urlsToTest.map((url, index) => {
+      const job = scrapedJobs.find(j => j.url === url);
+      if (job && job.title && job.company) {
+        console.log(`   ✅ Job ${index + 1}: "${job.title}" at "${job.company}"`);
+        return { success: true, data: job, url };
+      } else {
+        console.log(`   ❌ Job ${index + 1}: Failed to scrape job from ${url}`);
+        return { success: false, error: 'Failed to scrape', url };
+      }
+    });
     
     const endTime = Date.now();
     const duration = ((endTime - startTime) / 1000).toFixed(1);

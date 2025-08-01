@@ -9,8 +9,8 @@ const JobUtils = require('../../utils/jobUtils');
 const scrapeAllJobsUnified = async (urls) => {
   const OptimizedSeekScraper = require('../../utils/OptimizedSeekScraper');
   const scraper = new OptimizedSeekScraper();
-  // Limit concurrency to 3 browser instances
-  scraper.maxBrowsers = 3;
+  // Use 5 browser instances for optimal speed as requested
+  scraper.maxBrowsers = 5;
   console.log(`🚀 UNIFIED PARALLEL SCRAPING: ${urls.length} jobs (single-pass for speed)`);
   
   // Single fast parallel run - no slow optimization loops
