@@ -104,32 +104,7 @@ const useSearchHandler = ({ updateAppState, navigateTo, setThemeLocked }) => {
 
       console.log('🔍 Search params:', searchParams);
       
-      // Build the SEEK URL and open externally for comparison
-      try {
-        // Get URL from backend API for consistency
-        const response = await fetch('http://localhost:3002/api/build-url', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(searchParams)
-        });
-        
-        if (response.ok) {
-          const { url: seekUrl } = await response.json();
-          console.log('🔗 Opening SEEK URL for comparison:', seekUrl);
-          window.open(seekUrl, '_blank', 'noopener,noreferrer');
-          console.log('🌐 SEEK page opened - compare results with SearchedScreen');
-        } else {
-          // Fallback: build URL directly if API fails
-          const fallbackUrl = `https://www.seek.com.au/jobs/in-${searchParams.location.replace(/\s+/g, '-')}?daterange=3&distance=${searchParams.distance.replace(' km', '')}&sortmode=ListedDate`;
-          console.log('🔗 Fallback URL:', fallbackUrl);
-          window.open(fallbackUrl, '_blank', 'noopener,noreferrer');
-        }
-      } catch (urlError) {
-        console.error('❌ Failed to build/open SEEK URL:', urlError);
-        // Simple fallback
-        const simpleUrl = `https://www.seek.com.au/jobs?q=${searchParams.keyword || ''}&l=${searchParams.location}`;
-        window.open(simpleUrl, '_blank', 'noopener,noreferrer');
-      }
+      // We'll get the SEEK URL from the search response (no separate API call needed)
       
       // Go to searching screen first
       navigateTo('searching');
@@ -138,6 +113,13 @@ const useSearchHandler = ({ updateAppState, navigateTo, setThemeLocked }) => {
         // Use real search with working scraper (testMode = false, but using good scraping logic)
         const response = await seekApiService.startSearch(searchParams, false);
         console.log('🔍 Real search process started:', response.processId);
+        
+        // Open SEEK URL for comparison (URL built once by backend)
+        if (response.searchUrl) {
+          console.log('🔗 Opening SEEK URL for comparison:', response.searchUrl);
+          window.open(response.searchUrl, '_blank', 'noopener,noreferrer');
+          console.log('🌐 SEEK page opened - compare results with SearchedScreen');
+        }
         
         updateAppState({ searchProcessId: response.processId });
       } catch (error) {

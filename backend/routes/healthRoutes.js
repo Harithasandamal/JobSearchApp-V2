@@ -4,12 +4,13 @@ const UrlBuilder = require('../scrapers/UrlBuilder');
 
 const router = express.Router();
 
-// URL building endpoint for frontend comparison
+// LEGACY URL building endpoint - kept for fallback/testing only
+// Main search flow now includes searchUrl in search response
 router.post('/build-url', (req, res) => {
   try {
     const { keyword, location, distance, postedAgo } = req.body;
     
-    console.log('🔗 Building URL for external comparison:', req.body);
+    console.log(`🔗 Legacy URL building (fallback): ${keyword || 'all jobs'} in ${location}`);
     
     const url = UrlBuilder.buildSeekUrl(
       keyword || '',
@@ -18,7 +19,6 @@ router.post('/build-url', (req, res) => {
       postedAgo
     );
     
-    console.log('✅ Built URL for comparison:', url);
     res.json({ url });
   } catch (error) {
     console.error('❌ Error building URL:', error);

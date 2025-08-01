@@ -29,20 +29,23 @@ class JobUtils {
 
   /**
    * Format posted ago to full words - SINGLE source of truth for time formatting
-   * @param {string} timeString - Raw time string like "2h", "26m", "3d"
-   * @returns {string} - Formatted time like "2 hours", "26 minutes", "3 days"
+   * @param {string} timeString - Raw time string like "2h", "26m", "3d", "Posted 5h"
+   * @returns {string} - Formatted time like "2 hours", "26 minutes", "3 days", "5 hours"
    */
   static formatPostedAgo(timeString) {
     if (!timeString || typeof timeString !== 'string') {
       return null; // NO FALLBACK - return null if no real time data
     }
     
-    // Remove " ago" suffix first
-    let cleaned = timeString.replace(/\s+ago$/i, '').trim();
+    // Remove "Posted " prefix and " ago" suffix first
+    let cleaned = timeString
+      .replace(/^Posted\s+/i, '')    // Remove "Posted " prefix
+      .replace(/\s+ago$/i, '')       // Remove " ago" suffix
+      .trim();
     
     // Handle patterns like "2h", "26m", "3d", "1 day", "2 days", etc.
     const patterns = [
-      // Short forms - FIXED: Convert "6h" to "6 hours", "1d" to "1 day"
+      // Short forms - Convert "6h" to "6 hours", "1d" to "1 day"
       { regex: /^(\d+)h$/i, format: (num) => num === '1' ? '1 hour' : `${num} hours` },
       { regex: /^(\d+)m$/i, format: (num) => num === '1' ? '1 minute' : `${num} minutes` },
       { regex: /^(\d+)d$/i, format: (num) => num === '1' ? '1 day' : `${num} days` },
@@ -64,7 +67,7 @@ class JobUtils {
       }
     }
     
-    // Return original if no pattern matches
+    // Return cleaned version if no pattern matches
     return cleaned;
   }
 
@@ -97,12 +100,8 @@ class JobUtils {
       )
     };
     
-    console.log('✅ JobUtils.processJob - Successfully processed job:', {
-      title: processed.title,
-      company: processed.company,
-      location: processed.location,
-      postedAgo: processed.postedAgo
-    });
+    // Reduced verbosity - only log summary, not individual jobs
+    // console.log('✅ JobUtils.processJob - Successfully processed job:', processed.title);
     
     return processed;
   }

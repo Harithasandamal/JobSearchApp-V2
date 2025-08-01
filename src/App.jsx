@@ -171,7 +171,7 @@ function App() {
   };
 
   return (
-    <div className={`App ${isTransitioning ? 'transitioning' : ''}`}>
+    <div className={`App ${isTransitioning ? 'transitioning' : ''} ${theme}`}>
       <ThemeToggle locked={themeLocked || isSearchLocked} />
       <Suspense fallback={<LoadingSpinner />}>
         {renderCurrentScreen()}

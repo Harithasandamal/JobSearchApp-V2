@@ -19,10 +19,37 @@ const useLocalStorage = (key, initialValue) => {
       const valueToStore = value instanceof Function ? value(storedValue) : value;
       setStoredValue(valueToStore);
       window.localStorage.setItem(key, JSON.stringify(valueToStore));
+      // Dispatch custom event to notify other hook instances in the same tab
+      window.dispatchEvent(new CustomEvent('local-storage', { detail: { key, newValue: valueToStore } }));
     } catch (error) {
       console.error(`Error setting localStorage key "${key}":`, error);
     }
   }, [key, storedValue]);
+
+  // Subscribe to storage and custom local-storage events to sync across hook instances
+  useEffect(() => {
+    const handleStorageEvent = (event) => {
+      if (event.key === key) {
+        try {
+          setStoredValue(event.newValue ? JSON.parse(event.newValue) : initialValue);
+        } catch (e) {
+          console.error(`Error parsing storage event newValue for key "${key}":`, e);
+        }
+      }
+    };
+    const handleCustomEvent = (event) => {
+      const { key: eventKey, newValue } = event.detail;
+      if (eventKey === key) {
+        setStoredValue(newValue);
+      }
+    };
+    window.addEventListener('storage', handleStorageEvent);
+    window.addEventListener('local-storage', handleCustomEvent);
+    return () => {
+      window.removeEventListener('storage', handleStorageEvent);
+      window.removeEventListener('local-storage', handleCustomEvent);
+    };
+  }, [key, initialValue]);
 
   // Remove item from localStorage
   const removeValue = useCallback(() => {

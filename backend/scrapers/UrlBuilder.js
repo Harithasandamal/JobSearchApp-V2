@@ -46,7 +46,7 @@ class UrlBuilder {
         location.match(/\b(North|South|East|West|Central|Inner|Outer|Greater)\s+(Melbourne|Sydney|Brisbane|Perth|Adelaide)\b/i) ||
         location.match(/(Bayside|Eastern|Western|Northern|Southern).*(Suburbs|Districts|Areas)/i) ||
         location.match(/\b\w+\s*&\s*\w+/i)) { // Any location with &
-      console.log(`🏘️ Complex area name detected - using as-is: "${location}"`);
+      // console.log(`🏘️ Complex area name detected - using as-is: "${location}"`);
       return location;
     }
     
@@ -116,13 +116,13 @@ class UrlBuilder {
     
     if (isLikelyVic) {
       const enrichedLocation = `${location} VIC`;
-      console.log(`🏘️ Added VIC to likely Victorian location: "${location}" → "${enrichedLocation}"`);
+      // console.log(`🏘️ Added VIC to likely Victorian location: "${location}" → "${enrichedLocation}"`);
       return enrichedLocation;
     }
     
-    // Ultimate fallback: use as-is and log the issue
-    console.log(`❌ Could not enrich location "${location}" - no match found in suburbs data`);
-    console.log(`💡 Consider adding this location to the suburbs database for better accuracy`);
+    // Ultimate fallback: use as-is (reduced logging)
+    // console.log(`❌ Could not enrich location "${location}" - no match found in suburbs data`);
+    // console.log(`💡 Consider adding this location to the suburbs database for better accuracy`);
     return location;
   }
 
@@ -151,23 +151,24 @@ class UrlBuilder {
 
   // Build SEEK search URL with parameters - using exact user-specified format
   static buildSeekUrl(keyword, location, distance, postedAgo) {
-    console.log(`\n🏗️ BUILDING SEEK URL:`);
-    console.log(`📥 Input parameters:`);
-    console.log(`   - Keyword: "${keyword || 'none'}"`);
-    console.log(`   - Location: "${location}"`);
-    console.log(`   - Distance: "${distance}"`);
-    console.log(`   - Posted Ago: "${postedAgo}"`);
+    // Reduced verbosity - only log the final URL
+    // console.log(`\n🏗️ BUILDING SEEK URL:`);
+    // console.log(`📥 Input parameters:`);
+    // console.log(`   - Keyword: "${keyword || 'none'}"`);
+    // console.log(`   - Location: "${location}"`);
+    // console.log(`   - Distance: "${distance}"`);
+    // console.log(`   - Posted Ago: "${postedAgo}"`);
     
     const daterange = this.convertPostedAgoToSeekFormat(postedAgo);
     const distanceValue = this.convertDistanceToSeekFormat(distance);
     
-    console.log(`🔧 Converted parameters:`);
-    console.log(`   - Daterange: "${daterange}"`);
-    console.log(`   - Distance Value: "${distanceValue}"`);
+    // console.log(`🔧 Converted parameters:`);
+    // console.log(`   - Daterange: "${daterange}"`);
+    // console.log(`   - Distance Value: "${distanceValue}"`);
     
     // Enrich location with postcode information for better SEEK compatibility
     const enrichedLocation = this.enrichLocationWithPostcode(location);
-    console.log(`🎯 Final enriched location: "${enrichedLocation}"`);
+    // console.log(`🎯 Final enriched location: "${enrichedLocation}"`);
     
     // Format location for URL path - handle special characters and ensure proper encoding
     // Example: "Dandenong VIC 3175" becomes "Dandenong-VIC-3175"
@@ -177,7 +178,7 @@ class UrlBuilder {
       .replace(/[^a-zA-Z0-9\-]/g, '') // Remove any special characters except hyphens
       .replace(/-+/g, '-'); // Replace multiple hyphens with single hyphen
     
-    console.log(`🛣️ Location path for URL: "${locationPath}"`);
+    // console.log(`🛣️ Location path for URL: "${locationPath}"`);
     
     let baseUrl;
     if (keyword && keyword.trim()) {
@@ -190,14 +191,14 @@ class UrlBuilder {
         .replace(/-+/g, '-') // Replace multiple hyphens with single hyphen
         .replace(/^./, keyword.trim().charAt(0).toUpperCase()); // Capitalize first letter
       
-      console.log(`🔤 Keyword path for URL: "${keywordPath}"`);
+      // console.log(`🔤 Keyword path for URL: "${keywordPath}"`);
       baseUrl = `https://www.seek.com.au/${keywordPath}-jobs/in-${locationPath}`;
     } else {
       // Format: https://www.seek.com.au/jobs/in-Dandenong-VIC-3175
       baseUrl = `https://www.seek.com.au/jobs/in-${locationPath}`;
     }
     
-    console.log(`🌐 Base URL: "${baseUrl}"`);
+    // console.log(`🌐 Base URL: "${baseUrl}"`);
     
     // Build URL parameters exactly as SEEK expects them
     const params = new URLSearchParams();
@@ -206,6 +207,9 @@ class UrlBuilder {
     params.append('sortmode', 'ListedDate'); // Sort by newest first
     
     const url = `${baseUrl}?${params.toString()}`;
+    
+    // Only log the final built URL for reference (reduced verbosity)
+    console.log(`🌐 Final SEEK URL: ${url}`);
     return url;
   }
   

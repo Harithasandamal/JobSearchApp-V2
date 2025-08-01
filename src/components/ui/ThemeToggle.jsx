@@ -1,13 +1,19 @@
-import React, { memo } from 'react';
+import React from 'react';
 import useTheme from '../../hooks/useTheme';
 
 const ThemeToggle = ({ locked }) => {
   const { theme, toggleTheme, isDark } = useTheme();
 
+  const handleToggle = () => {
+    if (!locked) {
+      toggleTheme();
+    }
+  };
+
   return (
     <button
       className="theme-toggle-btn"
-      onClick={locked ? undefined : toggleTheme}
+      onClick={handleToggle}
       disabled={locked}
       style={{
         position: 'fixed',
@@ -37,4 +43,4 @@ const ThemeToggle = ({ locked }) => {
   );
 };
 
-export default memo(ThemeToggle); 
+export default ThemeToggle; 

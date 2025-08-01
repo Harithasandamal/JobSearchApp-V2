@@ -9,11 +9,11 @@ const UrlBuilder = require('../../scrapers/UrlBuilder');
 /**
  * Scrape job URLs from a SEEK search results page
  * @param {string} searchUrl - The search results URL to scrape
- * @param {number} maxJobs - Maximum number of job URLs to extract (default: 20)
+ * @param {number} maxJobs - Maximum number of job URLs to extract (default: 30)
  * @returns {Array} Array of job URLs
  */
-async function scrapeJobUrlsFromSearchResults(searchUrl, maxJobs = 20) {
-  console.log(`🔍 Scraping job URLs from search results: ${searchUrl}`);
+async function scrapeJobUrlsFromSearchResults(searchUrl, maxJobs = 30) {
+  console.log(`📄 Loading search results page...`);
   
   const browser = await puppeteer.launch({ 
     headless: true,
@@ -26,16 +26,28 @@ async function scrapeJobUrlsFromSearchResults(searchUrl, maxJobs = 20) {
     // Set user agent to avoid blocking
     await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36');
     
-    console.log(`📡 Loading search results page...`);
-    await page.goto(searchUrl, { waitUntil: 'networkidle2', timeout: 30000 });
+    try {
+      await page.goto(searchUrl, { waitUntil: 'networkidle2', timeout: 30000 });
+      // console.log(`✅ Search page loaded successfully`);
+    } catch (error) {
+      console.error(`❌ Failed to load search page: ${error.message}`);
+      throw error;
+    }
     
     // Wait for job listings to load
     await new Promise(resolve => setTimeout(resolve, 3000));
     
-    console.log(`🔗 Extracting job URLs...`);
+    // console.log(`🔗 Extracting job URLs...`);
     
     const jobUrls = await page.evaluate((maxJobs) => {
       const urls = [];
+      const seenJobIds = new Set(); // Track job IDs to prevent duplicates of same job
+      
+      // Function to extract job ID from SEEK URL
+      const extractJobId = (url) => {
+        const match = url.match(/\/job\/(\d+)/);
+        return match ? match[1] : null;
+      };
       
       // Try multiple selector strategies for SEEK job links
       const linkSelectors = [
@@ -77,9 +89,16 @@ async function scrapeJobUrlsFromSearchResults(searchUrl, maxJobs = 20) {
               href = baseUrl + '/' + href;
             }
             
-            // Only add job URLs and avoid duplicates
-            if (href.includes('/job/') && !urls.includes(href)) {
-              urls.push(href);
+            // Extract job ID and check for duplicates based on job ID
+            if (href.includes('/job/')) {
+              const jobId = extractJobId(href);
+              if (jobId && !seenJobIds.has(jobId)) {
+                seenJobIds.add(jobId);
+                urls.push(href);
+                console.log(`Added unique job ${jobId}: ${href.substring(0, 100)}...`);
+              } else if (jobId) {
+                console.log(`Skipped duplicate job ${jobId}: ${href}`);
+              }
             }
           }
         } catch (error) {
@@ -90,14 +109,12 @@ async function scrapeJobUrlsFromSearchResults(searchUrl, maxJobs = 20) {
       return urls;
     }, maxJobs);
     
-    console.log(`✅ Extracted ${jobUrls.length} job URLs from search results`);
-    
     // Filter and validate URLs
     const validJobUrls = jobUrls
       .filter(url => url && url.includes('/job/'))
       .slice(0, maxJobs); // Ensure we don't exceed maxJobs
     
-    console.log(`🎯 Returning ${validJobUrls.length} valid job URLs`);
+    console.log(`✅ Extracted ${validJobUrls.length} job URLs`);
     return validJobUrls;
     
   } catch (error) {
@@ -117,23 +134,18 @@ async function scrapeJobUrlsFromSearchResults(searchUrl, maxJobs = 20) {
  * @param {number} maxJobs - Maximum number of job URLs to return
  * @returns {Array} Array of job URLs
  */
-async function getJobUrlsForSearch(keyword, location, distance, postedAgo, maxJobs = 20) {
-  console.log(`\n🏗️ Building search URL for parameters:`);
-  console.log(`   - Keyword: "${keyword || 'none'}"`);
-  console.log(`   - Location: "${location}"`);
-  console.log(`   - Distance: "${distance}"`);
-  console.log(`   - Posted Ago: "${postedAgo}"`);
-  console.log(`   - Max Jobs: ${maxJobs}`);
+async function getJobUrlsForSearch(keyword, location, distance, postedAgo, maxJobs = 30) {
+  // Note: This function rebuilds URL - prefer passing pre-built URL to avoid redundancy
+  console.log(`🔍 Searching ${keyword || 'all jobs'} in ${location} (max ${maxJobs}) - rebuilding URL`);
   
   try {
     // Build the search URL using UrlBuilder
     const searchUrl = UrlBuilder.buildSeekUrl(keyword, location, distance, postedAgo);
-    console.log(`🌐 Built search URL: ${searchUrl}`);
     
     // Scrape job URLs from the search results
     const jobUrls = await scrapeJobUrlsFromSearchResults(searchUrl, maxJobs);
     
-    console.log(`🎯 Found ${jobUrls.length} job URLs for the search`);
+    console.log(`🎯 Found ${jobUrls.length} job URLs`);
     return jobUrls;
     
   } catch (error) {
@@ -145,10 +157,10 @@ async function getJobUrlsForSearch(keyword, location, distance, postedAgo, maxJo
 /**
  * Extract basic job info from search results page (without individual job page scraping)
  * @param {string} searchUrl - The search results URL to scrape
- * @param {number} maxJobs - Maximum number of jobs to extract (default: 20)
+ * @param {number} maxJobs - Maximum number of jobs to extract (default: 30)
  * @returns {Array} Array of job objects with basic info
  */
-async function scrapeBasicJobInfoFromSearchResults(searchUrl, maxJobs = 20) {
+async function scrapeBasicJobInfoFromSearchResults(searchUrl, maxJobs = 30) {
   console.log(`🔍 Scraping basic job info from search results: ${searchUrl}`);
   
   const browser = await puppeteer.launch({ 
@@ -196,6 +208,13 @@ async function scrapeBasicJobInfoFromSearchResults(searchUrl, maxJobs = 20) {
       
       // Extract data from each job element
       const baseUrl = 'https://www.seek.com.au';
+      const seenJobIds = new Set(); // Track job IDs to prevent duplicates
+      
+      // Function to extract job ID from SEEK URL
+      const extractJobId = (url) => {
+        const match = url.match(/\/job\/(\d+)/);
+        return match ? match[1] : null;
+      };
       
       jobElements.forEach((element, index) => {
         if (jobs.length >= maxJobs) return; // Stop when we have enough jobs
@@ -280,16 +299,23 @@ async function scrapeBasicJobInfoFromSearchResults(searchUrl, maxJobs = 20) {
           const location = extractText(locationSelectors);
           const postedAgo = extractText(postedAgoSelectors);
           
-          // Only add if we have at least a title and URL
+          // Only add if we have at least a title and URL, and check for job ID duplicates
           if (title && url && url.includes('/job/')) {
-            jobs.push({
-              id: `search-result-${index + 1}`,
-              title: title,
-              company: company || 'Company not specified',
-              location: location || 'Location not specified', 
-              postedAgo: postedAgo || 'Time not specified',
-              url: url
-            });
+            const jobId = extractJobId(url);
+            if (jobId && !seenJobIds.has(jobId)) {
+              seenJobIds.add(jobId);
+              jobs.push({
+                id: `search-result-${jobId}`,
+                title: title,
+                company: company || 'Company not specified',
+                location: location || 'Location not specified', 
+                postedAgo: postedAgo || 'Time not specified',
+                url: url
+              });
+              console.log(`Added unique job ${jobId}: ${title}`);
+            } else if (jobId) {
+              console.log(`Skipped duplicate job ${jobId}: ${title}`);
+            }
           }
           
         } catch (error) {
