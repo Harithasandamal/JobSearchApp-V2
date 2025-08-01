@@ -74,7 +74,7 @@ class WorkflowLogger {
     // Get user-friendly screen names according to unified levels 1-3
     const friendlyNames = {
       welcome: '📱 Welcome Screen',           // Level 1: theme toggle, input parameters, built URL
-      searching: '🔍 Searching Screen',       // Level 1: search result page loading, URL collection, navigation, scraping, validation
+      searching: '🔍 Searching Screen',       // Level 1: search result page loading, URL collection, navigation, scraping
       searched: '📋 Search Results Screen',   // Level 2: X jobs found, selection for scoring  
       scoring: '🎯 Scoring Screen',           // Level 2: N jobs selected for scoring, scoring steps
       scored: '📊 Scored Results Screen',     // Level 3: Y jobs scored, job selection
@@ -112,7 +112,7 @@ class WorkflowLogger {
     // Level 3: Scored Screen & Analyzing Screen
     const depths = {
       welcome: 1,          // Level 1: Welcome Screen - theme toggle, input parameters, built URL
-      searching: 1,        // Level 1: Searching Screen - search result page loading, URL collection, navigation, scraping, validation
+      searching: 1,        // Level 1: Searching Screen - search result page loading, URL collection, navigation, scraping
       searched: 2,         // Level 2: Searched Screen - X jobs found, selection for scoring  
       scoring: 2,          // Level 2: Scoring Screen - N jobs selected for scoring, scoring steps
       scored: 3,           // Level 3: Scored Screen - Y jobs scored, job selection

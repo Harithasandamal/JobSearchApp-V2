@@ -11,149 +11,7 @@ const { getJobUrlsForSearch } = require('./searchResultsScraper');
 const UrlBuilder = require('../../scrapers/UrlBuilder');
 const workflowLogger = require('../../utils/WorkflowLogger');
 
-/**
- * Validate job against search criteria to filter out SEEK's suggestions
- * Focus on keyword and posted time only (location/distance handled by SEEK)
- * @param {Object} job - Job object with title, company, location, etc.
- * @param {Object} searchCriteria - Original search criteria
- * @returns {Object} - {isValid: boolean, reasons: string[]} 
- */
-const validateJobAgainstCriteria = (job, searchCriteria) => {
-  const { keyword, postedAgo } = searchCriteria;
-  const reasons = [];
-  let isValid = true;
-  
-  // 1. KEYWORD VALIDATION (if provided)
-  if (keyword && keyword.trim() !== '') {
-    const keywordLower = keyword.toLowerCase().trim();
-    const titleLower = (job.title || '').toLowerCase();
-    
-    if (!titleLower.includes(keywordLower)) {
-      isValid = false;
-      reasons.push(`Title doesn't contain "${keyword}"`);
-    }
-  }
-  
-  // 2. POSTED TIME VALIDATION
-  if (postedAgo && job.postedAgo) {
-    const maxDays = getMaxDaysFromPostedAgo(postedAgo);
-    const jobDays = parseJobPostedAgeToDays(job.postedAgo);
-    
-    if (jobDays > maxDays) {
-      isValid = false;
-      reasons.push(`Posted ${job.postedAgo} exceeds ${postedAgo} limit`);
-    }
-  }
-  
-  return { isValid, reasons };
-};
 
-/**
- * Convert posted ago search criteria to max days
- */
-const getMaxDaysFromPostedAgo = (postedAgo) => {
-  const postedAgoLower = (postedAgo || '').toLowerCase();
-  if (postedAgoLower.includes('1 day')) return 1;
-  if (postedAgoLower.includes('3 days')) return 3;
-  if (postedAgoLower.includes('7 days')) return 7;
-  if (postedAgoLower.includes('14 days')) return 14;
-  if (postedAgoLower.includes('30 days')) return 30;
-  return 30; // Default to 30 days
-};
-
-/**
- * Parse job posted ago to days for comparison
- */
-const parseJobPostedAgeToDays = (postedAgo) => {
-  if (!postedAgo) return 0;
-  
-  const lower = postedAgo.toLowerCase();
-  
-  // Handle days
-  const dayMatch = lower.match(/(\d+)\s*days?/);
-  if (dayMatch) return parseInt(dayMatch[1]);
-  
-  // Handle hours (convert to fraction of day)
-  const hourMatch = lower.match(/(\d+)\s*hours?/);
-  if (hourMatch) return Math.ceil(parseInt(hourMatch[1]) / 24);
-  
-  // Handle minutes (count as same day)
-  const minuteMatch = lower.match(/(\d+)\s*minutes?/);
-  if (minuteMatch) return 0;
-  
-  return 0; // Default to current day
-};
-
-/**
- * Display validation table showing all jobs with tick/cross status
- * @param {Array} validationResults - Array of {job, validation} objects
- * @param {Object} searchCriteria - Original search criteria
- */
-const displayValidationTable = (validationResults, searchCriteria) => {
-  const { keyword, location, distance, postedAgo } = searchCriteria;
-  
-  console.log('\n📊 VALIDATION RESULTS TABLE');
-  console.log('=' .repeat(120));
-  console.log(`🔍 Search Criteria: ${keyword || 'Any'} in ${location} (${distance}, ${postedAgo})`);
-  
-  if (keyword) {
-    console.log(`✅ Validating: Keyword Match + Posted Time | 🔄 Trusting SEEK: Location + Distance`);
-  } else {
-    console.log(`✅ Validating: Posted Time Only (keyword skipped for test mode) | 🔄 Trusting SEEK: Location + Distance`);
-  }
-  console.log('-' .repeat(120));
-  console.log('Status | Job Title                                    | Company              | Location           | Posted   | Validation Issues');
-  console.log('-' .repeat(120));
-  
-  validationResults.forEach((result, index) => {
-    const { job, validation } = result;
-    const status = validation.isValid ? '  ✅  ' : '  ❌  ';
-    const title = (job.title || '').substring(0, 40).padEnd(40);
-    const company = (job.company || '').substring(0, 18).padEnd(18);
-    const location = (job.location || '').substring(0, 16).padEnd(16);
-    const posted = (job.postedAgo || '').substring(0, 8).padEnd(8);
-    const issues = validation.isValid ? 
-      (keyword ? 'Keyword + Time ✅' : 'Time ✅ (keyword skipped)') : 
-      validation.reasons.join('; ');
-    
-    console.log(`${status} | ${title} | ${company} | ${location} | ${posted} | ${issues}`);
-  });
-  
-  console.log('-' .repeat(120));
-  const validCount = validationResults.filter(r => r.validation.isValid).length;
-  const totalCount = validationResults.length;
-  if (keyword) {
-    console.log(`📈 Summary: ${validCount}/${totalCount} jobs match keyword + time criteria (${totalCount - validCount} filtered out)`);
-  } else {
-    console.log(`📈 Summary: ${validCount}/${totalCount} jobs match time criteria (${totalCount - validCount} filtered out, keyword validation skipped)`);
-  }
-  console.log(`📍 Note: Location/Distance validation handled by SEEK's search engine`);
-  console.log('=' .repeat(120) + '\n');
-};
-
-/**
- * Filter jobs based on keyword and posted time criteria to remove SEEK suggestions
- * @param {Array} jobs - Array of job objects
- * @param {Object} searchCriteria - Original search criteria
- * @returns {Array} - Filtered array of jobs that match keyword and time criteria
- */
-const filterJobsByCriteria = (jobs, searchCriteria) => {
-  // Validate each job and collect results for table display
-  const validationResults = jobs.map(job => ({
-    job,
-    validation: validateJobAgainstCriteria(job, searchCriteria)
-  }));
-  
-  // Display comprehensive validation table
-  displayValidationTable(validationResults, searchCriteria);
-  
-  // Return only valid jobs
-  const filteredJobs = validationResults
-    .filter(result => result.validation.isValid)
-    .map(result => result.job);
-  
-  return filteredJobs;
-};
 
 /**
  * Start a new job search process
@@ -367,12 +225,11 @@ const startJobSearch = async (req, res) => {
             url: job.url
           }));
           
-          // ✅ CROSS VALIDATION - Filter jobs by keyword and posted time  
-          const searchCriteria = { keyword, location, distance, postedAgo };
-          const validatedJobs = filterJobsByCriteria(formattedJobs, searchCriteria);
+          // ✅ NO CROSS VALIDATION - Use all scraped jobs directly  
+          console.log(`📝 REAL SEARCH - Using all scraped jobs without cross validation (${formattedJobs.length} jobs)`);
           
-          workflowLogger.endProcess('Unified Real Job Scraping', 'completed', `${validatedJobs.length}/${sampleUrls.length} jobs match keyword+time criteria`);
-          jobs.push(...validatedJobs);
+          workflowLogger.endProcess('Unified Real Job Scraping', 'completed', `${formattedJobs.length} jobs scraped successfully`);
+          jobs.push(...formattedJobs);
           
         } catch (error) {
           console.error('❌ REAL SEARCH - Unified scraping failed:', error);
@@ -386,7 +243,7 @@ const startJobSearch = async (req, res) => {
           // Count featured jobs for logging
           const featuredCount = jobs.filter(job => job.isFeatured).length;
           if (featuredCount > 0) {
-            console.log(`🌟 Found ${featuredCount} featured jobs that passed validation - will be sorted with regular jobs`);
+            console.log(`🌟 Found ${featuredCount} featured jobs - will be sorted with regular jobs`);
           }
           jobs.sort((a, b) => {
             const parseTime = (timeStr) => {
@@ -427,13 +284,13 @@ const startJobSearch = async (req, res) => {
             processInfo.status = 'failed';
             processInfo.progress = 100;
             processInfo.jobs = [];
-            console.log(`❌ REAL SEARCH - No jobs match keyword+time criteria despite finding ${jobUrls.length} URLs`);
-            workflowLogger.endProcess('REAL SEARCH Job Search', 'failed', 'No jobs match keyword+time criteria');
+            console.log(`❌ REAL SEARCH - No jobs scraped successfully despite finding ${jobUrls.length} URLs`);
+            workflowLogger.endProcess('REAL SEARCH Job Search', 'failed', 'No jobs scraped successfully');
           } else {
             processInfo.status = 'completed';
             processInfo.progress = 100;
             processInfo.jobs = jobs;
-                    console.log(`✅ REAL SEARCH - Completed with ${jobs.length} validated job details (keyword+time validated)`);
+                    console.log(`✅ REAL SEARCH - Completed with ${jobs.length} scraped job details`);
         // Removed detailed job list logging for cleaner output
         workflowLogger.endProcess('REAL SEARCH Job Search', 'completed', `${jobs.length} jobs found`);
             workflowLogger.logProgress('REAL SEARCH Search', 100, 100, 'Search completed');
