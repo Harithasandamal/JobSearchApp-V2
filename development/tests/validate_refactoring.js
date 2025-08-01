@@ -8,9 +8,9 @@
  */
 
 const readline = require('readline');
-const { scrapeJobDetails } = require('../backend/controllers/search/jobScrapingUtils');
-const { scrapeJobUrlsFromSearchResults } = require('../backend/controllers/search/searchResultsScraper');
-const { filterJobsByCriteria } = require('../backend/controllers/search/jobValidationController');
+const { scrapeJobDetails } = require('../../app/backend/controllers/search/jobScrapingUtils');
+const { scrapeJobUrlsFromSearchResults } = require('../../app/backend/controllers/search/searchResultsScraper');
+const { filterJobsByCriteria } = require('../../app/backend/controllers/search/jobValidationController');
 
 // Interactive prompt setup
 const rl = readline.createInterface({

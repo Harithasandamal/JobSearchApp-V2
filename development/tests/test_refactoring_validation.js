@@ -8,9 +8,9 @@
  * 3. Dark mode with keyword (analyst, Dandenong, 25km, 7 days)
  */
 
-const { scrapeJobDetails, scrapeAllJobsUnified } = require('../backend/controllers/search/jobScrapingUtils');
-const { scrapeJobUrlsFromSearchResults } = require('../backend/controllers/search/searchResultsScraper');
-const UrlBuilder = require('../backend/scrapers/UrlBuilder');
+const { scrapeJobDetails, scrapeAllJobsUnified } = require('../../app/backend/controllers/search/jobScrapingUtils');
+const { scrapeJobUrlsFromSearchResults } = require('../../app/backend/controllers/search/searchResultsScraper');
+const UrlBuilder = require('../../app/backend/scrapers/UrlBuilder');
 
 // Test configuration
 const TIMEOUT_PER_JOB = 15000; // 15 seconds per job

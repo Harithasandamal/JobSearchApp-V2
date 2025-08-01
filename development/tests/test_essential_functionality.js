@@ -4,7 +4,7 @@
  * Used during refactoring to ensure no breaking changes
  */
 
-const { scrapeJobDetails } = require('../backend/controllers/search/jobScrapingUtils');
+const { scrapeJobDetails } = require('../../app/backend/controllers/search/jobScrapingUtils');
 
 // Single test job URL for quick validation
 const TEST_URL = 'https://www.seek.com.au/job/85994049?ref=search-standalone&type=standard&origin=jobTitle#sol=f5c442d9c765b69183c0a9f36e76c3773779cff4';

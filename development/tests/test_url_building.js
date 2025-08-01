@@ -4,7 +4,7 @@
  * Ensures location enrichment and parameters work correctly
  */
 
-const UrlBuilder = require('../backend/scrapers/UrlBuilder');
+const UrlBuilder = require('../../app/backend/scrapers/UrlBuilder');
 
 // Test cases for URL building
 const TEST_CASES = [

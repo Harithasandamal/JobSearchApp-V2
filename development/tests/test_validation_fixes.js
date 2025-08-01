@@ -3,9 +3,9 @@
  * Quick test to verify the keyword and time validation fixes
  */
 
-const { scrapeJobUrlsFromSearchResults } = require('../backend/controllers/search/searchResultsScraper');
-const { scrapeAllJobsUnified } = require('../backend/controllers/search/jobScrapingUtils');
-const { filterJobsByCriteria } = require('../backend/controllers/search/jobValidationController');
+const { scrapeJobUrlsFromSearchResults } = require('../../app/backend/controllers/search/searchResultsScraper');
+const { scrapeAllJobsUnified } = require('../../app/backend/controllers/search/jobScrapingUtils');
+const { filterJobsByCriteria } = require('../../app/backend/controllers/search/jobValidationController');
 
 // Test the validation fixes directly
 const testValidationFixes = async () => {
