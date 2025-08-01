@@ -65,15 +65,23 @@ async function testLightMode() {
   console.log(`Testing ${SAMPLE_URLS.length} hardcoded sample job URLs...`);
   
   const startTime = Date.now();
-  const results = [];
   
-  for (let i = 0; i < SAMPLE_URLS.length; i++) {
-    const url = SAMPLE_URLS[i];
-    console.log(`\n🔍 Scraping sample job ${i + 1}/${SAMPLE_URLS.length}...`);
-    
-    const result = await scrapeJobSafely(url, i);
-    results.push(result);
-  }
+  console.log(`🚀 LIGHT MODE - Using unified parallel scraping for all ${SAMPLE_URLS.length} sample URLs simultaneously...`);
+  
+  // Use unified parallel scraping for light mode (same as dark mode)
+  const scrapedJobs = await scrapeAllJobsUnified(SAMPLE_URLS);
+  
+  // Convert to expected result format
+  const results = SAMPLE_URLS.map((url, index) => {
+    const job = scrapedJobs.find(j => j.url === url);
+    if (job && job.title && job.company) {
+      console.log(`   ✅ Job ${index + 1}: "${job.title}" at "${job.company}"`);
+      return { success: true, data: job, url };
+    } else {
+      console.log(`   ❌ Job ${index + 1}: Failed to scrape job from ${url}`);
+      return { success: false, error: 'Failed to scrape', url };
+    }
+  });
   
   const endTime = Date.now();
   const duration = ((endTime - startTime) / 1000).toFixed(1);
