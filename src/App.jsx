@@ -129,9 +129,11 @@ function App() {
   const resetApp = () => {
     workflowLogger.logAction('App reset', 'User clicked reset button');
     clearLocalState();
+    // Clear any cached location data to ensure default is used
+    localStorage.removeItem('appState');
     setAppState({
       resume: 'Shamalka Resume v2.pdf',
-      location: defaultSuburb,
+      location: defaultSuburb, // Ensure Dandenong is used as default
       distance: '5 km',
       postedAgo: '3 days',
       keyword: '',
