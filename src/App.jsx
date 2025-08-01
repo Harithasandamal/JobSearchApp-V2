@@ -6,7 +6,7 @@ import LoadingSpinner from './components/ui/LoadingSpinner';
 import ThemeToggle from './components/ui/ThemeToggle';
 import { defaultSuburb } from './data/melbourneSuburbs';
 import useTheme from './hooks/useTheme';
-import useLocalStorage from './hooks/useLocalStorage';
+import useDataPersistence from './hooks/useDataPersistence';
 import useWorkflowLogger from './hooks/useWorkflowLogger';
 
 // Lazy load screen components for code splitting
@@ -20,57 +20,97 @@ const AnalyzedScreen = lazy(() => import('./components/AnalyzedScreen'));
 
 function App() {
   const { theme, setTheme, locked: themeLocked, setLocked: setThemeLocked } = useTheme();
-  const [localState, updateLocalState, clearLocalState] = useLocalStorage('appState', {});
+  const dataPersistence = useDataPersistence();
   const workflowLogger = useWorkflowLogger();
   
   const [currentScreen, setCurrentScreen] = useState(() => {
-    // Always start fresh with welcome screen on app load
-    const screen = 'welcome';
-    // Clear any cached screen state to ensure fresh start
-    if (localState?.currentScreen && localState.currentScreen !== 'welcome') {
-      updateLocalState({ currentScreen: 'welcome' });
+    // Check if this is a page refresh or fresh start
+    if (dataPersistence.isPageRefresh && dataPersistence.persistentState.currentScreen) {
+      // Page refresh - restore previous screen
+      const restoredScreen = dataPersistence.persistentState.currentScreen;
+      console.log(`🔄 Page refresh detected - restoring screen: ${restoredScreen}`);
+      setTimeout(() => workflowLogger.logNavigation(restoredScreen, null, 'page_refresh'), 100);
+      return restoredScreen;
+    } else {
+      // Fresh start - begin at welcome screen
+      console.log('🆕 Fresh app start - beginning at welcome screen');
+      setTimeout(() => workflowLogger.logNavigation('welcome', null, 'fresh_start'), 100);
+      return 'welcome';
     }
-    // Log initial screen on app load
-    setTimeout(() => workflowLogger.logNavigation(screen, null), 100);
-    return screen;
   });
+  
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [appState, setAppState] = useState({
-    resume: 'Shamalka Resume v2.pdf',
-    location: defaultSuburb,
-    distance: '5 km',
-    postedAgo: '3 days',
-    keyword: '',
-    searchProcessId: null,
-    selectedJobs: [],
-    selectedJobForAnalysis: null,
-    jobsFound: [],
-    scoredJobs: [],
-    analysisData: null
-  });
-
-  // Maximize window and ensure fresh start on component mount
-  useEffect(() => {
-    if (window.screen && window.screen.availWidth && window.screen.availHeight) {
-      window.resizeTo(window.screen.availWidth, window.screen.availHeight);
-      window.moveTo(0, 0);
-    }
-    
-    // Ensure fresh app state on startup
-    setAppState(prev => ({
-      ...prev,
+  
+  const [appState, setAppState] = useState(() => {
+    // Initialize with default values, then restore from persistence if page refresh
+    const defaultState = {
+      resume: 'Shamalka Resume v2.pdf',
+      location: defaultSuburb,
+      distance: '5 km',
+      postedAgo: '3 days',
+      keyword: '',
       searchProcessId: null,
       selectedJobs: [],
       selectedJobForAnalysis: null,
       jobsFound: [],
       scoredJobs: [],
       analysisData: null
-    }));
+    };
+
+    if (dataPersistence.isPageRefresh && dataPersistence.persistentState) {
+      // Page refresh - restore previous state
+      const restored = dataPersistence.persistentState;
+      console.log(`🔄 Restoring app state from persistence`);
+      return {
+        ...defaultState,
+        ...restored.searchParams,
+        selectedJobs: restored.selectedJobs || [],
+        jobsFound: restored.jobsFound || [],
+        scoredJobs: restored.scoredJobs || [],
+        analysisData: restored.analysisData
+      };
+    }
+
+    return defaultState;
+  });
+
+  // Maximize window on component mount
+  useEffect(() => {
+    if (window.screen && window.screen.availWidth && window.screen.availHeight) {
+      window.resizeTo(window.screen.availWidth, window.screen.availHeight);
+      window.moveTo(0, 0);
+    }
     
-    // Ensure welcome screen and unlock theme on fresh start
-    setCurrentScreen('welcome');
-    setThemeLocked(false);
-    updateLocalState({ currentScreen: 'welcome' });
+    // Only reset state if this is a FRESH START (not page refresh)
+    if (!dataPersistence.isPageRefresh) {
+      console.log('🆕 Fresh start - clearing previous session data');
+      setAppState(prev => ({
+        ...prev,
+        searchProcessId: null,
+        selectedJobs: [],
+        selectedJobForAnalysis: null,
+        jobsFound: [],
+        scoredJobs: [],
+        analysisData: null
+      }));
+      
+      // Fresh start - go to welcome screen and unlock theme
+      setCurrentScreen('welcome');
+      setThemeLocked(false);
+      dataPersistence.updatePersistentState({ 
+        currentScreen: 'welcome',
+        searchParams: {},
+        selectedJobs: [],
+        jobsFound: [],
+        scoredJobs: [],
+        analysisData: null
+      });
+    } else {
+      console.log('🔄 Page refresh - preserving session data');
+      // Page refresh - theme lock status depends on current screen
+      const isInSearchFlow = ['searching', 'searched', 'scoring', 'scored', 'analyzing', 'analyzed'].includes(currentScreen);
+      setThemeLocked(isInSearchFlow);
+    }
   }, []);
 
   // Graceful backend shutdown on browser close (development only)
@@ -105,12 +145,14 @@ function App() {
   ];
   const isScoringLocked = scoringLockedScreens.includes(currentScreen);
 
-  // Enhanced navigation function with logging
+  // Enhanced navigation function with logging and persistence
   const navigateTo = (screen) => {
     const fromScreen = currentScreen;
     workflowLogger.logNavigation(screen, fromScreen);
     setCurrentScreen(screen);
-    updateLocalState({ currentScreen: screen });
+    
+    // Update persistent state for page refresh recovery
+    dataPersistence.updatePersistentState({ currentScreen: screen });
     
     // Unlock theme when returning to welcome screen
     if (screen === 'welcome') {
@@ -119,7 +161,26 @@ function App() {
   };
 
   const updateAppState = (updates) => {
-    setAppState(prev => ({ ...prev, ...updates }));
+    setAppState(prev => {
+      const newState = { ...prev, ...updates };
+      
+      // Persist important state changes
+      dataPersistence.updatePersistentState({
+        searchParams: {
+          resume: newState.resume,
+          location: newState.location,
+          distance: newState.distance,
+          postedAgo: newState.postedAgo,
+          keyword: newState.keyword
+        },
+        selectedJobs: newState.selectedJobs || [],
+        jobsFound: newState.jobsFound || [],
+        scoredJobs: newState.scoredJobs || [],
+        analysisData: newState.analysisData
+      });
+      
+      return newState;
+    });
   };
 
   // Log app initialization
@@ -137,18 +198,37 @@ function App() {
 
   const resetApp = () => {
     workflowLogger.logAction('App reset', 'User clicked reset button');
-    clearLocalState();
+    
+    // Clear all persistent and session data
+    dataPersistence.clearAllData();
+    
+    // Reset app state
+    setAppState({
+      resume: 'Shamalka Resume v2.pdf',
+      location: defaultSuburb,
+      distance: '5 km',
+      postedAgo: '3 days',
+      keyword: '',
+      searchProcessId: null,
+      selectedJobs: [],
+      selectedJobForAnalysis: null,
+      jobsFound: [],
+      scoredJobs: [],
+      analysisData: null
+    });
+    
     setCurrentScreen('welcome');
     setThemeLocked(false);
     workflowLogger.logNavigation('welcome', currentScreen);
   };
 
-  // Pass setThemeLocked to WelcomeScreen so it can lock the theme immediately on search
+  // Pass enhanced props including data persistence to all screens
   const renderCurrentScreen = () => {
     const commonProps = {
       appState,
       updateAppState,
-      navigateTo
+      navigateTo,
+      dataPersistence // Provide data persistence capabilities to all screens
     };
     switch (currentScreen) {
       case 'welcome':
