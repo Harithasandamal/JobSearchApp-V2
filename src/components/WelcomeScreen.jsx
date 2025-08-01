@@ -63,7 +63,7 @@ const WelcomeScreen = ({ appState, updateAppState, navigateTo, searchLocked, sco
   };
 
   return (
-    <>
+    <div className="screen-container">
       <div className="left-panel">
         {/* Resume Section */}
         <div className="form-group">
@@ -104,7 +104,7 @@ const WelcomeScreen = ({ appState, updateAppState, navigateTo, searchLocked, sco
         <ProgressChecklist items={welcomeChecklist} />
         <InstructionsPanel />
       </div>
-    </>
+    </div>
   );
 };
 
