@@ -1,3 +1,181 @@
+/* Navigation Bar Styles */
+.navigation-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background: var(--card-bg);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: var(--shadow);
+  margin-bottom: 15px;
+}
+
+.nav-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+}
+
+.nav-btn:hover:not(.disabled) {
+  background: var(--hover-bg);
+  border-color: var(--accent-color);
+}
+
+.nav-btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: var(--disabled-bg);
+}
+
+.nav-icon {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.nav-preview {
+  font-size: 12px;
+  opacity: 0.7;
+  margin-left: 4px;
+}
+
+.current-screen {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+}
+
+.screen-label {
+  opacity: 0.7;
+  font-size: 14px;
+}
+
+.screen-name {
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
+.session-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.session-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: var(--danger-bg);
+  border: 1px solid var(--danger-border);
+  border-radius: 6px;
+  color: var(--danger-text);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+}
+
+.session-btn:hover {
+  background: var(--danger-hover);
+}
+
+/* Session Continuity Banner Styles */
+.session-banner {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 20px;
+  background: var(--info-bg);
+  border: 1px solid var(--info-border);
+  border-radius: 8px;
+  margin: 15px 20px;
+  box-shadow: var(--shadow);
+}
+
+.banner-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.banner-content {
+  flex: 1;
+}
+
+.banner-title {
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.banner-details {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.session-summary {
+  color: var(--accent-color);
+  font-weight: 500;
+}
+
+.session-age {
+  color: var(--text-secondary);
+}
+
+.banner-actions {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.session-action {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 15px;
+  border: 1px solid;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.session-action.continue {
+  background: var(--success-bg);
+  border-color: var(--success-border);
+  color: var(--success-text);
+}
+
+.session-action.continue:hover {
+  background: var(--success-hover);
+}
+
+.session-action.fresh {
+  background: var(--warning-bg);
+  border-color: var(--warning-border);
+  color: var(--warning-text);
+}
+
+.session-action.fresh:hover {
+  background: var(--warning-hover);
+}
+
+.action-icon {
+  font-size: 14px;
+}
+
 /* Common button styles */
 .btn {
   padding: 10px 20px;
