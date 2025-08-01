@@ -86,12 +86,11 @@ function App() {
   ];
   const isScoringLocked = scoringLockedScreens.includes(currentScreen);
 
-  // Enhanced navigation with phase transition logging
+  // Enhanced navigation with proper frontend logging
   const navigateTo = (screen) => {
     const fromScreen = currentScreen;
     
-    // Log phase transitions with 5-level system awareness
-    workflowLogger.logPhaseTransition(fromScreen, screen);
+    // Frontend workflow logging (phase transitions handled by backend)
     workflowLogger.logNavigation(screen, fromScreen);
     
     setCurrentScreen(screen);
