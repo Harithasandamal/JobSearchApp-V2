@@ -5,6 +5,7 @@ const mammoth = require('mammoth');
 const { spawn } = require('child_process');
 const path = require('path');
 const fs = require('fs');
+const workflowLogger = require('../utils/WorkflowLogger');
 
 const router = express.Router();
 
@@ -153,79 +154,128 @@ router.post('/score-jobs', multer().single('resumeFile'), async (req, res) => {
          processInfo.status = 'completed';
          processInfo.progress = 100;
          
-        // Try to read results file immediately first, then with retry mechanism
-        const tryReadResults = () => {
-          try {
-            // Try multiple possible results file locations
-            const possiblePaths = [
-              processInfo.configPath.replace('.json', '_results.json'),
-              path.join(process.cwd(), `extraction_results_${processId}.json`),
-              path.join(__dirname, '../', `extraction_results_${processId}.json`),
-              path.join(process.cwd(), `extraction_results_${Date.now()}.json`),
-              path.join(__dirname, '../', `extraction_results_${Date.now()}.json`)
-            ];
-            
-            let resultsPath = null;
-            for (const path of possiblePaths) {
-              if (fs.existsSync(path)) {
-                resultsPath = path;
-                break;
-              }
-            }
-            
-            if (resultsPath) {
-              const resultsData = JSON.parse(fs.readFileSync(resultsPath, 'utf8'));
-              processInfo.results = resultsData;
-              // Clean up results file
-              try {
-                fs.unlinkSync(resultsPath);
-              } catch (cleanupError) {
-                console.log(`Warning: Could not delete results file ${resultsPath}:`, cleanupError.message);
-              }
-              console.log(`✅ Results file found and loaded for process ${processId} from ${resultsPath}`);
-              return true;
-            } else {
-              return false;
-            }
-          } catch (error) {
-            console.error('Error reading extraction results:', error);
-            return false;
-          }
-        };
+                 // Try to read results file with improved logic
+         const tryReadResults = () => {
+           try {
+             // Wait a moment for file system to sync
+             setTimeout(() => {
+               // Try multiple possible results file locations with better timing
+               const possiblePaths = [
+                 processInfo.configPath.replace('.json', '_results.json'),
+                 path.join(process.cwd(), `extraction_config_${processId}_results.json`),
+                 path.join(__dirname, '../', `extraction_config_${processId}_results.json`),
+                 path.join(process.cwd(), `extraction_results_${processId}.json`),
+                 path.join(__dirname, '../', `extraction_results_${processId}.json`),
+                 path.join(process.cwd(), `scoring_config_${processId}_results.json`),
+                 path.join(__dirname, '../', `scoring_config_${processId}_results.json`)
+               ];
+               
+               let resultsPath = null;
+               for (const testPath of possiblePaths) {
+                 if (fs.existsSync(testPath)) {
+                   resultsPath = testPath;
+                   break;
+                 }
+               }
+               
+               if (resultsPath) {
+                 try {
+                   const resultsData = JSON.parse(fs.readFileSync(resultsPath, 'utf8'));
+                   processInfo.results = resultsData;
+                   
+                   // Clean up results file
+                   try {
+                     fs.unlinkSync(resultsPath);
+                   } catch (cleanupError) {
+                     // Silent cleanup error - file might already be deleted
+                   }
+                   
+                   workflowLogger.logScoring(`Results file found and loaded for process ${processId}`);
+                   return true;
+                 } catch (readError) {
+                   workflowLogger.logError(`Error reading results file ${resultsPath}: ${readError.message}`);
+                   return false;
+                 }
+               } else {
+                 return false;
+               }
+             }, 500); // Wait 500ms for file system sync
+           } catch (error) {
+             workflowLogger.logError(`Error in tryReadResults: ${error.message}`);
+             return false;
+           }
+         };
         
         // Try immediate read first
         let resultsFound = tryReadResults();
         
-        // If not found immediately, start retry mechanism
-        if (!resultsFound) {
-          let retryCount = 0;
-          const maxRetries = 3; // Reduced retries to avoid excessive logging
-          
-          const retryReadResults = () => {
-            retryCount++;
-            if (retryCount <= maxRetries) {
-              console.log(`⏳ Results file not found, retrying... (${retryCount}/${maxRetries})`);
-              setTimeout(() => {
-                if (tryReadResults()) {
-                  console.log(`✅ Results file found on retry ${retryCount}`);
-                } else if (retryCount < maxRetries) {
-                  retryReadResults();
-                } else {
-                  console.log('❌ Results file not found after all retries');
-                }
-              }, 1000); // Wait 1 second before retry
-            }
-          };
-          
-          retryReadResults();
-        }
+                 // If not found immediately, start retry mechanism with better timing
+         if (!resultsFound) {
+           let retryCount = 0;
+           const maxRetries = 5; // Increased retries for better reliability
+           
+           const retryReadResults = () => {
+             retryCount++;
+             if (retryCount <= maxRetries) {
+               workflowLogger.logScoring(`Results file not found, retrying... (${retryCount}/${maxRetries})`);
+               setTimeout(() => {
+                 // Try to read results with synchronous approach
+                 try {
+                   const possiblePaths = [
+                     processInfo.configPath.replace('.json', '_results.json'),
+                     path.join(process.cwd(), `extraction_config_${processId}_results.json`),
+                     path.join(__dirname, '../', `extraction_config_${processId}_results.json`),
+                     path.join(process.cwd(), `extraction_results_${processId}.json`),
+                     path.join(__dirname, '../', `extraction_results_${processId}.json`),
+                     path.join(process.cwd(), `scoring_config_${processId}_results.json`),
+                     path.join(__dirname, '../', `scoring_config_${processId}_results.json`)
+                   ];
+                   
+                   let resultsPath = null;
+                   for (const testPath of possiblePaths) {
+                     if (fs.existsSync(testPath)) {
+                       resultsPath = testPath;
+                       break;
+                     }
+                   }
+                   
+                   if (resultsPath) {
+                     const resultsData = JSON.parse(fs.readFileSync(resultsPath, 'utf8'));
+                     processInfo.results = resultsData;
+                     
+                     // Clean up results file
+                     try {
+                       fs.unlinkSync(resultsPath);
+                     } catch (cleanupError) {
+                       // Silent cleanup error
+                     }
+                     
+                     workflowLogger.logScoring(`Results file found on retry ${retryCount}`);
+                   } else if (retryCount < maxRetries) {
+                     retryReadResults();
+                   } else {
+                     workflowLogger.logError('Results file not found after all retries');
+                   }
+                 } catch (error) {
+                   if (retryCount < maxRetries) {
+                     retryReadResults();
+                   } else {
+                     workflowLogger.logError(`Error reading results after ${maxRetries} retries: ${error.message}`);
+                   }
+                 }
+               }, 2000); // Wait 2 seconds before retry for better file system sync
+             }
+           };
+           
+           retryReadResults();
+         }
       }
     }
   });
 
-  scoringProcess.stderr.on('data', (data) => {
-    console.error(`Scoring Error: ${data}`);
-  });
+     scoringProcess.stderr.on('data', (data) => {
+     workflowLogger.logError(`Scoring Error: ${data}`);
+   });
 
   scoringProcess.on('close', (code) => {
     const processInfo = activeScoringProcesses.get(processId);
@@ -235,19 +285,21 @@ router.post('/score-jobs', multer().single('resumeFile'), async (req, res) => {
              // If process completed successfully but no results were loaded, try one more time (silently)
        if (code === 0 && !processInfo.results) {
          try {
-           // Try multiple possible results file locations
+           // Try multiple possible results file locations with improved paths
            const possiblePaths = [
              processInfo.configPath.replace('.json', '_results.json'),
+             path.join(process.cwd(), `extraction_config_${processId}_results.json`),
+             path.join(__dirname, '../', `extraction_config_${processId}_results.json`),
              path.join(process.cwd(), `extraction_results_${processId}.json`),
              path.join(__dirname, '../', `extraction_results_${processId}.json`),
-             path.join(process.cwd(), `extraction_results_${Date.now()}.json`),
-             path.join(__dirname, '../', `extraction_results_${Date.now()}.json`)
+             path.join(process.cwd(), `scoring_config_${processId}_results.json`),
+             path.join(__dirname, '../', `scoring_config_${processId}_results.json`)
            ];
            
            let resultsPath = null;
-           for (const path of possiblePaths) {
-             if (fs.existsSync(path)) {
-               resultsPath = path;
+           for (const testPath of possiblePaths) {
+             if (fs.existsSync(testPath)) {
+               resultsPath = testPath;
                break;
              }
            }
@@ -259,7 +311,7 @@ router.post('/score-jobs', multer().single('resumeFile'), async (req, res) => {
              try {
                fs.unlinkSync(resultsPath);
              } catch (cleanupError) {
-               // Silent cleanup error
+               // Silent cleanup error - file might already be deleted
              }
            }
          } catch (error) {
@@ -267,12 +319,12 @@ router.post('/score-jobs', multer().single('resumeFile'), async (req, res) => {
          }
        }
       
-      // Clean up config file
-      try {
-        fs.unlinkSync(processInfo.configPath);
-      } catch (err) {
-        console.error('Error deleting scoring config file:', err);
-      }
+             // Clean up config file
+       try {
+         fs.unlinkSync(processInfo.configPath);
+       } catch (err) {
+         workflowLogger.logError(`Error deleting scoring config file: ${err.message}`);
+       }
     }
     
     // Remove from active processes after a delay
@@ -298,13 +350,13 @@ router.get('/scoring-status/:processId', (req, res) => {
     return res.status(404).json({ error: 'Scoring process not found' });
   }
   
-     // Only log status changes or errors, not every poll
-   if (processInfo.status === 'failed') {
-     console.log(`❌ Extraction failed for process ${processId}`);
-   } else if (processInfo.status === 'completed' && !processInfo.loggedCompletion) {
-     console.log(`✅ Extraction completed - ${processInfo.results?.extractedJobs?.length || 0} jobs extracted`);
-     processInfo.loggedCompletion = true;
-   }
+           // Only log status changes or errors, not every poll
+    if (processInfo.status === 'failed') {
+      workflowLogger.logError(`Extraction failed for process ${processId}`);
+    } else if (processInfo.status === 'completed' && !processInfo.loggedCompletion) {
+      workflowLogger.logScoring(`Extraction completed - ${processInfo.results?.extractedJobs?.length || 0} jobs extracted`);
+      processInfo.loggedCompletion = true;
+    }
   
   res.json({
     processId,
