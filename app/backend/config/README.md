@@ -28,6 +28,10 @@ Configuration file for test URLs used in light mode testing.
 - `description`: Description of the configuration
 - `maxUrls`: Maximum number of URLs allowed
 - `recommendedUpdateFrequency`: How often to update URLs
+- `lightModeConfig`: Configuration for light mode behavior
+  - `maxJobs`: Maximum number of jobs to process (default: 10)
+  - `enableUnlimitedJobs`: Enable unlimited job processing (default: true)
+  - `defaultJobLimit`: Default job limit when unlimited is disabled (default: 5)
 
 ## Usage
 
@@ -37,7 +41,22 @@ When test URLs expire, update them in `testUrls.json`:
 1. Find new job URLs from SEEK
 2. Replace the URLs in the `sampleUrls` array
 3. Update the `lastUpdated` timestamp
-4. Test the new URLs using the test script
+4. Configure light mode behavior in `lightModeConfig`
+5. Test the new URLs using the test script
+
+### Light Mode Configuration
+Control light mode behavior with `lightModeConfig`:
+
+```json
+"lightModeConfig": {
+  "maxJobs": 10,           // Maximum jobs to process
+  "enableUnlimitedJobs": true,  // Enable unlimited processing
+  "defaultJobLimit": 5      // Default limit when unlimited is false
+}
+```
+
+- **Unlimited Mode**: Set `enableUnlimitedJobs: true` to process all available URLs
+- **Limited Mode**: Set `enableUnlimitedJobs: false` and adjust `maxJobs` as needed
 
 ### Test Scripts
 Use the provided test scripts to validate the optimized scraping:
@@ -103,7 +122,8 @@ If optimization causes issues:
 
 ## Performance Targets
 
-- **Light Mode**: < 30 seconds for 3 jobs
+- **Light Mode**: < 30 seconds for 3 jobs, < 60 seconds for unlimited jobs
 - **Dark Mode**: < 60 seconds for 10 jobs
 - **Success Rate**: > 95% for both modes
-- **Error Rate**: < 5% for both modes 
+- **Error Rate**: < 5% for both modes
+- **Unlimited Jobs**: Support for processing all available test URLs in light mode 

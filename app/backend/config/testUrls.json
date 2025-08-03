@@ -2,10 +2,17 @@
   "sampleUrls": [
     "https://www.seek.com.au/job/85981995?ref=recom-homepage&pos=4&sp=3&origin=jobTitle#sol=941dd2919d55ebc790f6017d3e00d197d7ce28a0",
     "https://www.seek.com.au/job/85994049?ref=search-standalone&type=standard&origin=jobTitle#sol=f5c442d9c765b69183c0a9f36e76c3773779cff4",
-    "https://www.seek.com.au/job/85907804?ref=search-standalone&type=standard&origin=jobTitle#sol=ac705abd43f8e7aa11c57e26bdd7ef8de3e67313"
+    "https://www.seek.com.au/job/85907804?ref=search-standalone&type=standard&origin=jobTitle#sol=ac705abd43f8e7aa11c57e26bdd7ef8de3e67313",
+    "https://www.seek.com.au/job/85912345?ref=search-standalone&type=standard&origin=jobTitle#sol=example123456789",
+    "https://www.seek.com.au/job/85967890?ref=search-standalone&type=standard&origin=jobTitle#sol=example987654321"
   ],
-  "lastUpdated": "2025-02-08T11:45:00.000Z",
-  "description": "Test URLs for light mode. Update when URLs expire.",
-  "maxUrls": 5,
-  "recommendedUpdateFrequency": "weekly"
+  "lastUpdated": "2025-02-08T12:00:00.000Z",
+  "description": "Test URLs for light mode. Update when URLs expire. No limit on number of URLs.",
+  "maxUrls": 10,
+  "recommendedUpdateFrequency": "weekly",
+  "lightModeConfig": {
+    "maxJobs": 10,
+    "enableUnlimitedJobs": true,
+    "defaultJobLimit": 5
+  }
 } 

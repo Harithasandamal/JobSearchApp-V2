@@ -24,7 +24,12 @@ const TEST_CONFIG = {
     postedAgo: '7 days'
   },
   timeout: 60000, // 60 seconds timeout
-  maxJobs: 10
+  maxJobs: 10,
+  lightModeConfig: {
+    maxJobs: 10,
+    enableUnlimitedJobs: true,
+    defaultJobLimit: 5
+  }
 };
 
 /**

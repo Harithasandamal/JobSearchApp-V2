@@ -7,7 +7,7 @@
 const { activeProcesses } = require('./sharedData');
 const { scrapeAllJobsUnified } = require('./jobScrapingUtils');
 const { scrapeJobUrlsFromSearchResults } = require('./searchResultsScraper');
-const { SAMPLE_URLS } = require('../../constants/sampleUrls');
+const { SAMPLE_URLS, loadSampleUrls, getLightModeConfig } = require('../../constants/sampleUrls');
 
 const UrlBuilder = require('../../scrapers/UrlBuilder');
 const workflowLogger = require('../../utils/WorkflowLogger');
@@ -50,10 +50,26 @@ const handleUnifiedSearch = async (searchParams, mode = 'dark') => {
       
       // UNIFIED APPROACH: Different URL sources based on mode
       if (mode === 'light') {
-        // Light mode: Use centralized sample URLs
-        console.log(`🌞 LIGHT MODE - Using ${SAMPLE_URLS.length} centralized sample URLs`);
+        // Light mode: Use config-based sample URLs with enhanced reliability
+        console.log(`🌞 LIGHT MODE - Using optimized sample URL collection`);
+        
+        // Reload URLs from config to ensure freshness
+        loadSampleUrls();
+        const lightModeConfig = getLightModeConfig();
+        
+        // Get all available URLs (no limit in light mode)
         jobUrls = [...SAMPLE_URLS]; // Create copy to avoid modification
-        workflowLogger.log(`🧪 Light mode: Using ${SAMPLE_URLS.length} sample URLs`, 'process');
+        
+        // Apply light mode configuration
+        if (lightModeConfig.enableUnlimitedJobs) {
+          console.log(`🌞 LIGHT MODE - Unlimited jobs enabled, using all ${jobUrls.length} available URLs`);
+        } else {
+          const maxJobs = Math.min(lightModeConfig.maxJobs, jobUrls.length);
+          jobUrls = jobUrls.slice(0, maxJobs);
+          console.log(`🌞 LIGHT MODE - Limited to ${maxJobs} jobs from ${SAMPLE_URLS.length} available URLs`);
+        }
+        
+        workflowLogger.log(`🧪 Light mode: Using ${jobUrls.length} sample URLs (unlimited: ${lightModeConfig.enableUnlimitedJobs})`, 'process');
       } else {
         // Dark mode: Build dynamic search URL and scrape job URLs
         console.log(`🌙 DARK MODE - Building dynamic search URL and collecting job URLs`);

@@ -7,7 +7,7 @@
 const { activeProcesses } = require('./sharedData');
 const { scrapeAllJobsUnified } = require('./jobScrapingUtils');
 const { scrapeJobUrlsFromSearchResults } = require('./searchResultsScraper');
-const { SAMPLE_URLS, loadSampleUrls } = require('../../constants/sampleUrls');
+const { SAMPLE_URLS, loadSampleUrls, getLightModeConfig } = require('../../constants/sampleUrls');
 
 const UrlBuilder = require('../../scrapers/UrlBuilder');
 const workflowLogger = require('../../utils/WorkflowLogger');
@@ -55,13 +55,25 @@ const handleOptimizedSearch = async (searchParams, mode = 'dark') => {
         
         // Reload URLs from config to ensure freshness
         loadSampleUrls();
+        const lightModeConfig = getLightModeConfig();
+        
+        // Get all available URLs (no limit in light mode)
         jobUrls = [...SAMPLE_URLS]; // Create copy to avoid modification
         
         if (jobUrls.length === 0) {
           throw new Error('No test URLs available in config');
         }
         
-        workflowLogger.log(`🧪 Light mode: Using ${jobUrls.length} optimized sample URLs`, 'process');
+        // Apply light mode configuration
+        if (lightModeConfig.enableUnlimitedJobs) {
+          console.log(`🌞 LIGHT MODE - Unlimited jobs enabled, using all ${jobUrls.length} available URLs`);
+        } else {
+          const maxJobs = Math.min(lightModeConfig.maxJobs, jobUrls.length);
+          jobUrls = jobUrls.slice(0, maxJobs);
+          console.log(`🌞 LIGHT MODE - Limited to ${maxJobs} jobs from ${SAMPLE_URLS.length} available URLs`);
+        }
+        
+        workflowLogger.log(`🧪 Light mode: Using ${jobUrls.length} optimized sample URLs (unlimited: ${lightModeConfig.enableUnlimitedJobs})`, 'process');
         
       } else {
         // Dark mode: Enhanced search URL building with fallback strategies

@@ -16,6 +16,11 @@ const loadSampleUrls = () => {
       const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
       SAMPLE_URLS = config.sampleUrls || [];
       console.log(`📋 Loaded ${SAMPLE_URLS.length} test URLs from config`);
+      
+      // Log light mode configuration
+      if (config.lightModeConfig) {
+        console.log(`⚙️ Light mode config: maxJobs=${config.lightModeConfig.maxJobs}, unlimited=${config.lightModeConfig.enableUnlimitedJobs}`);
+      }
     } else {
       // Fallback to hardcoded URLs if config doesn't exist
       SAMPLE_URLS = [
@@ -36,10 +41,35 @@ const loadSampleUrls = () => {
   }
 };
 
+// Get light mode configuration
+const getLightModeConfig = () => {
+  try {
+    const configPath = path.join(__dirname, '../config/testUrls.json');
+    if (fs.existsSync(configPath)) {
+      const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+      return config.lightModeConfig || {
+        maxJobs: 10,
+        enableUnlimitedJobs: true,
+        defaultJobLimit: 5
+      };
+    }
+  } catch (error) {
+    console.error('❌ Error loading light mode config:', error.message);
+  }
+  
+  // Default configuration
+  return {
+    maxJobs: 10,
+    enableUnlimitedJobs: true,
+    defaultJobLimit: 5
+  };
+};
+
 // Load URLs on module load
 loadSampleUrls();
 
 module.exports = {
   SAMPLE_URLS,
-  loadSampleUrls // Export for manual reloading
+  loadSampleUrls, // Export for manual reloading
+  getLightModeConfig // Export for light mode configuration
 };
