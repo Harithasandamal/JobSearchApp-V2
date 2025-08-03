@@ -44,7 +44,10 @@ class WorkflowLogger {
     // Filter out technical details for user-friendly logging
     const userFriendlyMessage = this.makeUserFriendly(message);
     
-    console.log(`[${timestamp}] ${indent}${icon} ${userFriendlyMessage}`);
+    // Only log if the message is not null (filtered out)
+    if (userFriendlyMessage !== null) {
+      console.log(`[${timestamp}] ${indent}${icon} ${userFriendlyMessage}`);
+    }
   }
   
   /**
