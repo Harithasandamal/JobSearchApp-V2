@@ -55,7 +55,16 @@ const useSearchedScreen = ({ appState, updateAppState, navigateTo }) => {
   };
 
   const handleScoreJobs = () => {
+    console.log('🔍 handleScoreJobs - Selected job IDs:', selectedJobs);
+    console.log('🔍 handleScoreJobs - Available jobs:', appState.jobsFound);
+    
     const selectedJobData = appState.jobsFound.filter(job => selectedJobs.includes(job.id));
+    
+    console.log('🔍 handleScoreJobs - Filtered selected jobs:', selectedJobData);
+    selectedJobData.forEach((job, index) => {
+      console.log(`   Selected Job ${index + 1}: ID=${job.id}, Title=${job.title}, URL=${job.url || 'NO URL'}`);
+    });
+    
     updateAppState({ 
       selectedJobs: selectedJobData,
       analysisData: null,

@@ -140,7 +140,7 @@ class OptimizedSeekScraper {
             error: error.message
           };
         }
-      });
+      }, url);
       
       const endTime = Date.now();
       job.scrapeDuration = endTime - startTime;

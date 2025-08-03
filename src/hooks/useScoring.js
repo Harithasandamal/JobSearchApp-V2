@@ -42,16 +42,35 @@ const useScoring = (selectedJobs, updateAppState, navigateTo, callbacks = {}) =>
       try {
         console.log('🚀 Starting job data extraction...');
         
-        // Only extract data from jobs with valid URLs
-        const jobsToExtract = (selectedJobs || []).filter(job => job.url && job.url.startsWith('http'));
+        // Debug: Log selected jobs to see their structure
+        console.log('🔍 Selected jobs for extraction:', selectedJobs);
+        selectedJobs.forEach((job, index) => {
+          console.log(`   Job ${index + 1}: ID=${job.id}, Title=${job.title}, URL=${job.url || 'NO URL'}`);
+        });
+        
+        // Enhanced URL validation for both light and dark modes
+        const jobsToExtract = (selectedJobs || []).filter(job => {
+          // Check if job has a valid URL
+          const hasValidUrl = job.url && (job.url.startsWith('http') || job.url.startsWith('https'));
+          
+          if (!hasValidUrl) {
+            console.log(`⚠️ Job ${job.id} (${job.title}) has no valid URL: ${job.url}`);
+          }
+          
+          return hasValidUrl;
+        });
+        
         if (jobsToExtract.length === 0) {
-          const errorMsg = 'No valid job URLs found for data extraction.';
+          const errorMsg = 'No valid job URLs found for data extraction. Please ensure jobs have valid URLs.';
+          console.error('❌ Extraction failed:', errorMsg);
           setError(errorMsg);
           if (callbacks.onError) {
             callbacks.onError(errorMsg);
           }
           return;
         }
+        
+        console.log(`✅ Found ${jobsToExtract.length} jobs with valid URLs for extraction`);
         
         // Start the data extraction process
         const response = await scoringApiService.startScoring(jobsToExtract);
