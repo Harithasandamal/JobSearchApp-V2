@@ -1,0 +1,255 @@
+{
+  "extractedJobs": [
+    {
+      "id": "dark-job-16",
+      "title": "Sales Consultant",
+      "company": "Furniture Outlet Dandenong",
+      "location": "Dandenong South",
+      "url": "https://www.seek.com.au/job/86174570?ref=search-standalone&type=standard",
+      "postedAgo": "20 hours",
+      "mandatoryRequirements": [
+        "Previous retail sales experience",
+        "Competent computer and literacy skills",
+        "Excellent punctuality"
+      ],
+      "preferredRequirements": [
+        "Great communication skills",
+        "Confidence to close the sale"
+      ],
+      "responsibilities": [
+        "Assisting customers with day to day sales",
+        "Answering inquiries on social media",
+        "Assist with daily store operations and housekeeping",
+        "Admin work including pricing display's, booking deliveries and providing customer solutions",
+        "Be available to work weekdays and weekends",
+        "Aiming to hit personal and store targets"
+      ],
+      "employerQuestions": [
+        "Do you have professional housekeeping experience?",
+        "Which of the following statements best describes your right to work in Australia?",
+        "How many years' experience do you have as a sales consultant?",
+        "Do you have customer service experience?",
+        "Do you have experience in a sales role?"
+      ],
+      "otherDetails": [
+        "Generous staff discount",
+        "Exceptional working conditions",
+        "Fun and enthusiastic team"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 210,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-16.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-16.md",
+      "timestamp": "2025-08-02T08:08:39.891Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-5",
+      "title": "Finance Manager | Enviable Residential Builder",
+      "company": "Concise Recruitment",
+      "location": "Bayside & South Eastern Suburbs",
+      "url": "https://www.seek.com.au/job/86183172?ref=search-standalone&type=standard",
+      "postedAgo": "1 day",
+      "mandatoryRequirements": [
+        "Minimum 5 years’ experience within finance &/or accounting management",
+        "Tertiary qualifications in Accounting, Finance, or a related discipline"
+      ],
+      "preferredRequirements": [
+        "Proven experience in budgeting, forecasting, and financial reporting",
+        "Strong Excel, financial modelling and accounting software capabilities",
+        "Solid background in cash flow and financial compliance management",
+        "Strong stakeholder management skills",
+        "Excellent communication skills (written and verbal)"
+      ],
+      "responsibilities": [
+        "Leading the preparation & analysis of monthly management reports (P&L, balance sheet & cash flow)",
+        "Oversee end-of-month processes, journal entries & financial reconciliations",
+        "Prepare annual budgets and quarterly forecasts",
+        "Monitor project performance (cost-to-complete, margin analysis & WIP)",
+        "Partner with PMs to ensure accurate job costing & forecasting",
+        "Manage daily cash flow and working capital across the business",
+        "Lead the annual stocktake process and ensure timely reconciliation",
+        "Ensure compliance with statutory, tax & Reg. obligations (BAS, GST, TPAR)"
+      ],
+      "employerQuestions": [
+        "Do you have a minimum of 5 years' experience in finance or accounting management?",
+        "Do you have tertiary qualifications in Accounting, Finance, or a related discipline?",
+        "Do you have experience in budgeting, forecasting, and financial reporting?",
+        "Do you have strong Excel, financial modelling, and accounting software capabilities?",
+        "Do you have strong stakeholder management skills?"
+      ],
+      "otherDetails": [
+        "Strong stakeholder management skills",
+        "Excellent communication skills (written and verbal)",
+        "An attitude that doesn’t take things too seriously"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 220,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-5.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-5.md",
+      "timestamp": "2025-08-02T08:08:46.833Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-6",
+      "title": "Recruitment Partner (Inclusive Employment Australia)",
+      "company": "The Salvation Army",
+      "location": "Dandenong",
+      "url": "https://www.seek.com.au/job/86181788?ref=search-standalone&type=standard",
+      "postedAgo": "1 day",
+      "mandatoryRequirements": [
+        "Relevant qualifications in areas such as Employment Services, Community Services or other relevant areas",
+        "Previous experience in employment services including advanced barrier management, reverse marketing, placement of candidates into employment and provision of post-placement support",
+        "Must hold a Driver's license as travel throughout the region will be required"
+      ],
+      "preferredRequirements": [
+        "Demonstrated experience in business development, account management or sales",
+        "Certification in process improvement techniques such as Six Sigma",
+        "Certification in process improvement techniques such as LEAN",
+        "Certification in process improvement techniques such as KAIZEN",
+        "Working knowledge of local employers and their recruitment demands"
+      ],
+      "responsibilities": [
+        "Support employers in the Maroondah, Bayside and Monash regions in collaboration with local teams",
+        "Maintain an in-depth knowledge of the local labour market and emerging industries",
+        "Proactively identify and develop new employer relationships",
+        "Help employers adapt their process or roles to accommodate candidates with specific needs",
+        "Engage job ready candidates and match with employers through referrals",
+        "Work closely with the Employment Consultants and Ongoing Support Consultants",
+        "Achieve or exceed all KPIs",
+        "Apply an outcome focused, high performance approach to the role"
+      ],
+      "employerQuestions": [
+        "Are you ready to join a respected, values driven not-for-profit organisation?",
+        "Are you ready to thrive in a challenging yet rewarding role?",
+        "Are you ready to work closely alongside people with a disability to help them build their future career?",
+        "Do you hold a Driver's license?",
+        "Are you able to travel throughout the region as required?"
+      ],
+      "otherDetails": [
+        "Strong networking and relationship building skills",
+        "Performance focused mindset",
+        "Growth & Learning"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 240,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-6.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-6.md",
+      "timestamp": "2025-08-02T08:08:55.127Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-9",
+      "title": "Aluminium Polisher",
+      "company": "Australia Wide Trades Recruitment",
+      "location": "Dandenong South",
+      "url": "https://www.seek.com.au/job/86180657?ref=search-standalone&type=standard",
+      "postedAgo": "1 day",
+      "mandatoryRequirements": [
+        "Trade qualification in metal finishing (Cert III/IV) or equivalent hands-on experience in metal polishing or metalwork",
+        "Proven experience with aluminium or metal polishing using tools like grinders, buffers, and hand polishers",
+        "Basic knowledge of workplace health and safety when working with machinery and chemicals"
+      ],
+      "preferredRequirements": [
+        "Ability to work independently and collaboratively in a fast-paced environment, with good communication skills",
+        "Strong attention to detail and ability to deliver high-quality, mirror-like finishes",
+        "Certification in process improvement techniques such as Six Sigma",
+        "Certification in process improvement techniques such as LEAN",
+        "Certification in process improvement techniques such as KAIZEN"
+      ],
+      "responsibilities": [
+        "Surface Preparation: clean and prepare raw aluminium surfaces by removing scratches, weld marks and other imperfections using sanding tools and abrasives",
+        "Polishing: polish bull bars and aluminium components with both hand tools and polishing machines",
+        "Finishing: Apply final buffing and protective coatings as needed, ensuring a consistent & professional finish that meets stringent quality standards",
+        "Inspection: Perform thorough visual and tactile quality checks throughout the polishing process to guarantee all products are free from defects or blemishes",
+        "Ability to communicate with fabrication, assembly, and quality assurance teams to ensure alignment on job requirements and deadlines"
+      ],
+      "employerQuestions": [
+        "Which of the following statements best describes your right to work in Australia?",
+        "How much notice are you required to give your current employer?",
+        "Which suburb are you currently living in?"
+      ],
+      "otherDetails": [
+        "Strong knowledge of manufacturing production processes",
+        "Knowledge of Engineering",
+        "Ability to deliver high-quality finishes"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 200,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-9.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-9.md",
+      "timestamp": "2025-08-02T08:09:03.334Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-10",
+      "title": "High Reach Forklift Driver / Pick Packer",
+      "company": "Phoenix Circuit Pty Ltd",
+      "location": "Dandenong South",
+      "url": "https://www.seek.com.au/job/86180356?ref=search-standalone&type=standard",
+      "postedAgo": "1 day",
+      "mandatoryRequirements": [
+        "Pick packing experience in a warehouse environment",
+        "Current and valid Forklift Licence with reach forklift experience",
+        "Physically fit and capable of lifting (under 25kgs)"
+      ],
+      "preferredRequirements": [
+        "6-12 months experience using SAP",
+        "Computer literate",
+        "Flexible with taking on additional duties when quiet",
+        "Reliable and able to commit to ongoing work",
+        "Strong view to permanency for the right candidate"
+      ],
+      "responsibilities": [
+        "Operate high reach forklift",
+        "Pick and pack orders in a warehouse environment",
+        "Utilize SAP for inventory management",
+        "Lift and move items weighing under 25kgs",
+        "Assist with additional duties as required",
+        "Commit to ongoing work schedule",
+        "Maintain a high level of reliability",
+        "Strive for permanency in the role"
+      ],
+      "employerQuestions": [
+        "How many years' experience do you have as a high reach forklift driver?",
+        "Which of the following statements best describes your right to work in Australia?"
+      ],
+      "otherDetails": [
+        "Warehouse experience",
+        "Physical fitness",
+        "Computer skills"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 180,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-10.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-10.md",
+      "timestamp": "2025-08-02T08:09:10.279Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    }
+  ]
+}

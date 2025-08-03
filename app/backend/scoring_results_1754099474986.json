@@ -1,0 +1,136 @@
+{
+  "scoredJobs": [
+    {
+      "id": "light-job-2",
+      "title": "Group Project Coordinator",
+      "company": "Brown & Watson International",
+      "location": "Knoxfield",
+      "url": "https://www.seek.com.au/job/85994049?ref=search-standalone&type=standard&origin=jobTitle#sol=f5c442d9c765b69183c0a9f36e76c3773779cff4",
+      "postedAgo": "8 days",
+      "mandatoryRequirements": [
+        "Strong project coordination and communication skills",
+        "Relevant tertiary and project management qualifications (e.g. PMP)"
+      ],
+      "preferredRequirements": [
+        "Experience in cross-functional environments (automotive preferred, not essential)",
+        "Commercial acumen and problem-solving ability",
+        "Self-motivated with a ‘can-do’ attitude and collaborative style"
+      ],
+      "responsibilities": [
+        "Coordinate project documentation, timelines, and reporting",
+        "Facilitate team communication, meetings, and workshops",
+        "Analyse data, track metrics and support prioritisation",
+        "Support governance and adoption of project processes",
+        "Drive collaboration across Product Development, Manufacturing, Marketing, and Sales"
+      ],
+      "employerQuestions": [
+        "How many years' experience do you have as a project coordinator?",
+        "How many years of project management experience do you have?",
+        "Which of the following PMI certifications have you completed?",
+        "Which of the following Microsoft Office products are you experienced with?",
+        "How many years' experience do you have with project planning and scheduling?"
+      ],
+      "mandatoryMatches": [
+        false,
+        false
+      ],
+      "preferredMatches": [
+        false,
+        false,
+        false
+      ],
+      "gaps": [
+        "Strong project coordination and communication skills",
+        "Relevant tertiary and project management qualifications (e.g. PMP)"
+      ],
+      "matchingDetails": {
+        "mandatoryReasons": [],
+        "preferredReasons": []
+      },
+      "compatibilityScore": 0,
+      "score": 0,
+      "scoreBreakdown": {
+        "mandatoryScore": 0,
+        "preferredScore": 0,
+        "gapPenalty": 80,
+        "gapCount": 2,
+        "mandatoryCount": 0,
+        "preferredCount": 0
+      },
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_light-job-2.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_light-job-2.md",
+      "timestamp": "2025-08-02T01:51:25.301Z",
+      "scoringMethod": "chatgpt-semantic"
+    },
+    {
+      "id": "light-job-3",
+      "title": "Scheduling Coordinator",
+      "company": "Linc Scaffolding Pty Ltd",
+      "location": "Dandenong",
+      "url": "https://www.seek.com.au/job/85907804?ref=search-standalone&type=standard&origin=jobTitle#sol=ac705abd43f8e7aa11c57e26bdd7ef8de3e67313",
+      "postedAgo": "11 days",
+      "mandatoryRequirements": [
+        "Experience in construction / logistics",
+        "Customer service excellence",
+        "High level of computer literacy"
+      ],
+      "preferredRequirements": [
+        "Resilient and thrives in pressure situations",
+        "Team player with initiative",
+        "Excellent rapport building skills",
+        "Process driven with continuous improvement mindset",
+        "Reliable, effective, and efficient work ethic"
+      ],
+      "responsibilities": [
+        "Receiving and sending emails to be actioned daily",
+        "Scheduling for trade and transport crews",
+        "Coordinating field employees and sub-contractors",
+        "Troubleshooting issues",
+        "Liaising with builders and trades"
+      ],
+      "employerQuestions": [
+        "How many years' experience do you have as a Scheduling Coordinator?",
+        "Do you have data entry experience?",
+        "How many years' experience do you have in the construction industry?",
+        "Do you have customer service experience?",
+        "Which of the following Microsoft Office products are you experienced with?"
+      ],
+      "mandatoryMatches": [
+        false,
+        false,
+        true
+      ],
+      "preferredMatches": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "gaps": [
+        "Experience in construction / logistics",
+        "Customer service excellence"
+      ],
+      "matchingDetails": {
+        "mandatoryReasons": [
+          "High level of computer literacy"
+        ],
+        "preferredReasons": []
+      },
+      "compatibilityScore": 0,
+      "score": 0,
+      "scoreBreakdown": {
+        "mandatoryScore": 30,
+        "preferredScore": 0,
+        "gapPenalty": 80,
+        "gapCount": 2,
+        "mandatoryCount": 1,
+        "preferredCount": 0
+      },
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_light-job-3.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_light-job-3.md",
+      "timestamp": "2025-08-02T01:51:33.919Z",
+      "scoringMethod": "chatgpt-semantic"
+    }
+  ]
+}

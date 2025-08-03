@@ -1,0 +1,108 @@
+{
+  "extractedJobs": [
+    {
+      "id": "final-test-1",
+      "title": "Final Test Job 1",
+      "company": "Test Company 1",
+      "location": "Melbourne VIC",
+      "url": "https://www.seek.com.au/job/59745689",
+      "postedAgo": "N/A",
+      "mandatoryRequirements": [
+        "Bachelor's degree in Engineering"
+      ],
+      "preferredRequirements": [
+        "Certification in process improvement techniques (e.g. Six Sigma, LEAN, KAIZEN)",
+        "Experience in a manufacturing environment",
+        "Knowledge of ERP systems",
+        "Experience in a leadership role",
+        "Strong problem-solving skills"
+      ],
+      "responsibilities": [
+        "Identify and analyse critical production processes",
+        "Develop and implement continuous improvement strategies",
+        "Manage and lead critical continuous improvement projects",
+        "Collaborate with cross-functional teams",
+        "Provide training and support to team members",
+        "Monitor and report on key performance indicators",
+        "Drive a culture of continuous improvement",
+        "Implement best practices in manufacturing processes"
+      ],
+      "employerQuestions": [
+        "Do you have experience in a leadership role?",
+        "Can you provide an example of a successful continuous improvement project you led?",
+        "How do you approach problem-solving in a manufacturing environment?",
+        "What ERP systems are you familiar with?",
+        "How do you ensure the sustainability of continuous improvement initiatives?"
+      ],
+      "otherDetails": [
+        "Knowledge of Engineering",
+        "Strong knowledge of manufacturing production processes",
+        "Excellent communication skills"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 200,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_final-test-1.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_final-test-1.md",
+      "timestamp": "2025-08-03T01:14:52.421Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "final-test-2",
+      "title": "Final Test Job 2",
+      "company": "Test Company 2",
+      "location": "Melbourne VIC",
+      "url": "https://www.seek.com.au/job/59745690",
+      "postedAgo": "N/A",
+      "mandatoryRequirements": [
+        "Degree in Mechanical Engineering",
+        "5+ years of experience in manufacturing industry",
+        "Certification in Six Sigma"
+      ],
+      "preferredRequirements": [
+        "Experience in process improvement techniques",
+        "Knowledge of LEAN and KAIZEN",
+        "Experience in leading continuous improvement projects",
+        "Experience in a leadership role",
+        "Experience in a similar industry"
+      ],
+      "responsibilities": [
+        "Identify critical production processes",
+        "Analyze production processes",
+        "Lead continuous improvement projects",
+        "Manage and optimize production processes",
+        "Implement process improvement initiatives",
+        "Train and mentor team members",
+        "Collaborate with cross-functional teams",
+        "Report on production performance"
+      ],
+      "employerQuestions": [
+        "Do you have experience in leading continuous improvement projects?",
+        "Can you provide examples of process improvement initiatives you have implemented?",
+        "How do you analyze and optimize production processes?",
+        "What experience do you have in a leadership role?",
+        "How do you collaborate with cross-functional teams?"
+      ],
+      "otherDetails": [
+        "Strong knowledge of manufacturing production processes",
+        "Excellent communication skills",
+        "Problem-solving abilities"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 240,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_final-test-2.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_final-test-2.md",
+      "timestamp": "2025-08-03T01:15:03.150Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    }
+  ]
+}

@@ -1,0 +1,239 @@
+{
+  "extractedJobs": [
+    {
+      "id": "dark-job-20",
+      "title": "Telco Customer Support",
+      "company": "Aussie Broadband Limited",
+      "location": "Dandenong",
+      "url": "https://www.seek.com.au/job/86200816?ref=search-standalone&type=standard",
+      "postedAgo": "32 minutes",
+      "mandatoryRequirements": [
+        "Familiarity with the telco industry",
+        "Background in accounts or customer service",
+        "Effective communication skills"
+      ],
+      "preferredRequirements": [
+        "Background or strong interest in IT and tech",
+        "Moderate computer skills",
+        "Basic data entry skills"
+      ],
+      "responsibilities": [
+        "Meet customer service standards and targets",
+        "Address technical and account assistance requests",
+        "Attempt to diagnose and resolve non-service related cases",
+        "Handle conflict resolution and escalate complaints",
+        "Follow standard help desk and account procedures"
+      ],
+      "employerQuestions": [
+        "Are you familiar with the telco industry?",
+        "Do you have a background in accounts or customer service?",
+        "Do you have effective communication skills?",
+        "Do you have a background or strong interest in IT and tech?",
+        "Do you have moderate computer skills?"
+      ],
+      "otherDetails": [
+        "Empathy",
+        "Consultation",
+        "Conflict resolution"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 220,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-20.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-20.md",
+      "timestamp": "2025-08-02T07:47:27.797Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-6",
+      "title": "Counter Trade Sales Clerk",
+      "company": "HRCheck Aust Pty Ltd",
+      "location": "Dandenong",
+      "url": "https://www.seek.com.au/job/86184827?ref=search-standalone&type=standard",
+      "postedAgo": "23 hours",
+      "mandatoryRequirements": [
+        "Computer literacy skills",
+        "Outstanding communication and customer service skills",
+        "Full drivers licence"
+      ],
+      "preferredRequirements": [
+        "Background working in a retail 'trade' shop",
+        "Safety conscious and aware of OHS procedures"
+      ],
+      "responsibilities": [
+        "Dealing with trade customers on a daily basis including over the counter sales, phone and email follow-ups",
+        "Liaising with warehouse staff and key personnel",
+        "Preparation of quotes",
+        "Managing a database and following up on orders",
+        "Co-ordination of deliveries and dispatch",
+        "Available Monday to Friday - 8.30am 4:30pm (start and finish times are fixed - no flexibility)"
+      ],
+      "employerQuestions": [
+        "Which of the following statements best describes your right to work in Australia?",
+        "How many years' experience do you have as a Sales Clerk?",
+        "Do you have customer service experience?",
+        "How much notice are you required to give your current employer?",
+        "Do you have a current Australian driver's licence?"
+      ],
+      "otherDetails": [
+        "Can do attitude where you are willing to learn everyday",
+        "Available to start in a temporary capacity with a view to permanent",
+        "Be flexible to assist in the warehouse or office if back-up is ever required"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 210,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-6.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-6.md",
+      "timestamp": "2025-08-02T07:47:34.842Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-21",
+      "title": "Senior Family Lawyer",
+      "company": "Sharp & Carter Legal",
+      "location": "Bayside & South Eastern Suburbs",
+      "url": "https://www.seek.com.au/job/86186287?ref=search-standalone&type=standard",
+      "postedAgo": "23 hours",
+      "mandatoryRequirements": [
+        "At least 8 years’ post-admission experience in family law"
+      ],
+      "preferredRequirements": [
+        "Accredited Specialist in Family Law",
+        "Strong client relationship skills with high-net-worth or complex family matters"
+      ],
+      "responsibilities": [
+        "Manage a diverse family law caseload including property, parenting, financial agreements, and intervention orders",
+        "Provide strategic legal advice to clients during sensitive and complex matters",
+        "Maintain and develop strong client and referrer relationships",
+        "Represent clients in mediations, negotiations, and court proceedings",
+        "Contribute to practice development and leadership within the firm"
+      ],
+      "employerQuestions": [
+        "How many years of post-admission experience do you have in family law?",
+        "Do you have experience with high-net-worth or complex family matters?",
+        "Are you an Accredited Specialist in Family Law?",
+        "Can you provide an example of a successful mediation or negotiation you have conducted?",
+        "How do you approach maintaining strong client relationships?"
+      ],
+      "otherDetails": [
+        "Strong drafting skills",
+        "Strong negotiation skills",
+        "Strong advocacy skills"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 170,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-21.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-21.md",
+      "timestamp": "2025-08-02T07:47:44.018Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-8",
+      "title": "Employment Consultant (Inclusive Employment Australia)",
+      "company": "Sureway Employment and Training",
+      "location": "Dandenong",
+      "url": "https://www.seek.com.au/job/86183668?ref=search-standalone&type=standard",
+      "postedAgo": "1 day",
+      "mandatoryRequirements": [
+        "National Police Check",
+        "Right to work in Australia",
+        "Valid driver’s licence with reliable transport"
+      ],
+      "preferredRequirements": [
+        "Degree qualification in an Engineering discipline (Mechanical, Industrial or Materials Engineering)",
+        "Certification in process improvement techniques such as Six Sigma",
+        "Certification in process improvement techniques such as LEAN",
+        "Certification in process improvement techniques such as KAIZEN"
+      ],
+      "responsibilities": [
+        "Utilising a person-centred approach to tailor services and support participants into meaningful employment",
+        "Developing positive partnerships with local employers to create meaningful employment opportunities for participants",
+        "Enhancing employability through referral to support services and training",
+        "Providing in-employment support to sustain employment",
+        "Marketing participants’ skills to prospective employers",
+        "Achieving program performance and quality benchmarks",
+        "Keeping detailed, accurate records and adhering to all compliance requirements",
+        "Actively participating in the local community to promote services"
+      ],
+      "employerQuestions": [
+        "Do you have a National Police Check?",
+        "Do you have the right to work in Australia?",
+        "Do you hold a valid driver’s licence with reliable transport?",
+        "Do you have a Degree qualification in an Engineering discipline?",
+        "Do you have certification in process improvement techniques such as Six Sigma?"
+      ],
+      "otherDetails": [
+        "Passionate & Motivated",
+        "Relationship Builders",
+        "Quality focused"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 230,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-8.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-8.md",
+      "timestamp": "2025-08-02T07:47:52.941Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-9",
+      "title": "Metal Machine Operator (Rotating Shifts)",
+      "company": "Mploy HR Group Pty Ltd",
+      "location": "Dandenong South",
+      "url": "https://www.seek.com.au/job/86181306?ref=search-standalone&type=standard",
+      "postedAgo": "1 day",
+      "mandatoryRequirements": [
+        "Flexible with working hours and days",
+        "Mechanically inclined with at least 2 years of machine operating experience",
+        "Physically fit"
+      ],
+      "preferredRequirements": [
+        "Keen to learn and be trained",
+        "Demonstrated ability to receive, understand and follow instructions and learn quickly",
+        "Excellent hand and eye coordination",
+        "Meticulous attention to details",
+        "Can work on a rotating roster shift"
+      ],
+      "responsibilities": [
+        "Collect and load extrusion dies from storage racks into rings and trolleys, providing them to the press crews",
+        "Unload used extrusion dies from rings using die press machine and separate them with a splitting machine",
+        "Load spent dies into cleaning tanks with baskets and jib cranes and remove once cleaning complete",
+        "Assist die polisher as necessary",
+        "Full training provided with full-time supervision during training period"
+      ],
+      "employerQuestions": [
+        "Which of the following statements best describes your right to work in Australia?"
+      ],
+      "otherDetails": [],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 130,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-9.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-9.md",
+      "timestamp": "2025-08-02T07:47:59.701Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    }
+  ]
+}

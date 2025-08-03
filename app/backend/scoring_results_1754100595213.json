@@ -1,0 +1,142 @@
+{
+  "scoredJobs": [
+    {
+      "id": "dark-job-22",
+      "title": "Senior AI engineer",
+      "company": "Insurgenceai Pty Ltd",
+      "location": "Collingwood",
+      "url": "https://www.seek.com.au/job/86197141?ref=search-standalone&type=promoted",
+      "postedAgo": "1 hour",
+      "mandatoryRequirements": [
+        "Strong experience developing in Python",
+        "Demonstrated experience building or integrating with LLMs",
+        "Strong knowledge of MLOps practices"
+      ],
+      "preferredRequirements": [
+        "Familiarity with SQL and modern vector search tools",
+        "Hands-on experience with cloud AI services",
+        "Understanding of privacy, security and ethical considerations",
+        "Experience with Microsoft ecosystem integration",
+        "Certifications such as Microsoft Certified: Azure AI Engineer Associate"
+      ],
+      "responsibilities": [
+        "Build and optimise AI applications using Python, LangChain, OpenAI SDKs and FastAPI",
+        "Integrate multi-LLM providers into production workflows",
+        "Design and implement RAG pipelines with vector databases",
+        "Develop robust APIs and micro-services for enterprise use cases",
+        "Work with Kubernetes, Docker and Azure for secure, scalable deployments"
+      ],
+      "employerQuestions": [
+        "How many years' experience do you have as an Artificial Intelligence Engineer?",
+        "Which of the following programming languages are you experienced in?",
+        "Have you worked in a role which requires experience with machine learning techniques?",
+        "How many years' experience do you have using SQL queries?",
+        "How many years' experience do you have in a software development role?"
+      ],
+      "mandatoryMatches": [
+        true,
+        false,
+        false
+      ],
+      "preferredMatches": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "gaps": [
+        "Demonstrated experience building or integrating with LLMs",
+        "Strong knowledge of MLOps practices"
+      ],
+      "matchingDetails": {
+        "mandatoryReasons": [
+          "Resume shows strong experience developing in Python"
+        ],
+        "preferredReasons": []
+      },
+      "compatibilityScore": 0,
+      "score": 0,
+      "scoreBreakdown": {
+        "mandatoryScore": 30,
+        "preferredScore": 0,
+        "gapPenalty": 80,
+        "gapCount": 2,
+        "mandatoryCount": 1,
+        "preferredCount": 0
+      },
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-22.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-22.md",
+      "timestamp": "2025-08-02T02:10:06.293Z",
+      "scoringMethod": "chatgpt-semantic"
+    },
+    {
+      "id": "dark-job-1",
+      "title": "Trainee/Junior - Simpro Software Implementation Consultant - Remote Position",
+      "company": "Valuable People Recruitment",
+      "location": "Melbourne VIC (Hybrid)",
+      "url": "https://www.seek.com.au/job/86196832?ref=search-standalone&type=standard",
+      "postedAgo": "2 hours",
+      "mandatoryRequirements": [
+        "Experience in trade type businesses",
+        "Experience using Simpro or similar software",
+        "Ability to hold and manage online meetings"
+      ],
+      "preferredRequirements": [
+        "Experience as a software consultant in Simpro or similar software",
+        "Knowledge of various industries, particularly trades",
+        "Experience with Xero or other third party add-ons and integrations",
+        "Ability to present well to people and clients",
+        "Ability to troubleshoot issues"
+      ],
+      "responsibilities": [
+        "Onboarding new clients and understanding scope",
+        "Planning implementation to scope",
+        "Building the system",
+        "Organising input of data",
+        "Training staff and executives on using the system"
+      ],
+      "employerQuestions": [
+        "Which of the following statements best describes your right to work in Australia?",
+        "How many years' experience do you have as a Software Implementation Consultant?",
+        "Do you have a current Police Check (National Police Certificate) for employment?",
+        "Do you have a current Australian driver's licence?"
+      ],
+      "mandatoryMatches": [
+        false,
+        false,
+        false
+      ],
+      "preferredMatches": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "gaps": [
+        "Experience in trade type businesses",
+        "Experience using Simpro or similar software",
+        "Ability to hold and manage online meetings"
+      ],
+      "matchingDetails": {
+        "mandatoryReasons": [],
+        "preferredReasons": []
+      },
+      "compatibilityScore": 0,
+      "score": 0,
+      "scoreBreakdown": {
+        "mandatoryScore": 0,
+        "preferredScore": 0,
+        "gapPenalty": 120,
+        "gapCount": 3,
+        "mandatoryCount": 0,
+        "preferredCount": 0
+      },
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-1.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-1.md",
+      "timestamp": "2025-08-02T02:10:19.907Z",
+      "scoringMethod": "chatgpt-semantic"
+    }
+  ]
+}

@@ -1,0 +1,293 @@
+{
+  "scoredJobs": [
+    {
+      "id": "dark-job-17",
+      "title": "Employment Consultant (Inclusive Employment Australia)",
+      "company": "Sureway Employment and Training",
+      "location": "Dandenong",
+      "url": "https://www.seek.com.au/job/86183668?ref=search-standalone&type=standard",
+      "postedAgo": "19 hours",
+      "mandatoryRequirements": [
+        "Right to work in Australia",
+        "Valid driver’s licence"
+      ],
+      "preferredRequirements": [],
+      "responsibilities": [
+        "Utilising a person-centred approach to tailor services and support participants into meaningful employment",
+        "Developing positive partnerships with local employers to create meaningful employment opportunities for participants",
+        "Enhancing employability through referral to support services and training",
+        "Providing in-employment support to sustain employment",
+        "Marketing participants’ skills to prospective employers"
+      ],
+      "employerQuestions": [
+        "Are you experienced in working with people with disabilities?",
+        "Do you have customer service skills?",
+        "Are you comfortable using computers and online systems?",
+        "Can you provide in-employment support to sustain employment?",
+        "How do you market participants’ skills to prospective employers?"
+      ],
+      "gaps": [
+        "National Police Check"
+      ],
+      "mandatoryMatches": [
+        false,
+        true,
+        true
+      ],
+      "preferredMatches": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "matchingDetails": {
+        "mandatoryReasons": [
+          "No mention of National Police Check",
+          "Right to work in Australia confirmed",
+          "Valid driver’s licence confirmed"
+        ],
+        "preferredReasons": []
+      },
+      "compatibilityScore": 20,
+      "score": 20,
+      "scoreBreakdown": {
+        "mandatoryScore": 60,
+        "preferredScore": 0,
+        "gapPenalty": 40,
+        "gapCount": 1,
+        "mandatoryCount": 2,
+        "preferredCount": 0
+      },
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-17.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-17.md",
+      "timestamp": "2025-08-02T02:43:09.733Z",
+      "scoringMethod": "chatgpt-semantic"
+    },
+    {
+      "id": "dark-job-18",
+      "title": "Finance Manager | Enviable Residential Builder",
+      "company": "Concise Recruitment",
+      "location": "Bayside & South Eastern Suburbs",
+      "url": "https://www.seek.com.au/job/86183172?ref=search-standalone&type=standard",
+      "postedAgo": "19 hours",
+      "mandatoryRequirements": [],
+      "preferredRequirements": [],
+      "responsibilities": [
+        "Leading the preparation & analysis of monthly management reports (P&L, balance sheet & cash flow)",
+        "Oversee end-of-month processes, journal entries & financial reconciliations",
+        "Prepare annual budgets and quarterly forecasts",
+        "Monitor project performance (cost-to-complete, margin analysis & WIP)",
+        "Manage daily cash flow and working capital across the business"
+      ],
+      "employerQuestions": [
+        "Sound good?",
+        "Apply direct to Ollie from Concise Recruitment by following the prompts and attaching your updated CV.",
+        "Alternatively, if you'd like to assess your suitability further, feel free to call 0423 608 713 for a strictly confidential discussion.",
+        "PLEASE NOTE: All applications will be kept in strict confidence, however please note that due to the high demand from applicants at this time, only candidates meeting the above criteria can be considered.",
+        "This role is intended for someone with previous financial management experience within the building industry, looking to find the right company fit."
+      ],
+      "gaps": [
+        "Minimum 5 years’ experience within finance &/or accounting management",
+        "Tertiary qualifications in Accounting, Finance, or a related discipline",
+        "Proven experience in budgeting, forecasting, and financial reporting"
+      ],
+      "mandatoryMatches": [
+        false,
+        false,
+        false
+      ],
+      "preferredMatches": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "matchingDetails": {
+        "mandatoryReasons": [],
+        "preferredReasons": []
+      },
+      "compatibilityScore": 0,
+      "score": 0,
+      "scoreBreakdown": {
+        "mandatoryScore": 0,
+        "preferredScore": 0,
+        "gapPenalty": 120,
+        "gapCount": 3,
+        "mandatoryCount": 0,
+        "preferredCount": 0
+      },
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-18.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-18.md",
+      "timestamp": "2025-08-02T02:43:18.963Z",
+      "scoringMethod": "chatgpt-semantic"
+    },
+    {
+      "id": "dark-job-19",
+      "title": "Metal Machine Operator (Rotating Shifts)",
+      "company": "Mploy HR Group Pty Ltd",
+      "location": "Dandenong South",
+      "url": "https://www.seek.com.au/job/86181306?ref=search-standalone&type=standard",
+      "postedAgo": "19 hours",
+      "mandatoryRequirements": [],
+      "preferredRequirements": [],
+      "responsibilities": [
+        "Collect and load extrusion dies from storage racks into rings and trolleys, providing them to the press crews, using list provided daily",
+        "Unload used extrusion dies from rings using die press machine and separate them with a splitting machine",
+        "Load spent dies into cleaning tanks with baskets and jib cranes and remove once cleaning complete",
+        "Assist die polisher as necessary",
+        "Full training provided and with full-time supervision during training period"
+      ],
+      "employerQuestions": [
+        "Which of the following statements best describes your right to work in Australia?"
+      ],
+      "gaps": [
+        "Flexible with working hours and days",
+        "Mechanically inclined with at least 2 years of experience in machine operating",
+        "Physically fit"
+      ],
+      "mandatoryMatches": [
+        false,
+        false,
+        false
+      ],
+      "preferredMatches": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "matchingDetails": {
+        "mandatoryReasons": [],
+        "preferredReasons": []
+      },
+      "compatibilityScore": 0,
+      "score": 0,
+      "scoreBreakdown": {
+        "mandatoryScore": 0,
+        "preferredScore": 0,
+        "gapPenalty": 120,
+        "gapCount": 3,
+        "mandatoryCount": 0,
+        "preferredCount": 0
+      },
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-19.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-19.md",
+      "timestamp": "2025-08-02T02:43:27.156Z",
+      "scoringMethod": "chatgpt-semantic"
+    },
+    {
+      "id": "dark-job-2",
+      "title": "Customer Service Administrator",
+      "company": "Australia Workforce",
+      "location": "Dandenong South",
+      "url": "https://www.seek.com.au/job/86180901?ref=search-standalone&type=standard",
+      "postedAgo": "20 hours",
+      "mandatoryRequirements": [
+        "Excellent verbal and written communication skills",
+        "Valid Drivers Licence"
+      ],
+      "preferredRequirements": [],
+      "responsibilities": [
+        "Provide prompt and reliable support to customers and the external sales team via phone and email.",
+        "Process, monitor, and manage customer orders and enquiries.",
+        "Liaise with the warehouse team to ensure accurate and timely dispatch and delivery of orders.",
+        "Offer technical assistance to customers and sales staff.",
+        "Maintain accurate records of all customer interactions and communications."
+      ],
+      "employerQuestions": [
+        "What experience do you have in the window and door industry?",
+        "Are you proficient in Microsoft Office, especially Outlook, Word, and Excel?",
+        "Do you have experience with Pronto CRM or similar systems?",
+        "Do you have a valid Drivers Licence?",
+        "How do you handle customer inquiries and problem-solving?"
+      ],
+      "gaps": [
+        "Strong customer service focus with effective problem-solving skills"
+      ],
+      "mandatoryMatches": [
+        false,
+        true,
+        true
+      ],
+      "preferredMatches": [
+        false,
+        false,
+        false
+      ],
+      "matchingDetails": {
+        "mandatoryReasons": [
+          "No evidence of strong customer service focus in resume"
+        ],
+        "preferredReasons": []
+      },
+      "compatibilityScore": 20,
+      "score": 20,
+      "scoreBreakdown": {
+        "mandatoryScore": 60,
+        "preferredScore": 0,
+        "gapPenalty": 40,
+        "gapCount": 1,
+        "mandatoryCount": 2,
+        "preferredCount": 0
+      },
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-2.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-2.md",
+      "timestamp": "2025-08-02T02:43:35.902Z",
+      "scoringMethod": "chatgpt-semantic"
+    },
+    {
+      "id": "dark-job-3",
+      "title": "Personal Care Assistant | Dandenong",
+      "company": "SAI Home and Community Care",
+      "location": "Dandenong",
+      "url": "https://www.seek.com.au/job/86180777?ref=search-standalone&type=standard",
+      "postedAgo": "20 hours",
+      "mandatoryRequirements": [],
+      "preferredRequirements": [],
+      "responsibilities": [
+        "Assisting with daily activities: Helping clients with tasks such as bathing, dressing and grooming.",
+        "Mobility support: Aiding clients in moving around their home or community, including transfers to and from beds or wheelchairs.",
+        "Companionship: Providing emotional support and engaging in conversation."
+      ],
+      "employerQuestions": [
+        "Your email address",
+        "Reason for reporting job"
+      ],
+      "gaps": [
+        "Cert III in Aged Care/Individual Support",
+        "NDIS Worker Screen",
+        "WWCC"
+      ],
+      "mandatoryMatches": [
+        false,
+        false,
+        false
+      ],
+      "preferredMatches": [
+        false,
+        false
+      ],
+      "matchingDetails": {
+        "mandatoryReasons": [],
+        "preferredReasons": []
+      },
+      "compatibilityScore": 0,
+      "score": 0,
+      "scoreBreakdown": {
+        "mandatoryScore": 0,
+        "preferredScore": 0,
+        "gapPenalty": 120,
+        "gapCount": 3,
+        "mandatoryCount": 0,
+        "preferredCount": 0
+      },
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-3.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-3.md",
+      "timestamp": "2025-08-02T02:43:42.886Z",
+      "scoringMethod": "chatgpt-semantic"
+    }
+  ]
+}

@@ -1,0 +1,255 @@
+{
+  "extractedJobs": [
+    {
+      "id": "dark-job-1",
+      "title": "Telco Customer Support",
+      "company": "Aussie Broadband Limited",
+      "location": "Dandenong",
+      "url": "https://www.seek.com.au/job/86200816?ref=search-standalone&type=standard",
+      "postedAgo": "45 minutes",
+      "mandatoryRequirements": [
+        "Familiarity with the telco industry",
+        "Background in accounts or customer service",
+        "Effective communication skills"
+      ],
+      "preferredRequirements": [
+        "Background or strong interest in IT and tech",
+        "Moderate computer skills",
+        "Basic data entry skills"
+      ],
+      "responsibilities": [
+        "Meet customer service standards and targets",
+        "Address technical and account assistance requests",
+        "Attempt to diagnose and resolve non-service related cases",
+        "Handle conflict resolution and escalate complaints",
+        "Follow standard help desk and account procedures"
+      ],
+      "employerQuestions": [
+        "Are you familiar with the telco industry?",
+        "Do you have a background in accounts or customer service?",
+        "Do you have effective communication skills?",
+        "Do you have a background or strong interest in IT and tech?",
+        "Do you have moderate computer skills?"
+      ],
+      "otherDetails": [
+        "Empathy",
+        "Consultation",
+        "Conflict resolution"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 220,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-1.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-1.md",
+      "timestamp": "2025-08-02T08:01:11.766Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-5",
+      "title": "Sales Consultant",
+      "company": "Furniture Outlet Dandenong",
+      "location": "Dandenong South",
+      "url": "https://www.seek.com.au/job/86174570?ref=search-standalone&type=standard",
+      "postedAgo": "20 hours",
+      "mandatoryRequirements": [
+        "Previous retail sales experience",
+        "Competent computer and literacy skills",
+        "Excellent punctuality"
+      ],
+      "preferredRequirements": [
+        "Great communication skills",
+        "Confidence to close the sale"
+      ],
+      "responsibilities": [
+        "Assisting customers with day to day sales",
+        "Answering inquiries on social media",
+        "Assist with daily store operations and housekeeping",
+        "Admin work including pricing display's, booking deliveries and providing customer solutions",
+        "Be available to work weekdays and weekends",
+        "Aiming to hit personal and store targets"
+      ],
+      "employerQuestions": [
+        "Do you have professional housekeeping experience?",
+        "Which of the following statements best describes your right to work in Australia?",
+        "How many years' experience do you have as a sales consultant?",
+        "Do you have customer service experience?",
+        "Do you have experience in a sales role?"
+      ],
+      "otherDetails": [
+        "Generous staff discount",
+        "Exceptional working conditions",
+        "Fun and enthusiastic team"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 210,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-5.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-5.md",
+      "timestamp": "2025-08-02T08:01:18.161Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-6",
+      "title": "Business Development Manager",
+      "company": "Sourcey",
+      "location": "Bayside & South Eastern Suburbs",
+      "url": "https://www.seek.com.au/job/86186380?ref=search-standalone&type=standard",
+      "postedAgo": "23 hours",
+      "mandatoryRequirements": [
+        "Proven experience in luxury sales",
+        "Outstanding communication skills",
+        "Track record of exceeding KPIs"
+      ],
+      "preferredRequirements": [
+        "Experience in high-end real estate",
+        "Experience in property development",
+        "Experience in architecture",
+        "Experience in bespoke construction",
+        "Understanding of affluent client expectations"
+      ],
+      "responsibilities": [
+        "Identify and pursue new business opportunities",
+        "Build relationships with real estate agents, developers, and architects",
+        "Represent company at networking events",
+        "Nurture and convert leads into sales opportunities",
+        "Conduct client meetings and presentations",
+        "Collaborate with marketing",
+        "Manage sales pipeline using CRM tools"
+      ],
+      "employerQuestions": [
+        "Right to work in Australia",
+        "Years of experience as a business development manager",
+        "Current Australian driver's licence"
+      ],
+      "otherDetails": [
+        "Self-motivation",
+        "Resilience",
+        "Proficiency with CRM platforms"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 200,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-6.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-6.md",
+      "timestamp": "2025-08-02T08:01:25.450Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-10",
+      "title": "Employment Consultant (Inclusive Employment Australia)",
+      "company": "Sureway Employment and Training",
+      "location": "Dandenong",
+      "url": "https://www.seek.com.au/job/86183668?ref=search-standalone&type=standard",
+      "postedAgo": "1 day",
+      "mandatoryRequirements": [
+        "National Police Check",
+        "Right to work in Australia",
+        "Valid driver’s licence with reliable transport"
+      ],
+      "preferredRequirements": [
+        "Degree qualification in an Engineering discipline (Mechanical, Industrial or Materials Engineering)",
+        "Certification in process improvement techniques such as Six Sigma",
+        "Certification in process improvement techniques such as LEAN",
+        "Certification in process improvement techniques such as KAIZEN",
+        "Tech-Savvy"
+      ],
+      "responsibilities": [
+        "Utilising a person-centred approach to tailor services and support participants into meaningful employment",
+        "Developing positive partnerships with local employers to create meaningful employment opportunities for participants",
+        "Enhancing employability through referral to support services and training",
+        "Providing in-employment support to sustain employment",
+        "Marketing participants’ skills to prospective employers",
+        "Achieving program performance and quality benchmarks",
+        "Keeping detailed, accurate records and adhering to all compliance requirements",
+        "Actively participating in the local community to promote services"
+      ],
+      "employerQuestions": [
+        "Do you have a National Police Check?",
+        "Do you have the right to work in Australia?",
+        "Do you hold a valid driver’s licence with reliable transport?",
+        "Do you have a degree qualification in an Engineering discipline?",
+        "Do you have certification in process improvement techniques such as Six Sigma, LEAN or KAIZEN?"
+      ],
+      "otherDetails": [
+        "Passionate & Motivated",
+        "Relationship Builders",
+        "Quality focused"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 240,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-10.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-10.md",
+      "timestamp": "2025-08-02T08:01:33.889Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-11",
+      "title": "Finance Manager | Enviable Residential Builder",
+      "company": "Concise Recruitment",
+      "location": "Bayside & South Eastern Suburbs",
+      "url": "https://www.seek.com.au/job/86183172?ref=search-standalone&type=standard",
+      "postedAgo": "1 day",
+      "mandatoryRequirements": [
+        "Minimum 5 years’ experience within finance &/or accounting management",
+        "Tertiary qualifications in Accounting, Finance, or a related discipline"
+      ],
+      "preferredRequirements": [
+        "Proven experience in budgeting, forecasting, and financial reporting",
+        "Strong Excel, financial modelling and accounting software capabilities",
+        "Solid background in cash flow and financial compliance management",
+        "Strong stakeholder management skills",
+        "Excellent communication skills (written and verbal)"
+      ],
+      "responsibilities": [
+        "Leading the preparation & analysis of monthly management reports (P&L, balance sheet & cash flow)",
+        "Oversee end-of-month processes, journal entries & financial reconciliations",
+        "Prepare annual budgets and quarterly forecasts",
+        "Monitor project performance (cost-to-complete, margin analysis & WIP)",
+        "Partner with PMs to ensure accurate job costing & forecasting",
+        "Manage daily cash flow and working capital across the business",
+        "Lead the annual stocktake process and ensure timely reconciliation",
+        "Ensure compliance with statutory, tax & Reg. obligations (BAS, GST, TPAR)"
+      ],
+      "employerQuestions": [
+        "Do you have a minimum of 5 years' experience in finance or accounting management?",
+        "Do you have tertiary qualifications in Accounting, Finance, or a related discipline?",
+        "Do you have proven experience in budgeting, forecasting, and financial reporting?",
+        "Do you have strong Excel, financial modelling and accounting software capabilities?",
+        "Do you have strong stakeholder management skills?"
+      ],
+      "otherDetails": [
+        "Strong stakeholder management skills",
+        "Excellent communication skills (written and verbal)",
+        "An attitude that doesn’t take things too seriously"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 220,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-11.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-11.md",
+      "timestamp": "2025-08-02T08:01:41.106Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    }
+  ]
+}

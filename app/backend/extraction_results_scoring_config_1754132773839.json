@@ -1,0 +1,123 @@
+{
+  "extractedJobs": [
+    {
+      "id": "dark-job-9",
+      "title": "TMA & FREEWAY TRAFFIC CONTROLLERS",
+      "company": "KPI GROUP",
+      "location": "Dandenong South",
+      "url": "https://www.seek.com.au/job/86190035?ref=search-standalone&type=standard",
+      "postedAgo": "23 hours",
+      "error": "Navigation timeout of 30000 ms exceeded",
+      "compatibilityScore": 0,
+      "maxPossibleScore": 0,
+      "score": 0,
+      "mandatoryRequirements": [],
+      "preferredRequirements": [],
+      "responsibilities": [],
+      "employerQuestions": [],
+      "otherDetails": [],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "timestamp": "2025-08-02T11:06:50.958Z",
+      "extractionMethod": "error"
+    },
+    {
+      "id": "dark-job-1",
+      "title": "Aluminium Polisher",
+      "company": "Australia Wide Trades Recruitment",
+      "location": "Dandenong South",
+      "url": "https://www.seek.com.au/job/86180657?ref=search-standalone&type=standard",
+      "postedAgo": "1 day",
+      "mandatoryRequirements": [
+        "Trade qualification in metal finishing (Cert III/IV) or equivalent hands-on experience in metal polishing or metalwork",
+        "Proven experience with aluminium or metal polishing using tools like grinders, buffers, and hand polishers",
+        "Basic knowledge of workplace health and safety when working with machinery and chemicals"
+      ],
+      "preferredRequirements": [
+        "Ability to deliver high-quality, mirror-like finishes",
+        "Strong attention to detail",
+        "Full Australian working rights",
+        "Ability to work independently and collaboratively in a fast-paced environment with good communication skills",
+        "Ability to communicate with fabrication, assembly, and quality assurance teams to ensure alignment on job requirements and deadlines"
+      ],
+      "responsibilities": [
+        "Surface Preparation: clean and prepare raw aluminium surfaces by removing scratches, weld marks and other imperfections using sanding tools and abrasives",
+        "Polishing: polish bull bars and aluminium components with both hand tools and polishing machines",
+        "Finishing: Apply final buffing and protective coatings as needed, ensuring a consistent & professional finish that meets stringent quality standards",
+        "Inspection: Perform thorough visual and tactile quality checks throughout the polishing process to guarantee all products are free from defects or blemishes"
+      ],
+      "employerQuestions": [
+        "Which of the following statements best describes your right to work in Australia?",
+        "How much notice are you required to give your current employer?",
+        "Which suburb are you currently living in?"
+      ],
+      "otherDetails": [
+        "Strong knowledge of manufacturing production processes",
+        "Knowledge of Engineering",
+        "Communication"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 200,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-1.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-1.md",
+      "timestamp": "2025-08-02T11:07:10.810Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-2",
+      "title": "High Reach Forklift Driver / Pick Packer",
+      "company": "Phoenix Circuit Pty Ltd",
+      "location": "Dandenong South",
+      "url": "https://www.seek.com.au/job/86180356?ref=search-standalone&type=standard",
+      "postedAgo": "1 day",
+      "mandatoryRequirements": [
+        "Pick packing experience in a warehouse environment",
+        "Current and valid Forklift Licence with reach forklift experience",
+        "Physically fit and capable of lifting (under 25kgs)"
+      ],
+      "preferredRequirements": [
+        "6-12 months experience using SAP and be confident using it",
+        "Computer literate",
+        "Flexible with taking on additional duties when quiet",
+        "Reliable and able to commit to ongoing work"
+      ],
+      "responsibilities": [
+        "Work as a Reach Forklift Driver / Pick Packer in a warehouse environment",
+        "Follow safety protocols and procedures",
+        "Maintain accurate inventory records",
+        "Assist with loading and unloading of goods",
+        "Operate reach forklift equipment",
+        "Ensure timely and accurate order picking and packing",
+        "Adhere to company policies and guidelines",
+        "Maintain cleanliness and organization in the warehouse"
+      ],
+      "employerQuestions": [
+        "How many years' experience do you have as a high reach forklift driver?",
+        "Which of the following statements best describes your right to work in Australia?"
+      ],
+      "otherDetails": [
+        "Physical fitness",
+        "Computer literacy",
+        "Flexibility"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 170,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-2.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-2.md",
+      "timestamp": "2025-08-02T11:07:48.159Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    }
+  ]
+}

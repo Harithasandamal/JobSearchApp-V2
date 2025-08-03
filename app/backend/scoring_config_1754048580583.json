@@ -1,0 +1,25 @@
+{
+  "selectedJobs": [
+    {
+      "id": "light-job-2",
+      "title": "Group Project Coordinator",
+      "company": "Brown & Watson International",
+      "location": "Knoxfield",
+      "postedAgo": "8 days",
+      "url": "https://www.seek.com.au/job/85994049?ref=search-standalone&type=standard&origin=jobTitle#sol=f5c442d9c765b69183c0a9f36e76c3773779cff4"
+    },
+    {
+      "id": "light-job-3",
+      "title": "Scheduling Coordinator",
+      "company": "Linc Scaffolding Pty Ltd",
+      "location": "Dandenong",
+      "postedAgo": "11 days",
+      "url": "https://www.seek.com.au/job/85907804?ref=search-standalone&type=standard&origin=jobTitle#sol=ac705abd43f8e7aa11c57e26bdd7ef8de3e67313"
+    }
+  ],
+  "resumeData": {
+    "content": "Default Resume Content:\n        \nEDUCATION:\n- Bachelor's Degree in Computer Science\n- Relevant certifications and training\n\nEXPERIENCE:\n- 3+ years of software development experience\n- Experience with modern web technologies\n- Project management and team collaboration\n\nSKILLS:\n- Programming languages: JavaScript, Python, Java\n- Web technologies: React, Node.js, HTML, CSS\n- Database: SQL, MongoDB\n- Tools: Git, Docker, AWS\n\nOTHER REQUIREMENTS:\n- Australian work rights\n- Driver's license\n- Available for immediate start",
+    "fileName": "Shamalka Resume v2.pdf"
+  },
+  "timestamp": "2025-08-01T11:43:00.583Z"
+}

@@ -1,0 +1,152 @@
+{
+  "scoredJobs": [
+    {
+      "id": "dark-job-10",
+      "title": "Counter Trade Sales Clerk",
+      "company": "HRCheck Aust Pty Ltd",
+      "location": "Dandenong",
+      "url": "https://www.seek.com.au/job/86184827?ref=search-standalone&type=standard",
+      "postedAgo": "17 hours",
+      "mandatoryRequirements": [
+        "Computer literacy skills",
+        "Outstanding communication and customer service skills",
+        "Full drivers licence"
+      ],
+      "preferredRequirements": [
+        "Can do attitude where you are willing to learn everyday",
+        "A background working in a retail 'trade' shop would be advantageous",
+        "Safety conscious and aware of OHS procedures",
+        "Available to start in a temporary capacity with a view to permanent",
+        "Be flexible to assist in the warehouse or office if back-up is ever required"
+      ],
+      "responsibilities": [
+        "Dealing with trade customers on a daily basis including over the counter sales, phone and email follow-ups",
+        "Liaising with warehouse staff and key personnel",
+        "Preparation of quotes",
+        "Managing a database and following up on orders",
+        "Co-ordination of deliveries and dispatch"
+      ],
+      "employerQuestions": [
+        "Which of the following statements best describes your right to work in Australia?",
+        "How many years' experience do you have as a Sales Clerk?",
+        "Do you have customer service experience?",
+        "How much notice are you required to give your current employer?",
+        "Do you have a current Australian driver's licence?"
+      ],
+      "mandatoryMatches": [
+        true,
+        false,
+        true
+      ],
+      "preferredMatches": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "gaps": [
+        "Outstanding communication and customer service skills"
+      ],
+      "matchingDetails": {
+        "mandatoryReasons": [
+          "Computer literacy skills and relevant certifications and training in computer science",
+          "Full drivers licence"
+        ],
+        "preferredReasons": []
+      },
+      "compatibilityScore": 20,
+      "score": 20,
+      "scoreBreakdown": {
+        "mandatoryScore": 60,
+        "preferredScore": 0,
+        "gapPenalty": 40,
+        "gapCount": 1,
+        "mandatoryCount": 2,
+        "preferredCount": 0
+      },
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-10.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-10.md",
+      "timestamp": "2025-08-02T01:50:24.246Z",
+      "scoringMethod": "chatgpt-semantic"
+    },
+    {
+      "id": "dark-job-11",
+      "title": "Employment Consultant (Inclusive Employment Australia)",
+      "company": "Sureway Employment and Training",
+      "location": "Dandenong",
+      "url": "https://www.seek.com.au/job/86183668?ref=search-standalone&type=standard",
+      "postedAgo": "18 hours",
+      "mandatoryRequirements": [
+        "National Police Check",
+        "Right to work in Australia",
+        "Valid driver’s licence"
+      ],
+      "preferredRequirements": [
+        "Experience in employment services",
+        "Experience working with people with disabilities",
+        "Customer service skills",
+        "Tech-savvy",
+        "Attention to detail"
+      ],
+      "responsibilities": [
+        "Utilising a person-centred approach to tailor services and support participants into meaningful employment",
+        "Developing positive partnerships with local employers to create meaningful employment opportunities for participants",
+        "Enhancing employability through referral to support services and training",
+        "Providing in-employment support to sustain employment",
+        "Marketing participants’ skills to prospective employers"
+      ],
+      "employerQuestions": [
+        "Are you experienced in working with people with disabilities?",
+        "Do you have a valid driver’s licence?",
+        "Are you comfortable using computers and online systems?",
+        "How do you approach developing positive partnerships with local employers?",
+        "Can you provide an example of a time when you successfully marketed a participant’s skills to a prospective employer?"
+      ],
+      "mandatoryMatches": [
+        false,
+        true,
+        false
+      ],
+      "preferredMatches": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "gaps": [
+        "National Police Check",
+        "Valid driver’s licence"
+      ],
+      "matchingDetails": {
+        "mandatoryReasons": [
+          "No mention of National Police Check",
+          "Right to work in Australia confirmed",
+          "No mention of Valid driver’s licence"
+        ],
+        "preferredReasons": [
+          "No relevant experience in employment services",
+          "No experience working with people with disabilities",
+          "No mention of customer service skills",
+          "No mention of being tech-savvy",
+          "No mention of attention to detail"
+        ]
+      },
+      "compatibilityScore": 0,
+      "score": 0,
+      "scoreBreakdown": {
+        "mandatoryScore": 30,
+        "preferredScore": 0,
+        "gapPenalty": 80,
+        "gapCount": 2,
+        "mandatoryCount": 1,
+        "preferredCount": 0
+      },
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-11.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-11.md",
+      "timestamp": "2025-08-02T01:50:35.115Z",
+      "scoringMethod": "chatgpt-semantic"
+    }
+  ]
+}

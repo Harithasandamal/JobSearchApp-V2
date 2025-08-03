@@ -128,7 +128,7 @@ export const getResumeSummary = (resumeFile) => {
   }
   
   if (resumeFile.isDefault) {
-    return 'Default Resume (Shamalka Resume v2.pdf)';
+    return 'Default Resume.pdf';
   }
   
   return `Uploaded: ${resumeFile.name}`;

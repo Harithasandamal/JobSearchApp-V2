@@ -1,0 +1,78 @@
+{
+  "extractedJobs": [
+    {
+      "id": "test-job-1",
+      "title": "Test Job 1",
+      "company": "Test Company 1",
+      "location": "Melbourne VIC",
+      "url": "https://www.seek.com.au/job/59745689",
+      "postedAgo": "N/A",
+      "error": "Content setting timeout after 25000ms",
+      "compatibilityScore": 0,
+      "maxPossibleScore": 0,
+      "score": 0,
+      "mandatoryRequirements": [],
+      "preferredRequirements": [],
+      "responsibilities": [],
+      "employerQuestions": [],
+      "otherDetails": [],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "timestamp": "2025-08-02T11:25:26.071Z",
+      "extractionMethod": "error"
+    },
+    {
+      "id": "test-job-2",
+      "title": "Test Job 2",
+      "company": "Test Company 2",
+      "location": "Melbourne VIC",
+      "url": "https://www.seek.com.au/job/59745690",
+      "postedAgo": "N/A",
+      "mandatoryRequirements": [
+        "Bachelor's degree in Engineering"
+      ],
+      "preferredRequirements": [
+        "Certification in process improvement techniques (e.g. Six Sigma, LEAN, KAIZEN)",
+        "Experience in a manufacturing environment",
+        "Knowledge of ERP systems",
+        "Experience in a continuous improvement role",
+        "Experience in a leadership role"
+      ],
+      "responsibilities": [
+        "Identify and analyse critical production processes",
+        "Develop and implement process improvement initiatives",
+        "Manage and lead critical continuous improvement projects",
+        "Collaborate with cross-functional teams to drive operational excellence",
+        "Provide training and support to team members",
+        "Monitor and report on key performance indicators",
+        "Drive a culture of continuous improvement and operational excellence",
+        "Conduct root cause analysis and implement corrective actions"
+      ],
+      "employerQuestions": [
+        "Do you have experience in a manufacturing environment?",
+        "Have you led continuous improvement projects before?",
+        "What process improvement techniques are you familiar with?",
+        "How do you drive a culture of continuous improvement?",
+        "Can you provide an example of a successful process improvement initiative you led?"
+      ],
+      "otherDetails": [
+        "Knowledge of Engineering",
+        "Strong knowledge of manufacturing production processes",
+        "Strong analytical and problem-solving skills"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 200,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_test-job-2.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_test-job-2.md",
+      "timestamp": "2025-08-02T11:25:37.732Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    }
+  ]
+}

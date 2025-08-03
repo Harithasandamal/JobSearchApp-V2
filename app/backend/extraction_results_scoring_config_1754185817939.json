@@ -1,0 +1,156 @@
+{
+  "extractedJobs": [
+    {
+      "id": "dark-job-12",
+      "title": "Merchandise Planner",
+      "company": "People Equity Pty Ltd",
+      "location": "Bayside & South Eastern Suburbs",
+      "url": "https://www.seek.com.au/job/86204357?ref=search-standalone&type=standard",
+      "postedAgo": "43 minutes",
+      "mandatoryRequirements": [
+        "Proven merchandise planning experience in Retail"
+      ],
+      "preferredRequirements": [
+        "Strong commercial acumen",
+        "A love of data",
+        "Creativity in problem-solving",
+        "Experience with planning systems and tools",
+        "Passion for planning innovation"
+      ],
+      "responsibilities": [
+        "Develop and execute merchandise plans",
+        "Analyse trade and market data",
+        "Optimise stock flow and inventory",
+        "Present performance narratives",
+        "Develop continuous improvements in planning processes",
+        "Deliver post-season analysis",
+        "Identify commercial opportunities through analytics"
+      ],
+      "employerQuestions": [
+        "What is your experience with merchandise planning in Retail?",
+        "How do you approach analysing trade and market data?",
+        "Can you provide an example of a successful post-season analysis you have conducted?",
+        "How do you stay updated on planning innovations in the industry?",
+        "How do you collaborate with cross-functional teams in a fast-paced environment?"
+      ],
+      "otherDetails": [
+        "Strong talent in private label, marketing, merchandise, and ops",
+        "Entrepreneurial and collaborative culture",
+        "Passionate about doing great work"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 200,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-12.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-12.md",
+      "timestamp": "2025-08-03T01:50:28.114Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-1",
+      "title": "Employment Specialist",
+      "company": "Ostara Australia",
+      "location": "Dandenong",
+      "url": "https://www.seek.com.au/job/86202894?ref=search-standalone&type=standard",
+      "postedAgo": "13 hours",
+      "mandatoryRequirements": [
+        "Applicants must have the right to work in Australia",
+        "All offers of employment are subject to satisfactory police check",
+        "A current Working with Children Check"
+      ],
+      "preferredRequirements": [
+        "Demonstrated experience in a similar role within disability employment",
+        "Genuine passion for mental health advocacy",
+        "Proven ability to manage and coordinate daily operations",
+        "Strong analytical and problem-solving skills",
+        "Excellent time management and organizational skills"
+      ],
+      "responsibilities": [
+        "Provide individualized support and client-centered assistance to job seekers",
+        "Reverse market jobseekers to employers",
+        "Ensure jobseekers gain suitable employment opportunities",
+        "Support post-employment support to employers and clients",
+        "Support the Business Manager in ensuring successful delivery of employment services",
+        "Manage and coordinate daily operations at the site",
+        "Identify challenges and implement effective solutions",
+        "Deliver a high-quality experience for clients and stakeholders"
+      ],
+      "employerQuestions": [
+        "Which of the following statements best describes your right to work in Australia?",
+        "How many years' experience do you have as an Employment Specialist?",
+        "Do you have a current Australian driver's licence?",
+        "Do you have a current Working With Children (WWC) Check?",
+        "Do you have a current Police Check (National Police Certificate) for employment?"
+      ],
+      "otherDetails": [
+        "Excellent verbal and written communication skills",
+        "Adherence to organizational policies and procedures",
+        "Commitment to delivering high-quality service"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 240,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-1.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-1.md",
+      "timestamp": "2025-08-03T01:50:39.025Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-16",
+      "title": "Carpet Cleaner",
+      "company": "Your Talent Solutions",
+      "location": "Bayside & South Eastern Suburbs",
+      "url": "https://www.seek.com.au/job/86199373?ref=search-standalone&type=standard",
+      "postedAgo": "20 hours",
+      "mandatoryRequirements": [
+        "Full Australian working rights",
+        "Physical fitness and stamina to perform manual labour tasks, including lifting 25kg+",
+        "Valid driver’s licence, Police Check and Working with Children Check (willing to obtain)"
+      ],
+      "preferredRequirements": [
+        "Previous experience in the industry",
+        "Certification in carpet cleaning",
+        "Certification in upholstery cleaning",
+        "Certification in water damage restoration",
+        "Comfort with using mobile/tablet job systems"
+      ],
+      "responsibilities": [
+        "Inspecting and assessing carpets and upholstery to determine the most effective cleaning methods",
+        "Operating professional-grade carpet cleaning equipment and using industry-leading cleaning solutions",
+        "Ensuring all work is carried out to the highest standards, meeting client expectations",
+        "Providing exceptional customer service and effectively communicating with clients",
+        "Recommend additional products and services to customers as opportunities arise",
+        "Maintaining cleaning equipment and company vehicles in good working order",
+        "Adhering to all safety protocols and environmental regulations"
+      ],
+      "employerQuestions": [
+        "Do you agree to the privacy policy of Your Talent Solutions?",
+        "Do you have working rights for Australia?"
+      ],
+      "otherDetails": [
+        "Excellent customer service skills",
+        "Ability to work independently",
+        "Keen eye for detail"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 180,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-16.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-16.md",
+      "timestamp": "2025-08-03T01:50:48.247Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    }
+  ]
+}

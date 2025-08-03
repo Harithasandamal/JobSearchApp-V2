@@ -30,7 +30,7 @@ function App() {
   
   // App state using existing localStorage hook
   const appState = {
-    resume: localState.resume || 'Shamalka Resume v2.pdf',
+    resume: localState.resume || 'Default Resume.pdf',
     location: localState.location || defaultSuburb,
     distance: localState.distance || '5 km',
     postedAgo: localState.postedAgo || '3 days',

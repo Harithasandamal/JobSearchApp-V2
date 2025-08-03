@@ -1,0 +1,251 @@
+{
+  "extractedJobs": [
+    {
+      "id": "dark-job-1",
+      "title": "Project Manager",
+      "company": "VIS Group PTY LTD",
+      "location": "Narre Warren",
+      "url": "https://www.seek.com.au/job/86197173?ref=search-standalone&type=standard",
+      "postedAgo": "10 hours",
+      "mandatoryRequirements": [
+        "Proven experience managing civil construction projects (5+ years)",
+        "Current driver’s license",
+        "White Card (required)"
+      ],
+      "preferredRequirements": [
+        "Tertiary qualifications in Civil Engineering, Construction Management or related field",
+        "Strong knowledge of footpath construction",
+        "Strong knowledge of asphalt",
+        "Strong knowledge of drainage systems",
+        "Demonstrated ability to price and win tenders"
+      ],
+      "responsibilities": [
+        "Estimating & Tendering",
+        "Project Planning & Delivery",
+        "Client & Stakeholder Management",
+        "Financial & Risk Management",
+        "Team Leadership"
+      ],
+      "employerQuestions": [
+        "How many years' experience do you have as a project manager?",
+        "Do you have a current Australian driver's licence?",
+        "How many years of estimating experience do you have?",
+        "Do you hold a Construction Induction Safety certificate (White Card)?",
+        "Do you have experience preparing and submitting tenders?"
+      ],
+      "otherDetails": [
+        "Excellent organizational and problem-solving skills",
+        "Strong leadership and team management abilities",
+        "Proficient in project management software and Microsoft Office Suite"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 240,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-1.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-1.md",
+      "timestamp": "2025-08-02T11:44:33.137Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-6",
+      "title": "Systems Engineer | EOI",
+      "company": "Leidos Australia Pty Ltd",
+      "location": "Scoresby",
+      "url": "https://www.seek.com.au/job/86183603?ref=search-standalone&type=standard",
+      "postedAgo": "1 day",
+      "mandatoryRequirements": [
+        "Australian Citizen",
+        "Active Baseline AGVSA Security Clearance"
+      ],
+      "preferredRequirements": [
+        "Tertiary qualifications in Systems Engineering, Electrical Engineering, Mechatronics, or related discipline",
+        "Experience in defence, aerospace, or complex systems environments",
+        "Proficiency with model-based systems engineering tools and methodologies",
+        "Strong understanding of sensor integration, communications, and electronic systems"
+      ],
+      "responsibilities": [
+        "Design and architect integrated systems across multiple technology domains",
+        "Translate operational needs into technical specifications and system models",
+        "Lead integration of subsystems involving sensors, communications, and control platforms",
+        "Develop and execute test plans, simulations, and trials to validate system performance",
+        "Manage system-level risks, ensure cybersecurity compliance, and adhere to relevant standards"
+      ],
+      "employerQuestions": [
+        "Do you have experience in defence, aerospace, or complex systems environments?",
+        "What is your proficiency with model-based systems engineering tools and methodologies?",
+        "Can you provide an example of a project where you led the integration of subsystems involving sensors, communications, and control platforms?",
+        "How do you ensure cybersecurity compliance in system-level management?",
+        "What relevant standards have you adhered to in previous projects?"
+      ],
+      "otherDetails": [
+        "Excellent communication skills",
+        "Documentation skills",
+        "Stakeholder engagement skills"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 210,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-6.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-6.md",
+      "timestamp": "2025-08-02T11:44:44.410Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-9",
+      "title": "Verification & Validation Engineer | EOI",
+      "company": "Leidos Australia Pty Ltd",
+      "location": "Scoresby",
+      "url": "https://www.seek.com.au/job/86183315?ref=search-standalone&type=standard",
+      "postedAgo": "1 day",
+      "mandatoryRequirements": [
+        "Australian Citizen",
+        "Active Baseline AGVSA Security Clearance"
+      ],
+      "preferredRequirements": [
+        "Degree in Systems, Electrical, Mechatronics, Robotics, or related engineering field",
+        "Experience in Defence, Aerospace, or Federal Government projects",
+        "Familiarity with test management tools (e.g., ALM, Jira)",
+        "Understanding of regulatory compliance and standards relevant to defence technologies"
+      ],
+      "responsibilities": [
+        "Develop and execute verification and validation (V&V) plans, procedures, and compliance matrices",
+        "Conduct functional, environmental, and acceptance testing aligned with industry standards",
+        "Ensure traceability of requirements across system components and documentation",
+        "Analyse test results, identify defects, and support resolution with engineering teams",
+        "Collaborate with stakeholders and vendors to align testing strategies",
+        "Support production and quality teams with test equipment setup and diagnostics"
+      ],
+      "employerQuestions": [
+        "Do you have experience in Defence, Aerospace, or Federal Government projects?",
+        "Are you familiar with test management tools like ALM or Jira?",
+        "Do you have a degree in Systems, Electrical, Mechatronics, Robotics, or related engineering field?",
+        "Do you understand regulatory compliance and standards relevant to defence technologies?",
+        "Are you an Australian Citizen with an active Baseline AGVSA Security Clearance?"
+      ],
+      "otherDetails": [
+        "Diverse Team Members",
+        "Shared Values",
+        "Common Purpose"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 210,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-9.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-9.md",
+      "timestamp": "2025-08-02T11:44:53.004Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-10",
+      "title": "Verification and Validation Engineer",
+      "company": "Leidos Australia Pty Ltd",
+      "location": "Scoresby",
+      "url": "https://www.seek.com.au/job/86183185?ref=search-standalone&type=standard",
+      "postedAgo": "1 day",
+      "mandatoryRequirements": [
+        "Australian Citizen",
+        "Hold active NV-1 or NV-2 AGSVA security clearance"
+      ],
+      "preferredRequirements": [
+        "Proven experience in Systems or Test Engineering in large-scale test projects",
+        "Knowledge of Data Centre Infrastructure and enterprise applications",
+        "Experience with defence projects"
+      ],
+      "responsibilities": [
+        "Lead full engineering lifecycle from concept to deployment",
+        "Translate customer requirements into effective system test solutions and V&V deliverables",
+        "Develop and execute V&V activities, including plans, procedures, and compliance matrices",
+        "Collaborate across teams to align testing strategies with system architecture and project goals",
+        "Analyse test results and manage defects, supporting multiple programs with adaptability and problem-solving"
+      ],
+      "employerQuestions": [
+        "Do you have experience in Systems or Test Engineering in large-scale test projects?",
+        "Do you have knowledge of Data Centre Infrastructure and enterprise applications?",
+        "Do you have experience with defence projects?",
+        "Are you an Australian Citizen?",
+        "Do you hold an active NV-1 or NV-2 AGSVA security clearance?"
+      ],
+      "otherDetails": [
+        "Systems Engineering lifecycle knowledge",
+        "V&V methodologies knowledge",
+        "Test management tools experience"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 200,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-10.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-10.md",
+      "timestamp": "2025-08-02T11:45:03.064Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-12",
+      "title": "Low Voltage Switchgear (Motor Control, and Safety) Product Manager",
+      "company": "APS Industrial Pty Ltd",
+      "location": "Rowville",
+      "url": "https://www.seek.com.au/job/86180419?ref=search-standalone&type=standard",
+      "postedAgo": "1 day",
+      "mandatoryRequirements": [
+        "Degree in Electrical/Electronic Engineering",
+        "Strong business acumen",
+        "Proficient in Excel and Microsoft Office packages"
+      ],
+      "preferredRequirements": [
+        "Exposure to Electrical Industrial business",
+        "Strong local industry professional network",
+        "Certification in process improvement techniques such as Six Sigma, LEAN, KAIZEN",
+        "Positive outlook to the business in all areas",
+        "Customer focused"
+      ],
+      "responsibilities": [
+        "Drive Market Growth and Share",
+        "Support Sales Enablement and Customer Solutions",
+        "Manage Product Lifecycle and Portfolio",
+        "Ensure Regulatory and Standards Compliance",
+        "Facilitate and drive achievement of budgeted sales and margin performance",
+        "Analyse LV Switchgear market conditions",
+        "Manage difficult customer situations",
+        "Identify and develop ongoing training programs"
+      ],
+      "employerQuestions": [
+        "What is your experience with Electrical Industrial business?",
+        "How do you handle difficult customer situations?",
+        "Do you have experience in managing product lifecycle and portfolio?",
+        "What certifications do you have in process improvement techniques?",
+        "How do you stay customer-focused in your role?"
+      ],
+      "otherDetails": [
+        "Strong interpersonal skills",
+        "Highest regard for ethics and integrity",
+        "Desire and ability to work in a team"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 240,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-12.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-12.md",
+      "timestamp": "2025-08-02T11:45:11.891Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    }
+  ]
+}

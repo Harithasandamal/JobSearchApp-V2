@@ -1,0 +1,177 @@
+{
+  "scoredJobs": [
+    {
+      "id": "light-job-1",
+      "title": "Construction Administrator",
+      "company": "Cavalier Homes Melbourne South East",
+      "location": "Carrum Downs",
+      "url": "https://www.seek.com.au/job/85981995?ref=recom-homepage&pos=4&sp=3&origin=jobTitle#sol=941dd2919d55ebc790f6017d3e00d197d7ce28a0",
+      "postedAgo": "9 days",
+      "mandatoryRequirements": [],
+      "preferredRequirements": [],
+      "responsibilities": [
+        "Serve as the key liaison between New Home Consultants and customers",
+        "Act as the main point of contact from quote acceptance to construction completion",
+        "Coordinate colour selection and electrical planning consultations",
+        "Manage variation quoting with assistance from the Estimator and present quotes to clients",
+        "Prepare and respond to queries on Building Contracts, Specifications, and Colour Selection documentation"
+      ],
+      "employerQuestions": [
+        "How many years' experience do you have as a Construction Administrator?",
+        "Do you have experience working on residential construction projects?",
+        "How many years' experience do you have in the construction industry?",
+        "How many years of project management experience do you have?",
+        "Do you have experience in administration?"
+      ],
+      "gaps": [
+        "Minimum 2 years of experience as a Construction or Contracts Administrator in residential new home construction",
+        "Strong communication and liaison skills",
+        "Excellent organizational and project management abilities"
+      ],
+      "mandatoryMatches": [
+        false,
+        false,
+        false
+      ],
+      "preferredMatches": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "matchingDetails": {
+        "mandatoryReasons": [],
+        "preferredReasons": []
+      },
+      "compatibilityScore": 0,
+      "score": 0,
+      "scoreBreakdown": {
+        "mandatoryScore": 0,
+        "preferredScore": 0,
+        "gapPenalty": 60,
+        "gapCount": 3,
+        "mandatoryCount": 0,
+        "preferredCount": 0
+      },
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_light-job-1.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_light-job-1.md",
+      "timestamp": "2025-08-02T06:18:43.431Z",
+      "scoringMethod": "chatgpt-semantic"
+    },
+    {
+      "id": "light-job-2",
+      "title": "Group Project Coordinator",
+      "company": "Brown & Watson International",
+      "location": "Knoxfield",
+      "url": "https://www.seek.com.au/job/85994049?ref=search-standalone&type=standard&origin=jobTitle#sol=f5c442d9c765b69183c0a9f36e76c3773779cff4",
+      "postedAgo": "9 days",
+      "mandatoryRequirements": [],
+      "preferredRequirements": [],
+      "responsibilities": [
+        "Coordinate project documentation, timelines, and reporting",
+        "Facilitate team communication, meetings, and workshops",
+        "Analyse data, track metrics and support prioritisation",
+        "Support governance and adoption of project processes",
+        "Drive collaboration across Product Development, Manufacturing, Marketing, and Sales"
+      ],
+      "employerQuestions": [
+        "How many years' experience do you have as a project coordinator?",
+        "How many years of project management experience do you have?",
+        "Which of the following PMI certifications have you completed?",
+        "Which of the following Microsoft Office products are you experienced with?",
+        "How many years' experience do you have with project planning and scheduling?"
+      ],
+      "gaps": [
+        "Strong project coordination and communication skills",
+        "Relevant tertiary and project management qualifications (e.g. PMP)"
+      ],
+      "mandatoryMatches": [
+        false,
+        false
+      ],
+      "preferredMatches": [
+        false,
+        false,
+        false
+      ],
+      "matchingDetails": {
+        "mandatoryReasons": [],
+        "preferredReasons": []
+      },
+      "compatibilityScore": 0,
+      "score": 0,
+      "scoreBreakdown": {
+        "mandatoryScore": 0,
+        "preferredScore": 0,
+        "gapPenalty": 40,
+        "gapCount": 2,
+        "mandatoryCount": 0,
+        "preferredCount": 0
+      },
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_light-job-2.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_light-job-2.md",
+      "timestamp": "2025-08-02T06:18:51.118Z",
+      "scoringMethod": "chatgpt-semantic"
+    },
+    {
+      "id": "light-job-3",
+      "title": "Scheduling Coordinator",
+      "company": "Linc Scaffolding Pty Ltd",
+      "location": "Dandenong",
+      "url": "https://www.seek.com.au/job/85907804?ref=search-standalone&type=standard&origin=jobTitle#sol=ac705abd43f8e7aa11c57e26bdd7ef8de3e67313",
+      "postedAgo": "12 days",
+      "mandatoryRequirements": [],
+      "preferredRequirements": [],
+      "responsibilities": [
+        "Receiving and sending emails to be actioned daily",
+        "Scheduling for trade and transport crews",
+        "Coordinating field employees and sub-contractors",
+        "Troubleshooting issues",
+        "Liaising with builders and trades"
+      ],
+      "employerQuestions": [
+        "How many years' experience do you have as a Scheduling Coordinator?",
+        "Do you have data entry experience?",
+        "How many years' experience do you have in the construction industry?",
+        "Do you have customer service experience?",
+        "Which of the following Microsoft Office products are you experienced with?"
+      ],
+      "gaps": [
+        "Experience in construction / logistics",
+        "Demonstrated customer service excellence",
+        "High level of computer literacy"
+      ],
+      "mandatoryMatches": [
+        false,
+        false,
+        false
+      ],
+      "preferredMatches": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "matchingDetails": {
+        "mandatoryReasons": [],
+        "preferredReasons": []
+      },
+      "compatibilityScore": 0,
+      "score": 0,
+      "scoreBreakdown": {
+        "mandatoryScore": 0,
+        "preferredScore": 0,
+        "gapPenalty": 60,
+        "gapCount": 3,
+        "mandatoryCount": 0,
+        "preferredCount": 0
+      },
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_light-job-3.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_light-job-3.md",
+      "timestamp": "2025-08-02T06:18:58.760Z",
+      "scoringMethod": "chatgpt-semantic"
+    }
+  ]
+}

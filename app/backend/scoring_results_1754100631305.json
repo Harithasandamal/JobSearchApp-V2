@@ -1,0 +1,66 @@
+{
+  "scoredJobs": [
+    {
+      "id": "test-job-1",
+      "title": "Software Engineer",
+      "company": "Tech Corp",
+      "location": "Melbourne",
+      "url": "https://www.seek.com.au/job/85994049",
+      "postedAgo": "N/A",
+      "mandatoryRequirements": [
+        "Strong project coordination and communication skills",
+        "Relevant tertiary and project management qualifications (e.g. PMP)"
+      ],
+      "preferredRequirements": [
+        "Experience in cross-functional environments (automotive preferred, not essential)",
+        "Commercial acumen and problem-solving ability",
+        "Self-motivated with a ‘can-do’ attitude and collaborative style"
+      ],
+      "responsibilities": [
+        "Coordinate project documentation, timelines, and reporting",
+        "Facilitate team communication, meetings, and workshops",
+        "Analyse data, track metrics and support prioritisation",
+        "Support governance and adoption of project processes",
+        "Drive collaboration across Product Development, Manufacturing, Marketing, and Sales"
+      ],
+      "employerQuestions": [
+        "How many years' experience do you have as a project coordinator?",
+        "How many years of project management experience do you have?",
+        "Which of the following PMI certifications have you completed?",
+        "Which of the following Microsoft Office products are you experienced with?",
+        "How many years' experience do you have with project planning and scheduling?"
+      ],
+      "mandatoryMatches": [
+        false,
+        false
+      ],
+      "preferredMatches": [
+        false,
+        false,
+        false
+      ],
+      "gaps": [
+        "Strong project coordination and communication skills",
+        "Relevant tertiary and project management qualifications (e.g. PMP)"
+      ],
+      "matchingDetails": {
+        "mandatoryReasons": [],
+        "preferredReasons": []
+      },
+      "compatibilityScore": 0,
+      "score": 0,
+      "scoreBreakdown": {
+        "mandatoryScore": 0,
+        "preferredScore": 0,
+        "gapPenalty": 80,
+        "gapCount": 2,
+        "mandatoryCount": 0,
+        "preferredCount": 0
+      },
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_test-job-1.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_test-job-1.md",
+      "timestamp": "2025-08-02T02:10:40.022Z",
+      "scoringMethod": "chatgpt-semantic"
+    }
+  ]
+}

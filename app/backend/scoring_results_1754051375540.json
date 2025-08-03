@@ -1,0 +1,134 @@
+{
+  "scoredJobs": [
+    {
+      "id": "dark-job-19",
+      "title": "Recruitment Partner (Inclusive Employment Australia)",
+      "company": "The Salvation Army",
+      "location": "Dandenong",
+      "url": "https://www.seek.com.au/job/86181788?ref=search-standalone&type=standard",
+      "postedAgo": "5 hours",
+      "mandatoryRequirements": [
+        "Relevant qualifications in areas such as Employment Services, Community Services or other relevant areas",
+        "Previous experience in employment services including advanced barrier management, reverse marketing, placement of candidates into employment and provision of post-placement support",
+        "Must hold a Driver's license as travel throughout the region will be required"
+      ],
+      "preferredRequirements": [
+        "Demonstrated experience in business development, account management or sales",
+        "Strong networking and relationship building skills",
+        "Working knowledge of local employers and their recruitment demands",
+        "Demonstrated ability to communicate through various methods with a wide variety of stakeholders",
+        "Performance focused mindset and proven experience achieving business targets and KPI's"
+      ],
+      "responsibilities": [
+        "Support employers in the Maroondah, Bayside and Monash regions in collaboration with local teams",
+        "Maintain an in-depth knowledge of the local labour market and emerging industries, with the goal of achieving ongoing employment opportunities",
+        "Proactively identify and develop new employer relationships, taking time to understand our employers' staffing needs and providing tailored recruitment solutions",
+        "Help employers adapt their process or roles to accommodate candidates with specific needs and maximising productivity and other benefits towards achieving their organisational goals",
+        "Engage job ready candidates and match with employers through referrals, job carving and reverse marketing to achieve sustainable outcomes",
+        "Work closely with the Employment Consultants and Ongoing Support Consultants to build opportunities in industries relevant to the caseloads needs and provide post placement support to participants and their employers",
+        "Achieve or exceed all KPIs and apply an outcome focused, high performance approach to the role",
+        "Work closely alongside people with a disability to help them build their future career"
+      ],
+      "mandatoryMatches": [
+        true,
+        false,
+        true
+      ],
+      "preferredMatches": [
+        false,
+        false,
+        false,
+        true,
+        false
+      ],
+      "matchingDetails": {
+        "mandatoryReasons": [
+          "The resume mentions 'Relevant certifications and training' which matches the requirement of 'Relevant qualifications in areas such as Employment Services, Community Services or other relevant areas'",
+          "The resume does not mention any experience in employment services, advanced barrier management, reverse marketing, placement of candidates into employment or provision of post-placement support",
+          "The resume mentions 'Driver's license' which matches the requirement of 'Must hold a Driver's license as travel throughout the region will be required'"
+        ],
+        "preferredReasons": [
+          "The resume does not mention any experience in business development, account management or sales",
+          "The resume does not mention any networking and relationship building skills",
+          "The resume does not mention any knowledge of local employers and their recruitment demands",
+          "The resume mentions 'Project management and team collaboration' which can be considered as 'Demonstrated ability to communicate through various methods with a wide variety of stakeholders'",
+          "The resume does not mention any experience achieving business targets and KPI's"
+        ]
+      },
+      "compatibilityScore": 80,
+      "score": 80,
+      "scoreBreakdown": {
+        "mandatoryScore": 60,
+        "preferredScore": 20,
+        "mandatoryCount": 2,
+        "preferredCount": 1
+      },
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-19.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-19.md",
+      "timestamp": "2025-08-01T12:30:11.739Z",
+      "scoringMethod": "chatgpt-semantic"
+    },
+    {
+      "id": "dark-job-20",
+      "title": "Production Supervisor - QuiteLike",
+      "company": "Coles",
+      "location": "Dandenong South",
+      "url": "https://www.seek.com.au/job/86181126?ref=search-standalone&type=standard",
+      "postedAgo": "5 hours",
+      "mandatoryRequirements": [
+        "3+ years’ experience working in food manufacturing, FMCG or pharmaceutical manufacturing or within an environment that handles fresh produce or food",
+        "Experience managing a team within a food manufacturing, FMCG, pharmaceutical or similar environment",
+        "Degree qualified/relevant certificate or Food manufacturing/warehouse operations experience"
+      ],
+      "preferredRequirements": [
+        "Strong knowledge, skill and experience in Occupational Health and Safety, Environment, Risk Management and/or Food Safety",
+        "Forklift driver’s license",
+        "Strong records management skills under quality management system"
+      ],
+      "responsibilities": [
+        "Supporting the Production Manager for the execution of production activities",
+        "Ensuring compliance within food safety, quality assurance, and operational requirements",
+        "Assisting with scheduling, materials, and labour to ensure smooth production and packing processes",
+        "Ensuring all staff are efficiently utilised",
+        "Conducting food Quality Controls in line with both internal and Australian standards",
+        "Maintaining accurate production records",
+        "Operating machinery, recipe verifications and providing staff training",
+        "Managing Inbound/Outbound activities as needed"
+      ],
+      "mandatoryMatches": [
+        false,
+        false,
+        false
+      ],
+      "preferredMatches": [
+        false,
+        false,
+        false
+      ],
+      "matchingDetails": {
+        "mandatoryReasons": [
+          "No experience in food manufacturing, FMCG or pharmaceutical manufacturing",
+          "No experience managing a team within a food manufacturing, FMCG, pharmaceutical or similar environment",
+          "No degree or experience in Food manufacturing/warehouse operations"
+        ],
+        "preferredReasons": [
+          "No specific knowledge, skill and experience in Occupational Health and Safety, Environment, Risk Management and/or Food Safety",
+          "No forklift driver’s license",
+          "No records management skills under quality management system"
+        ]
+      },
+      "compatibilityScore": 0,
+      "score": 0,
+      "scoreBreakdown": {
+        "mandatoryScore": 0,
+        "preferredScore": 0,
+        "mandatoryCount": 0,
+        "preferredCount": 0
+      },
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-20.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-20.md",
+      "timestamp": "2025-08-01T12:30:39.597Z",
+      "scoringMethod": "chatgpt-semantic"
+    }
+  ]
+}

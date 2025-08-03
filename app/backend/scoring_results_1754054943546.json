@@ -1,0 +1,141 @@
+{
+  "scoredJobs": [
+    {
+      "id": "dark-job-1",
+      "title": "Recruitment Partner (Inclusive Employment Australia)",
+      "company": "The Salvation Army",
+      "location": "Dandenong",
+      "url": "https://www.seek.com.au/job/86181788?ref=search-standalone&type=standard",
+      "postedAgo": "6 hours",
+      "mandatoryRequirements": [
+        "Relevant qualifications in areas such as Employment Services, Community Services or other relevant areas is desirable",
+        "Previous experience in employment services including advanced barrier management, reverse marketing, placement of candidates into employment and provision of post-placement support will be highly regarded",
+        "Must hold a Driver's license as travel throughout the region will be required"
+      ],
+      "preferredRequirements": [
+        "Demonstrated experience in business development, account management or sales will be highly regarded",
+        "Strong networking and relationship building skills",
+        "Working knowledge of local employers and their recruitment demands",
+        "Performance focused mindset and proven experience achieving business targets and KPI's"
+      ],
+      "responsibilities": [
+        "Support employers in the Maroondah, Bayside and Monash regions in collaboration with local teams",
+        "Maintain an in-depth knowledge of the local labour market and emerging industries, with the goal of achieving ongoing employment opportunities",
+        "Proactively identify and develop new employer relationships, taking time to understand our employers' staffing needs and providing tailored recruitment solutions",
+        "Help employers adapt their process or roles to accommodate candidates with specific needs and maximising productivity and other benefits towards achieving their organisational goals",
+        "Engage job ready candidates and match with employers through referrals, job carving and reverse marketing to achieve sustainable outcomes"
+      ],
+      "employerQuestions": [
+        "Are you ready to join a respected, values driven not-for-profit organisation, thrive in a challenging yet rewarding role, and work closely alongside people with a disability to help them build their future career?",
+        "If your answer is YES! Apply now and complete the online application including a cover letter addressing the above requirements.",
+        "Your cover letter can be uploaded alongside your resume, or as one document.",
+        "If you are a person with a disability and require an adjustment, such as alternative application methods, or if you have a general enquiry about a role, please contact our Talent Acquisition team at employmentpluscareers@salvationarmy.org.au.",
+        "Please specify the job title and location in the subject line."
+      ],
+      "mandatoryMatches": [
+        false,
+        false,
+        true
+      ],
+      "preferredMatches": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "gaps": [
+        "Relevant qualifications in areas such as Employment Services, Community Services or other relevant areas is desirable",
+        "Previous experience in employment services including advanced barrier management, reverse marketing, placement of candidates into employment and provision of post-placement support will be highly regarded"
+      ],
+      "matchingDetails": {
+        "mandatoryReasons": [
+          "The resume does not mention relevant qualifications in Employment Services or Community Services",
+          "The resume does not mention previous experience in employment services"
+        ],
+        "preferredReasons": [
+          "The resume does not mention experience in business development, account management, or sales",
+          "The resume does not mention networking and relationship building skills",
+          "The resume does not mention knowledge of local employers and their recruitment demands",
+          "The resume does not mention a performance-focused mindset or experience achieving business targets and KPI's"
+        ]
+      },
+      "compatibilityScore": 30,
+      "score": 30,
+      "scoreBreakdown": {
+        "mandatoryScore": 30,
+        "preferredScore": 0,
+        "mandatoryCount": 1,
+        "preferredCount": 0
+      },
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-1.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-1.md",
+      "timestamp": "2025-08-01T13:29:29.440Z",
+      "scoringMethod": "chatgpt-semantic"
+    },
+    {
+      "id": "dark-job-2",
+      "title": "Customer Service Administrator",
+      "company": "Australia Workforce",
+      "location": "Dandenong South",
+      "url": "https://www.seek.com.au/job/86180901?ref=search-standalone&type=standard",
+      "postedAgo": "6 hours",
+      "mandatoryRequirements": [
+        "Strong customer service focus with effective problem-solving skills",
+        "Excellent verbal and written communication skills",
+        "Experience in the window and door industry (highly desirable)"
+      ],
+      "preferredRequirements": [
+        "A confident and professional phone manner",
+        "Proficiency in Microsoft Office, especially Outlook, Word, and Excel",
+        "Experience with Pronto CRM or similar systems (desirable)",
+        "Valid Drivers Licence"
+      ],
+      "responsibilities": [
+        "Provide prompt and reliable support to customers and the external sales team via phone and email.",
+        "Process, monitor, and manage customer orders and enquiries.",
+        "Liaise with the warehouse team to ensure accurate and timely dispatch and delivery of orders.",
+        "Offer technical assistance to customers and sales staff.",
+        "Maintain accurate records of all customer interactions and communications."
+      ],
+      "employerQuestions": [
+        "Permanent, full-time role",
+        "Attractive salary package",
+        "Immediate start available",
+        "Supportive and friendly work environment",
+        "Opportunity to work with a well-established industry leader"
+      ],
+      "mandatoryMatches": [
+        false,
+        false,
+        false
+      ],
+      "preferredMatches": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "gaps": [
+        "Strong customer service focus with effective problem-solving skills",
+        "Excellent verbal and written communication skills",
+        "Experience in the window and door industry (highly desirable)"
+      ],
+      "matchingDetails": {
+        "mandatoryReasons": [],
+        "preferredReasons": []
+      },
+      "compatibilityScore": 0,
+      "score": 0,
+      "scoreBreakdown": {
+        "mandatoryScore": 0,
+        "preferredScore": 0,
+        "mandatoryCount": 0,
+        "preferredCount": 0
+      },
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-2.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-2.md",
+      "timestamp": "2025-08-01T13:29:46.407Z",
+      "scoringMethod": "chatgpt-semantic"
+    }
+  ]
+}

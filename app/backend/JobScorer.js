@@ -1,13 +1,9 @@
-// Unified JobScorer.js - Reconstructed
-const puppeteer = require('puppeteer');
+// Enhanced ChatGPT-based JobScorer.js with improved reliability
 const fs = require('fs');
 const path = require('path');
-// Polyfill fetch for Node.js
-const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
-
-// OpenAI API configuration
-const { OPENAI_API_KEY, OPENAI_API_URL, JOB_ANALYSIS_PROMPT } = require('./config/openai');
-const OPENAI_MODEL = 'gpt-4';
+const JobDataManager = require('./utils/jobDataManager');
+const ChatGPTService = require('./services/chatgptService');
+const workflowLogger = require('./utils/WorkflowLogger');
 
 // Get config from command line argument or use default
 let config;
@@ -28,242 +24,244 @@ if (process.argv[2]) {
   };
 }
 
-const logFile = 'backend/jobscorer_debug.log';
-const log = (msg) => {
-  const line = `[${new Date().toISOString()}] ${msg}\n`;
-  fs.appendFileSync(logFile, line);
-  console.log(msg);
+// Initialize services
+const jobDataManager = new JobDataManager();
+const chatgptService = new ChatGPTService();
+
+// Use unified workflow logger
+const log = (msg, type = 'info') => {
+  workflowLogger.log(msg, type);
 };
 
 /**
- * Extract job description from SEEK page
- */
-const extractJobDescription = async (page) => {
-  try {
-    log('Extracting job description...');
-    await new Promise(resolve => setTimeout(resolve, 3000));
-    const jobDescription = await page.evaluate(() => {
-      const selectors = [
-        '[data-automation="jobDescription"]',
-        '[data-testid="job-description"]',
-        '.job-description',
-        '.description',
-        '.job-details',
-        '[data-automation="normalJob"]',
-        '.yvsb870',
-        '.yvsb870 .yvsb870',
-        'div[data-automation="jobDescription"]',
-        'section[data-automation="jobDescription"]'
-      ];
-      for (const selector of selectors) {
-        const element = document.querySelector(selector);
-        if (element) {
-          const text = element.innerText || element.textContent || '';
-          if (text.trim().length > 100) return text;
-        }
-      }
-      // Fallback: find the largest visible text block
-      let largestText = '';
-      let largestLength = 0;
-      const allDivs = Array.from(document.querySelectorAll('div'));
-      for (const div of allDivs) {
-        const style = window.getComputedStyle(div);
-        if (style.display === 'none' || style.visibility === 'hidden') continue;
-        const text = div.innerText || div.textContent || '';
-        if (text.length > largestLength && text.length > 200 && text.length < 10000) {
-          largestText = text;
-          largestLength = text.length;
-        }
-      }
-      return largestText;
-    });
-    if (!jobDescription.trim()) {
-      // Save page HTML for debugging
-      const pageHTML = await page.content();
-      fs.writeFileSync('backend/jobscorer_failed_page.html', pageHTML);
-      log('Saved failed page HTML to backend/jobscorer_failed_page.html');
-      throw new Error('Could not find job description on the page');
-    }
-    log('Job description extracted. Length: ' + jobDescription.length);
-    return jobDescription.trim();
-  } catch (error) {
-    log('Error in extractJobDescription: ' + error.message);
-    throw error;
-  }
-};
-
-/**
- * Extract requirements and responsibilities from job description using GPT-4
- */
-const extractRequirementsAndResponsibilities = async (jobDescription) => {
-  log('Extracting requirements and responsibilities...');
-  const prompt = JOB_ANALYSIS_PROMPT.replace('{jobDescription}', jobDescription);
-  const response = await fetch(OPENAI_API_URL, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${OPENAI_API_KEY}`
-    },
-    body: JSON.stringify({
-      model: OPENAI_MODEL,
-      messages: [
-        { role: 'user', content: prompt }
-      ],
-      max_tokens: 1200,
-      temperature: 0.1
-    })
-  });
-  if (!response.ok) {
-    const errorData = await response.json();
-    log('OpenAI API error: ' + (errorData.error?.message || response.statusText));
-    throw new Error(`OpenAI API error: ${errorData.error?.message || response.statusText}`);
-  }
-  const data = await response.json();
-  let result = { mandatory: [], preferred: [], responsibilities: [] };
-  try {
-    result = JSON.parse(data.choices[0].message.content);
-    if (!Array.isArray(result.mandatory)) result.mandatory = [];
-    if (!Array.isArray(result.preferred)) result.preferred = [];
-    if (!Array.isArray(result.responsibilities)) result.responsibilities = [];
-    log('Extracted mandatory: ' + JSON.stringify(result.mandatory));
-    log('Extracted preferred: ' + JSON.stringify(result.preferred));
-    log('Extracted responsibilities: ' + JSON.stringify(result.responsibilities));
-  } catch (e) {
-    log('Failed to parse requirements/responsibilities: ' + e.message);
-    log('RAW GPT-4 RESPONSE: ' + data.choices[0].message.content);
-    throw new Error('Failed to parse requirements/responsibilities from GPT-4 response');
-  }
-  return result;
-};
-
-/**
- * Score resume against mandatory and preferred requirements using GPT-4
- */
-const scoreResumeAgainstRequirements = async (mandatory, preferred, resumeData) => {
-  log('Scoring resume against requirements...');
-  const prompt = `You are an expert job matching analyst. Compare the following resume to the job requirements and provide a JSON object with the following structure:
-{
-  "mandatoryMatches": [true/false, ...], // For each item in the mandatory list, true if the resume covers it (even with different words), else false
-  "preferredMatches": [true/false, ...], // For each item in the preferred list, true if the resume covers it (even with different words), else false
-}
-
-A requirement is considered matched if the resume clearly covers it, even if phrased differently. Be strict but fair. Only return the JSON object, no explanation.
-
-MANDATORY REQUIREMENTS:
-${JSON.stringify(mandatory, null, 2)}
-
-PREFERRED REQUIREMENTS:
-${JSON.stringify(preferred, null, 2)}
-
-RESUME CONTENT:
-${resumeData?.content || 'No resume provided.'}`;
-  const response = await fetch(OPENAI_API_URL, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${OPENAI_API_KEY}`
-    },
-    body: JSON.stringify({
-      model: OPENAI_MODEL,
-      messages: [
-        { role: 'user', content: prompt }
-      ],
-      max_tokens: 600,
-      temperature: 0.1
-    })
-  });
-  if (!response.ok) {
-    const errorData = await response.json();
-    log('OpenAI API error (scoring): ' + (errorData.error?.message || response.statusText));
-    throw new Error(`OpenAI API error: ${errorData.error?.message || response.statusText}`);
-  }
-  const data = await response.json();
-  let result = { mandatoryMatches: [], preferredMatches: [] };
-  try {
-    result = JSON.parse(data.choices[0].message.content);
-    log('Scoring result: ' + JSON.stringify(result));
-  } catch (e) {
-    log('Failed to parse compatibility score: ' + e.message);
-    throw new Error('Failed to parse compatibility score from GPT-4 response');
-  }
-  // Calculate score
-  let score = 0;
-  if (Array.isArray(result.mandatoryMatches)) {
-    score += result.mandatoryMatches.filter(Boolean).length * 30;
-  }
-  if (Array.isArray(result.preferredMatches)) {
-    score += result.preferredMatches.filter(Boolean).length * 20;
-  }
-  return {
-    compatibilityScore: score,
-    mandatoryMatches: result.mandatoryMatches,
-    preferredMatches: result.preferredMatches
-  };
-};
-
-/**
- * Main scoring function
+ * Enhanced scoring function with improved reliability
  */
 const scoreJobs = async () => {
-  log('Starting scoreJobs...');
-  const browser = await puppeteer.launch({ headless: true });
+  workflowLogger.logScoring('🚀 Starting enhanced ChatGPT-based job scoring workflow...');
+  workflowLogger.logScoring(`📋 Processing ${config.selectedJobs.length} selected jobs`);
+  
+  // Clean job-data directory at session start
+  jobDataManager.cleanJobDataDirectory();
+  
   try {
-    const page = await browser.newPage();
     const allResults = [];
+    
     for (let i = 0; i < config.selectedJobs.length; i++) {
       const job = config.selectedJobs[i];
+      
       try {
-        log(`Processing job ${i + 1}: ${job.title} (${job.url})`);
-        await page.goto(job.url, { waitUntil: 'networkidle2', timeout: 30000 });
-        await new Promise(resolve => setTimeout(resolve, 2000));
-        const jobDescription = await extractJobDescription(page);
-        // Extract requirements and responsibilities
-        const { mandatory, preferred, responsibilities } = await extractRequirementsAndResponsibilities(jobDescription);
-        // Score resume against requirements only
-        const scoreResult = await scoreResumeAgainstRequirements(mandatory, preferred, config.resumeData);
+        console.log(`📝 Processing job ${i + 1}/${config.selectedJobs.length}: ${job.title}`);
+        workflowLogger.logScoring(`📝 Processing job ${i + 1}/${config.selectedJobs.length}: ${job.title}`);
+        console.log(`🔗 Job URL: ${job.url}`);
+        workflowLogger.logScoring(`🔗 Job URL: ${job.url}`);
+        
+        // Step 1: Download job page HTML and save locally
+        console.log('📥 Step 1: Downloading job page HTML...');
+        workflowLogger.logScoring('📥 Step 1: Downloading job page HTML...');
+        const htmlFilePath = await jobDataManager.downloadJobHTML(job.url, job.id);
+        
+        // Step 2: Extract job details and save as markdown
+        console.log('📄 Step 2: Converting to markdown...');
+        workflowLogger.logScoring('📄 Step 2: Converting to markdown...');
+        const { markdownPath, jobDescription } = await jobDataManager.extractJobDetailsToMarkdown(
+          htmlFilePath, 
+          job.id, 
+          job.title, 
+          job.company
+        );
+        
+        // Step 3: Use ChatGPT to extract 3 lists according to order of importance
+        console.log('🤖 Step 3: Extracting requirements using ChatGPT...');
+        workflowLogger.logChatGPT('🤖 Step 3: Extracting requirements using ChatGPT...');
+        const jobRequirements = await chatgptService.extractJobRequirements(jobDescription);
+        
+        // Step 4: ChatGPT semantic search for each item in lists a and b against resume
+        console.log('🔍 Step 4: Performing semantic matching against resume...');
+        workflowLogger.logChatGPT('🔍 Step 4: Performing semantic matching against resume...');
+        const resumeContent = config.resumeData?.content || '';
+        const matchingResult = await chatgptService.performSemanticMatching(
+          jobRequirements.mandatoryRequirements,
+          jobRequirements.preferredRequirements,
+          resumeContent
+        );
+        
+        // Step 5: Calculate compatibility score with gap penalty
+        console.log('📊 Step 5: Calculating compatibility score with gap penalty...');
+        workflowLogger.logScoring('📊 Step 5: Calculating compatibility score with gap penalty...');
+        const scoreResult = chatgptService.calculateCompatibilityScore(
+          matchingResult.mandatoryMatches,
+          matchingResult.preferredMatches,
+          matchingResult.gaps
+        );
+        
+        // Compile final result
         const result = {
+          // Basic job info
           id: job.id,
           title: job.title,
           company: job.company,
           location: job.location,
           url: job.url,
-          mandatory,
-          preferred,
-          responsibilities,
-          ...scoreResult,
-          timestamp: new Date().toISOString()
+          postedAgo: job.postedAgo || 'N/A',
+          
+          // Filtered lists - only show requirements that are found in resume
+          mandatoryRequirements: [...new Set(jobRequirements.mandatoryRequirements.filter((_, index) => 
+            matchingResult.mandatoryMatches[index] === true
+          ))],
+          preferredRequirements: [...new Set(jobRequirements.preferredRequirements.filter((_, index) => 
+            matchingResult.preferredMatches[index] === true
+          ))],
+          responsibilities: [...new Set(jobRequirements.responsibilities)],
+          employerQuestions: [...new Set(jobRequirements.employerQuestions)],
+          
+          // Gaps - only mandatory requirements that are missing
+          gaps: [...new Set(matchingResult.gaps)],
+          
+          // Matching results (for debugging)
+          mandatoryMatches: matchingResult.mandatoryMatches,
+          preferredMatches: matchingResult.preferredMatches,
+          matchingDetails: matchingResult.matchingDetails,
+          
+          // Compatibility score
+          compatibilityScore: scoreResult.totalScore,
+          score: scoreResult.totalScore, // For backwards compatibility
+          scoreBreakdown: {
+            mandatoryScore: scoreResult.mandatoryScore,
+            preferredScore: scoreResult.preferredScore,
+            gapPenalty: scoreResult.gapPenalty,
+            gapCount: scoreResult.gapCount,
+            mandatoryCount: scoreResult.mandatoryCount,
+            preferredCount: scoreResult.preferredCount
+          },
+          
+          // File paths for reference
+          htmlFilePath,
+          markdownPath,
+          
+          // Metadata
+          timestamp: new Date().toISOString(),
+          scoringMethod: 'chatgpt-semantic'
         };
-        log('Final job result: ' + JSON.stringify(result));
+        
+        console.log(`✅ Job ${i + 1} scored: ${scoreResult.totalScore} points`);
+        workflowLogger.logScoring(`✅ Job ${i + 1} scored: ${scoreResult.totalScore} points`);
+        console.log(`   - Mandatory: ${scoreResult.mandatoryCount}/${jobRequirements.mandatoryRequirements.length} (${scoreResult.mandatoryScore} pts)`);
+        workflowLogger.logScoring(`   - Mandatory: ${scoreResult.mandatoryCount}/${jobRequirements.mandatoryRequirements.length} (${scoreResult.mandatoryScore} pts)`);
+        console.log(`   - Preferred: ${scoreResult.preferredCount}/${jobRequirements.preferredRequirements.length} (${scoreResult.preferredScore} pts)`);
+        workflowLogger.logScoring(`   - Preferred: ${scoreResult.preferredCount}/${jobRequirements.preferredRequirements.length} (${scoreResult.preferredScore} pts)`);
+        
         allResults.push(result);
-        // Save after each job
-        const configPath = process.argv[2] || 'default_config.json';
-        const resultsPath = configPath.replace('.json', '_results.json');
-        fs.writeFileSync(resultsPath, JSON.stringify({ jobs: allResults }, null, 2));
-        log('Wrote results to ' + resultsPath);
+        
+        // Save intermediate results after each job (improved reliability)
+        try {
+          const configPath = process.argv[2] || 'default_config.json';
+          const resultsPath = configPath.replace('.json', '_results.json');
+          const resultsData = { scoredJobs: allResults };
+          
+          fs.writeFileSync(resultsPath, JSON.stringify(resultsData, null, 2));
+          console.log(`💾 Saved intermediate results to ${resultsPath}`);
+          workflowLogger.logScoring(`💾 Saved intermediate results to ${resultsPath}`);
+          
+          // Also save with process ID for better tracking
+          const processId = path.basename(configPath, '.json').replace('scoring_config_', '');
+          const backupPath = path.join(process.cwd(), `scoring_results_${processId}.json`);
+          fs.writeFileSync(backupPath, JSON.stringify(resultsData, null, 2));
+          console.log(`💾 Saved backup results to ${backupPath}`);
+          
+        } catch (saveError) {
+          console.error('Error saving intermediate results:', saveError);
+          workflowLogger.logError('Error saving intermediate results', saveError.message);
+        }
+        
       } catch (error) {
-        log('Error processing job: ' + error.message);
+        workflowLogger.logError(`Error processing job ${i + 1}: ${error.message}`, 'scoring');
+        console.error('Error details:', error);
+        
+        // Add error result to maintain job order
         allResults.push({
           id: job.id,
           title: job.title,
           company: job.company,
           location: job.location,
           url: job.url,
+          postedAgo: job.postedAgo || 'N/A',
           error: error.message,
           compatibilityScore: 0,
-          timestamp: new Date().toISOString()
+          score: 0,
+          mandatoryRequirements: [],
+          preferredRequirements: [],
+          responsibilities: [],
+          timestamp: new Date().toISOString(),
+          scoringMethod: 'error'
         });
+        
+        // Save error results as well
+        try {
+          const configPath = process.argv[2] || 'default_config.json';
+          const resultsPath = configPath.replace('.json', '_results.json');
+          const resultsData = { scoredJobs: allResults };
+          fs.writeFileSync(resultsPath, JSON.stringify(resultsData, null, 2));
+        } catch (saveError) {
+          console.error('Error saving error results:', saveError);
+        }
       }
     }
-    await browser.close();
-    log('Browser closed.');
+    
+    console.log(`🎉 Scoring workflow completed successfully!`);
+    workflowLogger.logScoring(`🎉 Scoring workflow completed successfully!`);
+    console.log(`📊 Processed ${allResults.length} jobs total`);
+    workflowLogger.logScoring(`📊 Processed ${allResults.length} jobs total`);
+    console.log(`✅ Success: ${allResults.filter(job => !job.error).length} jobs`);
+    workflowLogger.logScoring(`✅ Success: ${allResults.filter(job => !job.error).length} jobs`);
+    console.log(`❌ Errors: ${allResults.filter(job => job.error).length} jobs`);
+    workflowLogger.logScoring(`❌ Errors: ${allResults.filter(job => job.error).length} jobs`);
+    
+    // Final save with all results
+    try {
+      const configPath = process.argv[2] || 'default_config.json';
+      const resultsPath = configPath.replace('.json', '_results.json');
+      const finalResultsData = { scoredJobs: allResults };
+      
+      fs.writeFileSync(resultsPath, JSON.stringify(finalResultsData, null, 2));
+      console.log(`💾 Saved final results to ${resultsPath}`);
+      workflowLogger.logScoring(`💾 Saved final results to ${resultsPath}`);
+      
+      // Also save with process ID
+      const processId = path.basename(configPath, '.json').replace('scoring_config_', '');
+      const backupPath = path.join(process.cwd(), `scoring_results_${processId}.json`);
+      fs.writeFileSync(backupPath, JSON.stringify(finalResultsData, null, 2));
+      console.log(`💾 Saved final backup results to ${backupPath}`);
+      
+    } catch (saveError) {
+      console.error('Error saving final results:', saveError);
+      workflowLogger.logError('Error saving final results', saveError.message);
+    }
+    
     return allResults;
+    
   } catch (error) {
-    log('Fatal error in scoreJobs: ' + error.message);
-    if (browser) await browser.close();
+    workflowLogger.logError(`Fatal error in scoring workflow: ${error.message}`, 'scoring');
+    console.error('Fatal error details:', error);
+    
+    // Save error state
+    try {
+      const configPath = process.argv[2] || 'default_config.json';
+      const resultsPath = configPath.replace('.json', '_results.json');
+      const errorResultsData = { 
+        scoredJobs: [],
+        error: error.message,
+        timestamp: new Date().toISOString()
+      };
+      fs.writeFileSync(resultsPath, JSON.stringify(errorResultsData, null, 2));
+    } catch (saveError) {
+      console.error('Error saving error state:', saveError);
+    }
+    
     throw error;
   }
 };
 
+// Run the scorer if called directly
 if (require.main === module) {
   scoreJobs()
     .then(() => {
@@ -277,8 +275,5 @@ if (require.main === module) {
 }
 
 module.exports = {
-  scoreJobs,
-  extractJobDescription,
-  extractRequirementsAndResponsibilities,
-  scoreResumeAgainstRequirements
+  scoreJobs
 }; 

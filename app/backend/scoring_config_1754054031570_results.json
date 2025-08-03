@@ -1,0 +1,68 @@
+{
+  "scoredJobs": [
+    {
+      "id": "dark-job-4",
+      "title": "Customer Service Administrator",
+      "company": "Australia Workforce",
+      "location": "Dandenong South",
+      "url": "https://www.seek.com.au/job/86180901?ref=search-standalone&type=standard",
+      "postedAgo": "6 hours",
+      "mandatoryRequirements": [
+        "Strong customer service focus",
+        "Excellent verbal and written communication skills",
+        "Valid Drivers Licence"
+      ],
+      "preferredRequirements": [
+        "Experience in the window and door industry",
+        "Proficiency in Microsoft Office, especially Outlook, Word, and Excel",
+        "Experience with Pronto CRM or similar systems"
+      ],
+      "responsibilities": [
+        "Provide prompt and reliable support to customers and the external sales team via phone and email",
+        "Process, monitor, and manage customer orders and enquiries",
+        "Liaise with the warehouse team to ensure accurate and timely dispatch and delivery of orders",
+        "Offer technical assistance to customers and sales staff",
+        "Maintain accurate records of all customer interactions and communications"
+      ],
+      "employerQuestions": [
+        "What experience do you have in the window and door industry?",
+        "Are you proficient in Microsoft Office, especially Outlook, Word, and Excel?",
+        "Do you have experience with Pronto CRM or similar systems?",
+        "Do you have a valid Drivers Licence?",
+        "How would you handle providing technical assistance to customers and sales staff?"
+      ],
+      "mandatoryMatches": [
+        false,
+        false,
+        true
+      ],
+      "preferredMatches": [
+        false,
+        false,
+        false
+      ],
+      "gaps": [
+        "Strong customer service focus",
+        "Excellent verbal and written communication skills"
+      ],
+      "matchingDetails": {
+        "mandatoryReasons": [
+          "Valid Drivers Licence"
+        ],
+        "preferredReasons": []
+      },
+      "compatibilityScore": 30,
+      "score": 30,
+      "scoreBreakdown": {
+        "mandatoryScore": 30,
+        "preferredScore": 0,
+        "mandatoryCount": 1,
+        "preferredCount": 0
+      },
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-4.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-4.md",
+      "timestamp": "2025-08-01T13:14:11.253Z",
+      "scoringMethod": "chatgpt-semantic"
+    }
+  ]
+}

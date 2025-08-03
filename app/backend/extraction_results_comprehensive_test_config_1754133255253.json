@@ -1,0 +1,57 @@
+{
+  "extractedJobs": [
+    {
+      "id": "test-timeout-fix",
+      "title": "Test Job for Timeout Fix",
+      "company": "Test Company",
+      "location": "Melbourne VIC",
+      "url": "https://www.seek.com.au/job/59745689",
+      "postedAgo": "N/A",
+      "mandatoryRequirements": [
+        "Degree in Engineering",
+        "5+ years of experience in manufacturing",
+        "Certification in process improvement techniques"
+      ],
+      "preferredRequirements": [
+        "Experience in automotive industry",
+        "Knowledge of Six Sigma",
+        "Experience with LEAN principles",
+        "Experience with KAIZEN",
+        "Experience with SAP or similar ERP system"
+      ],
+      "responsibilities": [
+        "Identify and analyze critical production processes",
+        "Develop and implement continuous improvement strategies",
+        "Manage and lead critical continuous improvement projects",
+        "Collaborate with cross-functional teams",
+        "Provide training and support to staff",
+        "Monitor and report on key performance indicators",
+        "Drive a culture of continuous improvement",
+        "Implement best practices in manufacturing processes"
+      ],
+      "employerQuestions": [
+        "Do you have experience in the automotive industry?",
+        "What process improvement techniques are you familiar with?",
+        "Have you worked with SAP or a similar ERP system?",
+        "How do you approach developing and implementing continuous improvement strategies?",
+        "Can you provide an example of a successful continuous improvement project you led?"
+      ],
+      "otherDetails": [
+        "Knowledge of Engineering",
+        "Strong knowledge of manufacturing production processes",
+        "Excellent communication skills"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 240,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_test-timeout-fix.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_test-timeout-fix.md",
+      "timestamp": "2025-08-02T11:14:28.875Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    }
+  ]
+}

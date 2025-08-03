@@ -1,0 +1,225 @@
+{
+  "extractedJobs": [
+    {
+      "id": "dark-job-2",
+      "title": "Carpet Cleaner",
+      "company": "Your Talent Solutions",
+      "location": "Bayside & South Eastern Suburbs",
+      "url": "https://www.seek.com.au/job/86199373?ref=search-standalone&type=standard",
+      "postedAgo": "4 hours",
+      "error": "Navigation timeout of 30000 ms exceeded",
+      "compatibilityScore": 0,
+      "maxPossibleScore": 0,
+      "score": 0,
+      "mandatoryRequirements": [],
+      "preferredRequirements": [],
+      "responsibilities": [],
+      "employerQuestions": [],
+      "otherDetails": [],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "timestamp": "2025-08-02T10:24:55.939Z",
+      "extractionMethod": "error"
+    },
+    {
+      "id": "dark-job-5",
+      "title": "Business Development Manager",
+      "company": "Sourcey",
+      "location": "Bayside & South Eastern Suburbs",
+      "url": "https://www.seek.com.au/job/86186380?ref=search-standalone&type=standard",
+      "postedAgo": "1 day",
+      "mandatoryRequirements": [
+        "Proven experience in luxury sales",
+        "Outstanding communication skills",
+        "Track record of exceeding KPIs"
+      ],
+      "preferredRequirements": [
+        "Experience in high-end real estate",
+        "Experience in property development",
+        "Experience in architecture",
+        "Experience in bespoke construction",
+        "Understanding of affluent client expectations"
+      ],
+      "responsibilities": [
+        "Identify and pursue new business opportunities",
+        "Build relationships with real estate agents, developers, and architects",
+        "Represent company at networking events",
+        "Nurture and convert leads into sales opportunities",
+        "Conduct client meetings and presentations",
+        "Collaborate with marketing on messaging",
+        "Manage sales pipeline using CRM tools"
+      ],
+      "employerQuestions": [
+        "Right to work in Australia",
+        "Years of experience as a business development manager",
+        "Current Australian driver's licence"
+      ],
+      "otherDetails": [
+        "Self-motivation",
+        "Resilience",
+        "Proficiency with CRM platforms"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 200,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-5.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-5.md",
+      "timestamp": "2025-08-02T10:25:08.940Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-6",
+      "title": "Senior Family Lawyer",
+      "company": "Sharp & Carter Legal",
+      "location": "Bayside & South Eastern Suburbs",
+      "url": "https://www.seek.com.au/job/86186287?ref=search-standalone&type=standard",
+      "postedAgo": "1 day",
+      "mandatoryRequirements": [
+        "At least 8 years’ post-admission experience in family law"
+      ],
+      "preferredRequirements": [
+        "Accredited Specialist in Family Law",
+        "Strong client relationship skills with high-net-worth or complex family matters",
+        "Strong drafting skills",
+        "Strong negotiation skills",
+        "Strong advocacy skills"
+      ],
+      "responsibilities": [
+        "Manage a diverse family law caseload including property, parenting, financial agreements, and intervention orders",
+        "Provide strategic legal advice to clients during sensitive and complex matters",
+        "Maintain and develop strong client and referrer relationships",
+        "Represent clients in mediations, negotiations, and court proceedings",
+        "Contribute to practice development and leadership within the firm"
+      ],
+      "employerQuestions": [
+        "Do you have at least 8 years’ post-admission experience in family law?",
+        "Are you an Accredited Specialist in Family Law?",
+        "Do you have experience with high-net-worth or complex family matters?",
+        "Can you provide examples of your drafting, negotiation, and advocacy skills?",
+        "Are you interested in a succession pathway with long-term potential?"
+      ],
+      "otherDetails": [
+        "Natural leader with the ability to mentor others and inspire confidence",
+        "Desire to step into a succession pathway with long-term potential"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 190,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-6.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-6.md",
+      "timestamp": "2025-08-02T10:25:33.516Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-8",
+      "title": "Electrical Engineering Draftsperson",
+      "company": "Amazing Solar Solutions",
+      "location": "Dandenong South",
+      "url": "https://www.seek.com.au/job/86183328?ref=search-standalone&type=standard",
+      "postedAgo": "1 day",
+      "mandatoryRequirements": [
+        "Relevant qualification in Electrical Engineering or a closely related field"
+      ],
+      "preferredRequirements": [
+        "Proven experience in electrical drafting and system design",
+        "Candidates with more years of experience will be highly regarded",
+        "Strong understanding of electrical safety standards and compliance regulations",
+        "Proficiency in using drafting software (such as AutoCAD, Revit, or similar tools)"
+      ],
+      "responsibilities": [
+        "Develop and maintain electrical layout drawings, wiring diagrams, and system plans for solar PV installations",
+        "Assist engineers in the planning and configuration of electrical systems, including panels, circuits, cable routes, and associated components",
+        "Collect technical inputs and assist in performing basic calculations to support the accuracy and feasibility of electrical designs",
+        "Support design validation and testing processes, contributing to the development of effective and reliable solar energy solutions",
+        "Collaborate with engineers, clients, and project teams to incorporate feedback and ensure the design meets both technical and practical requirements",
+        "Contribute to the preparation of documentation for compliance with safety guidelines, industry standards, and project specifications",
+        "Maintain proper control and version tracking of all technical drawings and related documentation throughout the project"
+      ],
+      "employerQuestions": [
+        "Which of the following statements best describes your right to work in Australia?",
+        "How many years' experience do you have as an Engineering Draftsperson?",
+        "What's your expected annual base salary?",
+        "How much notice are you required to give your current employer?",
+        "Do you have a current Police Check (National Police Certificate) for employment?"
+      ],
+      "otherDetails": [
+        "Attention to detail",
+        "Proactive mindset",
+        "Ability to work collaboratively in a fast-paced team environment"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 190,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-8.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-8.md",
+      "timestamp": "2025-08-02T10:25:41.578Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-9",
+      "title": "Employment Consultant (Inclusive Employment Australia)",
+      "company": "Sureway Employment and Training",
+      "location": "Dandenong",
+      "url": "https://www.seek.com.au/job/86183668?ref=search-standalone&type=standard",
+      "postedAgo": "1 day",
+      "mandatoryRequirements": [
+        "National Police Check",
+        "Right to work in Australia",
+        "Valid driver’s licence with reliable transport"
+      ],
+      "preferredRequirements": [
+        "Degree qualification in an Engineering discipline (Mechanical, Industrial or Materials Engineering)",
+        "Certification in process improvement techniques such as Six Sigma",
+        "Certification in process improvement techniques such as LEAN",
+        "Certification in process improvement techniques such as KAIZEN"
+      ],
+      "responsibilities": [
+        "Utilising a person-centred approach to tailor services and support participants into meaningful employment",
+        "Developing positive partnerships with local employers to create meaningful employment opportunities for participants",
+        "Enhancing employability through referral to support services and training",
+        "Providing in-employment support to sustain employment",
+        "Marketing participants’ skills to prospective employers",
+        "Achieving program performance and quality benchmarks",
+        "Keeping detailed, accurate records and adhering to all compliance requirements",
+        "Actively participating in the local community to promote services"
+      ],
+      "employerQuestions": [
+        "Do you have a National Police Check?",
+        "Do you have the right to work in Australia?",
+        "Do you hold a valid driver’s licence with reliable transport?",
+        "Do you have a degree qualification in an Engineering discipline?",
+        "Do you have certification in process improvement techniques such as Six Sigma, LEAN, or KAIZEN?"
+      ],
+      "otherDetails": [
+        "Passionate & Motivated",
+        "Relationship Builders",
+        "Quality focused"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 230,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-9.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-9.md",
+      "timestamp": "2025-08-02T10:25:51.826Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    }
+  ]
+}

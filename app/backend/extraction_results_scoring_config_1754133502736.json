@@ -1,0 +1,180 @@
+{
+  "extractedJobs": [
+    {
+      "id": "dark-job-10",
+      "title": "Telco Customer Support",
+      "company": "Aussie Broadband Limited",
+      "location": "Dandenong",
+      "url": "https://www.seek.com.au/job/86200816?ref=search-standalone&type=standard",
+      "postedAgo": "4 hours",
+      "error": "Content setting timeout after 25000ms",
+      "compatibilityScore": 0,
+      "maxPossibleScore": 0,
+      "score": 0,
+      "mandatoryRequirements": [],
+      "preferredRequirements": [],
+      "responsibilities": [],
+      "employerQuestions": [],
+      "otherDetails": [],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "timestamp": "2025-08-02T11:18:54.342Z",
+      "extractionMethod": "error"
+    },
+    {
+      "id": "dark-job-12",
+      "title": "Contract Administrator",
+      "company": "TRIFECTA RECRUITMENT PTY LTD",
+      "location": "Bayside & South Eastern Suburbs",
+      "url": "https://www.seek.com.au/job/86196241?ref=search-standalone&type=standard",
+      "postedAgo": "14 hours",
+      "mandatoryRequirements": [
+        "6 months - 2 years working in a CA role for a Commercial builder",
+        "Local experience in Melbourne/Australia is essential"
+      ],
+      "preferredRequirements": [
+        "Ideally financial management systems experience",
+        "A genuine, great attitude and ability to work as part of a team",
+        "Ideally tertiary degree qualifications related to Construction",
+        "Specific experience is more important"
+      ],
+      "responsibilities": [
+        "Letting and vetting subcontractors, writing scopes and awarding subcontracts",
+        "Financial forecasting and cost-tracking",
+        "Subcontract variation and progress claims",
+        "Assisting the PM with Head Contract client management",
+        "Projects include Education, Childcare, Commercial fit‑outs, Multi‑residential developments"
+      ],
+      "employerQuestions": [
+        "If you are interested in this role please click apply or send your CV directly to Rich@trifecta.net.au",
+        "If you want to find out more information before applying, please call Rich Fimmano on 0475 574 404"
+      ],
+      "otherDetails": [
+        "Join a growing builder where the opportunities come quicker as you grow",
+        "Work in an environment where more responsibility will be offered if you want it",
+        "Work for a reputable builder in the Tier 3 Commercial building market"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 150,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-12.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-12.md",
+      "timestamp": "2025-08-02T11:19:07.079Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-14",
+      "title": "Sales Consultant",
+      "company": "Furniture Outlet Dandenong",
+      "location": "Dandenong South",
+      "url": "https://www.seek.com.au/job/86174570?ref=search-standalone&type=standard",
+      "postedAgo": "23 hours",
+      "error": "Content setting timeout after 25000ms",
+      "compatibilityScore": 0,
+      "maxPossibleScore": 0,
+      "score": 0,
+      "mandatoryRequirements": [],
+      "preferredRequirements": [],
+      "responsibilities": [],
+      "employerQuestions": [],
+      "otherDetails": [],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "timestamp": "2025-08-02T11:19:37.752Z",
+      "extractionMethod": "error"
+    },
+    {
+      "id": "dark-job-3",
+      "title": "Production Supervisor - QuiteLike",
+      "company": "Coles",
+      "location": "Dandenong South",
+      "url": "https://www.seek.com.au/job/86181126?ref=search-standalone&type=standard",
+      "postedAgo": "1 day",
+      "mandatoryRequirements": [
+        "3+ years’ experience working in food manufacturing, FMCG or pharmaceutical manufacturing or within an environment that handles fresh produce or food",
+        "Experience managing a team within a food manufacturing, FMCG, pharmaceutical or similar environment",
+        "Strong knowledge, skill and experience in Occupational Health and Safety, Environment, Risk Management and/or Food Safety"
+      ],
+      "preferredRequirements": [
+        "Degree qualified/relevant certificate in Food manufacturing/warehouse operations",
+        "Forklift driver’s license",
+        "Highest calibre of communication skills"
+      ],
+      "responsibilities": [
+        "Supervising daily operations",
+        "Assisting with scheduling, materials, and labour",
+        "Ensuring smooth production and packing processes",
+        "Conducting food Quality Controls",
+        "Maintaining accurate production records",
+        "Operating machinery",
+        "Verifying recipes",
+        "Providing staff training"
+      ],
+      "employerQuestions": [
+        "Do you have 3+ years’ experience in food manufacturing, FMCG or pharmaceutical manufacturing?",
+        "Have you managed a team in a similar environment before?",
+        "Do you have strong knowledge and experience in Occupational Health and Safety, Environment, Risk Management and/or Food Safety?",
+        "Are you degree qualified or have a relevant certificate in Food manufacturing/warehouse operations?",
+        "Do you have a forklift driver’s license?"
+      ],
+      "otherDetails": [
+        "Communication skills",
+        "Records management skills under quality management system",
+        "Occupational Health and Safety knowledge"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 220,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-3.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-3.md",
+      "timestamp": "2025-08-02T11:19:48.985Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-4",
+      "title": "Personal Care Assistant | Dandenong",
+      "company": "SAI Home and Community Care",
+      "location": "Dandenong",
+      "url": "https://www.seek.com.au/job/86180777?ref=search-standalone&type=standard",
+      "postedAgo": "1 day",
+      "mandatoryRequirements": [
+        "Cert III in Aged Care/Individual Support",
+        "NDIS Worker Screen",
+        "WWCC"
+      ],
+      "preferredRequirements": [],
+      "responsibilities": [
+        "Assisting with daily activities: Helping clients with tasks such as bathing, dressing and grooming",
+        "Mobility support: Aiding clients in moving around their home or community, including transfers to and from beds or wheelchairs",
+        "Companionship: Providing emotional support and engaging in conversation"
+      ],
+      "employerQuestions": [],
+      "otherDetails": [
+        "Friendly demeanor with strong communication skills"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 70,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-4.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-4.md",
+      "timestamp": "2025-08-02T11:20:03.128Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    }
+  ]
+}

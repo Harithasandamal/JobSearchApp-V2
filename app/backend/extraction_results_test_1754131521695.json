@@ -1,0 +1,55 @@
+{
+  "extractedJobs": [
+    {
+      "id": "test-job-1",
+      "title": "Test Job 1",
+      "company": "Test Company 1",
+      "location": "Melbourne VIC",
+      "url": "https://www.seek.com.au/job/59745689",
+      "postedAgo": "N/A",
+      "mandatoryRequirements": [
+        "Bachelor's degree in Engineering"
+      ],
+      "preferredRequirements": [
+        "Certification in process improvement techniques (e.g. Six Sigma, LEAN, KAIZEN)",
+        "Experience in a manufacturing environment",
+        "Knowledge of ERP systems",
+        "Experience in a leadership role",
+        "Strong problem-solving skills"
+      ],
+      "responsibilities": [
+        "Identify and analyse critical production processes",
+        "Manage and lead continuous improvement projects",
+        "Develop and implement process improvements",
+        "Collaborate with cross-functional teams",
+        "Provide technical support to production teams",
+        "Ensure compliance with safety regulations",
+        "Monitor and report on key performance indicators",
+        "Train and mentor team members"
+      ],
+      "employerQuestions": [
+        "Do you have experience in a manufacturing environment?",
+        "Can you provide an example of a successful process improvement project you led?",
+        "How do you ensure compliance with safety regulations?",
+        "What ERP systems are you familiar with?",
+        "How do you approach problem-solving in a team setting?"
+      ],
+      "otherDetails": [
+        "Knowledge of Engineering",
+        "Strong knowledge of manufacturing production processes",
+        "Excellent communication skills"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 200,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_test-job-1.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_test-job-1.md",
+      "timestamp": "2025-08-02T10:45:34.033Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    }
+  ]
+}

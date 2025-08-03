@@ -1,0 +1,55 @@
+{
+  "extractedJobs": [
+    {
+      "id": "test-logger-fix-1",
+      "title": "Test Job Logger Fix 1",
+      "company": "Test Company 1",
+      "location": "Melbourne VIC",
+      "url": "https://www.seek.com.au/job/59745689",
+      "postedAgo": "N/A",
+      "mandatoryRequirements": [
+        "Bachelor's degree in Engineering"
+      ],
+      "preferredRequirements": [
+        "Certification in process improvement techniques (e.g. Six Sigma, LEAN, KAIZEN)",
+        "Experience in a manufacturing environment",
+        "Knowledge of ERP systems",
+        "Experience in a continuous improvement role",
+        "Experience in a leadership role"
+      ],
+      "responsibilities": [
+        "Identify and analyse critical production processes",
+        "Develop and implement continuous improvement strategies",
+        "Manage and lead critical continuous improvement projects",
+        "Drive a culture of continuous improvement",
+        "Provide training and support to staff",
+        "Monitor and report on key performance indicators",
+        "Collaborate with cross-functional teams",
+        "Implement best practices in manufacturing processes"
+      ],
+      "employerQuestions": [
+        "Do you have experience in a manufacturing environment?",
+        "Have you led continuous improvement projects before?",
+        "What process improvement techniques are you familiar with?",
+        "How do you drive a culture of continuous improvement?",
+        "Can you provide an example of a successful continuous improvement project you led?"
+      ],
+      "otherDetails": [
+        "Strong knowledge of manufacturing production processes",
+        "Knowledge of Engineering",
+        "Excellent communication skills"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 200,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_test-logger-fix-1.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_test-logger-fix-1.md",
+      "timestamp": "2025-08-03T01:00:33.464Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    }
+  ]
+}

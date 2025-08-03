@@ -1,0 +1,63 @@
+{
+  "scoredJobs": [
+    {
+      "id": "light-job-2",
+      "title": "Group Project Coordinator",
+      "company": "Brown & Watson International",
+      "location": "Knoxfield",
+      "url": "https://www.seek.com.au/job/85994049?ref=search-standalone&type=standard&origin=jobTitle#sol=f5c442d9c765b69183c0a9f36e76c3773779cff4",
+      "postedAgo": "8 days",
+      "mandatoryRequirements": [
+        "Experience in cross-functional environments",
+        "Relevant tertiary and project management qualifications (e.g. PMP)",
+        "Experience with project planning and scheduling"
+      ],
+      "preferredRequirements": [
+        "Experience in automotive industry",
+        "Commercial acumen",
+        "Experience with Microsoft Office products"
+      ],
+      "responsibilities": [
+        "Coordinate project documentation, timelines, and reporting",
+        "Facilitate team communication, meetings, and workshops",
+        "Analyse data, track metrics and support prioritisation",
+        "Support governance and adoption of project processes",
+        "Drive collaboration across Product Development, Manufacturing, Marketing, and Sales"
+      ],
+      "mandatoryMatches": [
+        true,
+        false,
+        true
+      ],
+      "preferredMatches": [
+        false,
+        false,
+        true
+      ],
+      "matchingDetails": {
+        "mandatoryReasons": [
+          "Resume mentions 'Project management and team collaboration' which implies experience in cross-functional environments",
+          "No mention of project management qualifications such as PMP in the resume",
+          "Resume mentions 'Project management' which implies experience with project planning and scheduling"
+        ],
+        "preferredReasons": [
+          "No mention of experience in the automotive industry",
+          "No mention of commercial acumen",
+          "Resume mentions 'Microsoft Office' under skills"
+        ]
+      },
+      "compatibilityScore": 80,
+      "score": 80,
+      "scoreBreakdown": {
+        "mandatoryScore": 60,
+        "preferredScore": 20,
+        "mandatoryCount": 2,
+        "preferredCount": 1
+      },
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_light-job-2.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_light-job-2.md",
+      "timestamp": "2025-08-01T11:43:32.891Z",
+      "scoringMethod": "chatgpt-semantic"
+    }
+  ]
+}

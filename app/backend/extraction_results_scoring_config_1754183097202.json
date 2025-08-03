@@ -1,0 +1,244 @@
+{
+  "extractedJobs": [
+    {
+      "id": "dark-job-2",
+      "title": "Machine Operator",
+      "company": "Girardi Human Resources",
+      "location": "Bayside & South Eastern Suburbs",
+      "url": "https://www.seek.com.au/job/86204207?ref=search-standalone&type=standard",
+      "postedAgo": "50 minutes",
+      "mandatoryRequirements": [
+        "Experience in the sheet fed print industry",
+        "Good basic literacy and numeracy skills",
+        "Strong work ethic"
+      ],
+      "preferredRequirements": [
+        "Laminating experience",
+        "Full training available for the right candidate"
+      ],
+      "responsibilities": [
+        "Operating laminating machines",
+        "Performing work to a high-quality standard",
+        "Working independently and as part of a team"
+      ],
+      "employerQuestions": [
+        "Right to work in Australia",
+        "Years of experience as a machine operator",
+        "Ownership or regular access to a car"
+      ],
+      "otherDetails": [
+        "Close knit and supportive team",
+        "Great work environment"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 160,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-2.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-2.md",
+      "timestamp": "2025-08-03T01:05:06.987Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-6",
+      "title": "Contract Administrator",
+      "company": "TRIFECTA RECRUITMENT PTY LTD",
+      "location": "Bayside & South Eastern Suburbs",
+      "url": "https://www.seek.com.au/job/86196241?ref=search-standalone&type=standard",
+      "postedAgo": "1 day",
+      "mandatoryRequirements": [
+        "6 months - 2 years working in a CA role for a Commercial builder",
+        "Local experience in Melbourne/Australia is essential"
+      ],
+      "preferredRequirements": [
+        "Ideally financial management systems experience",
+        "A genuine, great attitude and ability to work as part of a team",
+        "Ideally tertiary degree qualifications related to Construction",
+        "Specific experience is more important"
+      ],
+      "responsibilities": [
+        "Letting and vetting subcontractors, writing scopes and awarding subcontracts",
+        "Financial forecasting and cost-tracking",
+        "Subcontract variation and progress claims",
+        "Assisting the PM with Head Contract client management",
+        "Projects: Education (e.g. primary schools, sports academies, college facilities), Childcare / Early Learning centres, Commercial fit‑outs and clinics, Multi‑residential developments"
+      ],
+      "employerQuestions": [
+        "If you are interested in this role please click apply or send your CV directly to Rich@trifecta.net.au",
+        "If you want to find out more information before applying, please call Rich Fimmano on 0475 574 404"
+      ],
+      "otherDetails": [
+        "Join a growing builder where the opportunities come quicker as you grow",
+        "Work in an environment where more responsibility will be offered if you want it",
+        "Work for a reputable builder in the Tier 3 Commercial building market"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 150,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-6.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-6.md",
+      "timestamp": "2025-08-03T01:05:16.440Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-9",
+      "title": "Electrical Engineering Draftsperson",
+      "company": "Amazing Solar Solutions",
+      "location": "Dandenong South",
+      "url": "https://www.seek.com.au/job/86183328?ref=search-standalone&type=standard",
+      "postedAgo": "1 day",
+      "mandatoryRequirements": [
+        "Relevant qualification in Electrical Engineering or a closely related field"
+      ],
+      "preferredRequirements": [
+        "Proven experience in electrical drafting and system design",
+        "Candidates with more years of experience will be highly regarded",
+        "Strong understanding of electrical safety standards and compliance regulations",
+        "Proficiency in using drafting software (such as AutoCAD, Revit, or similar tools)"
+      ],
+      "responsibilities": [
+        "Develop and maintain electrical layout drawings, wiring diagrams, and system plans for solar PV installations",
+        "Assist engineers in the planning and configuration of electrical systems, including panels, circuits, cable routes, and associated components",
+        "Collect technical inputs and assist in performing basic calculations to support the accuracy and feasibility of electrical designs",
+        "Support design validation and testing processes, contributing to the development of effective and reliable solar energy solutions",
+        "Collaborate with engineers, clients, and project teams to incorporate feedback and ensure the design meets both technical and practical requirements",
+        "Contribute to the preparation of documentation for compliance with safety guidelines, industry standards, and project specifications",
+        "Maintain proper control and version tracking of all technical drawings and related documentation throughout the project"
+      ],
+      "employerQuestions": [
+        "Which of the following statements best describes your right to work in Australia?",
+        "How many years' experience do you have as an Engineering Draftsperson?",
+        "What's your expected annual base salary?",
+        "How much notice are you required to give your current employer?",
+        "Do you have a current Police Check (National Police Certificate) for employment?"
+      ],
+      "otherDetails": [
+        "Attention to detail",
+        "Proactive mindset",
+        "Ability to work collaboratively in a fast-paced team environment"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 190,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-9.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-9.md",
+      "timestamp": "2025-08-03T01:05:28.469Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-10",
+      "title": "Employment Consultant (Inclusive Employment Australia)",
+      "company": "Sureway Employment and Training",
+      "location": "Dandenong",
+      "url": "https://www.seek.com.au/job/86183668?ref=search-standalone&type=standard",
+      "postedAgo": "1 day",
+      "mandatoryRequirements": [
+        "National Police Check",
+        "Right to work in Australia",
+        "Valid driver’s licence with reliable transport"
+      ],
+      "preferredRequirements": [
+        "Degree qualification in an Engineering discipline (Mechanical, Industrial or Materials Engineering)",
+        "Certification in process improvement techniques such as Six Sigma",
+        "Certification in process improvement techniques such as LEAN",
+        "Certification in process improvement techniques such as KAIZEN"
+      ],
+      "responsibilities": [
+        "Utilising a person-centred approach to tailor services and support participants into meaningful employment",
+        "Developing positive partnerships with local employers to create meaningful employment opportunities for participants",
+        "Enhancing employability through referral to support services and training",
+        "Providing in-employment support to sustain employment",
+        "Marketing your participants’ skills to prospective employers",
+        "Achieving program performance and quality benchmarks",
+        "Keeping detailed, accurate records and adhering to all compliance requirements",
+        "Actively participating in the local community to promote services"
+      ],
+      "employerQuestions": [
+        "Do you have a National Police Check?",
+        "Do you have the right to work in Australia?",
+        "Do you hold a valid driver’s licence with reliable transport?",
+        "Do you have a degree qualification in an Engineering discipline?",
+        "Do you have certification in process improvement techniques such as Six Sigma, LEAN, or KAIZEN?"
+      ],
+      "otherDetails": [
+        "Passionate & Motivated",
+        "Relationship Builders",
+        "Quality focused"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 230,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-10.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-10.md",
+      "timestamp": "2025-08-03T01:05:40.238Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-11",
+      "title": "Finance Manager | Enviable Residential Builder",
+      "company": "Concise Recruitment",
+      "location": "Bayside & South Eastern Suburbs",
+      "url": "https://www.seek.com.au/job/86183172?ref=search-standalone&type=standard",
+      "postedAgo": "1 day",
+      "mandatoryRequirements": [
+        "Minimum 5 years’ experience within finance &/or accounting management",
+        "Tertiary qualifications in Accounting, Finance, or a related discipline"
+      ],
+      "preferredRequirements": [
+        "Proven experience in budgeting, forecasting, and financial reporting",
+        "Strong Excel, financial modelling and accounting software capabilities",
+        "Solid background in cash flow and financial compliance management",
+        "Strong stakeholder management skills",
+        "Excellent communication skills (written and verbal)"
+      ],
+      "responsibilities": [
+        "Leading the preparation & analysis of monthly management reports (P&L, balance sheet & cash flow)",
+        "Oversee end-of-month processes, journal entries & financial reconciliations",
+        "Prepare annual budgets and quarterly forecasts",
+        "Monitor project performance (cost-to-complete, margin analysis & WIP)",
+        "Partner with PMs to ensure accurate job costing & forecasting",
+        "Manage daily cash flow and working capital across the business",
+        "Lead the annual stocktake process and ensure timely reconciliation",
+        "Ensure compliance with statutory, tax & Reg. obligations (BAS, GST, TPAR)"
+      ],
+      "employerQuestions": [
+        "Do you have a minimum of 5 years' experience in finance or accounting management?",
+        "Do you have tertiary qualifications in Accounting, Finance, or a related discipline?",
+        "Do you have proven experience in budgeting, forecasting, and financial reporting?",
+        "Do you have strong Excel, financial modelling, and accounting software capabilities?",
+        "Do you have strong stakeholder management skills?"
+      ],
+      "otherDetails": [
+        "Strong Excel skills",
+        "Financial compliance management",
+        "Stakeholder management"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 220,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-11.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-11.md",
+      "timestamp": "2025-08-03T01:05:52.847Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    }
+  ]
+}

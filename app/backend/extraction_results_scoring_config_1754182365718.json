@@ -1,0 +1,239 @@
+{
+  "extractedJobs": [
+    {
+      "id": "dark-job-1",
+      "title": "Machine Operator (foil stamping)",
+      "company": "Girardi Human Resources",
+      "location": "Bayside & South Eastern Suburbs",
+      "url": "https://www.seek.com.au/job/86204231?ref=search-standalone&type=standard",
+      "postedAgo": "30 minutes",
+      "mandatoryRequirements": [
+        "Experience in the sheet fed print industry",
+        "High attention to detail",
+        "Good basic literacy and numeracy skills"
+      ],
+      "preferredRequirements": [
+        "Laminating experience",
+        "Strong work ethic"
+      ],
+      "responsibilities": [
+        "Operating the foil stamping machines",
+        "Performing work to a high-quality standard",
+        "Working both independently and as part of a team"
+      ],
+      "employerQuestions": [
+        "Which of the following statements best describes your right to work in Australia?",
+        "How many years' experience do you have as a machine operator?",
+        "Do you own or have regular access to a car?"
+      ],
+      "otherDetails": [
+        "Experience in the sheet fed print industry",
+        "High attention to detail",
+        "Good basic literacy and numeracy skills"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 170,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-1.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-1.md",
+      "timestamp": "2025-08-03T00:52:58.126Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-6",
+      "title": "Contract Administrator",
+      "company": "TRIFECTA RECRUITMENT PTY LTD",
+      "location": "Bayside & South Eastern Suburbs",
+      "url": "https://www.seek.com.au/job/86196241?ref=search-standalone&type=standard",
+      "postedAgo": "1 day",
+      "mandatoryRequirements": [
+        "6 months - 2 years working in a CA role for a Commercial builder",
+        "Local experience in Melbourne/Australia is essential"
+      ],
+      "preferredRequirements": [
+        "Ideally financial management systems experience",
+        "A genuine, great attitude and ability to work as part of a team",
+        "Ideally tertiary degree qualifications related to Construction",
+        "Specific experience is more important"
+      ],
+      "responsibilities": [
+        "Letting and vetting subcontractors, writing scopes and awarding subcontracts",
+        "Financial forecasting and cost-tracking",
+        "Subcontract variation and progress claims",
+        "Assisting the PM with Head Contract client management",
+        "Projects: Education (e.g. primary schools, sports academies, college facilities), Childcare / Early Learning centres, Commercial fit‑outs and clinics, Multi‑residential developments"
+      ],
+      "employerQuestions": [
+        "If you are interested in this role please click apply or send your CV directly to Rich@trifecta.net.au",
+        "If you want to find out more information before applying, please call Rich Fimmano on 0475 574 404"
+      ],
+      "otherDetails": [
+        "Join a growing builder where the opportunities come quicker as you grow",
+        "Work in an environment where more responsibility will be offered if you want it",
+        "Work for a reputable builder in the Tier 3 Commercial building market"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 150,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-6.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-6.md",
+      "timestamp": "2025-08-03T00:53:13.328Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-7",
+      "title": "TMA & FREEWAY TRAFFIC CONTROLLERS",
+      "company": "KPI GROUP",
+      "location": "Dandenong South",
+      "url": "https://www.seek.com.au/job/86190035?ref=search-standalone&type=standard",
+      "postedAgo": "1 day",
+      "mandatoryRequirements": [
+        "MR or HR Driver’s Licence",
+        "White Card (Construction Induction)",
+        "TMA Ticket - Accredited Truck Mounted Attenuator Driver"
+      ],
+      "preferredRequirements": [
+        "TC1 - Traffic Controller (Low Speed)",
+        "TC2 - Traffic Controller (High Speed)",
+        "TMI1 - Traffic Management Implementer for Category 1",
+        "TMI2 - Traffic Management Implementer for Category 2",
+        "TMI3 - Traffic Management Implementer for Category 3"
+      ],
+      "responsibilities": [
+        "Immediate placement on major freeway and arterial road projects",
+        "Secure, long-term employment with consistent hours",
+        "Operate modern TMAs",
+        "High-standard PPE provided with strong field support",
+        "Industry-leading safety culture backed by advanced traffic management technology"
+      ],
+      "employerQuestions": [
+        "Which of the following statements best describes your right to work in Australia?",
+        "How many years' experience do you have as a traffic controller?",
+        "Do you hold a Construction Induction Safety certificate (White Card)?",
+        "Do you have a current Australian driver's licence?"
+      ],
+      "otherDetails": [
+        "National provider of traffic management services",
+        "Recognized for innovation, leadership, and a zero-harm safety focus",
+        "Opportunities for career progression and upskilling into supervisory and planning roles"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 220,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-7.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-7.md",
+      "timestamp": "2025-08-03T00:53:26.538Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-9",
+      "title": "Business Development Manager",
+      "company": "Sourcey",
+      "location": "Bayside & South Eastern Suburbs",
+      "url": "https://www.seek.com.au/job/86186380?ref=search-standalone&type=standard",
+      "postedAgo": "1 day",
+      "mandatoryRequirements": [
+        "Proven experience in luxury sales",
+        "Outstanding communication skills",
+        "Track record of exceeding KPIs"
+      ],
+      "preferredRequirements": [
+        "Experience in high-end real estate",
+        "Experience in property development",
+        "Experience in architecture",
+        "Experience in bespoke construction",
+        "Understanding of affluent client expectations"
+      ],
+      "responsibilities": [
+        "Identify and pursue new business opportunities",
+        "Build relationships with real estate agents, developers, and architects",
+        "Represent company at networking events",
+        "Nurture and convert leads into sales",
+        "Conduct client meetings and presentations",
+        "Collaborate with marketing",
+        "Manage sales pipeline using CRM tools"
+      ],
+      "employerQuestions": [
+        "Right to work in Australia",
+        "Years of experience as a business development manager",
+        "Current Australian driver's licence"
+      ],
+      "otherDetails": [
+        "Self-motivation",
+        "Resilience",
+        "Proficiency with CRM platforms"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 200,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-9.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-9.md",
+      "timestamp": "2025-08-03T00:53:42.742Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-10",
+      "title": "Counter Trade Sales Clerk",
+      "company": "HRCheck Aust Pty Ltd",
+      "location": "Dandenong",
+      "url": "https://www.seek.com.au/job/86184827?ref=search-standalone&type=standard",
+      "postedAgo": "1 day",
+      "mandatoryRequirements": [
+        "Computer literacy skills",
+        "Outstanding communication and customer service skills",
+        "Full drivers licence"
+      ],
+      "preferredRequirements": [
+        "Background working in a retail 'trade' shop",
+        "Safety conscious and aware of OHS procedures"
+      ],
+      "responsibilities": [
+        "Dealing with trade customers on a daily basis including over the counter sales, phone and email follow-ups",
+        "Liaising with warehouse staff and key personnel",
+        "Preparation of quotes",
+        "Managing a database and following up on orders",
+        "Co-ordination of deliveries and dispatch",
+        "Available Monday to Friday - 8.30am 4:30pm (start and finish times are fixed - no flexibility)"
+      ],
+      "employerQuestions": [
+        "Which of the following statements best describes your right to work in Australia?",
+        "How many years' experience do you have as a Sales Clerk?",
+        "Do you have customer service experience?",
+        "How much notice are you required to give your current employer?",
+        "Do you have a current Australian driver's licence?"
+      ],
+      "otherDetails": [
+        "Can do attitude where you are willing to learn everyday",
+        "Available to start in a temporary capacity with a view to permanent",
+        "Be flexible to assist in the warehouse or office if back-up is ever required"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 210,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-10.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-10.md",
+      "timestamp": "2025-08-03T00:53:54.907Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    }
+  ]
+}

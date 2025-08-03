@@ -10,9 +10,9 @@ const AnalyzingScreen = ({ appState, updateAppState, navigateTo }) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [analysisData, setAnalysisData] = useState(null);
   const [resumeFile, setResumeFile] = useState({
-    name: appState.resume || 'Shamalka Resume v2.pdf',
+    name: appState.resume || 'Default Resume.pdf',
     file: null,
-    isDefault: appState.resume === 'Shamalka Resume v2.pdf' || appState.resume === 'Default Resume.pdf'
+    isDefault: appState.resume === 'Default Resume.pdf'
   });
   const [analyzingSteps, setAnalyzingSteps] = useState([
     { id: 1, text: 'Resume-Job Compatibility', status: 'completed' },
@@ -25,8 +25,8 @@ const AnalyzingScreen = ({ appState, updateAppState, navigateTo }) => {
   // Keep resumeFile in sync with appState.resume
   useEffect(() => {
     if (appState.resume && appState.resume !== resumeFile.name) {
-      if (appState.resume === 'Default Resume.pdf' || appState.resume === 'Shamalka Resume v2.pdf') {
-        setResumeFile({ name: 'Shamalka Resume v2.pdf', file: null, isDefault: true });
+      if (appState.resume === 'Default Resume.pdf') {
+        setResumeFile({ name: 'Default Resume.pdf', file: null, isDefault: true });
       } else {
         setResumeFile({ name: appState.resume, file: null, isDefault: false });
       }

@@ -1,0 +1,246 @@
+{
+  "extractedJobs": [
+    {
+      "id": "dark-job-1",
+      "title": "Telco Customer Support",
+      "company": "Aussie Broadband Limited",
+      "location": "Dandenong",
+      "url": "https://www.seek.com.au/job/86200816?ref=search-standalone&type=standard",
+      "postedAgo": "58 minutes",
+      "mandatoryRequirements": [
+        "Familiarity with the telco industry"
+      ],
+      "preferredRequirements": [
+        "Background or strong interest in IT and tech",
+        "Background in accounts or customer service",
+        "Moderate computer skills",
+        "Basic data entry",
+        "Effective communication skills"
+      ],
+      "responsibilities": [
+        "Meet customer service standards and targets",
+        "Address technical and account assistance requests via various channels",
+        "Attempt to diagnose and resolve non-service related cases",
+        "Handle conflict resolution and escalate complaints when necessary",
+        "Follow standard help desk and account procedures and privacy laws"
+      ],
+      "employerQuestions": [],
+      "otherDetails": [
+        "Communication",
+        "Problem-solving",
+        "Empathy"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 100,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-1.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-1.md",
+      "timestamp": "2025-08-02T08:14:42.965Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-6",
+      "title": "Business Development Manager",
+      "company": "Sourcey",
+      "location": "Bayside & South Eastern Suburbs",
+      "url": "https://www.seek.com.au/job/86186380?ref=search-standalone&type=standard",
+      "postedAgo": "23 hours",
+      "mandatoryRequirements": [
+        "Proven experience in luxury sales",
+        "Outstanding communication skills",
+        "Track record of exceeding KPIs"
+      ],
+      "preferredRequirements": [
+        "Experience in high-end real estate",
+        "Experience in property development",
+        "Experience in architecture",
+        "Experience in bespoke construction",
+        "Understanding of affluent client expectations"
+      ],
+      "responsibilities": [
+        "Identify and pursue new business opportunities",
+        "Build relationships with key stakeholders",
+        "Represent company at networking events",
+        "Convert leads into sales opportunities",
+        "Conduct client meetings and presentations",
+        "Collaborate with marketing",
+        "Manage sales pipeline using CRM tools"
+      ],
+      "employerQuestions": [
+        "Right to work in Australia",
+        "Years of experience as a business development manager",
+        "Current Australian driver's licence"
+      ],
+      "otherDetails": [
+        "Self-motivation",
+        "Resilience",
+        "Proficiency with CRM platforms"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 200,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-6.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-6.md",
+      "timestamp": "2025-08-02T08:14:49.215Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-10",
+      "title": "Employment Consultant (Inclusive Employment Australia)",
+      "company": "Sureway Employment and Training",
+      "location": "Dandenong",
+      "url": "https://www.seek.com.au/job/86183668?ref=search-standalone&type=standard",
+      "postedAgo": "1 day",
+      "mandatoryRequirements": [
+        "National Police Check",
+        "Right to work in Australia",
+        "Valid driver’s licence with reliable transport"
+      ],
+      "preferredRequirements": [
+        "Degree qualification in an Engineering discipline (Mechanical, Industrial or Materials Engineering)",
+        "Certification in process improvement techniques such as Six Sigma",
+        "Certification in process improvement techniques such as LEAN",
+        "Certification in process improvement techniques such as KAIZEN"
+      ],
+      "responsibilities": [
+        "Utilising a person-centred approach to tailor services and support participants into meaningful employment",
+        "Developing positive partnerships with local employers to create meaningful employment opportunities for participants",
+        "Enhancing employability through referral to support services and training",
+        "Providing in-employment support to sustain employment",
+        "Marketing participants’ skills to prospective employers",
+        "Achieving program performance and quality benchmarks",
+        "Keeping detailed, accurate records and adhering to all compliance requirements",
+        "Actively participating in the local community to promote services"
+      ],
+      "employerQuestions": [
+        "Do you have a National Police Check?",
+        "Do you have the right to work in Australia?",
+        "Do you hold a valid driver’s licence with reliable transport?",
+        "Do you have a degree qualification in an Engineering discipline?",
+        "Do you have certification in process improvement techniques such as Six Sigma, LEAN, or KAIZEN?"
+      ],
+      "otherDetails": [
+        "Passionate & Motivated",
+        "Relationship Builders",
+        "Quality focused"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 230,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-10.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-10.md",
+      "timestamp": "2025-08-02T08:14:57.231Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-11",
+      "title": "Finance Manager | Enviable Residential Builder",
+      "company": "Concise Recruitment",
+      "location": "Bayside & South Eastern Suburbs",
+      "url": "https://www.seek.com.au/job/86183172?ref=search-standalone&type=standard",
+      "postedAgo": "1 day",
+      "mandatoryRequirements": [
+        "Minimum 5 years’ experience within finance &/or accounting management",
+        "Tertiary qualifications in Accounting, Finance, or a related discipline"
+      ],
+      "preferredRequirements": [
+        "Proven experience in budgeting, forecasting, and financial reporting",
+        "Strong Excel, financial modelling and accounting software capabilities",
+        "Solid background in cash flow and financial compliance management",
+        "Strong stakeholder management skills",
+        "Excellent communication skills (written and verbal)"
+      ],
+      "responsibilities": [
+        "Leading the preparation & analysis of monthly management reports (P&L, balance sheet & cash flow)",
+        "Oversee end-of-month processes, journal entries & financial reconciliations",
+        "Prepare annual budgets and quarterly forecasts",
+        "Provide financial modelling + scenario planning support to the CFO",
+        "Monitor project performance (cost-to-complete, margin analysis & WIP)",
+        "Partner with PMs to ensure accurate job costing & forecasting",
+        "Manage daily cash flow and working capital across the business",
+        "Lead the annual stocktake process and ensure timely reconciliation"
+      ],
+      "employerQuestions": [
+        "Do you have a minimum of 5 years' experience in finance or accounting management?",
+        "What are your qualifications in Accounting, Finance, or a related discipline?",
+        "Can you provide examples of your experience in budgeting, forecasting, and financial reporting?",
+        "What is your proficiency level in Excel, financial modelling, and accounting software?",
+        "How do you ensure compliance with cash flow and financial regulations?"
+      ],
+      "otherDetails": [
+        "Strong stakeholder management skills",
+        "Excellent communication skills (written and verbal)",
+        "An attitude that doesn’t take things too seriously"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 220,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-11.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-11.md",
+      "timestamp": "2025-08-02T08:15:06.594Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-12",
+      "title": "Metal Machine Operator (Rotating Shifts)",
+      "company": "Mploy HR Group Pty Ltd",
+      "location": "Dandenong South",
+      "url": "https://www.seek.com.au/job/86181306?ref=search-standalone&type=standard",
+      "postedAgo": "1 day",
+      "mandatoryRequirements": [
+        "Flexible with working hours and days",
+        "Mechanically inclined with at least 2 years of machine operating experience",
+        "Physically fit"
+      ],
+      "preferredRequirements": [
+        "Keen to learn and be trained",
+        "Demonstrated ability to receive, understand and follow instructions and learn quickly",
+        "Excellent hand and eye coordination",
+        "Meticulous attention to details",
+        "Can work on a rotating roster shift"
+      ],
+      "responsibilities": [
+        "Collect and load extrusion dies from storage racks into rings and trolleys, providing them to the press crews",
+        "Unload used extrusion dies from rings using die press machine and separate them with a splitting machine",
+        "Load spent dies into cleaning tanks with baskets and jib cranes and remove once cleaning complete",
+        "Assist die polisher as necessary",
+        "Full training provided with full-time supervision during training period"
+      ],
+      "employerQuestions": [
+        "Which of the following statements best describes your right to work in Australia?"
+      ],
+      "otherDetails": [
+        "Flexible with working hours and days",
+        "Mechanically inclined",
+        "Physically fit"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 160,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-12.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-12.md",
+      "timestamp": "2025-08-02T08:15:13.338Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    }
+  ]
+}

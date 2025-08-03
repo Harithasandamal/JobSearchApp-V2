@@ -1,0 +1,171 @@
+{
+  "extractedJobs": [
+    {
+      "id": "dark-job-3",
+      "title": "Contract Administrator",
+      "company": "TRIFECTA RECRUITMENT PTY LTD",
+      "location": "Bayside & South Eastern Suburbs",
+      "url": "https://www.seek.com.au/job/86196241?ref=search-standalone&type=standard",
+      "postedAgo": "13 hours",
+      "error": "Navigation timeout of 30000 ms exceeded",
+      "compatibilityScore": 0,
+      "maxPossibleScore": 0,
+      "score": 0,
+      "mandatoryRequirements": [],
+      "preferredRequirements": [],
+      "responsibilities": [],
+      "employerQuestions": [],
+      "otherDetails": [],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "timestamp": "2025-08-02T10:34:50.815Z",
+      "extractionMethod": "error"
+    },
+    {
+      "id": "dark-job-7",
+      "title": "Senior Family Lawyer",
+      "company": "Sharp & Carter Legal",
+      "location": "Bayside & South Eastern Suburbs",
+      "url": "https://www.seek.com.au/job/86186287?ref=search-standalone&type=standard",
+      "postedAgo": "1 day",
+      "mandatoryRequirements": [
+        "At least 8 years’ post-admission experience in family law"
+      ],
+      "preferredRequirements": [
+        "Accredited Specialist in Family Law",
+        "Strong client relationship skills with high-net-worth or complex family matters",
+        "Strong drafting skills",
+        "Strong negotiation skills",
+        "Strong advocacy skills"
+      ],
+      "responsibilities": [
+        "Manage a diverse family law caseload including property, parenting, financial agreements, and intervention orders",
+        "Provide strategic legal advice to clients during sensitive and complex matters",
+        "Maintain and develop strong client and referrer relationships",
+        "Represent clients in mediations, negotiations, and court proceedings",
+        "Contribute to practice development and leadership within the firm"
+      ],
+      "employerQuestions": [
+        "Do you have at least 8 years’ post-admission experience in family law?",
+        "Are you an Accredited Specialist in Family Law?",
+        "Do you have strong client relationship skills with high-net-worth or complex family matters?",
+        "Do you have strong drafting, negotiation, and advocacy skills?",
+        "Are you interested in a succession pathway with long-term potential?"
+      ],
+      "otherDetails": [
+        "Natural leader with the ability to mentor others and inspire confidence",
+        "Desire to step into a succession pathway with long-term potential"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 190,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-7.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-7.md",
+      "timestamp": "2025-08-02T10:35:15.506Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-8",
+      "title": "Counter Trade Sales Clerk",
+      "company": "HRCheck Aust Pty Ltd",
+      "location": "Dandenong",
+      "url": "https://www.seek.com.au/job/86184827?ref=search-standalone&type=standard",
+      "postedAgo": "1 day",
+      "mandatoryRequirements": [
+        "Computer literacy skills",
+        "Outstanding communication and customer service skills",
+        "Full drivers licence"
+      ],
+      "preferredRequirements": [
+        "Background working in a retail 'trade' shop",
+        "Safety conscious and aware of OHS procedures"
+      ],
+      "responsibilities": [
+        "Dealing with trade customers on a daily basis including over the counter sales, phone and email follow-ups",
+        "Liaising with warehouse staff and key personnel",
+        "Preparation of quotes",
+        "Managing a database and following up on orders",
+        "Co-ordination of deliveries and dispatch"
+      ],
+      "employerQuestions": [
+        "Which of the following statements best describes your right to work in Australia?",
+        "How many years' experience do you have as a Sales Clerk?",
+        "Do you have customer service experience?",
+        "How much notice are you required to give your current employer?",
+        "Do you have a current Australian driver's licence?"
+      ],
+      "otherDetails": [
+        "Can do attitude where you are willing to learn everyday",
+        "Available to start in a temporary capacity with a view to permanent",
+        "Be flexible to assist in the warehouse or office if back-up is ever required"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 210,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-8.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-8.md",
+      "timestamp": "2025-08-02T10:35:22.463Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-9",
+      "title": "Electrical Engineering Draftsperson",
+      "company": "Amazing Solar Solutions",
+      "location": "Dandenong South",
+      "url": "https://www.seek.com.au/job/86183328?ref=search-standalone&type=standard",
+      "postedAgo": "1 day",
+      "mandatoryRequirements": [
+        "Relevant qualification in Electrical Engineering or a closely related field"
+      ],
+      "preferredRequirements": [
+        "Proven experience in electrical drafting and system design",
+        "Candidates with more years of experience",
+        "Strong understanding of electrical safety standards and compliance regulations",
+        "Proficiency in using drafting software",
+        "Attention to detail and proactive mindset"
+      ],
+      "responsibilities": [
+        "Develop and maintain electrical layout drawings, wiring diagrams, and system plans for solar PV installations",
+        "Assist engineers in planning and configuring electrical systems",
+        "Collect technical inputs and perform basic calculations to support accuracy of designs",
+        "Support design validation and testing processes",
+        "Collaborate with engineers, clients, and project teams",
+        "Prepare documentation for compliance with safety guidelines and industry standards",
+        "Maintain control and version tracking of technical drawings and documentation"
+      ],
+      "employerQuestions": [
+        "Which of the following statements best describes your right to work in Australia?",
+        "How many years' experience do you have as an Engineering Draftsperson?",
+        "What's your expected annual base salary?",
+        "How much notice are you required to give your current employer?",
+        "Do you have a current Police Check (National Police Certificate) for employment?"
+      ],
+      "otherDetails": [
+        "Attention to detail",
+        "Proactive mindset",
+        "Ability to work collaboratively in a fast-paced team environment"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 200,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-9.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-9.md",
+      "timestamp": "2025-08-02T10:35:41.890Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "extractedJobs": [
+    {
+      "id": "test-results-fix",
+      "title": "Test Job for Results Fix",
+      "company": "Test Company",
+      "location": "Melbourne VIC",
+      "url": "https://www.seek.com.au/job/59745689",
+      "postedAgo": "N/A",
+      "mandatoryRequirements": [
+        "Bachelor's degree in Engineering"
+      ],
+      "preferredRequirements": [
+        "Certification in process improvement techniques (Six Sigma, LEAN, KAIZEN)",
+        "Experience in a manufacturing environment",
+        "Knowledge of quality management systems",
+        "Experience with ERP systems"
+      ],
+      "responsibilities": [
+        "Identify and analyse critical production processes",
+        "Manage and lead continuous improvement projects",
+        "Develop and implement process improvements",
+        "Collaborate with cross-functional teams",
+        "Monitor and report on key performance indicators",
+        "Train and mentor team members",
+        "Ensure compliance with safety and quality standards",
+        "Drive a culture of continuous improvement"
+      ],
+      "employerQuestions": [
+        "Do you have experience with ERP systems?",
+        "Can you provide examples of process improvements you have implemented?",
+        "How do you ensure compliance with safety and quality standards?",
+        "How do you collaborate with cross-functional teams?",
+        "What process improvement techniques are you familiar with?"
+      ],
+      "otherDetails": [
+        "Knowledge of Engineering",
+        "Strong knowledge of manufacturing production processes",
+        "Strong analytical and problem-solving skills"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 190,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_test-results-fix.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_test-results-fix.md",
+      "timestamp": "2025-08-02T11:55:20.910Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    }
+  ]
+}

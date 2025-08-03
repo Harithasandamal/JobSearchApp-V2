@@ -1,0 +1,252 @@
+{
+  "extractedJobs": [
+    {
+      "id": "real-job-1",
+      "title": "Real Job 1",
+      "company": "Real Company 1",
+      "location": "Melbourne VIC",
+      "url": "https://www.seek.com.au/job/59745689",
+      "postedAgo": "N/A",
+      "mandatoryRequirements": [
+        "Degree in Engineering",
+        "Certification in process improvement techniques"
+      ],
+      "preferredRequirements": [
+        "Degree in Mechanical, Industrial or Materials Engineering",
+        "Six Sigma certification",
+        "LEAN certification",
+        "KAIZEN certification"
+      ],
+      "responsibilities": [
+        "Identify and analyse critical production processes",
+        "Managing and leading continuous improvement projects",
+        "Developing and implementing process improvements",
+        "Collaborating with cross-functional teams",
+        "Training and mentoring team members",
+        "Monitoring and evaluating process performance",
+        "Ensuring compliance with quality standards",
+        "Driving a culture of continuous improvement"
+      ],
+      "employerQuestions": [
+        "Question1",
+        "Question2",
+        "Question3",
+        "Question4",
+        "Question5"
+      ],
+      "otherDetails": [
+        "Knowledge of Engineering",
+        "Strong knowledge of manufacturing production processes",
+        "Problem-solving skills"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 210,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_real-job-1.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_real-job-1.md",
+      "timestamp": "2025-08-02T10:49:28.587Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "real-job-2",
+      "title": "Real Job 2",
+      "company": "Real Company 2",
+      "location": "Melbourne VIC",
+      "url": "https://www.seek.com.au/job/59745690",
+      "postedAgo": "N/A",
+      "mandatoryRequirements": [
+        "Degree in Mechanical, Industrial, or Materials Engineering"
+      ],
+      "preferredRequirements": [
+        "Certification in Six Sigma",
+        "Certification in LEAN",
+        "Certification in KAIZEN"
+      ],
+      "responsibilities": [
+        "Identify and analyze critical production processes",
+        "Manage and lead continuous improvement projects"
+      ],
+      "employerQuestions": [
+        "Do you have a degree in Engineering?",
+        "Do you have certifications in Six Sigma, LEAN, or KAIZEN?"
+      ],
+      "otherDetails": [
+        "Knowledge of Engineering",
+        "Strong knowledge of manufacturing production processes"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 110,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_real-job-2.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_real-job-2.md",
+      "timestamp": "2025-08-02T10:49:41.378Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "real-job-3",
+      "title": "Real Job 3",
+      "company": "Real Company 3",
+      "location": "Melbourne VIC",
+      "url": "https://www.seek.com.au/job/59745691",
+      "postedAgo": "N/A",
+      "mandatoryRequirements": [
+        "Degree in Engineering",
+        "5+ years of experience in manufacturing",
+        "Certification in process improvement techniques"
+      ],
+      "preferredRequirements": [
+        "Master's degree in Engineering",
+        "Experience in leading continuous improvement projects",
+        "Knowledge of Six Sigma",
+        "Knowledge of LEAN",
+        "Knowledge of KAIZEN"
+      ],
+      "responsibilities": [
+        "Identify critical production processes",
+        "Analyze production processes",
+        "Lead continuous improvement projects",
+        "Implement process improvement techniques",
+        "Collaborate with cross-functional teams",
+        "Develop and implement process improvement strategies",
+        "Monitor and evaluate process performance",
+        "Provide recommendations for process optimization"
+      ],
+      "employerQuestions": [
+        "Do you have a degree in Engineering?",
+        "How many years of experience do you have in manufacturing?",
+        "Do you have certification in process improvement techniques?",
+        "Have you led continuous improvement projects before?",
+        "What process improvement tools are you familiar with?"
+      ],
+      "otherDetails": [
+        "Knowledge of Engineering",
+        "Strong knowledge of manufacturing production processes",
+        "Strong analytical skills"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 240,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_real-job-3.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_real-job-3.md",
+      "timestamp": "2025-08-02T10:49:56.478Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "real-job-4",
+      "title": "Real Job 4",
+      "company": "Real Company 4",
+      "location": "Melbourne VIC",
+      "url": "https://www.seek.com.au/job/59745692",
+      "postedAgo": "N/A",
+      "mandatoryRequirements": [
+        "Degree in Mechanical, Industrial or Materials Engineering",
+        "Certification in process improvement techniques (Six Sigma, LEAN, KAIZEN)"
+      ],
+      "preferredRequirements": [
+        "5+ years of experience in a manufacturing environment",
+        "Experience in leading continuous improvement projects",
+        "Knowledge of ERP systems",
+        "Experience in implementing lean manufacturing principles",
+        "Experience in a leadership role"
+      ],
+      "responsibilities": [
+        "Identify and analyze critical production processes",
+        "Develop and implement process improvement initiatives",
+        "Manage and lead continuous improvement projects",
+        "Collaborate with cross-functional teams",
+        "Monitor and report on key performance indicators",
+        "Train and mentor team members",
+        "Drive a culture of continuous improvement",
+        "Implement best practices in manufacturing processes"
+      ],
+      "employerQuestions": [
+        "What experience do you have in leading continuous improvement projects?",
+        "How do you approach identifying and analyzing critical production processes?",
+        "Can you provide an example of a successful process improvement initiative you implemented?",
+        "How do you collaborate with cross-functional teams?",
+        "What strategies do you use to drive a culture of continuous improvement?"
+      ],
+      "otherDetails": [
+        "Strong knowledge of manufacturing production processes",
+        "Excellent communication skills",
+        "Problem-solving abilities"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 220,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_real-job-4.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_real-job-4.md",
+      "timestamp": "2025-08-02T10:50:06.964Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "real-job-5",
+      "title": "Real Job 5",
+      "company": "Real Company 5",
+      "location": "Melbourne VIC",
+      "url": "https://www.seek.com.au/job/59745693",
+      "postedAgo": "N/A",
+      "mandatoryRequirements": [
+        "Degree in Engineering",
+        "5+ years of experience in manufacturing",
+        "Certification in process improvement techniques"
+      ],
+      "preferredRequirements": [
+        "Master's degree in Engineering",
+        "Experience with Six Sigma",
+        "Experience with LEAN",
+        "Experience with KAIZEN",
+        "Experience in automotive industry"
+      ],
+      "responsibilities": [
+        "Identify and analyze critical production processes",
+        "Manage and lead continuous improvement projects",
+        "Develop and implement process improvement strategies",
+        "Collaborate with cross-functional teams",
+        "Train and mentor team members",
+        "Monitor and report on key performance indicators",
+        "Drive a culture of continuous improvement",
+        "Ensure compliance with safety and quality standards"
+      ],
+      "employerQuestions": [
+        "Do you have experience with Six Sigma?",
+        "Can you provide examples of successful process improvement projects?",
+        "How do you approach training and mentoring team members?",
+        "How do you ensure compliance with safety and quality standards?",
+        "What experience do you have in the automotive industry?"
+      ],
+      "otherDetails": [
+        "Knowledge of Engineering",
+        "Strong knowledge of manufacturing production processes",
+        "Excellent communication skills"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 240,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_real-job-5.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_real-job-5.md",
+      "timestamp": "2025-08-02T10:50:26.384Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "scoredJobs": [
+    {
+      "id": "interactive-test-job",
+      "title": "Interactive Test Job",
+      "company": "Test Company",
+      "location": "Melbourne",
+      "url": "https://www.seek.com.au/job/85981995?ref=recom-homepage&pos=4&sp=3&origin=jobTitle#sol=941dd2919d55ebc790f6017d3e00d197d7ce28a0",
+      "postedAgo": "N/A",
+      "mandatoryRequirements": [
+        "Strong communication and liaison skills"
+      ],
+      "preferredRequirements": [],
+      "responsibilities": [
+        "Serve as the key liaison between New Home Consultants and customers",
+        "Act as the main point of contact from quote acceptance to construction completion",
+        "Coordinate colour selection and electrical planning consultations",
+        "Manage variation quoting with assistance from the Estimator and present quotes to clients",
+        "Prepare and respond to queries on Building Contracts, Specifications, and Colour Selection documentation"
+      ],
+      "employerQuestions": [
+        "How many years' experience do you have as a Construction Administrator?",
+        "Do you have experience working on residential construction projects?",
+        "How many years' experience do you have in the construction industry?",
+        "How many years of project management experience do you have?",
+        "Do you have experience in administration?"
+      ],
+      "gaps": [
+        "Minimum 2 years of experience as a Construction or Contracts Administrator in residential new home construction"
+      ],
+      "mandatoryMatches": [
+        false,
+        true,
+        false
+      ],
+      "preferredMatches": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "matchingDetails": {
+        "mandatoryReasons": [
+          "The resume does not show experience as a Construction or Contracts Administrator in residential new home construction"
+        ],
+        "preferredReasons": []
+      },
+      "compatibilityScore": 8,
+      "score": 8,
+      "scoreBreakdown": {
+        "mandatoryScore": 40,
+        "preferredScore": 0,
+        "gapPenalty": 20,
+        "gapCount": 1,
+        "mandatoryCount": 1,
+        "preferredCount": 0
+      },
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_interactive-test-job.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_interactive-test-job.md",
+      "timestamp": "2025-08-02T03:23:17.271Z",
+      "scoringMethod": "chatgpt-semantic"
+    }
+  ]
+}

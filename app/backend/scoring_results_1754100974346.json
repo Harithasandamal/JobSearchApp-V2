@@ -1,0 +1,149 @@
+{
+  "scoredJobs": [
+    {
+      "id": "dark-job-2",
+      "title": "Senior AI engineer",
+      "company": "Insurgenceai Pty Ltd",
+      "location": "Collingwood",
+      "url": "https://www.seek.com.au/job/86197141?ref=search-standalone&type=promoted",
+      "postedAgo": "1 hour",
+      "mandatoryRequirements": [
+        "Strong experience developing in Python",
+        "Demonstrated experience building or integrating with LLMs",
+        "Strong knowledge of MLOps practices"
+      ],
+      "preferredRequirements": [
+        "Familiarity with SQL and modern vector search tools",
+        "Hands-on experience with cloud AI services",
+        "Understanding of privacy, security and ethical considerations",
+        "Experience with Microsoft ecosystem integration",
+        "Certifications such as Microsoft Certified: Azure AI Engineer Associate"
+      ],
+      "responsibilities": [
+        "Build and optimise AI applications using Python, LangChain, OpenAI SDKs and FastAPI",
+        "Integrate multi-LLM providers into production workflows",
+        "Design and implement RAG pipelines with vector databases",
+        "Develop robust APIs and micro-services for enterprise use cases",
+        "Work with Kubernetes, Docker and Azure for secure, scalable deployments"
+      ],
+      "employerQuestions": [
+        "Which of the following statements best describes your right to work in Australia?",
+        "How many years' experience do you have as an Artificial Intelligence Engineer?",
+        "Which of the following programming languages are you experienced in?",
+        "Have you worked in a role which requires experience with machine learning techniques?",
+        "How many years' experience do you have using SQL queries?"
+      ],
+      "mandatoryMatches": [
+        true,
+        false,
+        false
+      ],
+      "preferredMatches": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "gaps": [
+        "Demonstrated experience building or integrating with LLMs",
+        "Strong knowledge of MLOps practices"
+      ],
+      "matchingDetails": {
+        "mandatoryReasons": [
+          "The resume mentions experience with Python"
+        ],
+        "preferredReasons": []
+      },
+      "compatibilityScore": 0,
+      "score": 0,
+      "scoreBreakdown": {
+        "mandatoryScore": 30,
+        "preferredScore": 0,
+        "gapPenalty": 80,
+        "gapCount": 2,
+        "mandatoryCount": 1,
+        "preferredCount": 0
+      },
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-2.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-2.md",
+      "timestamp": "2025-08-02T02:16:28.181Z",
+      "scoringMethod": "chatgpt-semantic"
+    },
+    {
+      "id": "dark-job-1",
+      "title": "Azure Devops Engineer- Major Bank - Long term contract",
+      "company": "Bluefin Resources Pty Limited",
+      "location": "Melbourne VIC (Hybrid)",
+      "url": "https://www.seek.com.au/job/86175920?ref=search-standalone&type=standard",
+      "postedAgo": "21 hours",
+      "mandatoryRequirements": [
+        "Experience in Azure architecture styles, design principles, cloud design patterns, security and compliance automation, automated provisioning and deployments",
+        "Detailed hands on Azure Devops experience",
+        "Expert Terraform experience- Tasks such as new Terraform module creation, ongoing lifecycle of modules, application team capability builds via Terraform, and repeatable application automations"
+      ],
+      "preferredRequirements": [
+        "Cloud Application Build and Migration- desirable",
+        "Agile methodology",
+        "AI/ML",
+        "Financial services",
+        "Azure certifications"
+      ],
+      "responsibilities": [
+        "Design, build, and automate Azure Services with a focus on security, compliance, and cost optimization using Terraform for Enterprise consumption",
+        "Contribute to the ongoing improvement of the banks Azure platform, it’s patterns, and tools",
+        "Facilitate solution design and delivery phases to ensure timely resolution of design issues",
+        "Build and manage CI/CD pipelines",
+        "Automate Azure services deployment"
+      ],
+      "employerQuestions": [
+        "If interested and you have the above experience please respond ASAP with your latest resume"
+      ],
+      "mandatoryMatches": [
+        false,
+        false,
+        false
+      ],
+      "preferredMatches": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "gaps": [
+        "Experience in Azure architecture styles, design principles, cloud design patterns, security and compliance automation, automated provisioning and deployments",
+        "Detailed hands on Azure Devops experience",
+        "Expert Terraform experience- Tasks such as new Terraform module creation, ongoing lifecycle of modules, application team capability builds via Terraform, and repeatable application automations"
+      ],
+      "matchingDetails": {
+        "mandatoryReasons": [
+          "No evidence of Azure architecture experience",
+          "No evidence of Azure Devops experience",
+          "No evidence of Terraform experience"
+        ],
+        "preferredReasons": [
+          "No evidence of Cloud Application Build and Migration",
+          "No evidence of Agile methodology",
+          "No evidence of AI/ML",
+          "No evidence of Financial services",
+          "No evidence of Azure certifications"
+        ]
+      },
+      "compatibilityScore": 0,
+      "score": 0,
+      "scoreBreakdown": {
+        "mandatoryScore": 0,
+        "preferredScore": 0,
+        "gapPenalty": 120,
+        "gapCount": 3,
+        "mandatoryCount": 0,
+        "preferredCount": 0
+      },
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-1.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-1.md",
+      "timestamp": "2025-08-02T02:16:39.771Z",
+      "scoringMethod": "chatgpt-semantic"
+    }
+  ]
+}

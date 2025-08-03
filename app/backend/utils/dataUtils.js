@@ -98,7 +98,26 @@ const flattenJobAnalysis = (job) => {
     score: job.compatibilityScore || job.analysis?.compatibilityScore || 0
   };
   
-  // If job has analysis data, flatten it to top level
+  // Handle new 5-list structure from JobScorer
+  if (job.mandatoryRequirements || job.preferredRequirements || job.responsibilities || job.employerQuestions || job.gaps) {
+    return {
+      ...flattenedJob,
+      // Map new structure to expected frontend structure
+      requiredSkills: job.mandatoryRequirements || [],
+      preferredExperience: job.preferredRequirements || [],
+      technicalRequirements: job.mandatoryRequirements || [], // Map mandatory to technical
+      softSkills: job.preferredRequirements || [], // Map preferred to soft skills
+      responsibilities: job.responsibilities || [],
+      employerQuestions: job.employerQuestions || [],
+      gaps: job.gaps || [],
+      mandatoryMatches: job.mandatoryMatches || [],
+      preferredMatches: job.preferredMatches || [],
+      scoreBreakdown: job.scoreBreakdown || {},
+      matchingDetails: job.matchingDetails || {}
+    };
+  }
+  
+  // If job has analysis data, flatten it to top level (legacy support)
   if (job.analysis) {
     // Handle both direct analysis structure (from JobScorer.js) and nested categories structure
     const analysisData = job.analysis.categories || job.analysis;
@@ -142,41 +161,7 @@ const validateSearchParams = (params) => {
   };
 };
 
-/**
- * Create demo jobs for testing
- * @param {number} count - Number of demo jobs to create
- * @param {Object} params - Search parameters
- * @returns {Array} - Array of demo jobs
- */
-const createDemoJobs = (count = 20, params = {}) => {
-  const { location = 'Melbourne VIC', keyword = 'Software Engineer' } = params;
-  
-  return Array.from({ length: count }, (_, i) => ({
-    id: i + 1,
-    title: `${keyword} ${i + 1}`,
-    company: `Company ${i + 1}`,
-    location: location,
-    postedAgo: formatPostedAgoForTest(),
-    url: `https://www.seek.com.au/job/${80000000 + i}?ref=search-standalone`,
-    score: Math.floor(Math.random() * 40) + 60, // Random score between 60-100
-    compatibilityScore: Math.floor(Math.random() * 40) + 60
-  }));
-};
 
-// Helper function to generate properly formatted postedAgo for test data
-function formatPostedAgoForTest() {
-  const randomDays = Math.floor(Math.random() * 7) + 1;
-  const randomHours = Math.floor(Math.random() * 23) + 1;
-  const randomMinutes = Math.floor(Math.random() * 59) + 1;
-  
-  const formats = [
-    `${randomDays} ${randomDays === 1 ? 'day' : 'days'}`,
-    `${randomHours} ${randomHours === 1 ? 'hour' : 'hours'}`,
-    `${randomMinutes} ${randomMinutes === 1 ? 'minute' : 'minutes'}`
-  ];
-  
-  return formats[Math.floor(Math.random() * formats.length)];
-}
 
 /**
  * Save data to file
@@ -212,43 +197,12 @@ const readFromFile = (filePath) => {
   }
 };
 
-const generateJobs = (count, { location = 'Various Locations', keyword = 'Job' } = {}) => {
-  const jobs = Array.from({ length: count }, (_, i) => ({
-    id: 80000000 + i,
-    title: `${keyword} ${i + 1}`,
-    company: `Company ${i + 1}`,
-    location: location,
-    postedAgo: generateRandomTimeString(),
-    url: `https://www.seek.com.au/job/${80000000 + i}?ref=search-standalone`,
-    score: Math.floor(Math.random() * 40) + 60, // Random score between 60-100
-    compatibilityScore: Math.floor(Math.random() * 40) + 60
-  }));
-  
-  // Process all jobs with unified utilities for consistent formatting
-  return JobUtils.processJobs(jobs);
-};
 
-// Helper function to generate properly formatted postedAgo for test data
-function generateRandomTimeString() {
-  const randomDays = Math.floor(Math.random() * 7) + 1;
-  const randomHours = Math.floor(Math.random() * 23) + 1;
-  const randomMinutes = Math.floor(Math.random() * 59) + 1;
-  
-  const formats = [
-    `${randomDays} ${randomDays === 1 ? 'day' : 'days'}`,
-    `${randomHours} ${randomHours === 1 ? 'hour' : 'hours'}`,
-    `${randomMinutes} ${randomMinutes === 1 ? 'minute' : 'minutes'}`
-  ];
-  
-  return formats[Math.floor(Math.random() * formats.length)];
-}
 
 module.exports = {
   parseAnalysis,
   flattenJobAnalysis,
   validateSearchParams,
-  createDemoJobs,
   saveToFile,
-  readFromFile,
-  generateJobs
+  readFromFile
 }; 

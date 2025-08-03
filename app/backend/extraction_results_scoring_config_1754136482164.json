@@ -1,0 +1,131 @@
+{
+  "extractedJobs": [
+    {
+      "id": "dark-job-1",
+      "title": "Junior Digital Support Officer",
+      "company": "Campion Education",
+      "location": "Dandenong South",
+      "url": "https://www.seek.com.au/job/86179762?ref=search-standalone&type=standard",
+      "postedAgo": "1 day",
+      "error": "Failed to download job HTML: net::ERR_CONNECTION_CLOSED at https://www.seek.com.au/job/86179762?ref=search-standalone&type=standard",
+      "compatibilityScore": 0,
+      "maxPossibleScore": 0,
+      "score": 0,
+      "mandatoryRequirements": [],
+      "preferredRequirements": [],
+      "responsibilities": [],
+      "employerQuestions": [],
+      "otherDetails": [],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "timestamp": "2025-08-02T12:08:04.162Z",
+      "extractionMethod": "error"
+    },
+    {
+      "id": "dark-job-2",
+      "title": "Junior Production Planner",
+      "company": "Made",
+      "location": "Dandenong South",
+      "url": "https://www.seek.com.au/job/86153787?ref=search-standalone&type=standard",
+      "postedAgo": "2 days",
+      "mandatoryRequirements": [
+        "Tertiary qualification in Supply Chain, Business, Engineering, or related field"
+      ],
+      "preferredRequirements": [
+        "0–2 years’ experience in a production planning, supply chain, or manufacturing environment",
+        "Understanding of food manufacturing principles including shelf life, allergens, batch traceability, and HACCP",
+        "Excellent Excel skills",
+        "Exposure to ERP systems highly desirable",
+        "Strong communication and coordination skills"
+      ],
+      "responsibilities": [
+        "Assist in developing and maintaining daily and weekly production plans to meet customer demand while optimising line efficiency and minimising waste",
+        "Monitor raw material and packaging stock levels and coordinate with procurement to ensure timely availability for production runs",
+        "Collaborate with production supervisors, quality assurance, and warehouse teams to execute the production schedule and resolve any short-term planning issues",
+        "Track production performance (plan vs actual) and report on output, downtime, and material utilisation",
+        "Maintain planning master data and scheduling parameters in the ERP system (e.g., SAP)",
+        "Support new product launches and promotions by coordinating production timelines and material readiness",
+        "Contribute to continuous improvement initiatives focused on reducing changeovers, improving planning accuracy, and minimising product write-offs due to shelf life",
+        "Prepare and distribute planning reports and dashboards for internal stakeholders"
+      ],
+      "employerQuestions": [
+        "How many years' experience do you have as a Production Planner?",
+        "Do you have experience using Microsoft Excel?",
+        "Which of the following statements best describes your right to work in Australia?",
+        "What's your expected annual base salary?",
+        "Tell us how you stay organised when you have a few things to do at once."
+      ],
+      "otherDetails": [
+        "Detail-oriented",
+        "Organised",
+        "Capable of managing multiple tasks under pressure"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 200,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-2.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-2.md",
+      "timestamp": "2025-08-02T12:08:13.538Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-3",
+      "title": "Project Manager",
+      "company": "Southern Cross Commercial Projects",
+      "location": "Dandenong South",
+      "url": "https://www.seek.com.au/job/86150074?ref=search-standalone&type=standard",
+      "postedAgo": "2 days",
+      "mandatoryRequirements": [
+        "2-3 years experience in Construction-based roles",
+        "Experience working within Australia Building Regulatory Standards",
+        "Formal Qualifications in Project or Construction Management"
+      ],
+      "preferredRequirements": [
+        "Shopfitting experience",
+        "Proficiency in contract management",
+        "Tendering processes experience",
+        "Strong communication skills",
+        "Time management skills"
+      ],
+      "responsibilities": [
+        "Prepare project material takeoffs",
+        "Order materials and prepare delivery programs",
+        "Issue Purchase Orders",
+        "Manage project costs",
+        "Quoting minor works and defits",
+        "Interpret design plans and installation requirements",
+        "Ensure compliance to standards",
+        "Produce weekly project updates"
+      ],
+      "employerQuestions": [
+        "Right to work in Australia",
+        "Years of project management experience",
+        "Years of experience in construction industry",
+        "Understanding of OH&S/WHS",
+        "Expected annual base salary"
+      ],
+      "otherDetails": [
+        "Strong organization skills",
+        "Attention to detail",
+        "Supportive workplace culture"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 240,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-3.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-3.md",
+      "timestamp": "2025-08-02T12:08:23.207Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    }
+  ]
+}

@@ -1,0 +1,203 @@
+{
+  "scoredJobs": [
+    {
+      "id": "job-1",
+      "title": "Software Engineer",
+      "company": "Tech Corp",
+      "location": "Melbourne",
+      "url": "https://www.seek.com.au/job/85994049",
+      "postedAgo": "N/A",
+      "mandatoryRequirements": [
+        "Strong project coordination and communication skills",
+        "Relevant tertiary and project management qualifications (e.g. PMP)"
+      ],
+      "preferredRequirements": [
+        "Experience in cross-functional environments (automotive preferred, not essential)",
+        "Commercial acumen and problem-solving ability",
+        "Self-motivated with a ‘can-do’ attitude and collaborative style"
+      ],
+      "responsibilities": [
+        "Coordinate project documentation, timelines, and reporting",
+        "Facilitate team communication, meetings, and workshops",
+        "Analyse data, track metrics and support prioritisation",
+        "Support governance and adoption of project processes",
+        "Drive collaboration across Product Development, Manufacturing, Marketing, and Sales"
+      ],
+      "employerQuestions": [
+        "How many years' experience do you have as a project coordinator?",
+        "How many years of project management experience do you have?",
+        "Which of the following PMI certifications have you completed?",
+        "Which of the following Microsoft Office products are you experienced with?",
+        "How many years' experience do you have with project planning and scheduling?"
+      ],
+      "mandatoryMatches": [
+        true,
+        false
+      ],
+      "preferredMatches": [
+        false,
+        false,
+        false
+      ],
+      "gaps": [
+        "Relevant tertiary and project management qualifications (e.g. PMP)"
+      ],
+      "matchingDetails": {
+        "mandatoryReasons": [
+          "Resume mentions strong project coordination and communication skills"
+        ],
+        "preferredReasons": []
+      },
+      "compatibilityScore": 0,
+      "score": 0,
+      "scoreBreakdown": {
+        "mandatoryScore": 30,
+        "preferredScore": 0,
+        "gapPenalty": 40,
+        "gapCount": 1,
+        "mandatoryCount": 1,
+        "preferredCount": 0
+      },
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_job-1.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_job-1.md",
+      "timestamp": "2025-08-02T01:53:43.985Z",
+      "scoringMethod": "chatgpt-semantic"
+    },
+    {
+      "id": "job-2",
+      "title": "Project Manager",
+      "company": "Construction Ltd",
+      "location": "Sydney",
+      "url": "https://www.seek.com.au/job/85994050",
+      "postedAgo": "N/A",
+      "mandatoryRequirements": [
+        "Personnel Manager experience",
+        "Fluent in English communication",
+        "Personnel management skills"
+      ],
+      "preferredRequirements": [
+        "Human Resources background",
+        "Experience in construction industry",
+        "Experience in multinational company",
+        "Experience in recruitment",
+        "Experience in employee development"
+      ],
+      "responsibilities": [
+        "Plan and manage workforce",
+        "Recruit and select employees",
+        "Develop personnel",
+        "Manage employee data",
+        "Ensure company regulations compliance"
+      ],
+      "employerQuestions": [
+        "Expected salary",
+        "Educational qualifications",
+        "Years of experience as a Personnel Manager",
+        "Availability to start work after resignation",
+        "Willingness to undergo background check"
+      ],
+      "mandatoryMatches": [
+        true,
+        false,
+        true
+      ],
+      "preferredMatches": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "gaps": [
+        "Fluent in English communication",
+        "Personnel management skills"
+      ],
+      "matchingDetails": {
+        "mandatoryReasons": [
+          "Personnel Manager experience is mentioned",
+          "Personnel management skills are not clearly demonstrated"
+        ],
+        "preferredReasons": [
+          "No evidence of Human Resources background",
+          "No experience in construction industry",
+          "No experience in multinational company",
+          "No experience in recruitment",
+          "No experience in employee development"
+        ]
+      },
+      "compatibilityScore": 0,
+      "score": 0,
+      "scoreBreakdown": {
+        "mandatoryScore": 60,
+        "preferredScore": 0,
+        "gapPenalty": 80,
+        "gapCount": 2,
+        "mandatoryCount": 2,
+        "preferredCount": 0
+      },
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_job-2.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_job-2.md",
+      "timestamp": "2025-08-02T01:53:55.265Z",
+      "scoringMethod": "chatgpt-semantic"
+    },
+    {
+      "id": "job-3",
+      "title": "Data Analyst",
+      "company": "Finance Inc",
+      "location": "Brisbane",
+      "url": "https://www.seek.com.au/job/85994051",
+      "postedAgo": "N/A",
+      "mandatoryRequirements": [
+        "Valid C Class Australian Driver's Licence",
+        "Experience in hotels or similar hospitality setting"
+      ],
+      "preferredRequirements": [
+        "Self-starter with commitment, initiative, and the ability to juggle multiple priorities under pressure"
+      ],
+      "responsibilities": [
+        "Lead the charge in room booking and allocation for personnel posted or transiting through the base",
+        "Track and manage keys like a vault master (arrival, departure, and safe storage)",
+        "Coordinate cleaning, maintenance and respond to service requests like a hospitality ninja",
+        "Keep records sharp: occupancy stats, rank-room reports, logbooks, inventory and condition checks",
+        "Liaise with leadership to align accommodation with rank and availability"
+      ],
+      "employerQuestions": [
+        "Why do you think experience in hotels or similar hospitality setting is important for this role?",
+        "How do you prioritize and manage multiple priorities under pressure?",
+        "Can you provide an example of a situation where you had to coordinate cleaning and maintenance in a fast-paced environment?",
+        "How do you ensure accurate record-keeping in a high-demand setting?",
+        "How would you handle a situation where accommodation needs to be aligned with rank and availability?"
+      ],
+      "mandatoryMatches": [
+        true,
+        false
+      ],
+      "preferredMatches": [
+        false
+      ],
+      "gaps": [
+        "Experience in hotels or similar hospitality setting"
+      ],
+      "matchingDetails": {
+        "mandatoryReasons": [
+          "Valid C Class Australian Driver's Licence found in resume"
+        ],
+        "preferredReasons": []
+      },
+      "compatibilityScore": 0,
+      "score": 0,
+      "scoreBreakdown": {
+        "mandatoryScore": 30,
+        "preferredScore": 0,
+        "gapPenalty": 40,
+        "gapCount": 1,
+        "mandatoryCount": 1,
+        "preferredCount": 0
+      },
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_job-3.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_job-3.md",
+      "timestamp": "2025-08-02T01:54:07.045Z",
+      "scoringMethod": "chatgpt-semantic"
+    }
+  ]
+}

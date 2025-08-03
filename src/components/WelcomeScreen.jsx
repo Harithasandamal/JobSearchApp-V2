@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ProgressChecklist from './common/ProgressChecklist';
 import ResumeUpload from './ResumeUpload';
 import SearchParametersForm from './welcome/SearchParametersForm';
@@ -14,10 +14,10 @@ const WelcomeScreen = ({ appState, updateAppState, navigateTo, searchLocked, sco
   const { systemReady, welcomeChecklist } = useSystemStatus();
   
   // Manage resumeFile state in the main component
-  const [resumeFile, setResumeFile] = React.useState({
-    name: appState.resume || 'Shamalka Resume v2.pdf',
+  const [resumeFile, setResumeFile] = useState({
+    name: appState.resume || 'Default Resume.pdf',
     file: null,
-    isDefault: appState.resume === 'Shamalka Resume v2.pdf' || appState.resume === 'Default Resume.pdf' || !appState.resume
+    isDefault: appState.resume === 'Default Resume.pdf' || !appState.resume
   });
 
   const { localState, handleInputChange, isFormValid } = useWelcomeForm({ 
@@ -32,15 +32,15 @@ const WelcomeScreen = ({ appState, updateAppState, navigateTo, searchLocked, sco
   });
 
   // Keep resumeFile in sync with appState.resume
-  React.useEffect(() => {
+  useEffect(() => {
     if (appState.resume && appState.resume !== resumeFile.name) {
-      if (appState.resume === 'Default Resume.pdf' || appState.resume === 'Shamalka Resume v2.pdf') {
-        setResumeFile({ name: 'Shamalka Resume v2.pdf', file: null, isDefault: true });
+      if (appState.resume === 'Default Resume.pdf') {
+        setResumeFile({ name: 'Default Resume.pdf', file: null, isDefault: true });
       } else {
         setResumeFile({ name: appState.resume, file: null, isDefault: false });
       }
     }
-  }, [appState.resume, resumeFile.name]);
+  }, [appState.resume]);
 
   // Synchronize theme state on component mount to ensure consistency
   React.useEffect(() => {
