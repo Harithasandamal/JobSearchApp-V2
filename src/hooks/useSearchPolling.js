@@ -34,6 +34,10 @@ const useSearchPolling = ({
         console.log('📡 Polling search status for process ID:', processId);
         const status = await seekApiService.getSearchStatus(processId);
         console.log('🔍 Poll result:', status);
+        console.log('🔍 Status type:', typeof status.status);
+        console.log('🔍 Status value:', status.status);
+        console.log('🔍 Progress:', status.progress);
+        console.log('🔍 Jobs length:', status.jobs ? status.jobs.length : 0);
         
         if (!isMounted) return;
 
@@ -41,6 +45,13 @@ const useSearchPolling = ({
 
         if (status.status === 'completed') {
           console.log('✅ Search completed! Status:', status);
+          console.log('📊 Status details:', {
+            processId: status.processId,
+            status: status.status,
+            progress: status.progress,
+            jobCount: status.jobCount,
+            jobsLength: status.jobs ? status.jobs.length : 0
+          });
           
           const jobs = status.jobs || [];
           console.log('📋 Jobs found:', jobs.length, jobs);
@@ -49,6 +60,7 @@ const useSearchPolling = ({
           
           // Call enhanced progress callbacks
           if (onComplete) {
+            console.log('🎯 Calling onComplete callback...');
             onComplete();
           }
           
@@ -56,7 +68,10 @@ const useSearchPolling = ({
           console.log('🚀 Navigating to searched screen in 500ms...');
           setTimeout(() => {
             if (isMounted) {
+              console.log('🎯 Executing navigation to searched screen...');
               navigateTo('searched');
+            } else {
+              console.log('⚠️ Component unmounted, skipping navigation');
             }
           }, 500);
           
@@ -76,6 +91,33 @@ const useSearchPolling = ({
           
           // Clear any error since search is running successfully
           setSearchError(null);
+          
+          // Check if progress is 100% but status is still 'running' (backend completed but status not updated)
+          if (status.progress >= 100 && status.status === 'running') {
+            console.log('⚠️ Progress is 100% but status is still running - backend may have completed');
+            // Force completion after a short delay
+            setTimeout(() => {
+              if (isMounted) {
+                console.log('🔄 Forcing completion due to 100% progress...');
+                const jobs = status.jobs || [];
+                setJobsFound(jobs);
+                updateAppState({ jobsFound: jobs });
+                
+                if (onComplete) {
+                  onComplete();
+                }
+                
+                setTimeout(() => {
+                  if (isMounted) {
+                    navigateTo('searched');
+                  }
+                }, 500);
+                
+                clearInterval(interval);
+              }
+            }, 1000);
+            return;
+          }
           
           // Dynamic progress tracking based on actual backend progress
           const progressPercent = status.progress || 0;
@@ -131,8 +173,8 @@ const useSearchPolling = ({
     console.log('🚀 Starting immediate polling...');
     pollForProgress();
     
-    // Then poll every 500ms for very responsive updates
-    interval = setInterval(pollForProgress, 500);
+    // Then poll every 300ms for very responsive updates
+    interval = setInterval(pollForProgress, 300);
 
     return () => {
       isMounted = false;
