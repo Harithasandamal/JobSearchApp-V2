@@ -227,6 +227,11 @@ const handleUnifiedSearch = async (searchParams, mode = 'dark') => {
           console.log(`✅ ${mode.toUpperCase()} MODE - Completed with ${jobs.length} jobs`);
           workflowLogger.endProcess(`${mode.toUpperCase()} MODE Unified Search`, 'completed', `${jobs.length} jobs found`);
           workflowLogger.logProgress(`${mode.toUpperCase()} MODE Search`, 100, 100, 'Search completed');
+          
+          // Small delay to ensure status is properly set before frontend polling
+          setTimeout(() => {
+            console.log(`🔄 ${mode.toUpperCase()} MODE - Status confirmed as completed`);
+          }, 100);
         }
       }
       

@@ -17,6 +17,7 @@ const useSearchPolling = ({
   const [searchProcessId, setSearchProcessId] = useState(null);
   const [searchStatus, setSearchStatus] = useState(null);
   const [searchError, setSearchError] = useState(null);
+  const [pollStartTime, setPollStartTime] = useState(null);
 
   // Start real SEEK search when component mounts
   useEffect(() => {
@@ -24,6 +25,7 @@ const useSearchPolling = ({
 
     const processId = appState.searchProcessId;
     setSearchProcessId(processId);
+    setPollStartTime(Date.now());
     console.log('🌙 Setting up search polling for process ID:', processId);
 
     let isMounted = true;
@@ -31,6 +33,19 @@ const useSearchPolling = ({
 
     const pollForProgress = async () => {
       try {
+        // Check for timeout (5 minutes)
+        const currentTime = Date.now();
+        const elapsedTime = currentTime - pollStartTime;
+        if (elapsedTime > 300000) { // 5 minutes
+          console.log('⏰ Polling timeout reached (5 minutes)');
+          setSearchError('Search timeout - please try again');
+          if (onError) {
+            onError('Search timeout');
+          }
+          clearInterval(interval);
+          return;
+        }
+        
         console.log('📡 Polling search status for process ID:', processId);
         const status = await seekApiService.getSearchStatus(processId);
         console.log('🔍 Poll result:', status);
@@ -116,6 +131,32 @@ const useSearchPolling = ({
                 clearInterval(interval);
               }
             }, 1000);
+            return;
+          }
+          
+          // Additional check: if jobs are present but status is still running
+          if (status.jobs && status.jobs.length > 0 && status.status === 'running' && status.progress >= 95) {
+            console.log('⚠️ Jobs found but status still running - forcing completion...');
+            setTimeout(() => {
+              if (isMounted) {
+                console.log('🔄 Forcing completion due to jobs presence...');
+                const jobs = status.jobs || [];
+                setJobsFound(jobs);
+                updateAppState({ jobsFound: jobs });
+                
+                if (onComplete) {
+                  onComplete();
+                }
+                
+                setTimeout(() => {
+                  if (isMounted) {
+                    navigateTo('searched');
+                  }
+                }, 500);
+                
+                clearInterval(interval);
+              }
+            }, 500);
             return;
           }
           
