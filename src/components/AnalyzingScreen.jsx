@@ -36,29 +36,33 @@ const AnalyzingScreen = ({ appState, updateAppState, navigateTo }) => {
   // Simulate successive analyzing progress
   useEffect(() => {
     const stepDurations = [2000, 3500, 3000, 2500, 1500]; // Duration for each step in ms
-    const stepProgress = [20, 40, 60, 80, 100]; // Progress percentage for each step
+    const stepProgress = [5, 25, 45, 75, 95]; // Progress percentage for each step (5% to 95%)
     
     let currentStepIndex = 0;
     
     const processStep = () => {
       if (currentStepIndex >= analyzingSteps.length) {
-        // All steps completed, generate analysis data and navigate
-        const demoAnalysisData = {
-          jobTitle: appState.selectedJobForAnalysis?.title || 'Job Title',
-          company: appState.selectedJobForAnalysis?.company || 'Company',
-          location: appState.selectedJobForAnalysis?.location || 'Location',
-          score: appState.selectedJobForAnalysis?.score || 85,
-          analysis: {
-            compatibility: 'High compatibility with your skills and experience',
-            gaps: 'Minor gaps in specific technical skills',
-            recommendations: 'Focus on highlighting relevant experience',
-            companyInfo: 'Established company with good growth potential',
-            recruiterInfo: 'Direct application recommended'
-          }
-        };
-        setAnalysisData(demoAnalysisData);
-        updateAppState({ analysisData: demoAnalysisData });
-        navigateTo('analyzed');
+        // All steps completed, jump to 100% after half second delay
+        setTimeout(() => {
+          setProgress(100);
+          // Generate analysis data and navigate
+          const demoAnalysisData = {
+            jobTitle: appState.selectedJobForAnalysis?.title || 'Job Title',
+            company: appState.selectedJobForAnalysis?.company || 'Company',
+            location: appState.selectedJobForAnalysis?.location || 'Location',
+            score: appState.selectedJobForAnalysis?.score || 85,
+            analysis: {
+              compatibility: 'High compatibility with your skills and experience',
+              gaps: 'Minor gaps in specific technical skills',
+              recommendations: 'Focus on highlighting relevant experience',
+              companyInfo: 'Established company with good growth potential',
+              recruiterInfo: 'Direct application recommended'
+            }
+          };
+          setAnalysisData(demoAnalysisData);
+          updateAppState({ analysisData: demoAnalysisData });
+          navigateTo('analyzed');
+        }, 500);
         return;
       }
 
@@ -73,7 +77,7 @@ const AnalyzingScreen = ({ appState, updateAppState, navigateTo }) => {
       });
       
       // Animate progress bar for this step
-      const startProgress = currentStepIndex === 0 ? 0 : stepProgress[currentStepIndex - 1];
+      const startProgress = currentStepIndex === 0 ? 5 : stepProgress[currentStepIndex - 1]; // Start at 5%
       const endProgress = stepProgress[currentStepIndex];
       const duration = stepDurations[currentStepIndex];
       const increment = (endProgress - startProgress) / (duration / 50); // Update every 50ms

@@ -24,9 +24,11 @@ const ScoringScreen = ({ appState, updateAppState, navigateTo }) => {
     navigateTo,
     {
       onProgressUpdate: (status) => {
-        // Update progress based on backend status
+        // Update progress based on backend status with proper distribution (5% to 95%)
         if (status.progress !== undefined) {
-          setProgress(status.progress);
+          // Map backend progress (0-100) to frontend progress (5-95)
+          const mappedProgress = 5 + (status.progress * 0.9); // 5% to 95%
+          setProgress(mappedProgress);
         }
         
         // Map progress to extraction steps (more accurate for dark mode)
@@ -39,8 +41,11 @@ const ScoringScreen = ({ appState, updateAppState, navigateTo }) => {
         setCurrentStep(stepIndex);
       },
       onComplete: () => {
-        setProgress(100);
-        setCurrentStep(4); // All steps completed
+        // Jump to 100% after half second delay
+        setTimeout(() => {
+          setProgress(100);
+          setCurrentStep(4); // All steps completed
+        }, 500);
       },
       onError: (error) => {
         setError(error);

@@ -38,43 +38,43 @@ const useSearchPolling = ({
 
     const pollForProgress = async () => {
       try {
-        // Check for intelligent timeout (only if no progress for 2 minutes)
-        const currentTime = Date.now();
-        const elapsedTime = currentTime - pollStartTime;
+        // DISABLED: Timeout mechanism causing false errors
+        // const currentTime = Date.now();
+        // const elapsedTime = currentTime - pollStartTime;
         
-        console.log('⏱️ Timeout check:', {
-          elapsedTime: Math.round(elapsedTime / 1000) + 's',
-          lastProgressTime: lastProgressTime ? Math.round((currentTime - lastProgressTime) / 1000) + 's ago' : 'null',
-          lastProgress: lastProgress + '%'
-        });
+        // console.log('⏱️ Timeout check:', {
+        //   elapsedTime: Math.round(elapsedTime / 1000) + 's',
+        //   lastProgressTime: lastProgressTime ? Math.round((currentTime - lastProgressTime) / 1000) + 's ago' : 'null',
+        //   lastProgress: lastProgress + '%'
+        // });
         
-        // Don't check timeout for the first 10 seconds to allow search to start
-        if (elapsedTime < 10000) {
-          console.log('⏱️ Skipping timeout check - search just started');
-        } else {
-          // Only timeout if no progress for 2 minutes AND we've been running for at least 3 minutes
-          // AND we have a valid lastProgressTime (not the initial value)
-          if (elapsedTime > 180000 && lastProgressTime && (currentTime - lastProgressTime) > 120000) { // 3 min total + 2 min no progress
-            console.log('⏰ Intelligent timeout: No progress for 2 minutes after 3 minutes total');
-            setSearchError('Search timeout - please try again');
-            if (onError) {
-              onError('Search timeout');
-            }
-            clearInterval(interval);
-            return;
-          }
+        // // Don't check timeout for the first 10 seconds to allow search to start
+        // if (elapsedTime < 10000) {
+        //   console.log('⏱️ Skipping timeout check - search just started');
+        // } else {
+        //   // Only timeout if no progress for 2 minutes AND we've been running for at least 3 minutes
+        //   // AND we have a valid lastProgressTime (not the initial value)
+        //   if (elapsedTime > 180000 && lastProgressTime && (currentTime - lastProgressTime) > 120000) { // 3 min total + 2 min no progress
+        //     console.log('⏰ Intelligent timeout: No progress for 2 minutes after 3 minutes total');
+        //     setSearchError('Search timeout - please try again');
+        //     if (onError) {
+        //       onError('Search timeout');
+        //     }
+        //     clearInterval(interval);
+        //     return;
+        //   }
           
-          // Absolute timeout after 10 minutes (emergency fallback)
-          if (elapsedTime > 600000) { // 10 minutes
-            console.log('⏰ Absolute timeout reached (10 minutes)');
-            setSearchError('Search timeout - please try again');
-            if (onError) {
-              onError('Search timeout');
-            }
-            clearInterval(interval);
-            return;
-          }
-        }
+        //   // Absolute timeout after 10 minutes (emergency fallback)
+        //   if (elapsedTime > 600000) { // 10 minutes
+        //     console.log('⏰ Absolute timeout reached (10 minutes)');
+        //     setSearchError('Search timeout - please try again');
+        //     if (onError) {
+        //       onError('Search timeout');
+        //     }
+        //     clearInterval(interval);
+        //     return;
+        //   }
+        // }
         
         console.log('📡 Polling search status for process ID:', processId);
         const status = await seekApiService.getSearchStatus(processId);
@@ -115,8 +115,8 @@ const useSearchPolling = ({
             onComplete();
           }
           
-          // Add small delay to ensure loading bar reaches 100% before navigation
-          console.log('🚀 Navigating to searched screen in 500ms...');
+          // Jump to 100% after 500ms delay, then navigate
+          console.log('🚀 Jumping to 100% and navigating in 500ms...');
           setTimeout(() => {
             if (isMounted) {
               console.log('🎯 Executing navigation to searched screen...');
@@ -158,6 +158,7 @@ const useSearchPolling = ({
                   onComplete();
                 }
                 
+                // Jump to 100% after 500ms delay, then navigate
                 setTimeout(() => {
                   if (isMounted) {
                     navigateTo('searched');
@@ -184,6 +185,7 @@ const useSearchPolling = ({
                   onComplete();
                 }
                 
+                // Jump to 100% after 500ms delay, then navigate
                 setTimeout(() => {
                   if (isMounted) {
                     navigateTo('searched');
@@ -217,24 +219,39 @@ const useSearchPolling = ({
             console.log('📈 Initial progress set:', progressPercent);
           }
           
-          // Map progress to steps with improved thresholds for smoother updates
+          // Map progress to steps with proper distribution for 3 loading screens
+          // Progress: 5% to 95% (5% before 1st step, 95% after last step)
           let currentStepIndex = 0;
-          let stepProgress = progressPercent;
+          let stepProgress = 5; // Start at 5%
           
+          // Step 1: Initializing Browser Engine (5% - 20%)
           if (progressPercent >= 5) {
-            currentStepIndex = 1; // Browser launched
+            currentStepIndex = 1;
+            stepProgress = Math.min(progressPercent, 20);
           }
-          if (progressPercent >= 15) {
-            currentStepIndex = 2; // Connected to SEEK
+          
+          // Step 2: Connecting to Job Sources (20% - 40%)
+          if (progressPercent >= 20) {
+            currentStepIndex = 2;
+            stepProgress = Math.min(progressPercent, 40);
           }
-          if (progressPercent >= 25) {
-            currentStepIndex = 3; // Page loaded
+          
+          // Step 3: Loading Job Listings (40% - 60%)
+          if (progressPercent >= 40) {
+            currentStepIndex = 3;
+            stepProgress = Math.min(progressPercent, 60);
           }
+          
+          // Step 4: Extracting Job Information (60% - 80%)
           if (progressPercent >= 60) {
-            currentStepIndex = 4; // Data extracted
+            currentStepIndex = 4;
+            stepProgress = Math.min(progressPercent, 80);
           }
-          if (progressPercent >= 90) {
-            currentStepIndex = 4; // Processing complete
+          
+          // Step 5: Processing & Validating Results (80% - 95%)
+          if (progressPercent >= 80) {
+            currentStepIndex = 5;
+            stepProgress = Math.min(progressPercent, 95);
           }
           
           console.log('🎯 Current step index:', currentStepIndex, 'Progress:', stepProgress + '%');

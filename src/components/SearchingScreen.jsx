@@ -27,29 +27,29 @@ const SearchingScreen = ({ appState, updateAppState, navigateTo, scoringLocked }
     navigateTo,
     setJobsFound,
     onProgressUpdate: (status) => {
-      // Update progress based on backend status
+      // Update progress based on backend status with proper distribution (5% to 95%)
       if (status.progress !== undefined) {
-        setProgress(status.progress);
+        // Map backend progress (0-100) to frontend progress (5-95)
+        const mappedProgress = 5 + (status.progress * 0.9); // 5% to 95%
+        setProgress(mappedProgress);
       }
       
-      // Map progress to steps for light mode (much faster completion)
+      // Map progress to steps with proper thresholds for 3 loading screens
       let stepIndex = 0;
-      if (status.progress >= 5) stepIndex = 1;   // Browser initialized
-      if (status.progress >= 15) stepIndex = 2;  // Connected to sources
-      if (status.progress >= 35) stepIndex = 3;  // Loading listings
-      if (status.progress >= 60) stepIndex = 4;  // Extracting info
-      if (status.progress >= 80) stepIndex = 4;  // Processing results
+      if (status.progress >= 5) stepIndex = 1;   // Initializing Browser Engine
+      if (status.progress >= 20) stepIndex = 2;  // Connecting to Job Sources
+      if (status.progress >= 40) stepIndex = 3;  // Loading Job Listings
+      if (status.progress >= 60) stepIndex = 4;  // Extracting Job Information
+      if (status.progress >= 80) stepIndex = 5;  // Processing & Validating Results
       
       setCurrentStep(stepIndex);
-      
-      // Ensure progress reaches 100% before completion
-      if (status.progress >= 95) {
-        setProgress(100);
-      }
     },
     onComplete: () => {
-      setProgress(100);
-      setCurrentStep(4); // All steps completed
+      // Jump to 100% after half second delay
+      setTimeout(() => {
+        setProgress(100);
+        setCurrentStep(5); // All steps completed
+      }, 500);
     },
     onError: (error) => {
       setError(error);
