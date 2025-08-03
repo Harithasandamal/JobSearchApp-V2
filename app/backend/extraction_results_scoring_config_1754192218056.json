@@ -1,0 +1,242 @@
+{
+  "extractedJobs": [
+    {
+      "id": "dark-job-5",
+      "title": "Production Operator",
+      "company": "Tasline",
+      "location": "Carrum Downs",
+      "url": "https://www.seek.com.au/job/86204791?ref=search-standalone&type=promoted",
+      "postedAgo": "14 minutes",
+      "mandatoryRequirements": [
+        "Basic computer skills",
+        "Ability to work unsupervised",
+        "Strong attention to detail"
+      ],
+      "preferredRequirements": [
+        "Self-starter attitude",
+        "Effective time management",
+        "Clear and respectful communication",
+        "Pride in job quality",
+        "Ability to work well in a team"
+      ],
+      "responsibilities": [
+        "Helping keep braiding machines running smoothly",
+        "Ensuring highest product quality",
+        "Maintaining production flow",
+        "Working as part of a team",
+        "Following OH&S/WHS guidelines",
+        "Following Good Manufacturing Practices (GMP)",
+        "Undergoing pre-employment medical check",
+        "Having a current Australian driver's license"
+      ],
+      "employerQuestions": [
+        "Right to work in Australia",
+        "Years of experience as a production operator",
+        "Forklift licences held",
+        "Willingness to undergo pre-employment medical check",
+        "Understanding of OH&S/WHS and GMP"
+      ],
+      "otherDetails": [
+        "Basic computer skills",
+        "Effective time management",
+        "Clear and respectful communication"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 240,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-5.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-5.md",
+      "timestamp": "2025-08-03T03:37:08.625Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-13",
+      "title": "Machine Operator (foil stamping)",
+      "company": "Girardi Human Resources",
+      "location": "Bayside & South Eastern Suburbs",
+      "url": "https://www.seek.com.au/job/86204231?ref=search-standalone&type=standard",
+      "postedAgo": "3 hours",
+      "mandatoryRequirements": [
+        "Experience in the sheet fed print industry",
+        "High attention to detail",
+        "Good basic literacy and numeracy skills"
+      ],
+      "preferredRequirements": [
+        "Laminating experience",
+        "Strong work ethic"
+      ],
+      "responsibilities": [
+        "Operating the foil stamping machines",
+        "Performing work to a high-quality standard",
+        "Working both independently and as part of a team"
+      ],
+      "employerQuestions": [
+        "Which of the following statements best describes your right to work in Australia?",
+        "How many years' experience do you have as a machine operator?",
+        "Do you own or have regular access to a car?"
+      ],
+      "otherDetails": [
+        "Experience in the sheet fed print industry",
+        "Good basic literacy and numeracy skills",
+        "Strong work ethic"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 170,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-13.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-13.md",
+      "timestamp": "2025-08-03T03:37:18.104Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-14",
+      "title": "Refrigeration Maintenance Labourer",
+      "company": "Coolman",
+      "location": "Rowville",
+      "url": "https://www.seek.com.au/job/86204184?ref=search-standalone&type=standard",
+      "postedAgo": "3 hours",
+      "mandatoryRequirements": [
+        "Valid driver's licence",
+        "Valid Working with Children (WWC) Check"
+      ],
+      "preferredRequirements": [
+        "Ability to work alone at various sites around Melbourne",
+        "Strong technical skills",
+        "Ability to use power tools and hand tools",
+        "Excellent communication and customer service skills",
+        "Ability to work independently and as part of a team"
+      ],
+      "responsibilities": [
+        "Conducting regular maintenance checks on refrigeration equipment",
+        "Maintaining detailed records of all work performed",
+        "Providing exceptional customer service and building strong client relationships"
+      ],
+      "employerQuestions": [
+        "How many years' experience do you have as a Maintenance Labourer?",
+        "Which of the following statements best describes your right to work in Australia?",
+        "Do you have a current Police Check (National Police Certificate) for employment?",
+        "Do you have a current Australian driver's licence?",
+        "Do you have a current Working With Children (WWC) Check?"
+      ],
+      "otherDetails": [
+        "Strong problem-solving ability",
+        "Valid ASIC or willing to apply",
+        "Ability to work at Melbourne airport"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 220,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-14.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-14.md",
+      "timestamp": "2025-08-03T03:37:28.727Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-15",
+      "title": "Machine Operator",
+      "company": "Girardi Human Resources",
+      "location": "Bayside & South Eastern Suburbs",
+      "url": "https://www.seek.com.au/job/86204207?ref=search-standalone&type=standard",
+      "postedAgo": "3 hours",
+      "mandatoryRequirements": [
+        "Experience in the sheet fed print industry",
+        "Good basic literacy and numeracy skills",
+        "Strong work ethic"
+      ],
+      "preferredRequirements": [
+        "Laminating experience",
+        "Full training available for the right candidate"
+      ],
+      "responsibilities": [
+        "Operating laminating machines",
+        "Performing work to a high-quality standard",
+        "Working independently and as part of a team"
+      ],
+      "employerQuestions": [
+        "Right to work in Australia",
+        "Years of experience as a machine operator",
+        "Ownership or regular access to a car"
+      ],
+      "otherDetails": [
+        "Close knit and supportive team",
+        "Great work environment"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 160,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-15.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-15.md",
+      "timestamp": "2025-08-03T03:37:37.568Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-16",
+      "title": "Minor Works Manager",
+      "company": "Eastern Health",
+      "location": "Box Hill",
+      "url": "https://www.seek.com.au/job/86204201?ref=search-standalone&type=standard",
+      "postedAgo": "3 hours",
+      "mandatoryRequirements": [
+        "Trade qualification, or bachelor degree in Engineering or Construction or similar",
+        "Experience in managing projects within healthcare, aged care, or similar including refurbishments in live operational environments with minimal disruption",
+        "Knowledge of building codes, regulations, and occupational health and safety standards"
+      ],
+      "preferredRequirements": [
+        "Ability to engage and manage multiple stakeholders in complex environments, with strong interpersonal skills (both written and verbal)",
+        "Seasonal vaccination against influenza",
+        "Certification in process improvement techniques such as Six Sigma",
+        "Certification in process improvement techniques such as LEAN",
+        "Certification in process improvement techniques such as KAIZEN"
+      ],
+      "responsibilities": [
+        "Undertake delivery of minor Infrastructure projects across Eastern Health's campuses",
+        "Ensure projects are delivered on time, within budget, and in compliance with all regulatory and operational requirements",
+        "Engage and manage multiple stakeholders in complex environments",
+        "Knowledge of building codes, regulations, and occupational health and safety standards",
+        "Work as part of a diverse team",
+        "Excellent communication skills",
+        "Excellent organisational skills",
+        "Complete a National Police Check"
+      ],
+      "employerQuestions": [
+        "Are you eligible to work in Australia?",
+        "Do you possess a Trade qualification, or bachelor degree in Engineering or Construction or similar?",
+        "Do you have experience in managing projects within healthcare, aged care, or similar including refurbishments in live operational environments with minimal disruption?",
+        "Do you have knowledge of building codes, regulations, and occupational health and safety standards?",
+        "Are you willing to complete a National Police Check?"
+      ],
+      "otherDetails": [
+        "Flexible working hours",
+        "Salary packaging options",
+        "Career progression in teaching hospitals"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 240,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-16.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-16.md",
+      "timestamp": "2025-08-03T03:37:49.785Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    }
+  ]
+}

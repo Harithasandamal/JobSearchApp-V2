@@ -29,18 +29,18 @@ const ScoringScreen = ({ appState, updateAppState, navigateTo }) => {
           setProgress(status.progress);
         }
         
-        // Map progress to extraction steps
+        // Map progress to extraction steps (more accurate for dark mode)
         let stepIndex = 0;
-        if (status.progress >= 5) stepIndex = 1;
-        if (status.progress >= 10) stepIndex = 2;
-        if (status.progress >= 15) stepIndex = 3;
-        if (status.progress >= 20) stepIndex = 4;
+        if (status.progress >= 10) stepIndex = 1;  // Downloading pages
+        if (status.progress >= 30) stepIndex = 2;  // Converting to markdown
+        if (status.progress >= 60) stepIndex = 3;  // ChatGPT extraction
+        if (status.progress >= 90) stepIndex = 4;  // Compiling results
         
         setCurrentStep(stepIndex);
       },
       onComplete: () => {
         setProgress(100);
-        setCurrentStep(3);
+        setCurrentStep(4); // All steps completed
       },
       onError: (error) => {
         setError(error);

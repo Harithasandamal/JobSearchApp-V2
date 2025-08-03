@@ -117,9 +117,9 @@ const handleUnifiedSearch = async (searchParams, mode = 'dark') => {
         }
       }
       
-      // Update progress
-      if (processInfo) processInfo.progress = 50;
-      workflowLogger.logProgress(`${mode.toUpperCase()} MODE Search`, 50, 100, 'Scraping job details');
+      // Update progress for URL collection phase
+      if (processInfo) processInfo.progress = 25;
+      workflowLogger.logProgress(`${mode.toUpperCase()} MODE Search`, 25, 100, 'URL collection completed');
       
       console.log(`🚀 UNIFIED SCRAPING - Processing ${jobUrls.length} job URLs with unified engine`);
       
@@ -130,6 +130,10 @@ const handleUnifiedSearch = async (searchParams, mode = 'dark') => {
         
         workflowLogger.startProcess('Enhanced Unified Scraping', `${jobUrls.length} URLs - accurate data only`);
         
+        // Update progress for scraping start
+        if (processInfo) processInfo.progress = 50;
+        workflowLogger.logProgress(`${mode.toUpperCase()} MODE Search`, 50, 100, 'Starting job scraping');
+        
         // Enhanced parallel scraping with speed + accuracy focus (NO FALLBACKS)
         const validJobs = await scrapeAllJobsUnifiedEnhanced(jobUrls);
         
@@ -137,6 +141,10 @@ const handleUnifiedSearch = async (searchParams, mode = 'dark') => {
         const duration = ((endTime - startTime) / 1000).toFixed(1);
         
         console.log(`⚡ ENHANCED UNIFIED SCRAPING - Completed in ${duration} seconds (ACCURATE DATA ONLY)`);
+        
+        // Update progress for scraping completion
+        if (processInfo) processInfo.progress = 75;
+        workflowLogger.logProgress(`${mode.toUpperCase()} MODE Search`, 75, 100, 'Job scraping completed');
         
         // Format jobs consistently for both modes
         const formattedJobs = validJobs.map((job, index) => ({
@@ -157,6 +165,10 @@ const handleUnifiedSearch = async (searchParams, mode = 'dark') => {
         console.error(`❌ ENHANCED UNIFIED SCRAPING - Failed: ${error.message} (ACCURATE DATA ONLY - NO FALLBACKS)`);
         workflowLogger.endProcess('Enhanced Unified Scraping', 'failed', `${error.message} - accurate data only`);
       }
+      
+      // Update progress for sorting phase
+      if (processInfo) processInfo.progress = 85;
+      workflowLogger.logProgress(`${mode.toUpperCase()} MODE Search`, 85, 100, 'Sorting and finalizing results');
       
       // Sort jobs by posted time (unified for both modes)
       if (jobs.length > 0) {
