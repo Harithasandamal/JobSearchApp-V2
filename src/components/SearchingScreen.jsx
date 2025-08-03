@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ProgressChecklist from './common/ProgressChecklist';
 import ResumeUpload from './ResumeUpload';
+import EnhancedProgressBar from './ui/EnhancedProgressBar';
 import { formatLocation, formatDistance, formatPostedAgo, formatKeyword } from '../utils/formatters';
 import useTheme from '../hooks/useTheme';
-import useSearchProgress from '../hooks/useSearchProgress';
+import useEnhancedProgress from '../hooks/useEnhancedProgress';
 import useSearchPolling from '../hooks/useSearchPolling';
 import useResumeSync from '../hooks/useResumeSync';
 
@@ -13,28 +14,58 @@ const SearchingScreen = ({ appState, updateAppState, navigateTo, scoringLocked }
 
   // Custom hooks for modular functionality
   const { resumeFile, setResumeFile } = useResumeSync(appState);
+  
+  // Enhanced progress hook for search
   const { 
     progress, 
-    setProgress, 
     currentStep, 
-    setCurrentStep, 
-    searchSteps, 
-    setSearchSteps, 
+    steps, 
     error, 
-    setError 
-  } = useSearchProgress(appState);
+    isLoading, 
+    loadingMessage,
+    mapBackendProgress,
+    completeProgress,
+    handleError,
+    initializeProgress
+  } = useEnhancedProgress('search');
 
-  // Search polling hook
-  useSearchPolling({
+  // Search polling hook with enhanced progress integration
+  const { 
+    searchProcessId, 
+    searchStatus, 
+    searchError 
+  } = useSearchPolling({
     appState,
     updateAppState,
     navigateTo,
-    setCurrentStep,
-    setProgress,
-    setSearchSteps,
     setJobsFound,
-    setError
+    onProgressUpdate: (status) => {
+      // Map backend progress to frontend smoothly
+      if (status.progress !== undefined) {
+        mapBackendProgress(status.progress, status.currentStep, status.totalJobs, status.currentJob);
+      }
+    },
+    onComplete: () => {
+      completeProgress();
+    },
+    onError: (error) => {
+      handleError(error);
+    }
   });
+
+  // Initialize progress when search starts
+  useEffect(() => {
+    if (appState.searchProcessId && !isLoading) {
+      initializeProgress(themeHook.theme);
+    }
+  }, [appState.searchProcessId, themeHook.theme]);
+
+  // Handle search errors
+  useEffect(() => {
+    if (searchError) {
+      handleError(searchError);
+    }
+  }, [searchError]);
 
   const handleStop = async () => {
     const processId = appState.searchProcessId;
@@ -109,46 +140,18 @@ const SearchingScreen = ({ appState, updateAppState, navigateTo, scoringLocked }
           }
         </div>
 
-        {error && (
-          <div style={{ 
-            backgroundColor: '#f8d7da', 
-            color: '#721c24', 
-            padding: '15px', 
-            borderRadius: '5px', 
-            marginBottom: '20px',
-            border: '1px solid #f5c6cb'
-          }}>
-            <strong>Error:</strong> {error}
-          </div>
-        )}
-
-        {!appState.searchProcessId && !error && (
-          <div style={{ 
-            backgroundColor: '#d1ecf1', 
-            color: '#0c5460', 
-            padding: '15px', 
-            borderRadius: '5px', 
-            marginBottom: '20px',
-            border: '1px solid #bee5eb'
-          }}>
-            <strong>Initializing:</strong> Starting search process...
-          </div>
-        )}
-
-        <ProgressChecklist items={searchSteps} />
+        {/* Enhanced Progress Bar */}
+        <EnhancedProgressBar
+          progress={progress}
+          isLoading={isLoading}
+          loadingMessage={loadingMessage}
+          currentStep={currentStep}
+          steps={steps}
+          error={error}
+        />
         
-        <div className="progress-bar">
-          <div 
-            className="progress-fill" 
-            style={{ width: `${progress}%` }}
-          ></div>
-        </div>
-        
-        <div style={{ textAlign: 'center', marginTop: '10px' }}>
-          <span style={{ color: '#666' }}>
-            {Math.round(progress)}% Complete - {searchSteps[currentStep]?.text || 'Initializing...'}
-          </span>
-        </div>
+        {/* Legacy Progress Checklist (for backward compatibility) */}
+        <ProgressChecklist items={steps} />
       </div>
     </>
   );

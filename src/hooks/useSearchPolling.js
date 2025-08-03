@@ -2,25 +2,28 @@
  * Search Polling Hook - Manages backend search status polling
  * Extracted from SearchingScreen.jsx for better maintainability  
  */
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import seekApiService from '../services/seekApi';
 
 const useSearchPolling = ({ 
   appState, 
   updateAppState, 
   navigateTo, 
-  setCurrentStep, 
-  setProgress, 
-  setSearchSteps, 
   setJobsFound, 
-  setError 
+  onProgressUpdate,
+  onComplete,
+  onError
 }) => {
+  const [searchProcessId, setSearchProcessId] = useState(null);
+  const [searchStatus, setSearchStatus] = useState(null);
+  const [searchError, setSearchError] = useState(null);
 
   // Start real SEEK search when component mounts
   useEffect(() => {
     if (!appState.searchProcessId) return;
 
     const processId = appState.searchProcessId;
+    setSearchProcessId(processId);
     console.log('🌙 Setting up search polling for process ID:', processId);
 
     let isMounted = true;
@@ -34,17 +37,20 @@ const useSearchPolling = ({
         
         if (!isMounted) return;
 
+        setSearchStatus(status);
+
         if (status.status === 'completed') {
           console.log('✅ Search completed! Status:', status);
-          // All steps completed
-          setCurrentStep(4);
-          setProgress(100);
-          setSearchSteps(prev => prev.map((step, index) => ({ ...step, status: 'completed' })));
           
           const jobs = status.jobs || [];
           console.log('📋 Jobs found:', jobs.length, jobs);
           setJobsFound(jobs);
           updateAppState({ jobsFound: jobs });
+          
+          // Call enhanced progress callbacks
+          if (onComplete) {
+            onComplete();
+          }
           
           // Navigate to searched screen
           console.log('🚀 Navigating to searched screen...');
@@ -55,14 +61,19 @@ const useSearchPolling = ({
           clearInterval(interval);
         } else if (status.status === 'failed') {
           console.log('❌ Search failed');
-          setError('Search failed');
-          setSearchSteps(prev => prev.map(step => ({ ...step, status: 'failed' })));
+          setSearchError('Search failed');
+          
+          // Call enhanced progress callbacks
+          if (onError) {
+            onError('Search failed');
+          }
+          
           clearInterval(interval);
         } else {
           console.log('⏳ Search still running, progress:', status.progress);
           
           // Clear any error since search is running successfully
-          setError(null);
+          setSearchError(null);
           
           // Dynamic progress tracking based on actual backend progress
           const progressPercent = status.progress || 0;
@@ -90,19 +101,26 @@ const useSearchPolling = ({
           
           console.log('🎯 Current step index:', currentStepIndex, 'Progress:', stepProgress + '%');
           
-          setProgress(stepProgress);
-          setCurrentStep(currentStepIndex);
-          
-          // Update step statuses based on progress - more granular updates
-          setSearchSteps(prev => prev.map((step, index) => ({
-            ...step,
-            status: index < currentStepIndex ? 'completed' : 
-                   index === currentStepIndex ? 'in-progress' : 'pending'
-          })));
+          // Call enhanced progress callbacks
+          if (onProgressUpdate) {
+            onProgressUpdate({
+              progress: stepProgress,
+              currentStep: currentStepIndex,
+              totalJobs: status.totalJobs || 1,
+              currentJob: status.currentJob || 1,
+              status: status.status
+            });
+          }
         }
       } catch (error) {
         console.error('❌ Error polling search status:', error);
-        setError('Failed to get search status');
+        setSearchError('Failed to get search status');
+        
+        // Call enhanced progress callbacks
+        if (onError) {
+          onError('Failed to get search status');
+        }
+        
         clearInterval(interval);
       }
     };
@@ -118,8 +136,13 @@ const useSearchPolling = ({
       isMounted = false;
       if (interval) clearInterval(interval);
     };
-  }, [appState.searchProcessId, navigateTo, updateAppState, setCurrentStep, setProgress, setSearchSteps, setJobsFound, setError]);
+  }, [appState.searchProcessId, navigateTo, updateAppState, setJobsFound, onProgressUpdate, onComplete, onError]);
 
+  return {
+    searchProcessId,
+    searchStatus,
+    searchError
+  };
 };
 
 export default useSearchPolling;

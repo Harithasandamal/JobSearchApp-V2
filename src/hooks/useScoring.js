@@ -2,9 +2,10 @@ import { useState, useEffect, useRef } from 'react';
 import scoringApiService from '../services/scoringApi';
 import useScoringProgress from './useScoringProgress';
 
-const useScoring = (selectedJobs, updateAppState, navigateTo) => {
+const useScoring = (selectedJobs, updateAppState, navigateTo, callbacks = {}) => {
      const [scoredJobs, setScoredJobs] = useState([]);
    const [error, setError] = useState(null);
+   const [scoringStatus, setScoringStatus] = useState(null);
    const processStartedRef = useRef(false);
    const completedRef = useRef(false);
 
@@ -24,8 +25,11 @@ const useScoring = (selectedJobs, updateAppState, navigateTo) => {
   useEffect(() => {
     if (progressError) {
       setError(progressError);
+      if (callbacks.onError) {
+        callbacks.onError(progressError);
+      }
     }
-  }, [progressError]);
+  }, [progressError, callbacks]);
 
   // Start real scoring process
   useEffect(() => {
@@ -41,7 +45,11 @@ const useScoring = (selectedJobs, updateAppState, navigateTo) => {
         // Only extract data from jobs with valid URLs
         const jobsToExtract = (selectedJobs || []).filter(job => job.url && job.url.startsWith('http'));
         if (jobsToExtract.length === 0) {
-          setError('No valid job URLs found for data extraction.');
+          const errorMsg = 'No valid job URLs found for data extraction.';
+          setError(errorMsg);
+          if (callbacks.onError) {
+            callbacks.onError(errorMsg);
+          }
           return;
         }
         
@@ -56,6 +64,9 @@ const useScoring = (selectedJobs, updateAppState, navigateTo) => {
           processId,
                      // Progress callback
            (status) => {
+             // Update status
+             setScoringStatus(status);
+             
              // Only log significant progress changes
              if (status.progress > 0 && status.progress % 25 === 0) {
                console.log('📊 Data extraction progress:', status.progress + '%');
@@ -89,6 +100,17 @@ const useScoring = (selectedJobs, updateAppState, navigateTo) => {
                 return { ...step, status: 'pending' };
               }
             }));
+            
+            // Call enhanced progress callbacks
+            if (callbacks.onProgressUpdate) {
+              callbacks.onProgressUpdate({
+                progress: newProgress,
+                currentStep: currentStepIndex,
+                totalJobs: jobsToExtract.length,
+                currentJob: status.currentJob || 1,
+                status: status.status
+              });
+            }
           },
                      // Complete callback
            (status) => {
@@ -100,6 +122,9 @@ const useScoring = (selectedJobs, updateAppState, navigateTo) => {
              completedRef.current = true;
              
              console.log('✅ Data extraction completed successfully');
+             
+             // Update status
+             setScoringStatus(status);
             
                          // All steps completed
              setCurrentStep(4);
@@ -175,6 +200,11 @@ const useScoring = (selectedJobs, updateAppState, navigateTo) => {
                          setScoredJobs(extractedJobsData);
              updateAppState({ scoredJobs: extractedJobsData });
              
+             // Call enhanced progress callbacks
+             if (callbacks.onComplete) {
+               callbacks.onComplete();
+             }
+             
              // Navigate to scored screen immediately
              console.log('🚀 Navigating to scored screen...');
              
@@ -188,17 +218,27 @@ const useScoring = (selectedJobs, updateAppState, navigateTo) => {
             console.error('❌ Data extraction failed:', error);
             setError(error.message);
             setScoringSteps(prev => prev.map(step => ({ ...step, status: 'failed' })));
+            
+            // Call enhanced progress callbacks
+            if (callbacks.onError) {
+              callbacks.onError(error.message);
+            }
           }
         );
         
       } catch (error) {
         console.error('❌ Failed to start data extraction:', error);
         setError(error.message);
+        
+        // Call enhanced progress callbacks
+        if (callbacks.onError) {
+          callbacks.onError(error.message);
+        }
       }
     };
 
          startRealScoring();
-   }, [scoringSteps.length, selectedJobs, navigateTo, updateAppState]);
+   }, [scoringSteps.length, selectedJobs, navigateTo, updateAppState, callbacks]);
 
   return {
     progress,
@@ -206,6 +246,7 @@ const useScoring = (selectedJobs, updateAppState, navigateTo) => {
     scoredJobs,
     scoringSteps,
     error,
+    scoringStatus,
     setError
   };
 };

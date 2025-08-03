@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import ResumeLabel from './common/ResumeLabel';
 import ProgressChecklist from './common/ProgressChecklist';
-import ProgressBar from './ui/ProgressBar';
+import EnhancedProgressBar from './ui/EnhancedProgressBar';
 import useScoring from '../hooks/useScoring';
 import useTheme from '../hooks/useTheme';
+import useEnhancedProgress from '../hooks/useEnhancedProgress';
 import { formatLocation, formatDistance, formatPostedAgo, formatKeyword } from '../utils/formatters';
 
 const ScoringScreen = ({ appState, updateAppState, navigateTo }) => {
@@ -14,11 +15,41 @@ const ScoringScreen = ({ appState, updateAppState, navigateTo }) => {
     isDefault: appState.resume === 'Default Resume.pdf'
   });
 
-  // Use custom hook for scoring logic
-  const { progress, currentStep, scoredJobs, scoringSteps, error, setError } = useScoring(
+  // Enhanced progress hook for extraction
+  const { 
+    progress, 
+    currentStep, 
+    steps, 
+    error, 
+    isLoading, 
+    loadingMessage,
+    mapBackendProgress,
+    completeProgress,
+    handleError,
+    initializeProgress
+  } = useEnhancedProgress('extraction');
+
+  // Use custom hook for scoring logic with enhanced progress integration
+  const { scoredJobs, scoringSteps, scoringError } = useScoring(
     appState.selectedJobs, 
     updateAppState, 
-    navigateTo
+    navigateTo,
+    {
+      onProgressUpdate: (status) => {
+        // Map backend progress to frontend smoothly
+        if (status.progress !== undefined) {
+          const totalJobs = appState.selectedJobs?.length || 1;
+          const currentJob = status.currentJob || 1;
+          mapBackendProgress(status.progress, status.currentStep, totalJobs, currentJob);
+        }
+      },
+      onComplete: () => {
+        completeProgress();
+      },
+      onError: (error) => {
+        handleError(error);
+      }
+    }
   );
 
   // Keep resumeFile in sync with appState.resume
@@ -31,6 +62,20 @@ const ScoringScreen = ({ appState, updateAppState, navigateTo }) => {
       }
     }
   }, [appState.resume]);
+
+  // Initialize progress when extraction starts
+  useEffect(() => {
+    if (appState.selectedJobs && appState.selectedJobs.length > 0 && !isLoading) {
+      initializeProgress(theme);
+    }
+  }, [appState.selectedJobs, theme]);
+
+  // Handle scoring errors
+  useEffect(() => {
+    if (scoringError) {
+      handleError(scoringError);
+    }
+  }, [scoringError]);
 
   const handleStop = () => {
     navigateTo('searched');
@@ -92,46 +137,18 @@ const ScoringScreen = ({ appState, updateAppState, navigateTo }) => {
           }
         </div>
         
-        {error && (
-          <div style={{
-            backgroundColor: '#f8d7da',
-            color: '#721c24',
-            padding: '15px',
-            borderRadius: '5px',
-            marginBottom: '20px',
-            border: '1px solid #f5c6cb'
-          }}>
-            <strong>Error:</strong> {error}
-          </div>
-        )}
-
-        {!appState.scoringProcessId && !error && (
-          <div style={{
-            backgroundColor: '#d1ecf1',
-            color: '#0c5460',
-            padding: '15px',
-            borderRadius: '5px',
-            marginBottom: '20px',
-            border: '1px solid #bee5eb'
-          }}>
-            <strong>Initializing:</strong> Starting data extraction process...
-          </div>
-        )}
+        {/* Enhanced Progress Bar */}
+        <EnhancedProgressBar
+          progress={progress}
+          isLoading={isLoading}
+          loadingMessage={loadingMessage}
+          currentStep={currentStep}
+          steps={steps}
+          error={error}
+        />
         
-        <ProgressChecklist items={scoringSteps} />
-        
-        <div className="progress-bar">
-          <div 
-            className="progress-fill" 
-            style={{ width: `${progress}%` }}
-          ></div>
-        </div>
-        
-        <div style={{ textAlign: 'center', marginTop: '10px' }}>
-          <span style={{ color: '#666' }}>
-            {Math.round(progress)}% Complete - {scoringSteps[currentStep]?.text || 'Initializing...'}
-          </span>
-        </div>
+        {/* Legacy Progress Checklist (for backward compatibility) */}
+        <ProgressChecklist items={steps} />
       </div>
     </>
   );
