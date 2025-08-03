@@ -1,104 +1,81 @@
 import { useState, useEffect, useRef } from 'react';
 import scoringApiService from '../services/scoringApi';
-import { extractResumeContent } from '../utils/resumeUtils';
+import useScoringProgress from './useScoringProgress';
 
-const useScoring = (selectedJobs, updateAppState, navigateTo, resumeFile) => {
-  const [progress, setProgress] = useState(0);
-  const [currentStep, setCurrentStep] = useState(0);
-  const [scoredJobs, setScoredJobs] = useState([]);
-  const [scoringSteps, setScoringSteps] = useState([]);
-  const [error, setError] = useState(null);
-  const processStartedRef = useRef(false);
+const useScoring = (selectedJobs, updateAppState, navigateTo) => {
+     const [scoredJobs, setScoredJobs] = useState([]);
+   const [error, setError] = useState(null);
+   const processStartedRef = useRef(false);
+   const completedRef = useRef(false);
 
-  // Initialize scoring steps with resume-based scoring events
+  // Use the new scoring progress hook
+  const { 
+    progress, 
+    setProgress, 
+    currentStep, 
+    setCurrentStep, 
+    scoringSteps, 
+    setScoringSteps, 
+    error: progressError, 
+    setError: setProgressError 
+  } = useScoringProgress({ selectedJobs: selectedJobs });
+
+  // Merge errors from progress hook
   useEffect(() => {
-    if (selectedJobs && selectedJobs.length > 0) {
-      const resumeBasedSteps = [
-        { 
-          id: 1, 
-          text: '📄 Analyzing Resume Content', 
-          description: 'Extracting skills, experience, and qualifications from your resume',
-          status: 'pending' 
-        },
-        { 
-          id: 2, 
-          text: '📋 Extracting Job Requirements', 
-          description: 'Fetching and analyzing job descriptions from SEEK pages',
-          status: 'pending' 
-        },
-        { 
-          id: 3, 
-          text: '📊 Analyzing Job Requirements', 
-          description: 'Extracting required skills, experience, and qualifications',
-          status: 'pending' 
-        },
-        { 
-          id: 4, 
-          text: '🎯 Calculating Compatibility Scores', 
-          description: 'Comparing resume with job requirements across four categories',
-          status: 'pending' 
-        },
-        { 
-          id: 5, 
-          text: '📊 Computing Final Weighted Score', 
-          description: 'Calculating final score based on experience, education, requirements, and skills',
-          status: 'pending' 
-        }
-      ];
-      setScoringSteps(resumeBasedSteps);
-      processStartedRef.current = false; // Reset process flag when steps change
+    if (progressError) {
+      setError(progressError);
     }
-  }, [selectedJobs]);
+  }, [progressError]);
 
   // Start real scoring process
   useEffect(() => {
     if (scoringSteps.length === 0 || processStartedRef.current || !selectedJobs) return;
 
-    processStartedRef.current = true; // Mark process as started
+         processStartedRef.current = true; // Mark process as started
+     completedRef.current = false; // Reset completion flag
 
     const startRealScoring = async () => {
       try {
-        console.log('🚀 Starting resume-based job scoring...');
-        console.log('📄 Resume file:', resumeFile);
+        console.log('🚀 Starting job data extraction...');
         
-        // Extract resume content
-        const resumeData = await extractResumeContent(resumeFile);
-        console.log('📄 Extracted resume data:', resumeData);
-        
-        // Only score jobs with valid URLs
-        const jobsToScore = (selectedJobs || []).filter(job => job.url && job.url.startsWith('http'));
-        if (jobsToScore.length === 0) {
-          setError('No valid job URLs found for scoring.');
+        // Only extract data from jobs with valid URLs
+        const jobsToExtract = (selectedJobs || []).filter(job => job.url && job.url.startsWith('http'));
+        if (jobsToExtract.length === 0) {
+          setError('No valid job URLs found for data extraction.');
           return;
         }
         
-        // Start the scoring process with resume data
-        const response = await scoringApiService.startScoring(jobsToScore, resumeData);
+        // Start the data extraction process
+        const response = await scoringApiService.startScoring(jobsToExtract);
         const processId = response.processId;
         
-        console.log('✅ Resume-based scoring process started:', processId);
+        console.log('✅ Data extraction process started:', processId);
         
         // Poll for results
         scoringApiService.pollScoringResults(
           processId,
-          // Progress callback
-          (status) => {
-            console.log('📊 Resume-based scoring progress:', status.progress);
-            setProgress(status.progress || 0);
+                     // Progress callback
+           (status) => {
+             // Only log significant progress changes
+             if (status.progress > 0 && status.progress % 25 === 0) {
+               console.log('📊 Data extraction progress:', status.progress + '%');
+             }
+             
+             // Ensure progress doesn't go backwards
+             const newProgress = status.progress || 0;
+             setProgress(prevProgress => Math.max(prevProgress, newProgress));
             
-            // Map progress to resume-based scoring steps
-            let currentStepIndex = 0;
-            
-            // Step 1: Analyzing Resume Content (0-20%)
-            if (status.progress >= 5) currentStepIndex = 1;
-            // Step 2: Extracting Job Requirements (20-40%)
-            if (status.progress >= 25) currentStepIndex = 2;
-            // Step 3: Analyzing Job Requirements (40-60%)
-            if (status.progress >= 45) currentStepIndex = 3;
-            // Step 4: Calculating Compatibility Scores (60-80%)
-            if (status.progress >= 65) currentStepIndex = 4;
-            // Step 5: Computing Final Weighted Score (80-100%)
-            if (status.progress >= 85) currentStepIndex = 5;
+                         // Map progress to data extraction steps
+             let currentStepIndex = 0;
+             
+             // Step 1: Downloading Job Pages (0-25%)
+             if (status.progress >= 5) currentStepIndex = 1;
+             // Step 2: Converting to Markdown (25-50%)
+             if (status.progress >= 10) currentStepIndex = 2;
+             // Step 3: Extracting Data with ChatGPT (50-75%)
+             if (status.progress >= 15) currentStepIndex = 3;
+             // Step 4: Compiling Results (75-100%)
+             if (status.progress >= 20) currentStepIndex = 4;
             
             setCurrentStep(currentStepIndex);
             
@@ -113,132 +90,115 @@ const useScoring = (selectedJobs, updateAppState, navigateTo, resumeFile) => {
               }
             }));
           },
-          // Complete callback
-          (status) => {
-            console.log('✅ Resume-based scoring completed:', status);
-            console.log('📋 Status structure:', JSON.stringify(status, null, 2));
+                     // Complete callback
+           (status) => {
+             // Prevent multiple completion calls
+             if (completedRef.current) {
+               console.log('⚠️ Completion already processed, skipping...');
+               return;
+             }
+             completedRef.current = true;
+             
+             console.log('✅ Data extraction completed successfully');
             
-            // All steps completed
-            setCurrentStep(5);
-            setProgress(100);
-            setScoringSteps(prev => prev.map(step => ({ ...step, status: 'completed' })));
+                         // All steps completed
+             setCurrentStep(4);
+             setProgress(100);
+             setScoringSteps(prev => prev.map(step => ({ ...step, status: 'completed' })));
+             
+             // Force UI update
+             setTimeout(() => {
+               setProgress(100);
+             }, 50);
             
-            // Process results regardless of structure
-            let scoredJobsData = [];
-            
-            if (status.scoredJobs && Array.isArray(status.scoredJobs)) {
-              scoredJobsData = status.scoredJobs.map(job => {
-                // Handle resume-based scoring results
-                const flattenedJob = {
+                         // Process extraction results
+             let extractedJobsData = [];
+             
+             // Check for extractedJobs first (new format)
+             if (status.extractedJobs && Array.isArray(status.extractedJobs)) {
+               extractedJobsData = status.extractedJobs;
+             } else if (status.results && status.results.extractedJobs && Array.isArray(status.results.extractedJobs)) {
+               // Check for results.extractedJobs (backend format)
+               extractedJobsData = status.results.extractedJobs;
+             } else if (status.results && status.results.scoredJobs && Array.isArray(status.results.scoredJobs)) {
+               // Fallback for legacy format
+               extractedJobsData = status.results.scoredJobs;
+             }
+             
+             if (extractedJobsData.length > 0) {
+               // Handle the new extraction method results
+               extractedJobsData = extractedJobsData.map(job => {
+                return {
                   ...job,
-                  score: job.score || job.finalScore || 0,
-                  postedAgo: job.postedAgo || 'N/A'
-                };
-                
-                // If job has compatibility scores, extract category scores
-                if (job.compatibilityScores) {
-                  const categoryScores = {};
-                  Object.entries(job.compatibilityScores).forEach(([category, data]) => {
-                    categoryScores[category] = data.score || 0;
-                  });
+                  // Ensure all required fields are present
+                  id: job.id,
+                  title: job.title,
+                  company: job.company,
+                  location: job.location,
+                  url: job.url,
+                  postedAgo: job.postedAgo || 'N/A',
                   
-                  return {
-                    ...flattenedJob,
-                    categoryScores,
-                    resumeAnalysis: job.resumeAnalysis || {},
-                    jobRequirements: job.jobRequirements || {},
-                    compatibilityScores: job.compatibilityScores || {},
-                    // Legacy compatibility - map to old structure
-                    requiredSkills: job.jobRequirements?.requiredSkills || [],
-                    preferredExperience: job.jobRequirements?.requiredExperience || [],
-                    technicalRequirements: job.jobRequirements?.requiredSkills || [],
-                    softSkills: job.compatibilityScores?.transferrableSkills?.matches || [],
-                    responsibilities: job.jobRequirements?.otherRequirements || []
-                  };
-                }
-                
-                // Fallback for legacy structure
-                if (job.analysis) {
-                  const analysisData = job.analysis.categories || job.analysis;
-                  return {
-                    ...flattenedJob,
-                    requiredSkills: analysisData.requiredSkills || [],
-                    preferredExperience: analysisData.preferredExperience || [],
-                    technicalRequirements: analysisData.technicalRequirements || [],
-                    softSkills: analysisData.softSkills || [],
-                    responsibilities: analysisData.responsibilities || [],
-                    detailedScores: job.detailedScores || {}
-                  };
-                }
-                
-                return flattenedJob;
-              });
-            } else if (status.results && status.results.jobs) {
-              scoredJobsData = status.results.jobs.map(job => {
-                const flattenedJob = {
-                  ...job,
-                  score: job.compatibilityScore || job.analysis?.compatibilityScore || 0,
-                  postedAgo: job.postedAgo || 'N/A'
+                  // New 5-list structure
+                  mandatoryRequirements: job.mandatoryRequirements || [],
+                  preferredRequirements: job.preferredRequirements || [],
+                  responsibilities: job.responsibilities || [],
+                  employerQuestions: job.employerQuestions || [],
+                  otherDetails: job.otherDetails || [],
+                  
+                  // User interaction data (initialized as empty)
+                  checkedMandatory: job.checkedMandatory || [],
+                  checkedPreferred: job.checkedPreferred || [],
+                  checkedEmployerQuestions: job.checkedEmployerQuestions || [],
+                  checkedOtherDetails: job.checkedOtherDetails || [],
+                  
+                  // Compatibility score (starts at 0)
+                  compatibilityScore: job.compatibilityScore || 0,
+                  maxPossibleScore: job.maxPossibleScore || 0,
+                  score: job.compatibilityScore || 0, // For backwards compatibility
+                  
+                  // Metadata
+                  timestamp: job.timestamp || new Date().toISOString(),
+                  extractionMethod: job.extractionMethod || 'chatgpt-data-extraction'
                 };
-                
-                if (job.analysis) {
-                  const analysisData = job.analysis.categories || job.analysis;
-                  return {
-                    ...flattenedJob,
-                    requiredSkills: analysisData.requiredSkills || [],
-                    preferredExperience: analysisData.preferredExperience || [],
-                    technicalRequirements: analysisData.technicalRequirements || [],
-                    softSkills: analysisData.softSkills || [],
-                    responsibilities: analysisData.responsibilities || [],
-                    detailedScores: job.detailedScores || {}
-                  };
-                }
-                
-                return flattenedJob;
               });
-            } else {
-              // Fallback: create basic scored jobs from selected jobs
-              scoredJobsData = (selectedJobs || []).map(job => ({
-                ...job,
-                score: Math.floor(Math.random() * 40) + 60, // Random score between 60-100
-                compatibilityScore: Math.floor(Math.random() * 40) + 60,
-                postedAgo: job.postedAgo || 'N/A'
-              }));
-            }
+                         } else {
+               console.warn('⚠️ No extraction results found');
+               console.log('Available keys in status:', Object.keys(status));
+               if (status.results) {
+                 console.log('Available keys in results:', Object.keys(status.results));
+               }
+               extractedJobsData = [];
+             }
             
-            console.log('📊 Processed scored jobs:', scoredJobsData);
+                         console.log(`📊 Processed ${extractedJobsData.length} extracted jobs`);
             
-            // Debug: Log the first job's analysis structure
-            if (scoredJobsData.length > 0) {
-              const firstJob = scoredJobsData[0];
-              console.log('🔍 First job analysis structure:', firstJob.analysis);
-              console.log('🔍 First job category scores:', firstJob.categoryScores);
-              console.log('🔍 First job compatibility scores:', firstJob.compatibilityScores);
-            }
-            
-            setScoredJobs(scoredJobsData);
-            updateAppState({ scoredJobs: scoredJobsData });
-            
-            // Navigate to scored screen immediately
-            console.log('🚀 Navigating to scored screen...');
-            navigateTo('scored');
+                         setScoredJobs(extractedJobsData);
+             updateAppState({ scoredJobs: extractedJobsData });
+             
+             // Navigate to scored screen immediately
+             console.log('🚀 Navigating to scored screen...');
+             
+                            // Then navigate
+               setTimeout(() => {
+                 navigateTo('scored');
+               }, 100);
           },
           // Error callback
           (error) => {
-            console.error('❌ Resume-based scoring failed:', error);
+            console.error('❌ Data extraction failed:', error);
             setError(error.message);
             setScoringSteps(prev => prev.map(step => ({ ...step, status: 'failed' })));
           }
         );
         
       } catch (error) {
-        console.error('❌ Failed to start resume-based scoring:', error);
+        console.error('❌ Failed to start data extraction:', error);
         setError(error.message);
       }
     };
 
-    startRealScoring();
-  }, [scoringSteps.length, selectedJobs, navigateTo, updateAppState, resumeFile]);
+         startRealScoring();
+   }, [scoringSteps.length, selectedJobs, navigateTo, updateAppState]);
 
   return {
     progress,

@@ -5,38 +5,25 @@ class ScoringApiService {
     this.baseUrl = API_BASE_URL;
   }
 
-  // Start job scoring process
-  async startScoring(selectedJobs, resumeData = null) {
+  // Start job data extraction process
+  async startScoring(selectedJobs) {
     try {
-      let response;
-      if (resumeData && resumeData.file) {
-        // Send as FormData
-        const formData = new FormData();
-        formData.append('selectedJobs', JSON.stringify(selectedJobs));
-        formData.append('resumeFile', resumeData.file, resumeData.name);
-        response = await fetch(`${this.baseUrl}/score-jobs`, {
-          method: 'POST',
-          body: formData
-        });
-      } else {
-        // Fallback to JSON
-        response = await fetch(`${this.baseUrl}/score-jobs`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            selectedJobs,
-            resumeData
-          }),
-        });
-      }
+      const response = await fetch(`${this.baseUrl}/score-jobs`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          selectedJobs
+        }),
+      });
+      
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       return await response.json();
     } catch (error) {
-      console.error('Error starting scoring:', error);
+      console.error('Error starting data extraction:', error);
       throw error;
     }
   }
@@ -59,8 +46,8 @@ class ScoringApiService {
 
   // Poll for scoring results with progress updates
   async pollScoringResults(processId, onProgress, onComplete, onError) {
-    const pollInterval = 2000; // Poll every 2 seconds
-    const maxAttempts = 300; // Max 10 minutes (300 * 2 seconds)
+    const pollInterval = 3000; // Poll every 3 seconds (reduced frequency)
+    const maxAttempts = 200; // Max 10 minutes (200 * 3 seconds)
     let attempts = 0;
 
     const poll = async () => {

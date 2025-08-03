@@ -16,7 +16,7 @@ app.use(express.json());
 // Custom middleware to log meaningful API calls (skip repetitive status checks)
 app.use((req, res, next) => {
   // Only log important API calls, not repetitive status checks
-  if (!req.path.includes('search-status') && !req.path.includes('health')) {
+  if (!req.path.includes('search-status') && !req.path.includes('scoring-status') && !req.path.includes('health')) {
     workflowLogger.logApiCall(req.method, req.path);
   }
   next();

@@ -9,24 +9,23 @@ import { formatLocation, formatDistance, formatPostedAgo, formatKeyword } from '
 const ScoringScreen = ({ appState, updateAppState, navigateTo }) => {
   const { theme } = useTheme();
   const [resumeFile, setResumeFile] = useState({
-    name: appState.resume || 'Shamalka Resume v2.pdf',
+    name: appState.resume || 'Default Resume.pdf',
     file: null,
-    isDefault: appState.resume === 'Shamalka Resume v2.pdf' || appState.resume === 'Default Resume.pdf'
+    isDefault: appState.resume === 'Default Resume.pdf'
   });
 
   // Use custom hook for scoring logic
   const { progress, currentStep, scoredJobs, scoringSteps, error, setError } = useScoring(
     appState.selectedJobs, 
     updateAppState, 
-    navigateTo,
-    resumeFile
+    navigateTo
   );
 
   // Keep resumeFile in sync with appState.resume
   useEffect(() => {
     if (appState.resume && appState.resume !== resumeFile.name) {
-      if (appState.resume === 'Default Resume.pdf' || appState.resume === 'Shamalka Resume v2.pdf') {
-        setResumeFile({ name: 'Shamalka Resume v2.pdf', file: null, isDefault: true });
+      if (appState.resume === 'Default Resume.pdf') {
+        setResumeFile({ name: 'Default Resume.pdf', file: null, isDefault: true });
       } else {
         setResumeFile({ name: appState.resume, file: null, isDefault: false });
       }
@@ -74,21 +73,13 @@ const ScoringScreen = ({ appState, updateAppState, navigateTo }) => {
         </div>
 
         {/* Action Buttons */}
-        <div className="stage-label">
-          {appState.jobsFound.length} Jobs Found.
-        </div>
-
-        <div className="stage-label">
-          Scoring
-        </div>
-
         <button className="btn btn-warning" disabled>
-          Scoring in Progress...
+          Extracting Job Data...
         </button>
 
         <div className="nav-buttons">
           <button className="btn btn-danger" onClick={handleStop}>
-            Stop Scoring
+            Stop Extraction
           </button>
         </div>
       </div>
@@ -96,8 +87,8 @@ const ScoringScreen = ({ appState, updateAppState, navigateTo }) => {
       <div className="right-panel">
         <div className="screen-header">
           {theme === 'light' ? 
-            `Scoring: ${appState.selectedJobs?.length || 0} Test Jobs` : 
-            `Scoring: ${appState.selectedJobs?.length || 0} of ${formatKeyword(appState.keyword)} Jobs in ${formatDistance(appState.distance)} from ${formatLocation(appState.location)}, Posted within last ${formatPostedAgo(appState.postedAgo)}`
+            `Extracting: ${appState.selectedJobs?.length || 0} Test Jobs` : 
+            `Extracting: ${appState.selectedJobs?.length || 0} of ${formatKeyword(appState.keyword)} Jobs in ${formatDistance(appState.distance)} from ${formatLocation(appState.location)}, Posted within last ${formatPostedAgo(appState.postedAgo)}`
           }
         </div>
         
@@ -113,14 +104,34 @@ const ScoringScreen = ({ appState, updateAppState, navigateTo }) => {
             <strong>Error:</strong> {error}
           </div>
         )}
+
+        {!appState.scoringProcessId && !error && (
+          <div style={{
+            backgroundColor: '#d1ecf1',
+            color: '#0c5460',
+            padding: '15px',
+            borderRadius: '5px',
+            marginBottom: '20px',
+            border: '1px solid #bee5eb'
+          }}>
+            <strong>Initializing:</strong> Starting data extraction process...
+          </div>
+        )}
         
         <ProgressChecklist items={scoringSteps} />
         
-        <ProgressBar 
-          progress={progress}
-          currentStep={currentStep}
-          steps={scoringSteps}
-        />
+        <div className="progress-bar">
+          <div 
+            className="progress-fill" 
+            style={{ width: `${progress}%` }}
+          ></div>
+        </div>
+        
+        <div style={{ textAlign: 'center', marginTop: '10px' }}>
+          <span style={{ color: '#666' }}>
+            {Math.round(progress)}% Complete - {scoringSteps[currentStep]?.text || 'Initializing...'}
+          </span>
+        </div>
       </div>
     </>
   );

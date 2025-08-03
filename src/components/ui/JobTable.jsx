@@ -8,7 +8,7 @@ const JobTable = ({
 }) => {
   if (!jobs || jobs.length === 0) {
     return (
-      <div className="table-container" style={{ height: '200px', marginBottom: '0', flexShrink: 0, width: '100%' }}>
+      <div className="table-container" style={{ height: '300px', marginBottom: '0', flexShrink: 0, width: '100%' }}>
         <div style={{ textAlign: 'center', padding: '20px', color: 'var(--text-secondary)' }}>
           No jobs available
         </div>
@@ -24,17 +24,16 @@ const JobTable = ({
   };
 
   return (
-    <div className="table-container" style={{ height: '200px', marginBottom: '0', flexShrink: 0, width: '100%' }}>
+    <div className="table-container" style={{ height: '300px', marginBottom: '0', flexShrink: 0, width: '100%' }}>
       <table className="table" style={{ width: '100%', tableLayout: 'fixed' }}>
         <thead>
           <tr>
+            <th style={{ width: '50px' }}>Select</th>
             <th>Job Title</th>
             <th>Location</th>
             <th>Company</th>
             <th>Posted Ago</th>
-            <th>Requirements</th>
-            <th>Responsibilities</th>
-            <th>Score %</th>
+            <th>Compatibility Score</th>
           </tr>
         </thead>
         <tbody>
@@ -42,11 +41,24 @@ const JobTable = ({
             <tr 
               key={`job-${job.id}-${index}`} 
               style={{ 
-                backgroundColor: selectedJobId === job.id ? 'var(--accent-color)' : 'transparent',
-                color: selectedJobId === job.id ? 'white' : 'var(--text-primary)'
+                backgroundColor: selectedJobId === job.id ? '#2563eb' : 'transparent',
+                color: selectedJobId === job.id ? '#ffffff' : 'var(--text-primary)',
+                cursor: 'pointer',
+                transition: 'background-color 0.2s ease'
+              }}
+              onClick={() => onJobSelection(job.id)}
+              onMouseEnter={(e) => {
+                if (selectedJobId !== job.id) {
+                  e.target.parentElement.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (selectedJobId !== job.id) {
+                  e.target.parentElement.style.backgroundColor = 'transparent';
+                }
               }}
             >
-              <td>
+              <td style={{ textAlign: 'center' }}>
                 <input
                   type="radio"
                   className="radio"
@@ -54,20 +66,26 @@ const JobTable = ({
                   checked={selectedJobId === job.id}
                   onChange={() => onJobSelection(job.id)}
                 />
+              </td>
+              <td>
                 <span 
                   className="job-link" 
                   style={{ 
                     cursor: 'pointer', 
-                    color: selectedJobId === job.id ? 'white' : 'var(--accent-color)', 
-                    textDecoration: 'underline',
+                    color: selectedJobId === job.id ? '#ffffff' : 'var(--accent-color)', 
+                    textDecoration: selectedJobId === job.id ? 'underline' : 'underline',
                     display: 'inline-block',
                     maxWidth: '200px',
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
                     whiteSpace: 'nowrap',
-                    verticalAlign: 'middle'
+                    verticalAlign: 'middle',
+                    fontWeight: selectedJobId === job.id ? 'bold' : 'normal'
                   }}
-                  onClick={() => onJobClick(job.url)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onJobClick(job.url);
+                  }}
                   title={job.title || 'Click to view job on SEEK'}
                 >
                   {truncateText(job.title, 50)}
@@ -106,18 +124,30 @@ const JobTable = ({
                   job.postedAgo || 'N/A'
                 )}
               </td>
-              <td title={
-                [...(job.mandatory || []), ...(job.preferred || [])].join(', ')
-              }>
-                {(() => {
-                  const reqs = [...(job.mandatory || []), ...(job.preferred || [])];
-                  return reqs.length > 0 ? truncateText(reqs.slice(0, 10).join(', '), 60) : 'N/A';
-                })()}
+              <td style={{ textAlign: 'center', fontWeight: 'bold' }}>
+                <span style={{
+                  backgroundColor: job.compatibilityScore >= 80 ? '#28a745' : 
+                                  job.compatibilityScore >= 60 ? '#ffc107' : '#dc3545',
+                  color: 'white',
+                  padding: '4px 8px',
+                  borderRadius: '4px',
+                  fontSize: '14px',
+                  fontWeight: 'bold'
+                }}>
+                  {job.compatibilityScore || job.score || 0}
+                </span>
               </td>
-              <td title={(job.responsibilities || []).join(', ')}>
-                {job.responsibilities && job.responsibilities.length > 0 ? truncateText(job.responsibilities.slice(0, 10).join(', '), 60) : 'N/A'}
-              </td>
-              <td>{job.compatibilityScore || job.score || 'N/A'}</td>
+            </tr>
+          ))}
+          {/* Add empty rows to always show 5 total rows */}
+          {Array.from({ length: Math.max(0, 5 - jobs.length) }, (_, index) => (
+            <tr key={`empty-${index}`} style={{ height: '40px' }}>
+              <td style={{ border: 'none' }}></td>
+              <td style={{ border: 'none' }}></td>
+              <td style={{ border: 'none' }}></td>
+              <td style={{ border: 'none' }}></td>
+              <td style={{ border: 'none' }}></td>
+              <td style={{ border: 'none' }}></td>
             </tr>
           ))}
         </tbody>

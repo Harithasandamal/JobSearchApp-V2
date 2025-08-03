@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import ResumeLabel from './common/ResumeLabel';
+import ResumeUpload from './ResumeUpload';
 import JobTable from './ui/JobTable';
 import AnalysisGrid from './ui/AnalysisGrid';
 import useJobSelection from '../hooks/useJobSelection';
@@ -9,19 +9,29 @@ import { formatLocation, formatDistance, formatPostedAgo, formatKeyword } from '
 const ScoredScreen = ({ appState, updateAppState, navigateTo }) => {
   const { theme } = useTheme();
   const [resumeFile, setResumeFile] = useState({
-    name: appState.resume || 'Shamalka Resume v2.pdf',
+    name: appState.resume || 'Default Resume.pdf',
     file: null,
-    isDefault: appState.resume === 'Shamalka Resume v2.pdf' || appState.resume === 'Default Resume.pdf'
+    isDefault: appState.resume === 'Default Resume.pdf'
   });
 
   // Use custom hook for job selection logic
   const { selectedJobId, selectedJob, handleJobSelection } = useJobSelection(appState.scoredJobs);
 
+  // Handle job updates from AnalysisGrid
+  const handleJobUpdate = useCallback((updatedJob) => {
+    if (updatedJob && appState.scoredJobs) {
+      const updatedJobs = appState.scoredJobs.map(job => 
+        job.id === updatedJob.id ? updatedJob : job
+      );
+      updateAppState({ scoredJobs: updatedJobs });
+    }
+  }, [appState.scoredJobs, updateAppState]);
+
   // Keep resumeFile in sync with appState.resume
   useEffect(() => {
     if (appState.resume && appState.resume !== resumeFile.name) {
-      if (appState.resume === 'Default Resume.pdf' || appState.resume === 'Shamalka Resume v2.pdf') {
-        setResumeFile({ name: 'Shamalka Resume v2.pdf', file: null, isDefault: true });
+      if (appState.resume === 'Default Resume.pdf') {
+        setResumeFile({ name: 'Default Resume.pdf', file: null, isDefault: true });
       } else {
         setResumeFile({ name: appState.resume, file: null, isDefault: false });
       }
@@ -60,14 +70,17 @@ const ScoredScreen = ({ appState, updateAppState, navigateTo }) => {
     window.close();
   };
 
-
-
   return (
     <>
       <div className="left-panel">
         {/* Resume Section */}
         <div className="form-group">
-          <ResumeLabel resumeFile={resumeFile} />
+          <ResumeUpload 
+            resumeFile={resumeFile} 
+            setResumeFile={setResumeFile}
+            scoringLocked={false}
+            updateAppState={updateAppState}
+          />
         </div>
 
         <div className="form-group">
@@ -104,7 +117,7 @@ const ScoredScreen = ({ appState, updateAppState, navigateTo }) => {
         </div>
 
         <div className="stage-label">
-          {appState.scoredJobs.length} Jobs Scored
+          {appState.scoredJobs.length} Jobs Extracted
         </div>
 
         <button 
@@ -131,14 +144,18 @@ const ScoredScreen = ({ appState, updateAppState, navigateTo }) => {
       <div className="right-panel">
         <div className="screen-header">
           {theme === 'light' ? 
-            `Scored: ${appState.scoredJobs?.length || 0} Test Jobs` : 
-            `Scored: ${appState.scoredJobs?.length || 0} of ${formatKeyword(appState.keyword)} Jobs in ${formatDistance(appState.distance)} from ${formatLocation(appState.location)}, Posted within last ${formatPostedAgo(appState.postedAgo)}`
+            `Extracted: ${appState.scoredJobs?.length || 0} Test Jobs` : 
+            `Extracted: ${appState.scoredJobs?.length || 0} of ${formatKeyword(appState.keyword)} Jobs in ${formatDistance(appState.distance)} from ${formatLocation(appState.location)}, Posted within last ${formatPostedAgo(appState.postedAgo)}`
           }
         </div>
         
-        <div style={{ display: 'flex', flexDirection: 'column', height: '100%', gap: '20px' }}>
-          {/* Full width section for scored jobs table */}
-          <div style={{ width: '100%', flexShrink: 0 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', height: 'calc(100% - 60px)', gap: '0px' }}>
+          {/* Fixed height table section - maximum 5 rows */}
+          <div style={{ 
+            width: '100%', 
+            height: '300px', // Optimized height for 5 rows
+            flexShrink: 0 
+          }}>
             <JobTable 
               jobs={appState.scoredJobs}
               selectedJobId={selectedJobId}
@@ -148,8 +165,14 @@ const ScoredScreen = ({ appState, updateAppState, navigateTo }) => {
           </div>
 
           {/* Analysis grid takes remaining space */}
-          <div style={{ flex: 1, minHeight: 0 }}>
-            <AnalysisGrid selectedJob={selectedJob} />
+          <div style={{ 
+            flex: 1, 
+            minHeight: 0,
+            display: 'flex',
+            flexDirection: 'column',
+            marginTop: '0px'
+          }}>
+            <AnalysisGrid selectedJob={selectedJob} onJobUpdate={handleJobUpdate} />
           </div>
         </div>
       </div>

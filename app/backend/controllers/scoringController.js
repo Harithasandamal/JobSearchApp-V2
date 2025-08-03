@@ -5,152 +5,240 @@ const { getResultsPath } = require('../utils/urlUtils');
 const { flattenJobAnalysis, readFromFile } = require('../utils/dataUtils');
 
 /**
- * Store active scoring processes
+ * Store active data extraction processes
  */
-const activeScoringProcesses = new Map();
+const activeExtractionProcesses = new Map();
 
 /**
- * Start job scoring process
+ * Start job data extraction process
  * @param {Object} req - Express request object
  * @param {Object} res - Express request object
  */
-const startJobScoring = (req, res) => {
-      console.log('🤖 ===== SIMPLIFIED SCORING REQUEST RECEIVED =====');
+const startJobDataExtraction = (req, res) => {
+  console.log('🤖 ===== DATA EXTRACTION REQUEST RECEIVED =====');
   console.log('🤖 Server received request body:', JSON.stringify(req.body, null, 2));
   
-  const { selectedJobs, resumeData } = req.body;
+  const { selectedJobs } = req.body;
   
   console.log('🤖 Server extracted selectedJobs:', selectedJobs?.length || 0);
-  console.log('🤖 Server extracted resumeData:', resumeData ? 'Present' : 'Not provided');
 
   // Generate unique process ID
   const processId = Date.now().toString();
   
-  // Create temporary config file for the scorer
+  // Create temporary config file for the extractor
   const config = {
     selectedJobs: selectedJobs,
-    resumeData: resumeData || {
-      content: 'Default resume content for analysis',
-      fileName: 'Default Resume.pdf'
-    },
     timestamp: new Date().toISOString()
   };
 
   console.log('🤖 Server config:', config);
 
   // Write config to temporary file
-  const configPath = path.join(process.cwd(), `scoring_config_${processId}.json`);
+  const configPath = path.join(process.cwd(), `extraction_config_${processId}.json`);
   fs.writeFileSync(configPath, JSON.stringify(config, null, 2));
 
-  // Spawn the Simplified JobScorer process
-  const scorerProcess = spawn('node', [path.join(__dirname, '..', 'SimplifiedJobScorer.js'), configPath], {
+  // Spawn the JobDataExtractor process
+  const extractorProcess = spawn('node', [path.join(__dirname, '..', 'JobDataExtractor.js'), configPath], {
     cwd: process.cwd(),
     stdio: ['pipe', 'pipe', 'pipe']
   });
 
   // Store process reference
-  activeScoringProcesses.set(processId, {
-    process: scorerProcess,
+  activeExtractionProcesses.set(processId, {
+    process: extractorProcess,
     configPath: configPath,
     status: 'running',
     progress: 0,
-    scoredJobs: []
+    extractedJobs: [],
+    startTime: Date.now(),
+    lastUpdate: Date.now()
   });
 
   // Handle process output
   let output = '';
+  let currentJobIndex = 0;
+  let totalJobs = selectedJobs.length;
 
-  scorerProcess.stdout.on('data', (data) => {
+  extractorProcess.stdout.on('data', (data) => {
     const outputStr = data.toString();
     output += outputStr;
     
-    console.log(`🤖 Simplified Scorer output: ${outputStr.substring(0, 100)}...`);
+    console.log(`🤖 Data Extractor output: ${outputStr.substring(0, 200)}...`);
     
-    // Update progress based on output
-    if (outputStr.includes('Processing Job')) {
-      const match = outputStr.match(/Processing Job (\d+)\/(\d+)/);
+    const processInfo = activeExtractionProcesses.get(processId);
+    if (!processInfo) return;
+    
+         // Update progress based on specific output patterns
+    if (outputStr.includes('Processing job')) {
+      const match = outputStr.match(/Processing job (\d+)\/(\d+)/);
       if (match) {
-        const currentJob = parseInt(match[1]);
-        const totalJobs = parseInt(match[2]);
-        const processInfo = activeScoringProcesses.get(processId);
-        if (processInfo) {
-          processInfo.progress = Math.round((currentJob / totalJobs) * 100);
-        }
+        currentJobIndex = parseInt(match[1]);
+        totalJobs = parseInt(match[2]);
+        // Calculate progress: each job is equal percentage
+        const jobProgress = ((currentJobIndex - 1) * (100 / totalJobs));
+        processInfo.progress = Math.min(jobProgress, 100);
+        processInfo.lastUpdate = Date.now();
+        console.log(`📊 Progress update: Job ${currentJobIndex}/${totalJobs} = ${jobProgress}%`);
       }
     }
     
-    // Mark as completed when scoring is done
-    if (outputStr.includes('Simplified job scoring completed successfully') || outputStr.includes('Simplified results saved')) {
-      const processInfo = activeScoringProcesses.get(processId);
-      if (processInfo) {
-        processInfo.progress = 100;
-        console.log('✅ Simplified scoring completed, marking as finished');
-      }
+    // Update progress for individual job steps
+    if (outputStr.includes('Step 1: Downloading job page HTML')) {
+      const stepProgress = ((currentJobIndex - 1) * (100 / totalJobs)) + (100 / totalJobs / 4);
+      processInfo.progress = Math.min(stepProgress, 100);
+      processInfo.lastUpdate = Date.now();
+      console.log(`📊 Step 1 progress: ${stepProgress}%`);
+    }
+    
+    if (outputStr.includes('Step 2: Converting to markdown')) {
+      const stepProgress = ((currentJobIndex - 1) * (100 / totalJobs)) + (100 / totalJobs / 4 * 2);
+      processInfo.progress = Math.min(stepProgress, 100);
+      processInfo.lastUpdate = Date.now();
+      console.log(`📊 Step 2 progress: ${stepProgress}%`);
+    }
+    
+    if (outputStr.includes('Step 3: Extracting data using ChatGPT')) {
+      const stepProgress = ((currentJobIndex - 1) * (100 / totalJobs)) + (100 / totalJobs / 4 * 3);
+      processInfo.progress = Math.min(stepProgress, 100);
+      processInfo.lastUpdate = Date.now();
+      console.log(`📊 Step 3 progress: ${stepProgress}%`);
+    }
+    
+    if (outputStr.includes('Step 4: Compiling extraction results')) {
+      const stepProgress = ((currentJobIndex - 1) * (100 / totalJobs)) + (100 / totalJobs / 4 * 4);
+      processInfo.progress = Math.min(stepProgress, 100);
+      processInfo.lastUpdate = Date.now();
+      console.log(`📊 Step 4 progress: ${stepProgress}%`);
+    }
+    
+    // Check for job completion
+    if (outputStr.includes('✅ Job') && outputStr.includes('extracted:')) {
+      const jobProgress = (currentJobIndex * (100 / totalJobs));
+      processInfo.progress = Math.min(jobProgress, 100);
+      processInfo.lastUpdate = Date.now();
+      console.log(`📊 Job ${currentJobIndex} completed: ${jobProgress}%`);
+    }
+    
+    // Mark as completed when extraction is done
+    if (outputStr.includes('Data extraction workflow completed successfully')) {
+      processInfo.progress = 100;
+      processInfo.status = 'completed';
+      processInfo.lastUpdate = Date.now();
+      console.log('✅ Job data extraction completed, marking as finished');
+    }
+    
+         // Log only critical errors
+     if (outputStr.includes('❌') || outputStr.includes('Error:')) {
+       console.log(`⚠️ ERROR in process ${processId}: ${outputStr.trim()}`);
+     }
+  });
+
+  extractorProcess.stderr.on('data', (data) => {
+    console.error(`Data Extractor Error: ${data}`);
+    const processInfo = activeExtractionProcesses.get(processId);
+    if (processInfo) {
+      processInfo.lastUpdate = Date.now();
     }
   });
 
-  scorerProcess.stderr.on('data', (data) => {
-    console.error(`Resume-Based Scorer Error: ${data}`);
-  });
+  // Add timeout to prevent hanging processes
+  const processTimeout = setTimeout(() => {
+    const processInfo = activeExtractionProcesses.get(processId);
+    if (processInfo && processInfo.status === 'running') {
+      console.log(`⚠️ Process ${processId} timed out after 10 minutes, killing...`);
+      processInfo.status = 'failed';
+      processInfo.progress = 0;
+      extractorProcess.kill('SIGTERM');
+    }
+  }, 600000); // 10 minutes
 
-  scorerProcess.on('close', (code) => {
-    const processInfo = activeScoringProcesses.get(processId);
+  extractorProcess.on('close', (code) => {
+    clearTimeout(processTimeout); // Clear timeout
+    const processInfo = activeExtractionProcesses.get(processId);
     if (processInfo) {
       processInfo.status = code === 0 ? 'completed' : 'failed';
+      processInfo.lastUpdate = Date.now();
+      
+      console.log(`🏁 Process ${processId} completed with code: ${code}`);
       
       // If completed successfully, try to read results file
       if (code === 0) {
         try {
-          const resultsPath = getResultsPath(processId).replace('_results.json', '_simplified_results.json');
-          console.log(`📄 Looking for simplified scoring results file: ${resultsPath}`);
+          // Try multiple possible results file paths
+          const possiblePaths = [
+            getResultsPath(processId),
+            path.join(process.cwd(), `extraction_config_${processId}_results.json`),
+            path.join(process.cwd(), `extraction_config_${processId.replace('.json', '_results.json')}`)
+          ];
           
-          if (fs.existsSync(resultsPath)) {
-            console.log('📄 Found simplified scoring results file, reading...');
-            const resultsData = readFromFile(resultsPath);
-            console.log('📄 Simplified scoring results data:', JSON.stringify(resultsData, null, 2).substring(0, 500));
-            
-            if (resultsData.jobs && Array.isArray(resultsData.jobs)) {
-              // Flatten the analysis structure for frontend compatibility
-              const flattenedJobs = resultsData.jobs.map(job => flattenSimplifiedJobAnalysis(job));
-              processInfo.scoredJobs = flattenedJobs;
-              console.log(`✅ Loaded ${flattenedJobs.length} scored jobs from simplified results file`);
-              
-              // Debug: Log first job's analysis structure
-              if (flattenedJobs.length > 0) {
-                const firstJob = flattenedJobs[0];
-                console.log('🔍 First simplified scored job structure:', {
-                  id: firstJob.id,
-                  title: firstJob.title,
-                  score: firstJob.score,
-                  hasEducationAndExperience: !!firstJob.educationAndExperience,
-                  hasToolsAndSkills: !!firstJob.toolsAndSkills,
-                  hasResponsibilities: !!firstJob.responsibilities,
-                  hasDetailedScores: !!firstJob.detailedScores
-                });
-              }
-            } else {
-              console.log('⚠️ No jobs array found in simplified scoring results file');
+          let resultsData = null;
+          let resultsPath = null;
+          
+          for (const testPath of possiblePaths) {
+            console.log(`📄 Checking for results file: ${testPath}`);
+            if (fs.existsSync(testPath)) {
+              resultsPath = testPath;
+              console.log(`📄 Found extraction results file: ${resultsPath}`);
+              resultsData = readFromFile(resultsPath);
+              break;
             }
+          }
+          
+          if (resultsData && resultsData.extractedJobs && Array.isArray(resultsData.extractedJobs)) {
+            // Flatten the extraction structure for frontend compatibility
+            const flattenedJobs = resultsData.extractedJobs.map(job => flattenJobExtraction(job));
+            processInfo.extractedJobs = flattenedJobs;
+            console.log(`✅ Loaded ${flattenedJobs.length} extracted jobs from results file`);
             
-            // Clean up results file
-            fs.unlinkSync(resultsPath);
-            console.log('🗑️ Cleaned up simplified scoring results file');
+            // Debug: Log first job's extraction structure
+            if (flattenedJobs.length > 0) {
+              const firstJob = flattenedJobs[0];
+              console.log('🔍 First extracted job structure:', {
+                id: firstJob.id,
+                title: firstJob.title,
+                hasMandatoryRequirements: !!firstJob.mandatoryRequirements,
+                hasPreferredRequirements: !!firstJob.preferredRequirements,
+                hasResponsibilities: !!firstJob.responsibilities,
+                hasEmployerQuestions: !!firstJob.employerQuestions,
+                hasOtherDetails: !!firstJob.otherDetails
+              });
+            }
+          } else if (resultsData && resultsData.jobs && Array.isArray(resultsData.jobs)) {
+            // Fallback for different structure
+            const flattenedJobs = resultsData.jobs.map(job => flattenJobExtraction(job));
+            processInfo.extractedJobs = flattenedJobs;
+            console.log(`✅ Loaded ${flattenedJobs.length} extracted jobs from results file (fallback)`);
           } else {
-            console.log('⚠️ Simplified scoring results file not found');
+            console.log('⚠️ No extractedJobs or jobs array found in results file');
+            if (resultsData) {
+              console.log('📄 Available keys in results file:', Object.keys(resultsData));
+            }
+          }
+          
+          // Clean up results file
+          if (resultsPath && fs.existsSync(resultsPath)) {
+            try {
+              fs.unlinkSync(resultsPath);
+              console.log('🗑️ Cleaned up extraction results file');
+            } catch (cleanupError) {
+              console.error('Error cleaning up results file:', cleanupError);
+            }
           }
         } catch (error) {
-          console.error('Error reading simplified scoring results file:', error);
+          console.error('Error reading extraction results file:', error);
         }
+      } else {
+        console.log(`❌ Process ${processId} failed with code: ${code}`);
       }
       
       // Clean up config file
       try {
         if (fs.existsSync(processInfo.configPath)) {
           fs.unlinkSync(processInfo.configPath);
-          console.log('🗑️ Cleaned up scoring config file');
+          console.log('🗑️ Cleaned up extraction config file');
         }
       } catch (cleanupError) {
-        console.error('Error cleaning up scoring config file:', cleanupError);
+        console.error('Error cleaning up extraction config file:', cleanupError);
       }
     }
   });
@@ -158,121 +246,104 @@ const startJobScoring = (req, res) => {
   // Return process ID immediately
   res.json({ 
     processId: processId,
-    message: 'Simplified job scoring process started',
+    message: 'Job data extraction process started',
     status: 'running'
   });
 };
 
 /**
- * Get scoring process status
+ * Get extraction process status
  * @param {Object} req - Express request object
  * @param {Object} res - Express request object
  */
-const getScoringStatus = (req, res) => {
+const getExtractionStatus = (req, res) => {
   const { processId } = req.params;
   
-  const processInfo = activeScoringProcesses.get(processId);
+  const processInfo = activeExtractionProcesses.get(processId);
   if (!processInfo) {
-    return res.status(404).json({ error: 'Scoring process not found' });
+    return res.status(404).json({ error: 'Extraction process not found' });
   }
   
-  res.json({
+  // Check if process has been running too long (timeout after 10 minutes)
+  const now = Date.now();
+  const timeSinceStart = now - processInfo.startTime;
+  const timeSinceLastUpdate = now - processInfo.lastUpdate;
+  
+  // If process has been running for more than 10 minutes or no update for 5 minutes, mark as failed
+  if (timeSinceStart > 600000 || timeSinceLastUpdate > 300000) {
+    processInfo.status = 'failed';
+    processInfo.progress = 0;
+    console.log(`⚠️ Process ${processId} timed out or stalled`);
+  }
+  
+  const response = {
     processId: processId,
     status: processInfo.status,
     progress: processInfo.progress,
-    scoredJobs: processInfo.scoredJobs,
-    jobCount: processInfo.scoredJobs.length
-  });
-};
-
-/**
- * Flatten resume-based job analysis data structure
- * @param {Object} job - Job object with resume-based analysis data
- * @returns {Object} - Flattened job object
- */
-const flattenResumeBasedJobAnalysis = (job) => {
-  const flattenedJob = {
-    ...job,
-    score: job.finalScore || 0
+    extractedJobs: processInfo.extractedJobs,
+    jobCount: processInfo.extractedJobs.length,
+    timeSinceStart: Math.round(timeSinceStart / 1000), // seconds
+    timeSinceLastUpdate: Math.round(timeSinceLastUpdate / 1000) // seconds
   };
   
-  // If job has compatibility scores, extract category scores
-  if (job.compatibilityScores) {
-    const categoryScores = {};
-    Object.entries(job.compatibilityScores).forEach(([category, data]) => {
-      categoryScores[category] = data.score || 0;
-    });
-    
-    return {
-      ...flattenedJob,
-      categoryScores,
-      resumeAnalysis: job.resumeAnalysis || {},
-      jobRequirements: job.jobRequirements || {},
-      compatibilityScores: job.compatibilityScores || {},
-      // Legacy compatibility - map to old structure
-      requiredSkills: job.jobRequirements?.requiredSkills || [],
-      preferredExperience: job.jobRequirements?.requiredExperience || [],
-      technicalRequirements: job.jobRequirements?.requiredSkills || [],
-      softSkills: job.compatibilityScores?.transferrableSkills?.matches || [],
-      responsibilities: job.jobRequirements?.otherRequirements || []
-    };
+  // Only log status changes or errors, not every poll
+  if (processInfo.status === 'failed') {
+    console.log(`❌ Extraction failed for process ${processId}`);
+  } else if (processInfo.status === 'completed') {
+    console.log(`✅ Extraction completed for process ${processId} - ${processInfo.extractedJobs.length} jobs`);
   }
   
-  return flattenedJob;
+  res.json(response);
 };
 
 /**
- * Flatten simplified job analysis data structure
- * @param {Object} job - Job object with simplified analysis data
+ * Flatten job extraction data structure
+ * @param {Object} job - Job object with extraction data
  * @returns {Object} - Flattened job object
  */
-const flattenSimplifiedJobAnalysis = (job) => {
+const flattenJobExtraction = (job) => {
   return {
     id: job.id,
     title: job.title,
     company: job.company,
     location: job.location,
     url: job.url,
-    mandatory: job.mandatory || [],
-    preferred: job.preferred || [],
+    postedAgo: job.postedAgo || 'N/A',
+    
+    // Extracted lists
+    mandatoryRequirements: job.mandatoryRequirements || [],
+    preferredRequirements: job.preferredRequirements || [],
     responsibilities: job.responsibilities || [],
-    compatibilityScore: job.compatibilityScore || 0,
-    mandatoryMatches: job.mandatoryMatches || [],
-    preferredMatches: job.preferredMatches || [],
-    score: job.compatibilityScore || 0,
-    timestamp: job.timestamp
+    employerQuestions: job.employerQuestions || [],
+    otherDetails: job.otherDetails || [],
+    
+    // User interaction data (initialized as empty)
+    checkedMandatory: job.checkedMandatory || [],
+    checkedPreferred: job.checkedPreferred || [],
+    checkedEmployerQuestions: job.checkedEmployerQuestions || [],
+    checkedOtherDetails: job.checkedOtherDetails || [],
+    
+            // Compatibility score (starts at 0)
+        compatibilityScore: job.compatibilityScore || 0,
+        maxPossibleScore: job.maxPossibleScore || 0,
+        score: job.compatibilityScore || 0, // For backwards compatibility
+    
+    // Metadata
+    timestamp: job.timestamp || new Date().toISOString(),
+    extractionMethod: 'chatgpt-data-extraction'
   };
 };
 
-/**
- * Flatten advanced job analysis data structure (legacy support)
- * @param {Object} job - Job object with advanced analysis data
- * @returns {Object} - Flattened job object
- */
-const flattenAdvancedJobAnalysis = (job) => {
-  const flattenedJob = {
-    ...job,
-    score: job.compatibilityScore || 0
-  };
-  
-  // If job has analysis data, flatten it to top level
-  if (job.analysis) {
-    return {
-      ...flattenedJob,
-      requiredSkills: job.analysis.requiredSkills || [],
-      preferredExperience: job.analysis.preferredExperience || [],
-      technicalRequirements: job.analysis.technicalRequirements || [],
-      softSkills: job.analysis.softSkills || [],
-      responsibilities: job.analysis.responsibilities || [],
-      detailedScores: job.detailedScores || {}
-    };
-  }
-  
-  return flattenedJob;
-};
+// Legacy compatibility - keep old function names but redirect to new ones
+const startJobScoring = startJobDataExtraction;
+const getScoringStatus = getExtractionStatus;
+const activeScoringProcesses = activeExtractionProcesses;
 
 module.exports = {
   startJobScoring,
   getScoringStatus,
-  activeScoringProcesses
+  activeScoringProcesses,
+  startJobDataExtraction,
+  getExtractionStatus,
+  activeExtractionProcesses
 }; 

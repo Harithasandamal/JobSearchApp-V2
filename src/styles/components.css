@@ -452,10 +452,10 @@
 .table-container {
   flex: 1;
   overflow: auto;
-  background: white;
+  background: var(--bg-primary);
   border-radius: 5px;
   border: 1px solid var(--border-color);
-  min-height: 400px;
+  min-height: 300px;
 }
 
 .table {
