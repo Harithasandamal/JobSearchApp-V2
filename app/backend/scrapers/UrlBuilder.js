@@ -167,7 +167,6 @@ class UrlBuilder {
     // Add query parameters
     const url = `${baseUrl}?daterange=${days}&distance=${distanceKm}&sortmode=ListedDate`;
     
-    console.log(`🌐 SEEK URL: ${url}`);
     return url;
   }
   

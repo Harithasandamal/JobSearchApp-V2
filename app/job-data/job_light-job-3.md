@@ -1,7 +1,7 @@
 # S&OP Demand Planning Supervisor
 **Company:** Amcor Flexibles Bangkok Public Company Limited
 **Job ID:** light-job-3
-**Extracted Date:** 2025-08-03T02:39:52.224Z
+**Extracted Date:** 2025-08-03T03:22:45.651Z
 
 ---
 

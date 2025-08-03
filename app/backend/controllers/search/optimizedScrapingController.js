@@ -79,7 +79,6 @@ const handleOptimizedSearch = async (searchParams, mode = 'dark') => {
         // Dark mode: Enhanced search URL building with fallback strategies
         console.log(`🌙 DARK MODE - Building optimized search URL with enhanced collection`);
         searchUrl = UrlBuilder.buildSeekUrl(keyword, location, distance, postedAgo);
-        console.log(`🔗 Search URL: ${searchUrl}`);
         
         workflowLogger.log(`🎯 Dark mode: "${keyword || 'all jobs'}" in "${location}" (${distance}, ${postedAgo})`, 'process');
         workflowLogger.startProcess('Enhanced URL Collection', 'Extracting job URLs with optimized strategy');

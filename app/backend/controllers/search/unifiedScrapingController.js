@@ -74,7 +74,6 @@ const handleUnifiedSearch = async (searchParams, mode = 'dark') => {
         // Dark mode: Build dynamic search URL and scrape job URLs
         console.log(`🌙 DARK MODE - Building dynamic search URL and collecting job URLs`);
         searchUrl = UrlBuilder.buildSeekUrl(keyword, location, distance, postedAgo);
-        console.log(`🔗 Search URL: ${searchUrl}`);
         
         workflowLogger.log(`🎯 Dark mode: "${keyword || 'all jobs'}" in "${location}" (${distance}, ${postedAgo})`, 'process');
         workflowLogger.startProcess('Dynamic URL Collection', 'Extracting job URLs from search results');

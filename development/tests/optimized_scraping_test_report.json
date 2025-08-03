@@ -1,0 +1,46 @@
+{
+  "timestamp": "2025-08-03T03:23:38.592Z",
+  "testConfig": {
+    "lightMode": {
+      "keyword": "",
+      "location": "Dandenong",
+      "distance": "5 km",
+      "postedAgo": "3 days"
+    },
+    "darkMode": {
+      "keyword": "administrator",
+      "location": "Melbourne",
+      "distance": "10 km",
+      "postedAgo": "7 days"
+    },
+    "timeout": 60000,
+    "maxJobs": 10,
+    "lightModeConfig": {
+      "maxJobs": 10,
+      "enableUnlimitedJobs": true,
+      "defaultJobLimit": 5
+    }
+  },
+  "results": {
+    "lightMode": {
+      "success": false,
+      "jobCount": 0,
+      "performance": 0
+    },
+    "darkMode": {
+      "success": false,
+      "jobCount": 0,
+      "performance": 0
+    },
+    "errors": [
+      "Light Mode: light mode process not found",
+      "Dark Mode: dark mode process not found"
+    ]
+  },
+  "summary": {
+    "totalTests": 2,
+    "passedTests": 0,
+    "failedTests": 2,
+    "averagePerformance": "N/A"
+  }
+}

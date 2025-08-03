@@ -1,0 +1,157 @@
+{
+  "extractedJobs": [
+    {
+      "id": "dark-job-1",
+      "title": "Electrical Engineering Draftsperson",
+      "company": "Amazing Solar Solutions",
+      "location": "Dandenong South",
+      "url": "https://www.seek.com.au/job/86183328?ref=search-standalone&type=standard",
+      "postedAgo": "1 day",
+      "mandatoryRequirements": [
+        "Relevant qualification in Electrical Engineering or a closely related field"
+      ],
+      "preferredRequirements": [
+        "Proven experience in electrical drafting and system design",
+        "Candidates with more years of experience will be highly regarded",
+        "Strong understanding of electrical safety standards and compliance regulations",
+        "Proficiency in using drafting software (such as AutoCAD, Revit, or similar tools)"
+      ],
+      "responsibilities": [
+        "Develop and maintain electrical layout drawings, wiring diagrams, and system plans for solar PV installations",
+        "Assist engineers in the planning and configuration of electrical systems",
+        "Collect technical inputs and assist in performing basic calculations to support the accuracy and feasibility of electrical designs",
+        "Support design validation and testing processes",
+        "Collaborate with engineers, clients, and project teams",
+        "Contribute to the preparation of documentation for compliance",
+        "Maintain proper control and version tracking of all technical drawings",
+        "Related documentation throughout the project"
+      ],
+      "employerQuestions": [
+        "Which of the following statements best describes your right to work in Australia?",
+        "How many years' experience do you have as an Engineering Draftsperson?",
+        "What's your expected annual base salary?",
+        "How much notice are you required to give your current employer?",
+        "Do you have a current Police Check (National Police Certificate) for employment?"
+      ],
+      "otherDetails": [
+        "Attention to detail",
+        "Proactive mindset",
+        "Ability to work collaboratively in a fast-paced team environment"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 190,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-1.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-1.md",
+      "timestamp": "2025-08-03T03:18:21.135Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-2",
+      "title": "Finance Manager | Enviable Residential Builder",
+      "company": "Concise Recruitment",
+      "location": "Bayside & South Eastern Suburbs",
+      "url": "https://www.seek.com.au/job/86183172?ref=search-standalone&type=standard",
+      "postedAgo": "1 day",
+      "mandatoryRequirements": [
+        "Minimum 5 years’ experience within finance &/or accounting management",
+        "Tertiary qualifications in Accounting, Finance, or a related discipline"
+      ],
+      "preferredRequirements": [
+        "Proven experience in budgeting, forecasting, and financial reporting",
+        "Strong Excel, financial modelling and accounting software capabilities",
+        "Solid background in cash flow and financial compliance management",
+        "Strong stakeholder management skills",
+        "Excellent communication skills (written and verbal)"
+      ],
+      "responsibilities": [
+        "Leading the preparation & analysis of monthly management reports (P&L, balance sheet & cash flow)",
+        "Oversee end-of-month processes, journal entries & financial reconciliations",
+        "Prepare annual budgets and quarterly forecasts",
+        "Monitor project performance (cost-to-complete, margin analysis & WIP)",
+        "Partner with PMs to ensure accurate job costing & forecasting",
+        "Manage daily cash flow and working capital across the business",
+        "Lead the annual stocktake process and ensure timely reconciliation",
+        "Ensure compliance with statutory, tax & Reg. obligations (BAS, GST, TPAR)"
+      ],
+      "employerQuestions": [
+        "Do you have a minimum of 5 years' experience in finance or accounting management?",
+        "Do you have tertiary qualifications in Accounting, Finance, or a related discipline?",
+        "Do you have proven experience in budgeting, forecasting, and financial reporting?",
+        "Do you have strong Excel, financial modelling and accounting software capabilities?",
+        "Do you have strong stakeholder management skills?"
+      ],
+      "otherDetails": [
+        "Strong Excel skills",
+        "Financial compliance management",
+        "Stakeholder management"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 220,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-2.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-2.md",
+      "timestamp": "2025-08-03T03:18:34.056Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-4",
+      "title": "Production Supervisor - QuiteLike",
+      "company": "Coles",
+      "location": "Dandenong South",
+      "url": "https://www.seek.com.au/job/86181126?ref=search-standalone&type=standard",
+      "postedAgo": "1 day",
+      "mandatoryRequirements": [
+        "3+ years’ experience in food manufacturing, FMCG or pharmaceutical manufacturing",
+        "Experience managing a team in a similar environment",
+        "Degree qualified/relevant certificate or Food manufacturing/warehouse operations experience"
+      ],
+      "preferredRequirements": [
+        "Forklift driver’s license",
+        "Strong knowledge, skill and experience in Occupational Health and Safety, Environment, Risk Management and/or Food Safety",
+        "Highest calibre of communication skills"
+      ],
+      "responsibilities": [
+        "Supervising daily operations",
+        "Assisting with scheduling, materials, and labor",
+        "Conducting food Quality Controls",
+        "Maintaining accurate production records",
+        "Operating machinery",
+        "Verifying recipes",
+        "Providing staff training",
+        "Managing Inbound/Outbound activities"
+      ],
+      "employerQuestions": [
+        "Do you have experience in food manufacturing, FMCG, or pharmaceutical manufacturing?",
+        "Have you managed a team in a similar environment?",
+        "Do you have a degree qualification or relevant certificate in Food manufacturing/warehouse operations?",
+        "Do you have a Forklift driver’s license?",
+        "Do you have strong knowledge and experience in Occupational Health and Safety, Environment, Risk Management, or Food Safety?"
+      ],
+      "otherDetails": [
+        "Occupational Health and Safety",
+        "Environment",
+        "Risk Management"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 220,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-4.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-4.md",
+      "timestamp": "2025-08-03T03:18:45.530Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    }
+  ]
+}

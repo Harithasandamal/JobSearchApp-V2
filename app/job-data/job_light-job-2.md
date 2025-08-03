@@ -1,7 +1,7 @@
 # Scheduling Coordinator
 **Company:** Linc Scaffolding Pty Ltd
 **Job ID:** light-job-2
-**Extracted Date:** 2025-08-03T02:39:42.298Z
+**Extracted Date:** 2025-08-03T03:22:32.338Z
 
 ---
 
@@ -146,7 +146,7 @@ Moorabbin Airport, Melbourne VIC
 Customer Care Coordinator
 Aluminium Industries
 Dandenong South, Melbourne VIC
-24d ago
+25d ago
 What can I earn as a Scheduling Coordinator
 See more detailed salary information
 Job seekers

@@ -1,7 +1,7 @@
 # Nurse Educator (Surgical Services), Queensland Health
 **Company:** Department of Health - Queensland
 **Job ID:** light-job-4
-**Extracted Date:** 2025-08-03T02:39:33.267Z
+**Extracted Date:** 2025-08-03T03:22:22.051Z
 
 ---
 

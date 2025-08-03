@@ -13,17 +13,34 @@ const scrapeAllJobsUnified = async (urls) => {
   scraper.maxBrowsers = 5;
   console.log(`🚀 UNIFIED PARALLEL SCRAPING: ${urls.length} jobs (single-pass for speed)`);
   
-  // Single fast parallel run - no slow optimization loops
+  // Single fast parallel run with enhanced retry logic
   let result = await scraper.scrapeAllJobsParallel(urls, 1);
   let jobs = result.jobs;
-  // Retry any missing jobs once
+  
+  // Enhanced retry logic for failed jobs with exponential backoff
   if (jobs.length < urls.length) {
     const missingUrls = urls.filter(url => !jobs.find(j => j.url === url));
-    console.log(`🔁 Retrying ${missingUrls.length} missing jobs...`);
+    console.log(`🔁 Retrying ${missingUrls.length} failed jobs with enhanced strategy...`);
+    
+    // Retry with different browser configuration
+    scraper.maxBrowsers = Math.min(3, missingUrls.length); // Use fewer browsers for retry
     const retryResult = await scraper.scrapeAllJobsParallel(missingUrls, 2);
+    
+    // Add successful retry jobs
     jobs = jobs.concat(retryResult.jobs);
-    console.log(`✅ After retry: ${jobs.length}/${urls.length} jobs scraped successfully`);
+    
+    // Final retry for any still missing jobs with single browser
+    const stillMissing = urls.filter(url => !jobs.find(j => j.url === url));
+    if (stillMissing.length > 0) {
+      console.log(`🔁 Final retry for ${stillMissing.length} stubborn jobs...`);
+      scraper.maxBrowsers = 1; // Single browser for final attempt
+      const finalRetryResult = await scraper.scrapeAllJobsParallel(stillMissing, 3);
+      jobs = jobs.concat(finalRetryResult.jobs);
+    }
+    
+    console.log(`✅ After enhanced retry: ${jobs.length}/${urls.length} jobs scraped successfully`);
   }
+  
   if (jobs && jobs.length) {
     console.log(`✅ Unified scraping complete: ${jobs.length}/${urls.length} jobs scraped successfully`);
     return jobs.map(job => JobUtils.processJob(job));
