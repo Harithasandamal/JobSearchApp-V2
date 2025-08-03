@@ -18,6 +18,8 @@ const useSearchPolling = ({
   const [searchStatus, setSearchStatus] = useState(null);
   const [searchError, setSearchError] = useState(null);
   const [pollStartTime, setPollStartTime] = useState(null);
+  const [lastProgressTime, setLastProgressTime] = useState(null);
+  const [lastProgress, setLastProgress] = useState(0);
 
   // Start real SEEK search when component mounts
   useEffect(() => {
@@ -26,6 +28,8 @@ const useSearchPolling = ({
     const processId = appState.searchProcessId;
     setSearchProcessId(processId);
     setPollStartTime(Date.now());
+    setLastProgressTime(Date.now());
+    setLastProgress(0);
     console.log('🌙 Setting up search polling for process ID:', processId);
 
     let isMounted = true;
@@ -33,11 +37,24 @@ const useSearchPolling = ({
 
     const pollForProgress = async () => {
       try {
-        // Check for timeout (5 minutes)
+        // Check for intelligent timeout (only if no progress for 2 minutes)
         const currentTime = Date.now();
         const elapsedTime = currentTime - pollStartTime;
-        if (elapsedTime > 300000) { // 5 minutes
-          console.log('⏰ Polling timeout reached (5 minutes)');
+        
+        // Only timeout if no progress for 2 minutes AND we've been running for at least 3 minutes
+        if (elapsedTime > 180000 && lastProgressTime && (currentTime - lastProgressTime) > 120000) { // 3 min total + 2 min no progress
+          console.log('⏰ Intelligent timeout: No progress for 2 minutes after 3 minutes total');
+          setSearchError('Search timeout - please try again');
+          if (onError) {
+            onError('Search timeout');
+          }
+          clearInterval(interval);
+          return;
+        }
+        
+        // Absolute timeout after 10 minutes (emergency fallback)
+        if (elapsedTime > 600000) { // 10 minutes
+          console.log('⏰ Absolute timeout reached (10 minutes)');
           setSearchError('Search timeout - please try again');
           if (onError) {
             onError('Search timeout');
@@ -163,6 +180,19 @@ const useSearchPolling = ({
           // Dynamic progress tracking based on actual backend progress
           const progressPercent = status.progress || 0;
           console.log('📊 Progress update:', progressPercent + '%');
+          
+          // Track progress changes for intelligent timeout
+          if (progressPercent > lastProgress) {
+            setLastProgress(progressPercent);
+            setLastProgressTime(Date.now());
+            console.log('📈 Progress increased from', lastProgress, 'to', progressPercent);
+            
+            // Clear any error since progress is being made
+            if (searchError) {
+              setSearchError(null);
+              console.log('✅ Clearing error due to progress');
+            }
+          }
           
           // Map progress to steps with improved thresholds for smoother updates
           let currentStepIndex = 0;
