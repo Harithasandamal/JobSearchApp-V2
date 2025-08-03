@@ -3,32 +3,20 @@ import ProgressChecklist from './common/ProgressChecklist';
 import ResumeUpload from './ResumeUpload';
 import { formatLocation, formatDistance, formatPostedAgo, formatKeyword } from '../utils/formatters';
 import useTheme from '../hooks/useTheme';
-import useEnhancedProgress from '../hooks/useEnhancedProgress';
 import useSearchPolling from '../hooks/useSearchPolling';
 import useResumeSync from '../hooks/useResumeSync';
 
 const SearchingScreen = ({ appState, updateAppState, navigateTo, scoringLocked }) => {
   const themeHook = useTheme();
   const [jobsFound, setJobsFound] = useState([]);
+  const [progress, setProgress] = useState(0);
+  const [currentStep, setCurrentStep] = useState(0);
+  const [error, setError] = useState(null);
 
   // Custom hooks for modular functionality
   const { resumeFile, setResumeFile } = useResumeSync(appState);
-  
-  // Enhanced progress hook for search (background only)
-  const { 
-    progress, 
-    currentStep, 
-    steps, 
-    error, 
-    isLoading, 
-    loadingMessage,
-    mapBackendProgress,
-    completeProgress,
-    handleError,
-    initializeProgress
-  } = useEnhancedProgress('search');
 
-  // Search polling hook with enhanced progress integration
+  // Search polling hook
   const { 
     searchProcessId, 
     searchStatus, 
@@ -39,30 +27,34 @@ const SearchingScreen = ({ appState, updateAppState, navigateTo, scoringLocked }
     navigateTo,
     setJobsFound,
     onProgressUpdate: (status) => {
-      // Map backend progress to frontend smoothly
+      // Update progress based on backend status
       if (status.progress !== undefined) {
-        mapBackendProgress(status.progress, status.currentStep, status.totalJobs, status.currentJob);
+        setProgress(status.progress);
       }
+      
+      // Map progress to steps
+      let stepIndex = 0;
+      if (status.progress >= 5) stepIndex = 1;
+      if (status.progress >= 15) stepIndex = 2;
+      if (status.progress >= 25) stepIndex = 3;
+      if (status.progress >= 60) stepIndex = 4;
+      if (status.progress >= 90) stepIndex = 4;
+      
+      setCurrentStep(stepIndex);
     },
     onComplete: () => {
-      completeProgress();
+      setProgress(100);
+      setCurrentStep(4);
     },
     onError: (error) => {
-      handleError(error);
+      setError(error);
     }
   });
-
-  // Initialize progress when search starts
-  useEffect(() => {
-    if (appState.searchProcessId && !isLoading) {
-      initializeProgress(themeHook.theme);
-    }
-  }, [appState.searchProcessId, themeHook.theme]);
 
   // Handle search errors
   useEffect(() => {
     if (searchError) {
-      handleError(searchError);
+      setError(searchError);
     }
   }, [searchError]);
 
@@ -77,6 +69,26 @@ const SearchingScreen = ({ appState, updateAppState, navigateTo, scoringLocked }
     }
     navigateTo('welcome');
   };
+
+  // Define search steps
+  const searchSteps = [
+    { id: 1, text: 'Initializing Browser Engine', status: 'pending' },
+    { id: 2, text: 'Connecting to Job Sources', status: 'pending' },
+    { id: 3, text: 'Loading Job Listings', status: 'pending' },
+    { id: 4, text: 'Extracting Job Information', status: 'pending' },
+    { id: 5, text: 'Processing & Validating Results', status: 'pending' }
+  ];
+
+  // Update step statuses based on current step
+  const updatedSteps = searchSteps.map((step, index) => {
+    if (index < currentStep) {
+      return { ...step, status: 'completed' };
+    } else if (index === currentStep) {
+      return { ...step, status: 'processing' };
+    } else {
+      return { ...step, status: 'pending' };
+    }
+  });
 
   return (
     <>
@@ -165,7 +177,7 @@ const SearchingScreen = ({ appState, updateAppState, navigateTo, scoringLocked }
           </div>
         )}
 
-        <ProgressChecklist items={steps} />
+        <ProgressChecklist items={updatedSteps} />
         
         <div className="progress-bar">
           <div 
@@ -176,7 +188,7 @@ const SearchingScreen = ({ appState, updateAppState, navigateTo, scoringLocked }
         
         <div style={{ textAlign: 'center', marginTop: '10px' }}>
           <span style={{ color: '#666' }}>
-            {Math.round(progress)}% Complete - {steps[currentStep]?.text || 'Initializing...'}
+            {Math.round(progress)}% Complete - {updatedSteps[currentStep]?.text || 'Initializing...'}
           </span>
         </div>
       </div>

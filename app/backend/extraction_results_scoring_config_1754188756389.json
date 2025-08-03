@@ -1,0 +1,210 @@
+{
+  "extractedJobs": [
+    {
+      "id": "light-job-1",
+      "title": "Group Project Coordinator",
+      "company": "Brown & Watson International",
+      "location": "Knoxfield",
+      "url": "https://www.seek.com.au/job/85994049?ref=search-standalone&type=standard&origin=jobTitle#sol=f5c442d9c765b69183c0a9f36e76c3773779cff4",
+      "postedAgo": "9 days",
+      "mandatoryRequirements": [
+        "Relevant tertiary qualifications",
+        "Project management qualifications (e.g. PMP)"
+      ],
+      "preferredRequirements": [
+        "Automotive experience",
+        "PMI certifications",
+        "Microsoft Office proficiency",
+        "Project planning and scheduling experience"
+      ],
+      "responsibilities": [
+        "Coordinate project documentation, timelines, and reporting",
+        "Facilitate team communication, meetings, and workshops",
+        "Analyse data, track metrics and support prioritisation",
+        "Support governance and adoption of project processes",
+        "Drive collaboration across Product Development, Manufacturing, Marketing, and Sales"
+      ],
+      "employerQuestions": [
+        "Right to work in Australia",
+        "Years of experience as a project coordinator",
+        "Years of project management experience",
+        "PMI certifications completed",
+        "Microsoft Office products experience"
+      ],
+      "otherDetails": [
+        "Strong project coordination and communication skills",
+        "Commercial acumen and problem-solving ability",
+        "Self-motivated with a 'can-do' attitude and collaborative style"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 210,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_light-job-1.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_light-job-1.md",
+      "timestamp": "2025-08-03T02:39:25.933Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "light-job-4",
+      "title": "Nurse Educator (Surgical Services), Queensland Health",
+      "company": "Department of Health - Queensland",
+      "location": "Southport",
+      "url": "https://www.seek.com.au/job/85967890?ref=search-standalone&type=standard&origin=jobTitle#sol=example987654321",
+      "postedAgo": "10 days",
+      "mandatoryRequirements": [
+        "Bachelor of Nursing or equivalent",
+        "Registration with the Nursing Midwifery Board of Australia"
+      ],
+      "preferredRequirements": [
+        "Master's or higher qualification within a relevant area",
+        "Certification in process improvement techniques such as Six Sigma, LEAN or KAIZEN",
+        "Evidence of vaccination against Measles, Mumps, Rubella, Varicella, Pertussis and Hepatitis B",
+        "Tuberculosis screening",
+        "Declaration of serious discipline history"
+      ],
+      "responsibilities": [
+        "Lead development, review, and maintenance of education tools and resources",
+        "Lead implementation and review of pathways for staff progression",
+        "Provide expert consultation for organizational strategic direction",
+        "Collaborate with Clinical Facilitators for quality service maintenance",
+        "Provide clinical leadership within acute units",
+        "Support staffing and clinical needs",
+        "Utilize expert educational knowledge for care of older people and sub-acute nursing",
+        "Support orientation and onboarding of staff"
+      ],
+      "employerQuestions": [
+        "Are you vaccinated against required diseases?",
+        "Do you have a Master's or higher qualification?",
+        "Are you registered with the Nursing Midwifery Board of Australia?",
+        "Have you undergone tuberculosis screening?",
+        "Have you disclosed any serious discipline history?"
+      ],
+      "otherDetails": [
+        "Flexible work options",
+        "Career Development",
+        "Research Opportunities"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 220,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_light-job-4.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_light-job-4.md",
+      "timestamp": "2025-08-03T02:39:36.011Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "light-job-2",
+      "title": "Scheduling Coordinator",
+      "company": "Linc Scaffolding Pty Ltd",
+      "location": "Dandenong",
+      "url": "https://www.seek.com.au/job/85907804?ref=search-standalone&type=standard&origin=jobTitle#sol=ac705abd43f8e7aa11c57e26bdd7ef8de3e67313",
+      "postedAgo": "12 days",
+      "mandatoryRequirements": [
+        "Experience in coordination roles",
+        "Exceptional communication skills",
+        "Time management skills"
+      ],
+      "preferredRequirements": [
+        "Relevant residential construction industry experience",
+        "Customer service excellence",
+        "High level of computer literacy",
+        "Process driven mindset",
+        "Opportunities to improve mindset"
+      ],
+      "responsibilities": [
+        "Receiving and sending emails to be actioned daily",
+        "Scheduling for trade and transport crews",
+        "Coordinating field employees and sub-contractors",
+        "Troubleshooting issues",
+        "Liaising with builders and trades",
+        "Maintaining accurate and up to date information in our system",
+        "Job costing analysis & weekly reporting",
+        "Accurate data entry"
+      ],
+      "employerQuestions": [
+        "How many years' experience do you have as a Scheduling Coordinator?",
+        "Which of the following statements best describes your right to work in Australia?",
+        "Do you have data entry experience?",
+        "What's your expected annual base salary?",
+        "How many years' experience do you have in the construction industry?"
+      ],
+      "otherDetails": [
+        "Resilient and thrives in pressure situations",
+        "Team player with initiative",
+        "Rapport building skills"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 240,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_light-job-2.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_light-job-2.md",
+      "timestamp": "2025-08-03T02:39:45.627Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "light-job-3",
+      "title": "S&OP Demand Planning Supervisor",
+      "company": "Amcor Flexibles Bangkok Public Company Limited",
+      "location": "Bang Phli",
+      "url": "https://www.seek.com.au/job/85912345?ref=search-standalone&type=standard&origin=jobTitle#sol=example123456789",
+      "postedAgo": "12 days",
+      "mandatoryRequirements": [
+        "Bachelor’s degree in Supply Chain Management, Economics, Engineering, Business Administration or a related field",
+        "5+ years of experience in demand planning, S&OP or a related supply chain function",
+        "Strong knowledge of supply chain process"
+      ],
+      "preferredRequirements": [
+        "Master’s degree in Finance",
+        "Professional certification (e.g. CPM, CSCP)",
+        "Experience within the similar industry",
+        "Familiarity with advance forecasting techniques",
+        "Experience with ERP system, demand planning software and data analytics tools"
+      ],
+      "responsibilities": [
+        "Facilitate the S&OP process by leading monthly planning cycle",
+        "Develop and maintain accuracy, data-driven demand forecasts",
+        "Act as the central coordinator between Commercial, Marketing, Finance and Operations",
+        "Collaborate closely with Supply Planning to balance production schedules",
+        "Lead initiatives to assess and improve S&OP and demand planning processes",
+        "Identify risks and opportunities within demand forecasts",
+        "Cultivate a collaborative S&OP culture by engaging with cross-functional partners",
+        "Monitor and report on key KPIs such as forecast accuracy"
+      ],
+      "employerQuestions": [
+        "Which of the following statements best describes your right to work in Thailand?",
+        "What's your expected monthly basic salary?",
+        "Which of the following types of qualifications do you have?",
+        "How many years' experience do you have as a Planning Lead?",
+        "Do you have experience with inventory management?"
+      ],
+      "otherDetails": [
+        "Strong analytical capability",
+        "Excellent verbal and written communication skills",
+        "Strong relationship-building skills"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 240,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_light-job-3.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_light-job-3.md",
+      "timestamp": "2025-08-03T02:39:55.189Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    }
+  ]
+}

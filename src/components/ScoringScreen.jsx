@@ -4,7 +4,6 @@ import ProgressChecklist from './common/ProgressChecklist';
 import ProgressBar from './ui/ProgressBar';
 import useScoring from '../hooks/useScoring';
 import useTheme from '../hooks/useTheme';
-import useEnhancedProgress from '../hooks/useEnhancedProgress';
 import { formatLocation, formatDistance, formatPostedAgo, formatKeyword } from '../utils/formatters';
 
 const ScoringScreen = ({ appState, updateAppState, navigateTo }) => {
@@ -14,40 +13,37 @@ const ScoringScreen = ({ appState, updateAppState, navigateTo }) => {
     file: null,
     isDefault: appState.resume === 'Default Resume.pdf'
   });
+  const [progress, setProgress] = useState(0);
+  const [currentStep, setCurrentStep] = useState(0);
+  const [error, setError] = useState(null);
 
-  // Enhanced progress hook for extraction (background only)
-  const { 
-    progress, 
-    currentStep, 
-    steps, 
-    error, 
-    isLoading, 
-    loadingMessage,
-    mapBackendProgress,
-    completeProgress,
-    handleError,
-    initializeProgress
-  } = useEnhancedProgress('extraction');
-
-  // Use custom hook for scoring logic with enhanced progress integration
+  // Use custom hook for scoring logic
   const { scoredJobs, scoringSteps, scoringError } = useScoring(
     appState.selectedJobs, 
     updateAppState, 
     navigateTo,
     {
       onProgressUpdate: (status) => {
-        // Map backend progress to frontend smoothly
+        // Update progress based on backend status
         if (status.progress !== undefined) {
-          const totalJobs = appState.selectedJobs?.length || 1;
-          const currentJob = status.currentJob || 1;
-          mapBackendProgress(status.progress, status.currentStep, totalJobs, currentJob);
+          setProgress(status.progress);
         }
+        
+        // Map progress to extraction steps
+        let stepIndex = 0;
+        if (status.progress >= 5) stepIndex = 1;
+        if (status.progress >= 10) stepIndex = 2;
+        if (status.progress >= 15) stepIndex = 3;
+        if (status.progress >= 20) stepIndex = 4;
+        
+        setCurrentStep(stepIndex);
       },
       onComplete: () => {
-        completeProgress();
+        setProgress(100);
+        setCurrentStep(3);
       },
       onError: (error) => {
-        handleError(error);
+        setError(error);
       }
     }
   );
@@ -63,23 +59,35 @@ const ScoringScreen = ({ appState, updateAppState, navigateTo }) => {
     }
   }, [appState.resume]);
 
-  // Initialize progress when extraction starts
-  useEffect(() => {
-    if (appState.selectedJobs && appState.selectedJobs.length > 0 && !isLoading) {
-      initializeProgress(theme);
-    }
-  }, [appState.selectedJobs, theme]);
-
   // Handle scoring errors
   useEffect(() => {
     if (scoringError) {
-      handleError(scoringError);
+      setError(scoringError);
     }
   }, [scoringError]);
 
   const handleStop = () => {
     navigateTo('searched');
   };
+
+  // Define extraction steps
+  const extractionSteps = [
+    { id: 1, text: '📥 Downloading Job Pages', status: 'pending' },
+    { id: 2, text: '📄 Converting to Markdown', status: 'pending' },
+    { id: 3, text: '🤖 Extracting Data with ChatGPT', status: 'pending' },
+    { id: 4, text: '📊 Compiling Results', status: 'pending' }
+  ];
+
+  // Update step statuses based on current step
+  const updatedSteps = extractionSteps.map((step, index) => {
+    if (index < currentStep) {
+      return { ...step, status: 'completed' };
+    } else if (index === currentStep) {
+      return { ...step, status: 'processing' };
+    } else {
+      return { ...step, status: 'pending' };
+    }
+  });
 
   return (
     <>
@@ -163,7 +171,7 @@ const ScoringScreen = ({ appState, updateAppState, navigateTo }) => {
           </div>
         )}
         
-        <ProgressChecklist items={steps} />
+        <ProgressChecklist items={updatedSteps} />
         
         <div className="progress-bar">
           <div 
@@ -174,7 +182,7 @@ const ScoringScreen = ({ appState, updateAppState, navigateTo }) => {
         
         <div style={{ textAlign: 'center', marginTop: '10px' }}>
           <span style={{ color: '#666' }}>
-            {Math.round(progress)}% Complete - {steps[currentStep]?.text || 'Initializing...'}
+            {Math.round(progress)}% Complete - {updatedSteps[currentStep]?.text || 'Initializing...'}
           </span>
         </div>
       </div>
