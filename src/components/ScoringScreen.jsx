@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ResumeLabel from './common/ResumeLabel';
 import ProgressChecklist from './common/ProgressChecklist';
-import EnhancedProgressBar from './ui/EnhancedProgressBar';
+import ProgressBar from './ui/ProgressBar';
 import useScoring from '../hooks/useScoring';
 import useTheme from '../hooks/useTheme';
 import useEnhancedProgress from '../hooks/useEnhancedProgress';
@@ -15,7 +15,7 @@ const ScoringScreen = ({ appState, updateAppState, navigateTo }) => {
     isDefault: appState.resume === 'Default Resume.pdf'
   });
 
-  // Enhanced progress hook for extraction
+  // Enhanced progress hook for extraction (background only)
   const { 
     progress, 
     currentStep, 
@@ -137,18 +137,46 @@ const ScoringScreen = ({ appState, updateAppState, navigateTo }) => {
           }
         </div>
         
-        {/* Enhanced Progress Bar */}
-        <EnhancedProgressBar
-          progress={progress}
-          isLoading={isLoading}
-          loadingMessage={loadingMessage}
-          currentStep={currentStep}
-          steps={steps}
-          error={error}
-        />
+        {error && (
+          <div style={{
+            backgroundColor: '#f8d7da',
+            color: '#721c24',
+            padding: '15px',
+            borderRadius: '5px',
+            marginBottom: '20px',
+            border: '1px solid #f5c6cb'
+          }}>
+            <strong>Error:</strong> {error}
+          </div>
+        )}
+
+        {!appState.scoringProcessId && !error && (
+          <div style={{
+            backgroundColor: '#d1ecf1',
+            color: '#0c5460',
+            padding: '15px',
+            borderRadius: '5px',
+            marginBottom: '20px',
+            border: '1px solid #bee5eb'
+          }}>
+            <strong>Initializing:</strong> Starting data extraction process...
+          </div>
+        )}
         
-        {/* Legacy Progress Checklist (for backward compatibility) */}
         <ProgressChecklist items={steps} />
+        
+        <div className="progress-bar">
+          <div 
+            className="progress-fill" 
+            style={{ width: `${progress}%` }}
+          ></div>
+        </div>
+        
+        <div style={{ textAlign: 'center', marginTop: '10px' }}>
+          <span style={{ color: '#666' }}>
+            {Math.round(progress)}% Complete - {steps[currentStep]?.text || 'Initializing...'}
+          </span>
+        </div>
       </div>
     </>
   );

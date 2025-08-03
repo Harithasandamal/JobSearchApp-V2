@@ -102,7 +102,7 @@ const useEnhancedProgress = (type = 'search') => {
   const animateProgress = () => {
     const currentTime = Date.now();
     const elapsed = currentTime - startTimeRef.current;
-    const duration = 300; // 300ms for smooth transition
+    const duration = 500; // 500ms for smooth transition
     
     if (elapsed < duration) {
       const easeOut = 1 - Math.pow(1 - elapsed / duration, 3);

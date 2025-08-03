@@ -1,0 +1,52 @@
+{
+  "extractedJobs": [
+    {
+      "id": "light-job-1",
+      "title": "Group Project Coordinator",
+      "company": "Brown & Watson International",
+      "location": "Knoxfield",
+      "url": "https://www.seek.com.au/job/85994049?ref=search-standalone&type=standard&origin=jobTitle#sol=f5c442d9c765b69183c0a9f36e76c3773779cff4",
+      "postedAgo": "9 days",
+      "mandatoryRequirements": [
+        "Relevant tertiary qualifications",
+        "Project management qualifications (e.g. PMP)"
+      ],
+      "preferredRequirements": [
+        "Automotive experience",
+        "PMI certifications",
+        "Microsoft Office proficiency",
+        "Project planning and scheduling experience"
+      ],
+      "responsibilities": [
+        "Coordinate project documentation, timelines, and reporting",
+        "Facilitate team communication, meetings, and workshops",
+        "Analyse data, track metrics and support prioritisation",
+        "Support governance and adoption of project processes",
+        "Drive collaboration across Product Development, Manufacturing, Marketing, and Sales"
+      ],
+      "employerQuestions": [
+        "Right to work in Australia",
+        "Years of experience as a project coordinator",
+        "Years of project management experience",
+        "PMI certifications completed",
+        "Microsoft Office products experienced with"
+      ],
+      "otherDetails": [
+        "Strong project coordination and communication skills",
+        "Commercial acumen and problem-solving ability",
+        "Self-motivated with a 'can-do' attitude and collaborative style"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 210,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_light-job-1.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_light-job-1.md",
+      "timestamp": "2025-08-03T02:34:38.448Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    }
+  ]
+}

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ProgressChecklist from './common/ProgressChecklist';
 import ResumeUpload from './ResumeUpload';
-import EnhancedProgressBar from './ui/EnhancedProgressBar';
 import { formatLocation, formatDistance, formatPostedAgo, formatKeyword } from '../utils/formatters';
 import useTheme from '../hooks/useTheme';
 import useEnhancedProgress from '../hooks/useEnhancedProgress';
@@ -15,7 +14,7 @@ const SearchingScreen = ({ appState, updateAppState, navigateTo, scoringLocked }
   // Custom hooks for modular functionality
   const { resumeFile, setResumeFile } = useResumeSync(appState);
   
-  // Enhanced progress hook for search
+  // Enhanced progress hook for search (background only)
   const { 
     progress, 
     currentStep, 
@@ -140,18 +139,46 @@ const SearchingScreen = ({ appState, updateAppState, navigateTo, scoringLocked }
           }
         </div>
 
-        {/* Enhanced Progress Bar */}
-        <EnhancedProgressBar
-          progress={progress}
-          isLoading={isLoading}
-          loadingMessage={loadingMessage}
-          currentStep={currentStep}
-          steps={steps}
-          error={error}
-        />
-        
-        {/* Legacy Progress Checklist (for backward compatibility) */}
+        {error && (
+          <div style={{ 
+            backgroundColor: '#f8d7da', 
+            color: '#721c24', 
+            padding: '15px', 
+            borderRadius: '5px', 
+            marginBottom: '20px',
+            border: '1px solid #f5c6cb'
+          }}>
+            <strong>Error:</strong> {error}
+          </div>
+        )}
+
+        {!appState.searchProcessId && !error && (
+          <div style={{ 
+            backgroundColor: '#d1ecf1', 
+            color: '#0c5460', 
+            padding: '15px', 
+            borderRadius: '5px', 
+            marginBottom: '20px',
+            border: '1px solid #bee5eb'
+          }}>
+            <strong>Initializing:</strong> Starting search process...
+          </div>
+        )}
+
         <ProgressChecklist items={steps} />
+        
+        <div className="progress-bar">
+          <div 
+            className="progress-fill" 
+            style={{ width: `${progress}%` }}
+          ></div>
+        </div>
+        
+        <div style={{ textAlign: 'center', marginTop: '10px' }}>
+          <span style={{ color: '#666' }}>
+            {Math.round(progress)}% Complete - {steps[currentStep]?.text || 'Initializing...'}
+          </span>
+        </div>
       </div>
     </>
   );

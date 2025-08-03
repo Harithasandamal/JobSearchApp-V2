@@ -1,0 +1,38 @@
+{
+  "selectedJobs": [
+    {
+      "id": "light-job-1",
+      "title": "Group Project Coordinator",
+      "company": "Brown & Watson International",
+      "location": "Knoxfield",
+      "postedAgo": "9 days",
+      "url": "https://www.seek.com.au/job/85994049?ref=search-standalone&type=standard&origin=jobTitle#sol=f5c442d9c765b69183c0a9f36e76c3773779cff4"
+    },
+    {
+      "id": "light-job-4",
+      "title": "Nurse Educator (Surgical Services), Queensland Health",
+      "company": "Department of Health - Queensland",
+      "location": "Southport",
+      "postedAgo": "10 days",
+      "url": "https://www.seek.com.au/job/85967890?ref=search-standalone&type=standard&origin=jobTitle#sol=example987654321"
+    },
+    {
+      "id": "light-job-2",
+      "title": "Scheduling Coordinator",
+      "company": "Linc Scaffolding Pty Ltd",
+      "location": "Dandenong",
+      "postedAgo": "12 days",
+      "url": "https://www.seek.com.au/job/85907804?ref=search-standalone&type=standard&origin=jobTitle#sol=ac705abd43f8e7aa11c57e26bdd7ef8de3e67313"
+    },
+    {
+      "id": "light-job-3",
+      "title": "S&OP Demand Planning Supervisor",
+      "company": "Amcor Flexibles Bangkok Public Company Limited",
+      "location": "Bang Phli",
+      "postedAgo": "12 days",
+      "url": "https://www.seek.com.au/job/85912345?ref=search-standalone&type=standard&origin=jobTitle#sol=example123456789"
+    }
+  ],
+  "resumeData": null,
+  "timestamp": "2025-08-03T02:34:28.263Z"
+}
