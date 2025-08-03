@@ -1,7 +1,7 @@
-# Production Operator
-**Company:** Tasline
+# Personal Care Assistant | Dandenong
+**Company:** SAI Home and Community Care
 **Job ID:** dark-job-5
-**Extracted Date:** 2025-08-03T03:37:05.699Z
+**Extracted Date:** 2025-08-03T03:47:17.546Z
 
 ---
 
@@ -33,72 +33,70 @@ Profile
 Career advice
 Explore companies
 Explore recruiters
-Production Operator
-Tasline
+Personal Care Assistant | Dandenong
+SAI Home and Community Care 
 View all jobs
-Carrum Downs, Melbourne VIC
-Machine Operators (Manufacturing, Transport & Logistics)
-Full time
-$60,000 – $80,000 per year
-Posted 14m ago
-Quick apply
+Dandenong, Melbourne VIC
+Aged & Disability Support (Community Services & Development)
+Part time
+Add expected salary to your profile for insights
+Posted 1d ago
+Apply⁠
 Save
 
-Join the Team at Tasline – Australia’s Premium Braid Manufacturer
+About Us
 
-Are you reliable, detail-oriented, and keen to be part of a proudly Australian-made success story? Tasline, a leader in premium braided fishing lines, is on the hunt for a motivated individual to join our growing production team.
-
-About the Role
-
-This is a hands-on role in a small team where you'll be responsible for helping keep our braiding machines running smoothly and ensuring the highest product quality.
-
-What We’re Looking For
-
-We’re not just after experience – we’re after attitude. If you’re someone who:
-
-Has basic computer skills
-
-Is a self-starter who doesn’t wait to be told what to do
-
-Pays strong attention to detail
-
-Can work unsupervised and stay on task
-
-Manages time effectively to keep production flowing
-
-Communicates clearly and respectfully
-
-Takes pride in doing the job right the first time
-
-Works well as part of a tight-knit team
-
-…then we want to hear from you.
-
-Why Join Tasline?
-
-Be part of a company proud to manufacture in Australia
-
-Work in a clean, process-driven environment
-
-Help produce gear trusted by anglers around the world
-
-Enjoy stability and a supportive team culture
+SAI Home And Community Care is a Melbourne-based boutique home and community care provider that services in the South Eastern and Mornington peninsula regions. We have served our local community, providing personalised care services, for over 45 years. We focus on building strong connections with our employees and clients, providing a supportive environment where you can be yourself at work and be proud of the work that you do. 
 
 
 
 
+About The Role
+
+We are looking for passionate and energetic individuals to join our local care team as Personal Care Workers in the below areas:
+
+Dandenong
+Hampton Park
+Cranbourne
+Narre Warren
+Skye
+Chelsea Heights
+
+You will provide personalised care and support to our clients to ensure they can continue to live the life they choose in their local community. Your tasks may include;
+
+Assisting with daily activities: Helping clients with tasks such as bathing, dressing and grooming.
+Mobility support: Aiding clients in moving around their home or community, including transfers to and from beds or wheelchairs.
+Companionship: Providing emotional support and engaging in conversation.
+
+Must be willing to travel up to 30 minutes (Dandenong)
+
+Why Join Us?
+
+When you’re a member of our team, you will have a rewarding career and constant support so that you can impact others' lives in a meaningful way.
+
+Plus, you will enjoy the following benefits: 
+
+Supportive and inclusive environment – you have dedicated team leader who is always there for you, as well as an experienced support office and after hours team (24/7 support)
+Opportunities to grow in your role and career – including paid training time.
+Immediate shifts available
+Rewards and recognition – Staff programs that celebrate you, and a referral bonus scheme ($500)
+
+
+
+
+About You
+
+You have a compassionate spirit and a commitment to enhancing the wellbeing of others. You also have;
+
+Cert III in Aged Care/Individual Support (or other relevant PC qualification)
+NDIS Worker Screen
+WWCC
+Victorian Driver Licence, your own reliable transport in an insured vehicle
+CPR & First Aid Certificates
+A friendly demeanor with strong communication skills
 Unlock job insights
 Salary matchNumber of applicantsSkills match
 Sign InRegister
-Employer questions
-Your application will include the following questions:
-Which of the following statements best describes your right to work in Australia?
-How many years' experience do you have as a production operator?
-Which of the following forklift licences do you have?
-Are you willing to undergo a pre-employment medical check?
-Have you worked in a role which requires a sound understanding of OH&S/WHS?
-Have you worked in a role which requires a sound understanding of Good Manufacturing Practices (GMP)?
-Do you have a current Australian driver's licence?
 Report this job advert
 Be carefulDon’t provide your bank or credit card details when applying for jobs.Learn how to protect yourself
 Report this job ad⁠
@@ -111,7 +109,16 @@ Misleading
 Additional comments
 To help fast track investigation, please include here any other relevant details that prompted you to report this job ad as fraudulent / misleading / discriminatory.
 Report jobCancel
-What can I earn as a Production Operator
+Featured jobs
+Personal Carer - minimum 3 hour shifts
+Acquaint
+Camberwell, Melbourne VIC
+5d ago
+Disability Support Worker (Casual) - Southeast Melbourne, Narre Warren & Clyde
+My People Solutions
+Clyde, Melbourne VIC
+3d ago
+What can I earn as a Personal Care Assistant
 See more detailed salary information
 Job seekers
 Job search

@@ -53,9 +53,17 @@ const handleUnifiedSearch = async (searchParams, mode = 'dark') => {
         // Light mode: Use config-based sample URLs with enhanced reliability
         console.log(`🌞 LIGHT MODE - Using optimized sample URL collection`);
         
+        // Update progress for light mode initialization
+        if (processInfo) processInfo.progress = 10;
+        workflowLogger.logProgress(`${mode.toUpperCase()} MODE Search`, 10, 100, 'Initializing light mode');
+        
         // Reload URLs from config to ensure freshness
         loadSampleUrls();
         const lightModeConfig = getLightModeConfig();
+        
+        // Update progress for URL loading
+        if (processInfo) processInfo.progress = 20;
+        workflowLogger.logProgress(`${mode.toUpperCase()} MODE Search`, 20, 100, 'Loading sample URLs');
         
         // Get all available URLs (no limit in light mode)
         jobUrls = [...SAMPLE_URLS]; // Create copy to avoid modification

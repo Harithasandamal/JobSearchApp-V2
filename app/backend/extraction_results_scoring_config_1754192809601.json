@@ -1,0 +1,236 @@
+{
+  "extractedJobs": [
+    {
+      "id": "dark-job-13",
+      "title": "Carpet Cleaner",
+      "company": "Your Talent Solutions",
+      "location": "Bayside & South Eastern Suburbs",
+      "url": "https://www.seek.com.au/job/86199373?ref=search-standalone&type=standard",
+      "postedAgo": "22 hours",
+      "mandatoryRequirements": [
+        "Full Australian working rights",
+        "Physical fitness and stamina to perform manual labour tasks, including lifting 25kg+",
+        "Valid driver’s licence"
+      ],
+      "preferredRequirements": [
+        "Previous experience in the industry",
+        "Certification in carpet cleaning",
+        "Police Check",
+        "Working with Children Check",
+        "Degree qualification in a relevant field"
+      ],
+      "responsibilities": [
+        "Inspecting and assessing carpets and upholstery",
+        "Operating professional-grade carpet cleaning equipment",
+        "Ensuring work meets client expectations",
+        "Providing exceptional customer service",
+        "Maintaining cleaning equipment and vehicles",
+        "Adhering to safety protocols",
+        "Communicating effectively with clients",
+        "Recommend additional products and services"
+      ],
+      "employerQuestions": [
+        "Do you agree to the privacy policy of Your Talent Solutions?",
+        "Do you have working rights for Australia?",
+        "Do you have a valid driver’s licence?",
+        "Do you have previous experience in the industry?",
+        "Are you willing to obtain a Police Check and Working with Children Check?"
+      ],
+      "otherDetails": [
+        "Excellent customer service skills",
+        "Comfort with using mobile/tablet job systems",
+        "Keen eye for detail"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 240,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-13.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-13.md",
+      "timestamp": "2025-08-03T03:47:00.403Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-4",
+      "title": "Customer Service Administrator",
+      "company": "Australia Workforce",
+      "location": "Dandenong South",
+      "url": "https://www.seek.com.au/job/86180901?ref=search-standalone&type=standard",
+      "postedAgo": "1 day",
+      "mandatoryRequirements": [
+        "Strong customer service focus",
+        "Excellent verbal and written communication skills",
+        "Valid Drivers Licence"
+      ],
+      "preferredRequirements": [
+        "Experience in the window and door industry",
+        "Proficiency in Microsoft Office (Outlook, Word, Excel)",
+        "Experience with Pronto CRM or similar systems"
+      ],
+      "responsibilities": [
+        "Provide prompt and reliable support to customers and external sales team via phone and email",
+        "Process, monitor, and manage customer orders and enquiries",
+        "Liaise with warehouse team for accurate and timely dispatch and delivery of orders",
+        "Offer technical assistance to customers and sales staff",
+        "Maintain accurate records of all customer interactions and communications",
+        "Support warehouse operations including order picking, packing, assisting with deliveries, and receipting of incoming stock"
+      ],
+      "employerQuestions": [
+        "Are you experienced in the window and door industry?",
+        "Do you have proficiency in Microsoft Office and CRM systems?",
+        "Can you provide examples of your customer service focus and problem-solving skills?",
+        "Do you have a valid Drivers Licence?",
+        "Are you comfortable with providing technical assistance to customers and sales staff?"
+      ],
+      "otherDetails": [
+        "Strong customer service focus with effective problem-solving skills",
+        "Confident and professional phone manner",
+        "Supportive and friendly work environment"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 220,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-4.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-4.md",
+      "timestamp": "2025-08-03T03:47:10.491Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-5",
+      "title": "Personal Care Assistant | Dandenong",
+      "company": "SAI Home and Community Care",
+      "location": "Dandenong",
+      "url": "https://www.seek.com.au/job/86180777?ref=search-standalone&type=standard",
+      "postedAgo": "1 day",
+      "mandatoryRequirements": [
+        "Cert III in Aged Care/Individual Support",
+        "NDIS Worker Screen",
+        "WWCC"
+      ],
+      "preferredRequirements": [],
+      "responsibilities": [
+        "Assisting with daily activities: Helping clients with tasks such as bathing, dressing and grooming",
+        "Mobility support: Aiding clients in moving around their home or community, including transfers to and from beds or wheelchairs",
+        "Companionship: Providing emotional support and engaging in conversation"
+      ],
+      "employerQuestions": [],
+      "otherDetails": [
+        "Friendly demeanor with strong communication skills"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 70,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-5.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-5.md",
+      "timestamp": "2025-08-03T03:47:19.690Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-6",
+      "title": "Ongoing Support Consultant (Inclusive Employment Australia)",
+      "company": "The Salvation Army",
+      "location": "Dandenong",
+      "url": "https://www.seek.com.au/job/86180658?ref=search-standalone&type=standard",
+      "postedAgo": "1 day",
+      "mandatoryRequirements": [
+        "Relevant qualifications in areas such as Employment Services, Community Services or other relevant areas",
+        "Previous experience in employment services including advanced barrier management, reverse marketing, placement of candidates into employment and provision of post-placement support",
+        "Must hold a Driver's license as travel throughout the region will be required"
+      ],
+      "preferredRequirements": [
+        "Degree qualification in an Engineering discipline (Mechanical, Industrial or Materials Engineering) is preferred",
+        "Certification in process improvement techniques and tools such as Six Sigma",
+        "Certification in process improvement techniques and tools such as LEAN",
+        "Certification in process improvement techniques and tools such as KAIZEN",
+        "Demonstrated ability to communicate through various methods with a wide variety of stakeholders"
+      ],
+      "responsibilities": [
+        "Proactively build and maintain effective relationships with participants and employers",
+        "Identify any barriers that may impact upon ongoing employment and address them promptly to ensure the placement is retained",
+        "Monitor work placements for participants who have already been engaged in employment beyond 26 weeks, towards the achievement of monthly targets",
+        "Work closely with current and potential employers on their labour needs, identifying opportunities to market participants for additional placements",
+        "Assist with verifying and obtaining evidence of employment, including payslips",
+        "Achieve or exceed all KPIs and apply an outcome focussed, high performance approach to the role"
+      ],
+      "employerQuestions": [
+        "Are you ready to join a respected, values driven not-for-profit organisation, thrive in a challenging yet rewarding role, and work closely alongside people with a disability to help them build their future career?",
+        "If your answer is YES! Apply now and complete the online application including a cover letter addressing the above requirements.",
+        "Please specify the job title and location in the subject line.",
+        "If you are a person with a disability and require an adjustment, such as alternative application methods, or if you have a general enquiry about a role, please contact our Talent Acquisition team at employmentpluscareers@salvationarmy.org.au.",
+        "We value Integrity, Compassion, Respect, Diversity, and Collaboration."
+      ],
+      "otherDetails": [
+        "Performance focused mindset and proven experience achieving business targets and KPI's, using your analytical mindset to interpret data to achieve outcome",
+        "Attractive remuneration & NFP salary packaging benefits ($15,900 tax-free + meal & entertainment benefits)",
+        "Great work-life balance with an opportunity for a 9-day fortnight or an accrued day off every 4 weeks (for full-time employees)"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 240,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-6.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-6.md",
+      "timestamp": "2025-08-03T03:47:33.957Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-7",
+      "title": "Aluminium Polisher",
+      "company": "Australia Wide Trades Recruitment",
+      "location": "Dandenong South",
+      "url": "https://www.seek.com.au/job/86180657?ref=search-standalone&type=standard",
+      "postedAgo": "1 day",
+      "mandatoryRequirements": [
+        "Trade qualification in metal finishing (Cert III/IV) or equivalent hands-on experience in metal polishing or metalwork"
+      ],
+      "preferredRequirements": [
+        "Proven experience with aluminium or metal polishing using tools like grinders, buffers, and hand polishers",
+        "Strong attention to detail and ability to deliver high-quality, mirror-like finishes",
+        "Basic knowledge of workplace health and safety when working with machinery and chemicals",
+        "Ability to work independently and collaboratively in a fast-paced environment, with good communication skills"
+      ],
+      "responsibilities": [
+        "Surface Preparation: clean and prepare raw aluminium surfaces by removing scratches, weld marks and other imperfections using sanding tools and abrasives",
+        "Polishing: polish bull bars and aluminium components with both hand tools and polishing machines",
+        "Finishing: Apply final buffing and protective coatings as needed, ensuring a consistent & professional finish that meets stringent quality standards",
+        "Inspection: Perform thorough visual and tactile quality checks throughout the polishing process to guarantee all products are free from defects or blemishes",
+        "Ability to communicate with fabrication, assembly, and quality assurance teams to ensure alignment on job requirements and deadlines"
+      ],
+      "employerQuestions": [
+        "Which of the following statements best describes your right to work in Australia?",
+        "How much notice are you required to give your current employer?",
+        "Which suburb are you currently living in?"
+      ],
+      "otherDetails": [
+        "Strong attention to detail",
+        "Good communication skills",
+        "Workplace health and safety knowledge"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 150,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-7.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-7.md",
+      "timestamp": "2025-08-03T03:47:42.870Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    }
+  ]
+}

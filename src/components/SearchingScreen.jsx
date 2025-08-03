@@ -32,15 +32,20 @@ const SearchingScreen = ({ appState, updateAppState, navigateTo, scoringLocked }
         setProgress(status.progress);
       }
       
-      // Map progress to steps for light mode (faster completion)
+      // Map progress to steps for light mode (much faster completion)
       let stepIndex = 0;
-      if (status.progress >= 10) stepIndex = 1;  // Browser initialized
-      if (status.progress >= 30) stepIndex = 2;  // Connected to sources
-      if (status.progress >= 60) stepIndex = 3;  // Loading listings
-      if (status.progress >= 80) stepIndex = 4;  // Extracting info
-      if (status.progress >= 95) stepIndex = 4;  // Processing results
+      if (status.progress >= 5) stepIndex = 1;   // Browser initialized
+      if (status.progress >= 15) stepIndex = 2;  // Connected to sources
+      if (status.progress >= 35) stepIndex = 3;  // Loading listings
+      if (status.progress >= 60) stepIndex = 4;  // Extracting info
+      if (status.progress >= 80) stepIndex = 4;  // Processing results
       
       setCurrentStep(stepIndex);
+      
+      // Ensure progress reaches 100% before completion
+      if (status.progress >= 95) {
+        setProgress(100);
+      }
     },
     onComplete: () => {
       setProgress(100);

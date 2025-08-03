@@ -52,11 +52,13 @@ const useSearchPolling = ({
             onComplete();
           }
           
-          // Navigate to searched screen
-          console.log('🚀 Navigating to searched screen...');
-          if (isMounted) {
-            navigateTo('searched');
-          }
+          // Add small delay to ensure loading bar reaches 100% before navigation
+          console.log('🚀 Navigating to searched screen in 500ms...');
+          setTimeout(() => {
+            if (isMounted) {
+              navigateTo('searched');
+            }
+          }, 500);
           
           clearInterval(interval);
         } else if (status.status === 'failed') {

@@ -1,7 +1,7 @@
-# Machine Operator (foil stamping)
-**Company:** Girardi Human Resources
+# Carpet Cleaner
+**Company:** Your Talent Solutions
 **Job ID:** dark-job-13
-**Extracted Date:** 2025-08-03T03:37:15.569Z
+**Extracted Date:** 2025-08-03T03:46:57.056Z
 
 ---
 
@@ -33,69 +33,66 @@ Profile
 Career advice
 Explore companies
 Explore recruiters
-Machine Operator (foil stamping)
-Girardi Human Resources 
+Carpet Cleaner
+Your Talent Solutions 
 View all jobs
 Bayside & South Eastern Suburbs, Melbourne VIC
-Machine Operators (Manufacturing, Transport & Logistics)
+Cleaning Services (Trades & Services)
 Full time
-Add expected salary to your profile for insights
-Posted 3h ago
+$65k - $72k + Super + Quarterly Bonus
+Posted 22h ago
 Quick apply
 Save
+About Us
 
-Multiple positions available - AM and PM shifts 
+Master Clean Carpet Care is a locally owned and operated provider of specialist cleaning services, including carpet, tile and grout, upholstery, and water damage restoration for Melbourne's South East and surrounding areas. With years of experience and a commitment to excellence, we take pride in delivering outstanding results for both residential and commercial clients.
 
-Above Award pay rates and overtime available
+Why Join Us?
 
-Leading embellishment and print finishing company 
+At Master Clean Carpet Care, we value our team and offer:
 
-Our client is a well-established leader in embellishment and print finishing located in Melbourne's south eastern suburbs. Due to business growth, they need additional operators for foil stamping machines. 
+• A fully equipped van that can be taken home
+• Flexible work hours to fit your lifestyle (work span between 8am – 7pm)
+• Bonus & commission opportunities paid quarterly and in arrears
+• Permanent, full-time position with training and career progression
+• Supplied uniforms, equipment, and mobile phone
+• Occasional Saturday work available, if desired
 
-As a Foil Stamping Machine Operator, you will have the opportunity to work on full size flatbed foil stamping equipment alongside a strong and growing team of print finishing staff. Experience in the sheet fed print industry is highly regarded.
+About the Role
 
-What the job involves
-As a Machine Operator you will be responsible for:
+As a Master Clean Carpet Cleaner Technician, your duties will include but are not limited to:
 
-operating the foil stamping machines 
+• Inspecting and assessing carpets and upholstery to determine the most effective cleaning methods
+• Operating professional-grade carpet cleaning equipment and using industry-leading cleaning solutions
+• Ensuring all work is carried out to the highest standards, meeting client expectations
+• Providing exceptional customer service and effectively communicating with clients
+• Recommending additional products and services to customers as opportunities arise
+• Maintaining cleaning equipment and company vehicles in good working order
+• Adhering to all safety protocols and environmental regulations
 
-performing work to a high-quality standard 
+About You
 
-working both independently and as part of a team
+To be successful in this role, you’ll have a great attitude, excellent communication skills, and a pride in delivering high-quality work. You will also have:
 
-The person we are looking for 
-The appropriate candidate will:
+• Excellent customer service skills and the ability to work independently
+• Comfort with using mobile/tablet job systems
+• Full Australian working rights or permanent residency status
+• Physical fitness and stamina to perform manual labour tasks, including lifting 25kg+
+• A keen eye for detail
+• A valid driver’s licence, Police Check and Working with Children Check (willing to obtain) 
+• Previous experience in the industry is highly regarded, but full training will be provided
 
-have experience in the sheet fed print industry
+How to Apply
 
-preferably have laminating experience (however, full training is available for the right candidate)
-
-have a high attention to detail
-
-have good basic literacy and numeracy skills
-
-have a strong work ethic.
-
-Benefits
-This is an opportunity to work for a strong and growing business, a recognised leader in embellishment and print finishing. Work with a close knit and supportive team in a great work environment. 
-
-For more information
-If you would like more information about this role, please contact Kerri Harris on 0412 8666 42.
-
-To apply for this position
-To apply for this position simply submit your resume. 
-
-
-
+If you’re ready to be part of a team that values both its clients and employees, please submit your application today. We look forward to hearing from you!
 
 Unlock job insights
 Salary matchNumber of applicantsSkills match
 Sign InRegister
 Employer questions
 Your application will include the following questions:
-Which of the following statements best describes your right to work in Australia?
-How many years' experience do you have as a machine operator?
-Do you own or have regular access to a car?
+Do you agree to the privacy policy of Your Talent Solutions?
+Do you have working rights for Australia?
 Report this job advert
 Be carefulDon’t provide your bank or credit card details when applying for jobs.Learn how to protect yourself
 Report this job ad⁠
@@ -109,20 +106,24 @@ Additional comments
 To help fast track investigation, please include here any other relevant details that prompted you to report this job ad as fraudulent / misleading / discriminatory.
 Report jobCancel
 Featured jobs
-Machine Operator - One Pass Saw
-Wade Sawmill
-Maryborough, Hervey Bay & Fraser Coast QLD
+Dishwasher / Cleaner. Fulltime 9am to 5pm. Monday to Friday. Hours negotiable.
+Church Street Butcher
+Brighton, Melbourne VIC
 2d ago
-Machine Operator and Farm Hand - Maryborough
-Macadamia Farm Management
-Maryborough, Hervey Bay & Fraser Coast QLD
-8d ago
-Removalist
-Jim’s Removals and Storage
-Lilydale, Yarra Valley & High Country VIC
-23h ago
-What can I earn as a Machine Operator
-See more detailed salary information
+Depot Cleaner
+Booth Transport
+Laverton North, Melbourne VIC
+1d ago
+Cleaner - House/Domestic
+Bliss Home Care Services
+Glenroy, Melbourne VIC
+4d ago
+Career Advice
+Researching careers? Find all the information and tips you need on career advice.
+Role descriptions
+Salary insights
+Tools to help you prepare for jobs
+Explore Career Advice
 Job seekers
 Job search
 Profile

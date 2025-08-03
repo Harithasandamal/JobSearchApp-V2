@@ -1,0 +1,153 @@
+{
+  "extractedJobs": [
+    {
+      "id": "dark-job-8",
+      "title": "Merchandise Planner",
+      "company": "People Equity Pty Ltd",
+      "location": "Bayside & South Eastern Suburbs",
+      "url": "https://www.seek.com.au/job/86204357?ref=search-standalone&type=standard",
+      "postedAgo": "2 hours",
+      "mandatoryRequirements": [
+        "Proven merchandise planning experience in Retail"
+      ],
+      "preferredRequirements": [
+        "Strong commercial acumen",
+        "A love of data",
+        "Creativity in problem-solving",
+        "Experience with planning systems and tools",
+        "Passion for planning innovation"
+      ],
+      "responsibilities": [
+        "Develop and execute merchandise plans",
+        "Analyse trade and market data",
+        "Optimise stock flow and inventory",
+        "Present performance narratives",
+        "Develop continuous improvements in planning processes",
+        "Deliver post-season analysis",
+        "Unlock commercial opportunities through analytics"
+      ],
+      "employerQuestions": [
+        "What is your experience with merchandise planning in Retail?",
+        "How do you approach analysing trade and market data?",
+        "Can you provide an example of a successful post-season analysis you have conducted?",
+        "How do you stay updated on planning innovations?",
+        "How do you collaborate with cross-functional teams?"
+      ],
+      "otherDetails": [
+        "Strong talent in cross-functional collaboration",
+        "Confidence in presenting insights to senior leaders",
+        "Agility in fast-paced environments"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 200,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-8.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-8.md",
+      "timestamp": "2025-08-03T03:46:14.232Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-13",
+      "title": "Carpet Cleaner",
+      "company": "Your Talent Solutions",
+      "location": "Bayside & South Eastern Suburbs",
+      "url": "https://www.seek.com.au/job/86199373?ref=search-standalone&type=standard",
+      "postedAgo": "22 hours",
+      "mandatoryRequirements": [
+        "Full Australian working rights",
+        "Physical fitness and stamina to perform manual labour tasks, including lifting 25kg+",
+        "Valid driver’s licence, Police Check and Working with Children Check (willing to obtain)"
+      ],
+      "preferredRequirements": [
+        "Previous experience in the industry",
+        "Certification in carpet cleaning",
+        "Experience with mobile/tablet job systems",
+        "Excellent customer service skills",
+        "Pride in delivering high-quality work"
+      ],
+      "responsibilities": [
+        "Inspecting and assessing carpets and upholstery to determine the most effective cleaning methods",
+        "Operating professional-grade carpet cleaning equipment and using industry-leading cleaning solutions",
+        "Ensuring all work is carried out to the highest standards, meeting client expectations",
+        "Providing exceptional customer service and effectively communicating with clients",
+        "Recommending additional products and services to customers as opportunities arise",
+        "Maintaining cleaning equipment and company vehicles in good working order",
+        "Adhering to all safety protocols and environmental regulations"
+      ],
+      "employerQuestions": [
+        "Do you agree to the privacy policy of Your Talent Solutions?",
+        "Do you have working rights for Australia?"
+      ],
+      "otherDetails": [
+        "Excellent communication skills",
+        "Keen eye for detail",
+        "Ability to work independently"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 180,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-13.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-13.md",
+      "timestamp": "2025-08-03T03:46:23.304Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "dark-job-1",
+      "title": "Business Development Manager",
+      "company": "Sourcey",
+      "location": "Bayside & South Eastern Suburbs",
+      "url": "https://www.seek.com.au/job/86186380?ref=search-standalone&type=standard",
+      "postedAgo": "1 day",
+      "mandatoryRequirements": [
+        "Proven experience in luxury sales",
+        "Outstanding communication skills",
+        "Track record of exceeding KPIs"
+      ],
+      "preferredRequirements": [
+        "Experience in high-end real estate",
+        "Experience in property development",
+        "Experience in architecture",
+        "Experience in bespoke construction",
+        "Understanding of affluent client expectations"
+      ],
+      "responsibilities": [
+        "Identify and pursue new business opportunities",
+        "Build relationships with real estate agents, developers, and architects",
+        "Represent company at networking events",
+        "Nurture and convert leads into sales opportunities",
+        "Conduct client meetings and presentations",
+        "Collaborate with marketing on messaging",
+        "Manage sales pipeline using CRM tools"
+      ],
+      "employerQuestions": [
+        "Right to work in Australia",
+        "Years of experience as a business development manager",
+        "Current Australian driver's licence"
+      ],
+      "otherDetails": [
+        "Self-motivation",
+        "Resilience",
+        "Proficiency with CRM platforms"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 200,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-1.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_dark-job-1.md",
+      "timestamp": "2025-08-03T03:46:32.251Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    }
+  ]
+}
