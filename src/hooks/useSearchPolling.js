@@ -30,6 +30,7 @@ const useSearchPolling = ({
     setPollStartTime(Date.now());
     setLastProgressTime(null); // Don't set until we get actual progress
     setLastProgress(0);
+    setSearchError(null); // Clear any existing errors when search starts
     console.log('🌙 Setting up search polling for process ID:', processId);
 
     let isMounted = true;
@@ -47,27 +48,32 @@ const useSearchPolling = ({
           lastProgress: lastProgress + '%'
         });
         
-        // Only timeout if no progress for 2 minutes AND we've been running for at least 3 minutes
-        // AND we have a valid lastProgressTime (not the initial value)
-        if (elapsedTime > 180000 && lastProgressTime && (currentTime - lastProgressTime) > 120000) { // 3 min total + 2 min no progress
-          console.log('⏰ Intelligent timeout: No progress for 2 minutes after 3 minutes total');
-          setSearchError('Search timeout - please try again');
-          if (onError) {
-            onError('Search timeout');
+        // Don't check timeout for the first 10 seconds to allow search to start
+        if (elapsedTime < 10000) {
+          console.log('⏱️ Skipping timeout check - search just started');
+        } else {
+          // Only timeout if no progress for 2 minutes AND we've been running for at least 3 minutes
+          // AND we have a valid lastProgressTime (not the initial value)
+          if (elapsedTime > 180000 && lastProgressTime && (currentTime - lastProgressTime) > 120000) { // 3 min total + 2 min no progress
+            console.log('⏰ Intelligent timeout: No progress for 2 minutes after 3 minutes total');
+            setSearchError('Search timeout - please try again');
+            if (onError) {
+              onError('Search timeout');
+            }
+            clearInterval(interval);
+            return;
           }
-          clearInterval(interval);
-          return;
-        }
-        
-        // Absolute timeout after 10 minutes (emergency fallback)
-        if (elapsedTime > 600000) { // 10 minutes
-          console.log('⏰ Absolute timeout reached (10 minutes)');
-          setSearchError('Search timeout - please try again');
-          if (onError) {
-            onError('Search timeout');
+          
+          // Absolute timeout after 10 minutes (emergency fallback)
+          if (elapsedTime > 600000) { // 10 minutes
+            console.log('⏰ Absolute timeout reached (10 minutes)');
+            setSearchError('Search timeout - please try again');
+            if (onError) {
+              onError('Search timeout');
+            }
+            clearInterval(interval);
+            return;
           }
-          clearInterval(interval);
-          return;
         }
         
         console.log('📡 Polling search status for process ID:', processId);
@@ -81,6 +87,12 @@ const useSearchPolling = ({
         if (!isMounted) return;
 
         setSearchStatus(status);
+        
+        // Clear any error if we got a valid response from backend
+        if (status && (status.status === 'running' || status.status === 'completed' || status.status === 'failed')) {
+          setSearchError(null);
+          console.log('✅ Clearing error - got valid response from backend');
+        }
 
         if (status.status === 'completed') {
           console.log('✅ Search completed! Status:', status);
