@@ -11,6 +11,7 @@ class WorkflowLogger {
     this.processStack = [];
     this.recentMessages = new Set(); // Track recent messages to prevent duplicates
     this.messageExpiryTime = 1000; // 1 second expiry for duplicate detection
+    this.loadingStates = new Map(); // Track loading states for terminal effects
     
     this.log('🚀 JOB SEARCH APP SESSION STARTED', 'system');
     this.log(`📅 Session started at: ${this.sessionStartTime.toLocaleString()}`, 'system');
@@ -40,7 +41,37 @@ class WorkflowLogger {
     const indent = skipIndent ? '' : '  '.repeat(this.indentLevel);
     const icon = this.getIcon(type);
     
-    console.log(`[${timestamp}] ${indent}${icon} ${message}`);
+    // Filter out technical details for user-friendly logging
+    const userFriendlyMessage = this.makeUserFriendly(message);
+    
+    console.log(`[${timestamp}] ${indent}${icon} ${userFriendlyMessage}`);
+  }
+  
+  /**
+   * Make messages more user-friendly by filtering technical details
+   */
+  makeUserFriendly(message) {
+    // Remove built URL details (too technical for users)
+    if (message.includes('Built URL:') || message.includes('URL structure:')) {
+      return null; // Don't log these at all
+    }
+    
+    // Simplify API call messages
+    if (message.includes('API: POST') || message.includes('API: GET')) {
+      return null; // Don't log API calls to keep it clean
+    }
+    
+    // Simplify results file messages
+    if (message.includes('Results file not found') || message.includes('Results file found')) {
+      return null; // Don't log file system details
+    }
+    
+    // Simplify process output messages
+    if (message.includes('Processing job') && message.includes('Step')) {
+      return message.replace(/Step \d+: /, ''); // Remove step numbers
+    }
+    
+    return message;
   }
   
   /**
@@ -53,6 +84,8 @@ class WorkflowLogger {
       action: '👆',
       process: '⚡',
       scraping: '🕷️',
+      scoring: '🎯',
+      chatgpt: '🤖',
       success: '✅',
       error: '❌',
       warning: '⚠️',
@@ -98,6 +131,65 @@ class WorkflowLogger {
     }
     
     this.currentScreen = screenName;
+  }
+  
+  /**
+   * Start a loading state with terminal effects
+   */
+  startLoading(processName, message = '') {
+    const loadingId = `${processName}_${Date.now()}`;
+    this.loadingStates.set(loadingId, { processName, startTime: Date.now() });
+    
+    const loadingMessage = message || `Starting ${processName}...`;
+    this.log(`⏳ ${loadingMessage}`, 'process');
+    
+    return loadingId;
+  }
+  
+  /**
+   * Update loading state with progress
+   */
+  updateLoading(loadingId, progress, message = '') {
+    const loadingState = this.loadingStates.get(loadingId);
+    if (!loadingState) return;
+    
+    const progressBar = this.createProgressBar(progress);
+    const updateMessage = message || `${loadingState.processName} in progress...`;
+    
+    // Clear previous line and show progress
+    process.stdout.write(`\r[${new Date().toLocaleTimeString()}]  ⏳ ${updateMessage} ${progressBar}`);
+  }
+  
+  /**
+   * End loading state with success/failure
+   */
+  endLoading(loadingId, success = true, message = '') {
+    const loadingState = this.loadingStates.get(loadingId);
+    if (!loadingState) return;
+    
+    this.loadingStates.delete(loadingId);
+    
+    const duration = Date.now() - loadingState.startTime;
+    const status = success ? '✅' : '❌';
+    const endMessage = message || `${loadingState.processName} ${success ? 'completed' : 'failed'}`;
+    
+    // Clear progress bar and show result
+    process.stdout.write('\n');
+    this.log(`${status} ${endMessage} (${duration}ms)`, success ? 'success' : 'error');
+  }
+  
+  /**
+   * Create a visual progress bar
+   */
+  createProgressBar(progress) {
+    const width = 20;
+    const filled = Math.round((progress / 100) * width);
+    const empty = width - filled;
+    
+    const filledBar = '█'.repeat(filled);
+    const emptyBar = '░'.repeat(empty);
+    
+    return `[${filledBar}${emptyBar}] ${progress}%`;
   }
   
   /**
@@ -171,6 +263,20 @@ class WorkflowLogger {
    */
   logScraping(message, type = 'info') {
     this.log(message, 'scraping');
+  }
+
+  /**
+   * Log scoring activity
+   */
+  logScoring(message, type = 'info') {
+    this.log(message, 'scoring');
+  }
+
+  /**
+   * Log ChatGPT activity
+   */
+  logChatGPT(message, type = 'info') {
+    this.log(message, 'chatgpt');
   }
   
   /**

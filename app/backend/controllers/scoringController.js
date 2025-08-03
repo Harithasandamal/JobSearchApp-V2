@@ -3,6 +3,7 @@ const path = require('path');
 const fs = require('fs');
 const { getResultsPath } = require('../utils/urlUtils');
 const { flattenJobAnalysis, readFromFile } = require('../utils/dataUtils');
+const workflowLogger = require('../utils/WorkflowLogger');
 
 /**
  * Store active data extraction processes
@@ -58,17 +59,16 @@ const startJobDataExtraction = (req, res) => {
   let output = '';
   let currentJobIndex = 0;
   let totalJobs = selectedJobs.length;
+  let loadingId = null;
 
   extractorProcess.stdout.on('data', (data) => {
     const outputStr = data.toString();
     output += outputStr;
     
-    console.log(`🤖 Data Extractor output: ${outputStr.substring(0, 200)}...`);
-    
     const processInfo = activeExtractionProcesses.get(processId);
     if (!processInfo) return;
     
-         // Update progress based on specific output patterns
+    // Update progress based on specific output patterns
     if (outputStr.includes('Processing job')) {
       const match = outputStr.match(/Processing job (\d+)\/(\d+)/);
       if (match) {
@@ -78,7 +78,16 @@ const startJobDataExtraction = (req, res) => {
         const jobProgress = ((currentJobIndex - 1) * (100 / totalJobs));
         processInfo.progress = Math.min(jobProgress, 100);
         processInfo.lastUpdate = Date.now();
-        console.log(`📊 Progress update: Job ${currentJobIndex}/${totalJobs} = ${jobProgress}%`);
+        
+        // Start loading effect for first job
+        if (currentJobIndex === 1 && !loadingId) {
+          loadingId = workflowLogger.startLoading('Job Data Extraction', 'Starting job data extraction...');
+        }
+        
+        // Update loading progress
+        if (loadingId) {
+          workflowLogger.updateLoading(loadingId, processInfo.progress, `Processing job ${currentJobIndex} of ${totalJobs}`);
+        }
       }
     }
     
@@ -124,13 +133,17 @@ const startJobDataExtraction = (req, res) => {
       processInfo.progress = 100;
       processInfo.status = 'completed';
       processInfo.lastUpdate = Date.now();
-      console.log('✅ Job data extraction completed, marking as finished');
+      
+      // End loading with success
+      if (loadingId) {
+        workflowLogger.endLoading(loadingId, true, 'Job data extraction completed successfully');
+      }
     }
     
-         // Log only critical errors
-     if (outputStr.includes('❌') || outputStr.includes('Error:')) {
-       console.log(`⚠️ ERROR in process ${processId}: ${outputStr.trim()}`);
-     }
+    // Log only critical errors
+    if (outputStr.includes('❌') || outputStr.includes('Error:')) {
+      workflowLogger.logError(`Process ${processId} error: ${outputStr.trim()}`);
+    }
   });
 
   extractorProcess.stderr.on('data', (data) => {
