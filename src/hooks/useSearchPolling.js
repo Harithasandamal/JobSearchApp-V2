@@ -28,7 +28,7 @@ const useSearchPolling = ({
     const processId = appState.searchProcessId;
     setSearchProcessId(processId);
     setPollStartTime(Date.now());
-    setLastProgressTime(Date.now());
+    setLastProgressTime(null); // Don't set until we get actual progress
     setLastProgress(0);
     console.log('🌙 Setting up search polling for process ID:', processId);
 
@@ -41,7 +41,14 @@ const useSearchPolling = ({
         const currentTime = Date.now();
         const elapsedTime = currentTime - pollStartTime;
         
+        console.log('⏱️ Timeout check:', {
+          elapsedTime: Math.round(elapsedTime / 1000) + 's',
+          lastProgressTime: lastProgressTime ? Math.round((currentTime - lastProgressTime) / 1000) + 's ago' : 'null',
+          lastProgress: lastProgress + '%'
+        });
+        
         // Only timeout if no progress for 2 minutes AND we've been running for at least 3 minutes
+        // AND we have a valid lastProgressTime (not the initial value)
         if (elapsedTime > 180000 && lastProgressTime && (currentTime - lastProgressTime) > 120000) { // 3 min total + 2 min no progress
           console.log('⏰ Intelligent timeout: No progress for 2 minutes after 3 minutes total');
           setSearchError('Search timeout - please try again');
@@ -192,6 +199,10 @@ const useSearchPolling = ({
               setSearchError(null);
               console.log('✅ Clearing error due to progress');
             }
+          } else if (progressPercent === lastProgress && lastProgressTime === null) {
+            // If we haven't set lastProgressTime yet but have progress, set it now
+            setLastProgressTime(Date.now());
+            console.log('📈 Initial progress set:', progressPercent);
           }
           
           // Map progress to steps with improved thresholds for smoother updates
