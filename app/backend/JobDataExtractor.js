@@ -87,10 +87,24 @@ const extractJobData = async () => {
         
         const extractedData = await chatgptService.extractJobDataLists(jobDescription);
         
-        // Debug: Check if extraction was successful
-        if (!extractedData || !extractedData.mandatoryRequirements || extractedData.mandatoryRequirements.length === 0) {
-          console.error('❌ ChatGPT extraction returned empty results:', extractedData);
-          throw new Error('ChatGPT extraction returned empty results');
+        // Debug: Check if extraction was successful (allow empty mandatory requirements)
+        if (!extractedData) {
+          console.error('❌ ChatGPT extraction returned null/undefined results');
+          throw new Error('ChatGPT extraction returned null/undefined results');
+        }
+        
+        // Validate that we have at least some data in any of the lists
+        const hasAnyData = (
+          (extractedData.mandatoryRequirements && extractedData.mandatoryRequirements.length > 0) ||
+          (extractedData.preferredRequirements && extractedData.preferredRequirements.length > 0) ||
+          (extractedData.responsibilities && extractedData.responsibilities.length > 0) ||
+          (extractedData.employerQuestions && extractedData.employerQuestions.length > 0) ||
+          (extractedData.otherDetails && extractedData.otherDetails.length > 0)
+        );
+        
+        if (!hasAnyData) {
+          console.error('❌ ChatGPT extraction returned completely empty results:', extractedData);
+          throw new Error('ChatGPT extraction returned completely empty results');
         }
         
         // Step 4: Compile extraction results
@@ -141,8 +155,20 @@ const extractJobData = async () => {
                       extractionMethod: 'chatgpt-data-extraction'
                     };
         
-        console.log(`✅ Job ${i + 1} extracted: ${extractedData.mandatoryRequirements.length} mandatory, ${extractedData.preferredRequirements.length} preferred, ${extractedData.responsibilities.length} responsibilities`);
-        workflowLogger.logScoring(`✅ Job ${i + 1} extracted successfully`);
+        // Log extraction summary with better detail
+        const mandatoryCount = extractedData.mandatoryRequirements?.length || 0;
+        const preferredCount = extractedData.preferredRequirements?.length || 0;
+        const responsibilitiesCount = extractedData.responsibilities?.length || 0;
+        const employerQuestionsCount = extractedData.employerQuestions?.length || 0;
+        const otherDetailsCount = extractedData.otherDetails?.length || 0;
+        
+        console.log(`✅ Job ${i + 1} extracted: ${mandatoryCount} mandatory, ${preferredCount} preferred, ${responsibilitiesCount} responsibilities, ${employerQuestionsCount} employer questions, ${otherDetailsCount} other details`);
+        
+        if (mandatoryCount === 0) {
+          workflowLogger.logScoring(`✅ Job ${i + 1} extracted successfully (no mandatory requirements found)`);
+        } else {
+          workflowLogger.logScoring(`✅ Job ${i + 1} extracted successfully`);
+        }
         
         allResults.push(result);
         

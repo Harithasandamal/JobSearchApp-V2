@@ -343,7 +343,19 @@ Return ONLY the JSON object.`;
           : []
       };
 
-      workflowLogger.logChatGPT('✅ Job data lists extraction completed');
+      // Log extraction results for debugging
+      const mandatoryCount = result.mandatoryRequirements.length;
+      const preferredCount = result.preferredRequirements.length;
+      const responsibilitiesCount = result.responsibilities.length;
+      const employerQuestionsCount = result.employerQuestions.length;
+      const otherDetailsCount = result.otherDetails.length;
+      
+      workflowLogger.logChatGPT('✅ Job data lists extraction completed:');
+      workflowLogger.logChatGPT(`   Mandatory: ${mandatoryCount} items`);
+      workflowLogger.logChatGPT(`   Preferred: ${preferredCount} items`);
+      workflowLogger.logChatGPT(`   Responsibilities: ${responsibilitiesCount} items`);
+      workflowLogger.logChatGPT(`   Employer Questions: ${employerQuestionsCount} items`);
+      workflowLogger.logChatGPT(`   Other Details: ${otherDetailsCount} items`);
 
       return result;
       
