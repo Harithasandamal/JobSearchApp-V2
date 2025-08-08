@@ -2,7 +2,7 @@
   "name": "automated-job-search-app",
   "version": "1.0.0",
   "description": "Automated Job Search Application with AI-powered analysis",
-  "homepage": "https://YOUR_USERNAME.github.io/job-search-app-v2",
+  "homepage": "https://harithasandamal.github.io/JobSearchApp-V2",
   "main": "index.js",
   "scripts": {
     "start": "cross-env PORT=3001 BROWSER=none react-scripts start",
