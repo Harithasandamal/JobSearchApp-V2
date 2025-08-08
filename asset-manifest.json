@@ -1,0 +1,36 @@
+{
+  "files": {
+    "main.css": "/JobSearchApp-V2/static/css/main.1f49413e.css",
+    "main.js": "/JobSearchApp-V2/static/js/main.803e2069.js",
+    "static/js/305.a45f6195.chunk.js": "/JobSearchApp-V2/static/js/305.a45f6195.chunk.js",
+    "static/js/968.b5e89d3d.chunk.js": "/JobSearchApp-V2/static/js/968.b5e89d3d.chunk.js",
+    "static/js/764.bd8152eb.chunk.js": "/JobSearchApp-V2/static/js/764.bd8152eb.chunk.js",
+    "static/js/720.a9986f92.chunk.js": "/JobSearchApp-V2/static/js/720.a9986f92.chunk.js",
+    "static/js/128.51e0cc5b.chunk.js": "/JobSearchApp-V2/static/js/128.51e0cc5b.chunk.js",
+    "static/js/386.c5346c21.chunk.js": "/JobSearchApp-V2/static/js/386.c5346c21.chunk.js",
+    "static/js/830.682448e9.chunk.js": "/JobSearchApp-V2/static/js/830.682448e9.chunk.js",
+    "static/js/239.40d096a4.chunk.js": "/JobSearchApp-V2/static/js/239.40d096a4.chunk.js",
+    "static/js/977.95ea7cff.chunk.js": "/JobSearchApp-V2/static/js/977.95ea7cff.chunk.js",
+    "static/js/732.55246fd4.chunk.js": "/JobSearchApp-V2/static/js/732.55246fd4.chunk.js",
+    "static/js/762.850ba835.chunk.js": "/JobSearchApp-V2/static/js/762.850ba835.chunk.js",
+    "static/media/Default Resume.pdf": "/JobSearchApp-V2/static/media/Default Resume.72e098e487c5db5619bb.pdf",
+    "index.html": "/JobSearchApp-V2/index.html",
+    "main.1f49413e.css.map": "/JobSearchApp-V2/static/css/main.1f49413e.css.map",
+    "main.803e2069.js.map": "/JobSearchApp-V2/static/js/main.803e2069.js.map",
+    "305.a45f6195.chunk.js.map": "/JobSearchApp-V2/static/js/305.a45f6195.chunk.js.map",
+    "968.b5e89d3d.chunk.js.map": "/JobSearchApp-V2/static/js/968.b5e89d3d.chunk.js.map",
+    "764.bd8152eb.chunk.js.map": "/JobSearchApp-V2/static/js/764.bd8152eb.chunk.js.map",
+    "720.a9986f92.chunk.js.map": "/JobSearchApp-V2/static/js/720.a9986f92.chunk.js.map",
+    "128.51e0cc5b.chunk.js.map": "/JobSearchApp-V2/static/js/128.51e0cc5b.chunk.js.map",
+    "386.c5346c21.chunk.js.map": "/JobSearchApp-V2/static/js/386.c5346c21.chunk.js.map",
+    "830.682448e9.chunk.js.map": "/JobSearchApp-V2/static/js/830.682448e9.chunk.js.map",
+    "239.40d096a4.chunk.js.map": "/JobSearchApp-V2/static/js/239.40d096a4.chunk.js.map",
+    "977.95ea7cff.chunk.js.map": "/JobSearchApp-V2/static/js/977.95ea7cff.chunk.js.map",
+    "732.55246fd4.chunk.js.map": "/JobSearchApp-V2/static/js/732.55246fd4.chunk.js.map",
+    "762.850ba835.chunk.js.map": "/JobSearchApp-V2/static/js/762.850ba835.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1f49413e.css",
+    "static/js/main.803e2069.js"
+  ]
+}
