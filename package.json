@@ -2,11 +2,14 @@
   "name": "automated-job-search-app",
   "version": "1.0.0",
   "description": "Automated Job Search Application with AI-powered analysis",
+  "homepage": "https://YOUR_USERNAME.github.io/job-search-app-v2",
   "main": "index.js",
   "scripts": {
     "start": "cross-env PORT=3001 BROWSER=none react-scripts start",
     "start-default": "react-scripts start",
     "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "test:optimized": "node development/tests/test_optimized_scraping.js test",
@@ -56,6 +59,7 @@
     ]
   },
   "devDependencies": {
-    "cross-env": "^7.0.3"
+    "cross-env": "^7.0.3",
+    "gh-pages": "^6.3.0"
   }
 }
