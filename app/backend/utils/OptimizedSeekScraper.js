@@ -8,7 +8,7 @@ const workflowLogger = require('./WorkflowLogger');
 class OptimizedSeekScraper {
   constructor() {
     this.browserPool = [];
-    this.maxBrowsers = 5; // Use 5 browsers for optimal speed as requested
+    this.maxBrowsers = 3; // Reduced to 3 browsers to prevent overload
     this.currentIteration = 0;
     this.optimizationData = [];
   }
@@ -39,7 +39,19 @@ class OptimizedSeekScraper {
         '--ignore-certificate-errors',
         '--disable-blink-features=AutomationControlled',
         '--disable-features=VizDisplayCompositor',
-        '--disable-ipc-flooding-protection'
+        '--disable-ipc-flooding-protection',
+        '--disable-session-crashed-bubble',
+        '--disable-component-update',
+        '--disable-default-apps',
+        '--disable-sync',
+        '--disable-translate',
+        '--hide-scrollbars',
+        '--mute-audio',
+        '--no-default-browser-check',
+        '--no-experiments',
+        '--no-pings',
+        '--no-zygote',
+        '--single-process'
       ]
     });
   }
@@ -72,17 +84,20 @@ class OptimizedSeekScraper {
       // Enhanced navigation with better error handling
       await page.goto(url, {
         waitUntil: 'domcontentloaded',
-        timeout: 15000 // Increased to 15 seconds for better reliability
+        timeout: 30000 // Increased to 30 seconds for better reliability
       });
       
-      // Wait for critical elements to load
-      await page.waitForFunction(() => {
-        return document.querySelector('h1[data-automation="job-detail-title"]') || 
-               document.querySelector('[data-automation="advertiser-name"]') ||
-               document.querySelector('[data-automation="job-detail-location"]');
-      }, { timeout: 5000 }).catch(() => {
+      // Wait for critical elements to load with better error handling
+      try {
+        await page.waitForFunction(() => {
+          return document.querySelector('h1[data-automation="job-detail-title"]') || 
+                 document.querySelector('[data-automation="advertiser-name"]') ||
+                 document.querySelector('[data-automation="job-detail-location"]');
+        }, { timeout: 10000 });
+      } catch (error) {
         // Continue even if elements don't load - will use fallback selectors
-      });
+        console.log(`⚠️ Job ${index + 1}: Elements not found, using fallback selectors`);
+      }
       
       // Extract using EXACT proven selectors with fallbacks
       const job = await page.evaluate((jobUrl) => {
@@ -106,7 +121,7 @@ class OptimizedSeekScraper {
                       document.querySelector('[data-automation="job-detail-location"]')?.textContent?.trim() || '';
           }
           
-          // Pattern matching for posted date with multiple patterns
+          // IMPROVED Pattern matching for posted date with comprehensive patterns
           const bodyText = document.body.innerText || '';
           const datePatterns = [
             /Posted (\d+[dhm]) ago/i,
@@ -114,7 +129,12 @@ class OptimizedSeekScraper {
             /Posted (\d+) days? ago/i,
             /(\d+) days? ago/i,
             /(\d+) hours? ago/i,
-            /(\d+) minutes? ago/i
+            /(\d+) minutes? ago/i,
+            // Add more comprehensive patterns to avoid "ms" values
+            /Posted (\d+\s+(?:minute|hour|day|week|month)s?) ago/i,
+            /(\d+\s+(?:minute|hour|day|week|month)s?) ago/i,
+            /Posted (\d+\s+\w+) ago/i,
+            /(\d+\s+\w+) ago/i
           ];
           
           let postedAgo = '';
@@ -126,11 +146,49 @@ class OptimizedSeekScraper {
             }
           }
           
+          // If no pattern found, search all elements for time-related text
+          if (!postedAgo) {
+            const timeKeywords = ['ago', 'posted', 'listed', 'advertised', 'today', 'yesterday', 'date', 'time'];
+            const allElements = document.querySelectorAll('*');
+            
+            for (const element of allElements) {
+              const text = element.textContent.toLowerCase();
+              if (timeKeywords.some(keyword => text.includes(keyword))) {
+                const timePatterns = [
+                  /(\d+\s+(?:minute|hour|day|week|month)s?\s+ago)/i,
+                  /(just\s+now)/i,
+                  /(today)/i,
+                  /(yesterday)/i,
+                  /(posted\s+\d+\s+\w+)/i,
+                  /(listed\s+\d+\s+\w+)/i,
+                  /(advertised\s+\d+\s+\w+)/i,
+                  /(\d+\s+\w+\s+ago)/i,
+                  /(\w+\s+ago)/i
+                ];
+                
+                for (const pattern of timePatterns) {
+                  const match = text.match(pattern);
+                  if (match) {
+                    postedAgo = match[1];
+                    break;
+                  }
+                }
+                
+                if (postedAgo) break;
+              }
+            }
+          }
+          
+          // Filter out "ms" values - they're not valid posted times
+          if (postedAgo && postedAgo.includes('ms')) {
+            postedAgo = ''; // Reset if it contains "ms"
+          }
+          
           return {
             title: title.replace(/\s+/g, ' ').trim(),
             company: company.replace(/\s+/g, ' ').trim(),
             location: location.replace(/\s+/g, ' ').trim(),
-            postedAgo: postedAgo.replace(/\s+/g, ' ').trim(),
+            postedAgo: postedAgo ? postedAgo.replace(/\s+/g, ' ').trim() : '',
             url: jobUrl,
             success: !!(title && company && location)
           };
@@ -205,20 +263,20 @@ class OptimizedSeekScraper {
         return Promise.race([
           this.scrapeJobWithProvenSelectors(url, browser, index),
           new Promise((_, reject) => 
-            setTimeout(() => reject(new Error(`Job timeout after 15000ms`)), 15000)
+            setTimeout(() => reject(new Error(`Job timeout after 30000ms`)), 30000)
           )
         ]).catch(error => {
           console.log(`❌ Job ${index + 1}: ${error.message}`);
           return {
             title: '', company: '', location: '', postedAgo: '', 
-            url: url, success: false, error: error.message, scrapeDuration: 15000
+            url: url, success: false, error: error.message, scrapeDuration: 30000
           };
         });
       });
       
       // Execute ALL jobs in parallel with enhanced timeout protection
       console.log(`⚡ Processing all ${urls.length} jobs in parallel...`);
-      const totalTimeout = Math.max(20000, urls.length * 3000); // At least 20s, or 3s per job
+      const totalTimeout = Math.max(60000, urls.length * 5000); // At least 60s, or 5s per job
       console.log(`⏱️ Total operation timeout: ${totalTimeout/1000}s`);
       
       const results = await Promise.race([

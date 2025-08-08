@@ -4,6 +4,7 @@ const path = require('path');
 const searchRoutes = require('./routes/searchRoutes');
 const scoringRoutes = require('./routes/scoringRoutes');
 const healthRoutes = require('./routes/healthRoutes');
+const enhancedFastSearchRoutes = require('./routes/enhancedFastSearchRoutes');
 const workflowLogger = require('./utils/WorkflowLogger');
 
 const app = express();
@@ -26,6 +27,7 @@ app.use((req, res, next) => {
 app.use('/api', searchRoutes);
 app.use('/api', scoringRoutes);
 app.use('/api', healthRoutes);
+app.use('/api', enhancedFastSearchRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
@@ -47,10 +49,7 @@ process.on('SIGINT', () => {
 app.listen(PORT, () => {
   workflowLogger.log(`🚀 Backend server running on port ${PORT}`, 'system');
   workflowLogger.log(`📡 API endpoints available:`, 'system');
-  workflowLogger.log(`   • /api/search-jobs`, 'system');
-  workflowLogger.log(`   • /api/test-jobs`, 'system');
-  workflowLogger.log(`   • /api/mock-scored-jobs`, 'system');
-  workflowLogger.log(`   • /api/mock-analysis`, 'system');
+  workflowLogger.log(`   • /api/enhanced-fast-search`, 'system');
+  workflowLogger.log(`   • /api/open-search-url`, 'system');
   workflowLogger.log(`   • /api/health`, 'system');
-  workflowLogger.log('', 'system'); // Empty line for readability
 }); 

@@ -1,0 +1,242 @@
+{
+  "extractedJobs": [
+    {
+      "id": "modern-job-4",
+      "title": "Machine Operator (foil stamping)",
+      "company": "Girardi Human Resources",
+      "location": "Bayside & South Eastern Suburbs",
+      "url": "https://www.seek.com.au/job/86204231?type=standard&ref=search-standalone#sol=f3a363cd4d835187a3274bda4308f1cfa916bab4",
+      "postedAgo": "6h ago",
+      "mandatoryRequirements": [
+        "Experience in the sheet fed print industry",
+        "High attention to detail",
+        "Good basic literacy and numeracy skills"
+      ],
+      "preferredRequirements": [
+        "Laminating experience",
+        "Strong work ethic"
+      ],
+      "responsibilities": [
+        "Operating the foil stamping machines",
+        "Performing work to a high-quality standard",
+        "Working both independently and as part of a team"
+      ],
+      "employerQuestions": [
+        "Which of the following statements best describes your right to work in Australia?",
+        "How many years' experience do you have as a machine operator?",
+        "Do you own or have regular access to a car?"
+      ],
+      "otherDetails": [
+        "Experience in the sheet fed print industry",
+        "High attention to detail",
+        "Good basic literacy and numeracy skills"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 170,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_modern-job-4.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_modern-job-4.md",
+      "timestamp": "2025-08-03T06:58:37.576Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "modern-job-5",
+      "title": "Machine Operator",
+      "company": "Girardi Human Resources",
+      "location": "Bayside & South Eastern Suburbs",
+      "url": "https://www.seek.com.au/job/86204207?type=standard&ref=search-standalone#sol=377be2a3a5c2bf237f12b9fc9a22c2d73c990391",
+      "postedAgo": "6h ago",
+      "mandatoryRequirements": [
+        "Experience in the sheet fed print industry",
+        "Good basic literacy and numeracy skills",
+        "Strong work ethic"
+      ],
+      "preferredRequirements": [
+        "Laminating experience",
+        "Full training available for the right candidate"
+      ],
+      "responsibilities": [
+        "Operating laminating machines",
+        "Performing work to a high-quality standard",
+        "Working independently and as part of a team"
+      ],
+      "employerQuestions": [
+        "Right to work in Australia",
+        "Years of experience as a machine operator",
+        "Ownership or regular access to a car"
+      ],
+      "otherDetails": [
+        "Experience in manufacturing industry",
+        "Basic literacy and numeracy skills",
+        "Strong work ethic"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 170,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_modern-job-5.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_modern-job-5.md",
+      "timestamp": "2025-08-03T06:58:48.073Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "modern-job-6",
+      "title": "Optical Assistant - The Eye Collective",
+      "company": "Provision",
+      "location": "Dandenong",
+      "url": "https://www.seek.com.au/job/86203195?type=standard&ref=search-standalone#sol=23b89c62c649dd53b276828eda0413eb9449a97c",
+      "postedAgo": "16h ago",
+      "mandatoryRequirements": [
+        "Comfortable in a clinical setting",
+        "Quick to learn",
+        "Professional in presentation"
+      ],
+      "preferredRequirements": [
+        "Genuine interest in learning",
+        "Structured training",
+        "Optometry support skills",
+        "Eyewear knowledge",
+        "Ortho-K experience"
+      ],
+      "responsibilities": [
+        "Helping patients choose eyewear",
+        "Supporting optometrists with pre-testing",
+        "Assisting with specialty services",
+        "Handling transactions",
+        "Maintaining accurate records"
+      ],
+      "employerQuestions": [
+        "Are you comfortable in a clinical setting?",
+        "Are you quick to learn?",
+        "Do you have experience with Ortho-K?",
+        "Can you handle transactions efficiently?",
+        "How do you maintain accurate records?"
+      ],
+      "otherDetails": [
+        "Mature",
+        "Reliable",
+        "Proactive"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 240,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_modern-job-6.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_modern-job-6.md",
+      "timestamp": "2025-08-03T06:58:59.642Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "modern-job-7",
+      "title": "Employment Specialist",
+      "company": "Ostara Australia",
+      "location": "Dandenong",
+      "url": "https://www.seek.com.au/job/86202894?type=standard&ref=search-standalone#sol=c716941c9ce192f9d03b4284316934b74167a412",
+      "postedAgo": "18h ago",
+      "mandatoryRequirements": [
+        "Right to work in Australia",
+        "Current Working with Children Check",
+        "Current and unrestricted Driver’s License"
+      ],
+      "preferredRequirements": [
+        "Experience in disability employment or related employment support program",
+        "Passion for mental health advocacy",
+        "Strong understanding of employment services landscape",
+        "Certification in Six Sigma, LEAN, or KAIZEN",
+        "Proficiency in Microsoft Office applications"
+      ],
+      "responsibilities": [
+        "Provide individualized support to job seekers",
+        "Reverse market jobseekers to employers",
+        "Ensure jobseekers gain suitable employment opportunities",
+        "Provide post-employment support to employers and clients",
+        "Support Business Manager in delivery of employment services",
+        "Manage and coordinate daily operations at the site",
+        "Identify challenges and implement client-centered solutions",
+        "Deliver high-quality, responsive experience for clients and stakeholders"
+      ],
+      "employerQuestions": [
+        "Right to work in Australia",
+        "Years of experience as an Employment Specialist",
+        "Current Australian driver's licence",
+        "Current Working With Children (WWC) Check",
+        "Current Police Check (National Police Certificate) for employment"
+      ],
+      "otherDetails": [
+        "Analytical and problem-solving skills",
+        "Time management and organizational skills",
+        "Excellent verbal, written, and communication skills"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 240,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_modern-job-7.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_modern-job-7.md",
+      "timestamp": "2025-08-03T06:59:14.120Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "modern-job-8",
+      "title": "Carpet Cleaner",
+      "company": "Your Talent Solutions",
+      "location": "Bayside & South Eastern Suburbs",
+      "url": "https://www.seek.com.au/job/86199373?type=standard&ref=search-standalone#sol=b75f91725ba8c65e5baccb742a7a7396b6b6f8ea",
+      "postedAgo": "1d ago",
+      "mandatoryRequirements": [
+        "Full Australian working rights",
+        "Physical fitness and stamina to perform manual labour tasks, including lifting 25kg+",
+        "Valid driver’s licence, Police Check and Working with Children Check (willing to obtain)"
+      ],
+      "preferredRequirements": [
+        "Previous experience in the industry",
+        "Certification in carpet cleaning",
+        "Experience using mobile/tablet job systems",
+        "Excellent customer service skills",
+        "Ability to work independently"
+      ],
+      "responsibilities": [
+        "Inspecting and assessing carpets and upholstery to determine the most effective cleaning methods",
+        "Operating professional-grade carpet cleaning equipment and using industry-leading cleaning solutions",
+        "Ensuring all work is carried out to the highest standards, meeting client expectations",
+        "Providing exceptional customer service and effectively communicating with clients",
+        "Recommending additional products and services to customers as opportunities arise",
+        "Maintaining cleaning equipment and company vehicles in good working order",
+        "Adhering to all safety protocols and environmental regulations"
+      ],
+      "employerQuestions": [
+        "Do you agree to the privacy policy of Your Talent Solutions?",
+        "Do you have working rights for Australia?"
+      ],
+      "otherDetails": [
+        "Excellent communication skills",
+        "Pride in delivering high-quality work",
+        "Keen eye for detail"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 180,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_modern-job-8.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_modern-job-8.md",
+      "timestamp": "2025-08-03T06:59:26.860Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    }
+  ]
+}

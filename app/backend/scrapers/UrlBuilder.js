@@ -128,10 +128,16 @@ class UrlBuilder {
 
   // Extract numeric values from form inputs
   static extractDays(postedAgo) {
+    if (!postedAgo || typeof postedAgo !== 'string') {
+      return '3'; // Default to 3 days
+    }
     return postedAgo.replace(/[^\d]/g, '') || '3'; // Extract numbers, default to 3
   }
 
   static extractDistance(distance) {
+    if (!distance || typeof distance !== 'string') {
+      return '25'; // Default to 25km
+    }
     return distance.replace(/[^\d]/g, '') || '25'; // Extract numbers, default to 25
   }
 

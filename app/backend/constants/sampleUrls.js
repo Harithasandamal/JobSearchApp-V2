@@ -15,12 +15,7 @@ const loadSampleUrls = () => {
     if (fs.existsSync(configPath)) {
       const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
       SAMPLE_URLS = config.sampleUrls || [];
-      console.log(`📋 Loaded ${SAMPLE_URLS.length} test URLs from config`);
-      
-      // Log light mode configuration
-      if (config.lightModeConfig) {
-        console.log(`⚙️ Light mode config: maxJobs=${config.lightModeConfig.maxJobs}, unlimited=${config.lightModeConfig.enableUnlimitedJobs}`);
-      }
+      // Load URLs silently - no need to log technical details
     } else {
       // Fallback to hardcoded URLs if config doesn't exist
       SAMPLE_URLS = [
@@ -28,7 +23,7 @@ const loadSampleUrls = () => {
         'https://www.seek.com.au/job/85994049?ref=search-standalone&type=standard&origin=jobTitle#sol=f5c442d9c765b69183c0a9f36e76c3773779cff4',
         'https://www.seek.com.au/job/85907804?ref=search-standalone&type=standard&origin=jobTitle#sol=ac705abd43f8e7aa11c57e26bdd7ef8de3e67313'
       ];
-      console.log(`📋 Using fallback test URLs (${SAMPLE_URLS.length})`);
+      // Use fallback URLs silently
     }
   } catch (error) {
     console.error('❌ Error loading test URLs from config:', error.message);

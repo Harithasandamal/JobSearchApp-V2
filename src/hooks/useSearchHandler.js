@@ -117,8 +117,31 @@ const useSearchHandler = ({ updateAppState, navigateTo, setThemeLocked }) => {
         // Open SEEK URL for comparison (URL built once by backend)
         if (response.searchUrl) {
           console.log('🔗 Opening SEEK URL for comparison:', response.searchUrl);
-          window.open(response.searchUrl, '_blank', 'noopener,noreferrer');
-          console.log('🌐 SEEK page opened - compare results with SearchedScreen');
+          
+          // Try multiple approaches to open URL
+          try {
+            // Method 1: Direct window.open
+            const newWindow = window.open(response.searchUrl, '_blank', 'noopener,noreferrer');
+            
+            // Method 2: If popup blocked, try creating a link and clicking it
+            if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+              console.log('⚠️ Popup blocked, trying alternative method...');
+              const link = document.createElement('a');
+              link.href = response.searchUrl;
+              link.target = '_blank';
+              link.rel = 'noopener noreferrer';
+                             document.body.appendChild(link);
+               link.click();
+               document.body.removeChild(link);
+               console.log('🌐 SEEK page opened via link method');
+                         } else {
+               console.log('🌐 SEEK page opened via window.open');
+             }
+          } catch (error) {
+            console.log('⚠️ Could not open URL automatically:', error.message);
+            console.log('🔗 Please manually open this URL:', response.searchUrl);
+            alert(`🔗 SEEK search URL ready for comparison!\n\nURL: ${response.searchUrl}\n\nPlease manually open this URL in your browser to compare results.`);
+          }
         }
         
         updateAppState({ searchProcessId: response.processId });

@@ -5,6 +5,7 @@ import { formatLocation, formatDistance, formatPostedAgo, formatKeyword } from '
 import useTheme from '../hooks/useTheme';
 import useSearchPolling from '../hooks/useSearchPolling';
 import useResumeSync from '../hooks/useResumeSync';
+import seekApiService from '../services/seekApi';
 
 const SearchingScreen = ({ appState, updateAppState, navigateTo, scoringLocked }) => {
   const themeHook = useTheme();
@@ -12,9 +13,39 @@ const SearchingScreen = ({ appState, updateAppState, navigateTo, scoringLocked }
   const [progress, setProgress] = useState(0);
   const [currentStep, setCurrentStep] = useState(0);
   const [error, setError] = useState(null);
+  const [searchMode, setSearchMode] = useState('dark'); // Default to dark mode
 
   // Custom hooks for modular functionality
   const { resumeFile, setResumeFile } = useResumeSync(appState);
+
+  // Determine search mode based on theme
+  useEffect(() => {
+    setSearchMode(themeHook.theme === 'light' ? 'light' : 'dark');
+  }, [themeHook.theme]);
+
+  // Define search steps based on mode
+  const getSearchSteps = (mode) => {
+    if (mode === 'light') {
+      // Light mode: Skip URL building step since we have URLs locally
+      return [
+        { id: 1, text: 'Initializing Search Engine', status: 'pending' },
+        { id: 2, text: 'Loading Sample Data', status: 'pending' },
+        { id: 3, text: 'Processing Job Listings', status: 'pending' },
+        { id: 4, text: 'Formatting Results', status: 'pending' },
+        { id: 5, text: 'Completing Search', status: 'pending' }
+      ];
+    } else {
+      // Dark mode: Include URL building step
+      return [
+        { id: 1, text: 'Initializing Browser', status: 'pending' },
+        { id: 2, text: 'Building Search URL', status: 'pending' },
+        { id: 3, text: 'Loading SEEK Page', status: 'pending' },
+        { id: 4, text: 'Extracting Job Listings', status: 'pending' },
+        { id: 5, text: 'Processing Results', status: 'pending' },
+        { id: 6, text: 'Completing Search', status: 'pending' }
+      ];
+    }
+  };
 
   // Search polling hook
   const { 
@@ -27,20 +58,32 @@ const SearchingScreen = ({ appState, updateAppState, navigateTo, scoringLocked }
     navigateTo,
     setJobsFound,
     onProgressUpdate: (status) => {
-      // Update progress based on backend status with proper distribution (5% to 95%)
+      // Update progress based on backend status with proper distribution (0% to 100%)
       if (status.progress !== undefined) {
-        // Map backend progress (0-100) to frontend progress (5-95)
-        const mappedProgress = 5 + (status.progress * 0.9); // 5% to 95%
-        setProgress(mappedProgress);
+        // Use actual backend progress (0-100)
+        setProgress(status.progress);
       }
       
-      // Map progress to steps with proper thresholds for 3 loading screens
+      // Map progress to steps with proper thresholds based on mode
       let stepIndex = 0;
-      if (status.progress >= 5) stepIndex = 1;   // Initializing Browser Engine
-      if (status.progress >= 20) stepIndex = 2;  // Connecting to Job Sources
-      if (status.progress >= 40) stepIndex = 3;  // Loading Job Listings
-      if (status.progress >= 60) stepIndex = 4;  // Extracting Job Information
-      if (status.progress >= 80) stepIndex = 5;  // Processing & Validating Results
+      const totalSteps = searchMode === 'light' ? 5 : 6;
+      
+      if (searchMode === 'light') {
+        // Light mode step mapping (5 steps)
+        if (status.progress >= 0) stepIndex = 1;   // Initializing Search Engine
+        if (status.progress >= 20) stepIndex = 2;  // Loading Sample Data
+        if (status.progress >= 40) stepIndex = 3;  // Processing Job Listings
+        if (status.progress >= 60) stepIndex = 4;  // Formatting Results
+        if (status.progress >= 80) stepIndex = 5;  // Completing Search
+      } else {
+        // Dark mode step mapping (6 steps)
+        if (status.progress >= 0) stepIndex = 1;   // Initializing Browser
+        if (status.progress >= 15) stepIndex = 2;  // Building Search URL
+        if (status.progress >= 30) stepIndex = 3;  // Loading SEEK Page
+        if (status.progress >= 50) stepIndex = 4;  // Extracting Job Listings
+        if (status.progress >= 70) stepIndex = 5;  // Processing Results
+        if (status.progress >= 85) stepIndex = 6;  // Completing Search
+      }
       
       setCurrentStep(stepIndex);
     },
@@ -48,7 +91,7 @@ const SearchingScreen = ({ appState, updateAppState, navigateTo, scoringLocked }
       // Jump to 100% after half second delay
       setTimeout(() => {
         setProgress(100);
-        setCurrentStep(5); // All steps completed
+        setCurrentStep(searchMode === 'light' ? 5 : 6); // All steps completed
       }, 500);
     },
     onError: (error) => {
@@ -75,14 +118,8 @@ const SearchingScreen = ({ appState, updateAppState, navigateTo, scoringLocked }
     navigateTo('welcome');
   };
 
-  // Define search steps
-  const searchSteps = [
-    { id: 1, text: 'Initializing Browser Engine', status: 'pending' },
-    { id: 2, text: 'Connecting to Job Sources', status: 'pending' },
-    { id: 3, text: 'Loading Job Listings', status: 'pending' },
-    { id: 4, text: 'Extracting Job Information', status: 'pending' },
-    { id: 5, text: 'Processing & Validating Results', status: 'pending' }
-  ];
+  // Get search steps based on current mode
+  const searchSteps = getSearchSteps(searchMode);
 
   // Update step statuses based on current step
   const updatedSteps = searchSteps.map((step, index) => {
@@ -145,12 +182,21 @@ const SearchingScreen = ({ appState, updateAppState, navigateTo, scoringLocked }
           <button className="btn btn-danger" onClick={handleStop}>
             Stop
           </button>
+          {error && (
+            <button 
+              className="btn btn-primary" 
+              onClick={() => window.location.reload()}
+              style={{ marginLeft: '10px' }}
+            >
+              Retry Search
+            </button>
+          )}
         </div>
       </div>
 
       <div className="right-panel">
         <div className="screen-header">
-          {themeHook.theme === 'light' ? 
+          {searchMode === 'light' ? 
             'Searching: Test Jobs' : 
             `Searching: ${formatKeyword(appState.keyword)} Jobs in ${formatDistance(appState.distance)} from ${formatLocation(appState.location)}, Posted within last ${formatPostedAgo(appState.postedAgo)}`
           }
@@ -166,6 +212,10 @@ const SearchingScreen = ({ appState, updateAppState, navigateTo, scoringLocked }
             border: '1px solid #f5c6cb'
           }}>
             <strong>Error:</strong> {error}
+            <br />
+            <small style={{ color: '#856404' }}>
+              Try refreshing the page or checking your internet connection.
+            </small>
           </div>
         )}
 

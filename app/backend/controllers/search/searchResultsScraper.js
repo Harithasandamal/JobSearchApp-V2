@@ -28,8 +28,8 @@ async function scrapeJobUrlsFromSearchResults(searchUrl, maxJobs = 30) {
     await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36');
     
     try {
-      await page.goto(searchUrl, { waitUntil: 'networkidle2', timeout: 30000 });
-      // console.log(`✅ Search page loaded successfully`);
+      await page.goto(searchUrl, { waitUntil: 'networkidle2', timeout: 60000 });
+      console.log(`✅ Search page loaded successfully`);
     } catch (error) {
       console.error(`❌ Failed to load search page: ${error.message}`);
       throw error;
@@ -96,10 +96,10 @@ async function getJobUrlsForSearch(keyword, location, distance, postedAgo, maxJo
 }
 
 /**
- * Extract basic job info from search results page (without individual job page scraping)
+ * Enhanced function to scrape job info with featured job handling and order preservation
  * @param {string} searchUrl - The search results URL to scrape
  * @param {number} maxJobs - Maximum number of jobs to extract (default: 30)
- * @returns {Array} Array of job objects with basic info
+ * @returns {Array} Array of job objects with basic info and proper order
  */
 async function scrapeBasicJobInfoFromSearchResults(searchUrl, maxJobs = 30) {
   console.log(`🔍 Scraping basic job info from search results: ${searchUrl}`);
@@ -138,14 +138,26 @@ async function scrapeBasicJobInfoFromSearchResults(searchUrl, maxJobs = 30) {
       
       let jobElements = [];
       
-      // Try each selector until we find job listings
-      for (const selector of jobSelectors) {
-        jobElements = document.querySelectorAll(selector);
-        if (jobElements.length > 0) {
-          console.log(`Found ${jobElements.length} jobs using selector: ${selector}`);
-          break;
+      // Collect ALL job elements (both normal and premium/featured)
+      jobSelectors.forEach(selector => {
+        const elements = document.querySelectorAll(selector);
+        if (elements.length > 0) {
+          console.log(`Found ${elements.length} jobs using selector: ${selector}`);
+          jobElements = jobElements.concat(Array.from(elements));
         }
-      }
+      });
+      
+      // Remove duplicates based on job ID
+      const uniqueJobs = new Map();
+      jobElements.forEach(element => {
+        const jobId = element.getAttribute('data-job-id');
+        if (jobId && !uniqueJobs.has(jobId)) {
+          uniqueJobs.set(jobId, element);
+        }
+      });
+      
+      jobElements = Array.from(uniqueJobs.values());
+      console.log(`Total unique jobs found: ${jobElements.length}`);
       
       // Extract data from each job element
       const baseUrl = 'https://www.seek.com.au';
@@ -234,26 +246,35 @@ async function scrapeBasicJobInfoFromSearchResults(searchUrl, maxJobs = 30) {
             '[class*="time"]'
           ];
           
+          // No longer needed - using simple approach based on missing posted time
+          
           const title = extractText(titleSelectors);
           const url = extractUrl(urlSelectors);
           const company = extractText(companySelectors);
           const location = extractText(locationSelectors);
           const postedAgo = extractText(postedAgoSelectors);
           
+          // Simple approach: detect jobs with no posted time
+          const hasNoPostedTime = !postedAgo || postedAgo.trim() === '';
+          const needsIndividualVisit = hasNoPostedTime;
+          
           // Only add if we have at least a title and URL, and check for job ID duplicates
           if (title && url && url.includes('/job/')) {
             const jobId = extractJobId(url);
             if (jobId && !seenJobIds.has(jobId)) {
               seenJobIds.add(jobId);
-              jobs.push({
-                id: `search-result-${jobId}`,
-                title: title,
-                company: company || 'Company not specified',
-                location: location || 'Location not specified', 
-                postedAgo: postedAgo || 'Time not specified',
-                url: url
-              });
-              console.log(`Added unique job ${jobId}: ${title}`);
+                             jobs.push({
+                 tempId: `temp-${index + 1}`, // Temporary ID for order preservation
+                 id: `search-result-${jobId}`,
+                 title: title,
+                 company: company || 'Company not specified',
+                 location: location || 'Location not specified', 
+                 postedAgo: postedAgo || '',
+                 url: url,
+                 needsIndividualVisit: needsIndividualVisit,
+                 originalIndex: index // Preserve original order
+               });
+               console.log(`Added unique job ${jobId} (${needsIndividualVisit ? 'NO POSTED TIME' : 'REGULAR'}): ${title}`);
             } else if (jobId) {
               console.log(`Skipped duplicate job ${jobId}: ${title}`);
             }
@@ -268,13 +289,177 @@ async function scrapeBasicJobInfoFromSearchResults(searchUrl, maxJobs = 30) {
     }, maxJobs);
     
     console.log(`✅ Extracted ${jobs.length} jobs with basic info from search results`);
-    return jobs;
+    
+         // Process jobs with no posted time that need individual visits
+     const jobsWithNoPostedTime = jobs.filter(job => job.needsIndividualVisit);
+     const regularJobs = jobs.filter(job => !job.needsIndividualVisit);
+     
+     if (jobsWithNoPostedTime.length > 0) {
+       console.log(`🔍 Processing ${jobsWithNoPostedTime.length} jobs with no posted time...`);
+       
+       // Process jobs with no posted time in parallel (max 3 concurrent)
+       const processedJobsWithPostedTime = await processJobsWithNoPostedTimeParallel(browser, jobsWithNoPostedTime);
+       
+       // Merge back with regular jobs maintaining original order
+       const allJobs = [...jobs];
+       processedJobsWithPostedTime.forEach(processedJob => {
+         const originalIndex = allJobs.findIndex(job => job.tempId === processedJob.tempId);
+         if (originalIndex !== -1) {
+           allJobs[originalIndex] = processedJob;
+         }
+       });
+       
+       console.log(`✅ Completed processing ${jobsWithNoPostedTime.length} jobs with posted times`);
+       return allJobs;
+     } else {
+       console.log(`✅ No jobs with missing posted times found, returning regular jobs`);
+       return jobs;
+     }
     
   } catch (error) {
     console.error(`❌ Error scraping basic job info: ${error.message}`);
     return [];
   } finally {
     await browser.close();
+  }
+}
+
+/**
+ * Process jobs with no posted time in parallel to get posted times
+ * @param {Browser} browser - Puppeteer browser instance
+ * @param {Array} jobsWithNoPostedTime - Array of job objects with no posted time
+ * @returns {Array} Processed jobs with posted times
+ */
+async function processJobsWithNoPostedTimeParallel(browser, jobsWithNoPostedTime) {
+  const maxConcurrent = 3; // Limit concurrent requests to avoid overwhelming SEEK
+  const processedJobs = [];
+  
+  // Process in batches to avoid overwhelming the server
+  for (let i = 0; i < jobsWithNoPostedTime.length; i += maxConcurrent) {
+    const batch = jobsWithNoPostedTime.slice(i, i + maxConcurrent);
+    console.log(`📄 Processing batch ${Math.floor(i / maxConcurrent) + 1}/${Math.ceil(jobsWithNoPostedTime.length / maxConcurrent)} (${batch.length} jobs)`);
+    
+    const batchPromises = batch.map(async (job, batchIndex) => {
+      try {
+        console.log(`  🔍 Visiting individual page for: ${job.title}`);
+        const individualJobData = await visitIndividualJobPage(browser, job.url);
+        
+        if (individualJobData && individualJobData.postedAgo) {
+          job.postedAgo = individualJobData.postedAgo;
+          job.needsIndividualVisit = false; // Mark as processed
+          console.log(`  ✅ Got posted time: ${job.postedAgo}`);
+        } else {
+          console.log(`  ⚠️ No posted time found for: ${job.title}`);
+        }
+        
+        return job;
+      } catch (error) {
+        console.log(`  ❌ Error processing job with no posted time: ${job.title} - ${error.message}`);
+        return job; // Return original job if individual visit fails
+      }
+    });
+    
+    const batchResults = await Promise.all(batchPromises);
+    processedJobs.push(...batchResults);
+    
+    // Add delay between batches to be respectful to SEEK
+    if (i + maxConcurrent < jobsWithNoPostedTime.length) {
+      await new Promise(resolve => setTimeout(resolve, 1000));
+    }
+  }
+  
+  return processedJobs;
+}
+
+/**
+ * Visit individual job page to extract posted time
+ * @param {Browser} browser - Puppeteer browser instance
+ * @param {string} jobUrl - URL of the individual job page
+ * @returns {Object} Job data with posted time
+ */
+async function visitIndividualJobPage(browser, jobUrl) {
+  const page = await browser.newPage();
+  
+  try {
+    await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
+    
+    // Optimize page loading
+    await page.setRequestInterception(true);
+    page.on('request', (req) => {
+      if (['image', 'stylesheet', 'font'].includes(req.resourceType())) {
+        req.abort();
+      } else {
+        req.continue();
+      }
+    });
+    
+    await page.goto(jobUrl, { 
+      waitUntil: 'domcontentloaded',
+      timeout: 15000 
+    });
+    
+    const jobData = await page.evaluate(() => {
+      // Comprehensive posted time extraction from individual job page
+      const timeSelectors = [
+        '[data-automation="jobListingDate"]',
+        '[data-testid="posted-time"]',
+        '.posted-time',
+        '.job-posted-time',
+        'time',
+        '[class*="date"]',
+        '[class*="time"]',
+        '[class*="posted"]'
+      ];
+      
+      let postedAgo = '';
+      
+      // Try selectors first
+      for (const selector of timeSelectors) {
+        const element = document.querySelector(selector);
+        if (element && element.textContent.trim()) {
+          postedAgo = element.textContent.trim();
+          break;
+        }
+      }
+      
+      // If no selector found, search in body text with patterns
+      if (!postedAgo) {
+        const bodyText = document.body.innerText || '';
+        const datePatterns = [
+          /Posted (\d+[dhm]) ago/i,
+          /(\d+[dhm]) ago/i,
+          /Posted (\d+) days? ago/i,
+          /(\d+) days? ago/i,
+          /(\d+) hours? ago/i,
+          /(\d+) minutes? ago/i,
+          /Posted (\d+\s+(?:minute|hour|day|week|month)s?) ago/i,
+          /(\d+\s+(?:minute|hour|day|week|month)s?) ago/i
+        ];
+        
+        for (const pattern of datePatterns) {
+          const match = bodyText.match(pattern);
+          if (match) {
+            postedAgo = match[0];
+            break;
+          }
+        }
+      }
+      
+      // Filter out invalid times (like "ms" values)
+      if (postedAgo && postedAgo.includes('ms')) {
+        postedAgo = '';
+      }
+      
+      return { postedAgo: postedAgo.trim() };
+    });
+    
+    return jobData;
+    
+  } catch (error) {
+    console.log(`❌ Error visiting individual job page: ${error.message}`);
+    return { postedAgo: '' };
+  } finally {
+    await page.close();
   }
 }
 

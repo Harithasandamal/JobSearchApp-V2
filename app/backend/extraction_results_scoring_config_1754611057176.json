@@ -1,0 +1,206 @@
+{
+  "extractedJobs": [
+    {
+      "id": "modern-job-1",
+      "title": "Channel & Product Manager",
+      "company": "Falcon Young Consulting Pty Ltd",
+      "location": "Bayside & South Eastern Suburbs",
+      "url": "https://www.seek.com.au/job/86331546?type=standard&ref=search-standalone#sol=20c7afea54ee608f2d1c2321a38217f9044a77dc",
+      "postedAgo": "27 minutes",
+      "mandatoryRequirements": [
+        "History of success in dealing with wholesalers at a head office level",
+        "Ability to articulate an attractive value proposition",
+        "Established skills in developing, guiding, and closing business"
+      ],
+      "preferredRequirements": [
+        "Experience in electrical installation technology space",
+        "Experience in marketing initiatives",
+        "Experience in smart contract management",
+        "Experience in securing new retail channels",
+        "Thinking outside the box"
+      ],
+      "responsibilities": [
+        "Working with Electrical Wholesalers, Global & Online Distribution, and Retail Channels",
+        "Engagement with Category, Procurement, Central IT, and Marketing within client",
+        "Developing new programs for growth through in-store merchandising and collateral",
+        "Delivering exceptional marketing campaigns",
+        "Ensuring right trade agreements for outstanding results",
+        "Developing partnerships with customers",
+        "Fostering internal entrepreneurship",
+        "Creating innovative solutions through new technology"
+      ],
+      "employerQuestions": [
+        "Which of the following statements best describes your right to work in Australia?"
+      ],
+      "otherDetails": [
+        "Fun, engaging team environment",
+        "Globally recognised brand reputation",
+        "Exciting growth opportunities"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 160,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_modern-job-1.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_modern-job-1.md",
+      "timestamp": "2025-08-07T23:57:48.256Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "modern-job-2",
+      "title": "Warehouse Supervisor",
+      "company": "Corinthian Doors",
+      "location": "Dandenong",
+      "url": "https://www.seek.com.au/job/86331539?type=standard&ref=search-standalone#sol=014ed184d9eaf71ddd0caf3507435950070fcd3b",
+      "postedAgo": "28 minutes",
+      "mandatoryRequirements": [
+        "Background in warehouse operations in building material manufacturing industry or with bulk customized freight",
+        "Experience with ERP / WMS Systems",
+        "Forklift Licence (LF) essential"
+      ],
+      "preferredRequirements": [
+        "Flexible leadership style and hands-on approach",
+        "High level of employee engagement",
+        "Ability to adapt communication style to diverse team and customers",
+        "Working knowledge of Chain of Responsibility",
+        "Hold a current unrestricted driver’s license"
+      ],
+      "responsibilities": [
+        "Lead and support warehouse staff",
+        "Ensure compliance and continual improvement in safety",
+        "Oversee daily warehouse activities",
+        "Maintain accurate stock levels",
+        "Close manufacturing site at end of shift"
+      ],
+      "employerQuestions": [
+        "Do you have legal rights to work in Australia?",
+        "Do you have experience in warehouse operations?",
+        "Do you have a Forklift Licence (LF)?",
+        "Do you have experience with ERP / WMS Systems?",
+        "Do you have a current unrestricted driver’s license?"
+      ],
+      "otherDetails": [
+        "Experience in team leadership role",
+        "Analytical skills",
+        "Knowledge of Chain of Responsibility"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 240,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_modern-job-2.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_modern-job-2.md",
+      "timestamp": "2025-08-07T23:57:59.878Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "modern-job-15",
+      "title": "Contracts Officer City Presentation",
+      "company": "City of Greater Dandenong",
+      "location": "Dandenong",
+      "url": "https://www.seek.com.au/job/86323370?type=standard&ref=search-standalone#sol=a23cc2b87cd2c32f1ec195e8b2bcd2b08a4e4250",
+      "postedAgo": "13 hours",
+      "mandatoryRequirements": [
+        "Demonstrated experience in parks management, horticulture or related discipline",
+        "Demonstrated commitment to the principles of excellence in Customer Service",
+        "Demonstrated understanding and knowledge of specific Occupational Health & Safety practices and procedures"
+      ],
+      "preferredRequirements": [
+        "A formal qualification Certificate IV, Diploma or Degree in addition to the relevant experience",
+        "Experience in monitoring, reporting on compliance to service standards",
+        "Well developed skills in oral and written communication",
+        "Ability to effectively use computer software and systems including the Microsoft Office suite, in particular MS Outlook and MS Word, QGIS, GIS Map information systems",
+        "Understanding of diversity in the workplace and the community, commitment to ongoing professional development and education"
+      ],
+      "responsibilities": [
+        "Support the planning, monitoring and coordination of contractor-delivered open space maintenance services",
+        "Ensure quality and compliance of mowing, horticulture, and open space contracts",
+        "Assist with the preparation of work orders",
+        "Monitor contractor performance and service standards",
+        "Support the development of improved contract systems and processes",
+        "Contribute to the ongoing improvement of Council's open space presentation and maintenance standards"
+      ],
+      "employerQuestions": [
+        "Please ensure you address the key selection criteria outlined in the position description as part of your application",
+        "Are you willing to undertake practical testing, work preference profiling / psychometric testing, functional capacity assessment (physical) or aptitude testing?",
+        "Are you willing to produce a clear Working with Children Check and consent to a national police check (and where relevant an 'international criminal history check')?",
+        "Do you have any criminal records that may affect your application?",
+        "Are you open to flexible working arrangements?"
+      ],
+      "otherDetails": [
+        "Well developed skills in oral and written communication",
+        "Ability to effectively use computer software and systems",
+        "Understanding of diversity in the workplace and the community"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 240,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_modern-job-15.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_modern-job-15.md",
+      "timestamp": "2025-08-07T23:58:11.202Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "modern-job-17",
+      "title": "Team Leader Horticulture",
+      "company": "City of Greater Dandenong",
+      "location": "Dandenong",
+      "url": "https://www.seek.com.au/job/86322865?type=standard&ref=search-standalone#sol=2f26d977d28b9ff2222d075d5a254341dca41d3a",
+      "postedAgo": "14 hours",
+      "mandatoryRequirements": [
+        "Tertiary qualification in Horticulture",
+        "Several years' experience working in local government or a similar environment"
+      ],
+      "preferredRequirements": [
+        "Experience in contract management",
+        "Demonstrated experience in parks and open space maintenance",
+        "Demonstrated understanding of contract administration, including monitoring and OH&S requirements",
+        "Demonstrated comprehensive knowledge of open space maintenance programs, with high level and problem solving skills with the capacity to inspire and support innovative thinking",
+        "Knowledge and skills in contemporary management practices, staff management, performance management, staff development, change management and business excellence"
+      ],
+      "responsibilities": [
+        "Supervising internal horticulture crews and contractors",
+        "Ensuring high quality presentation of parks, reserves and public open spaces",
+        "Overseeing service delivery in line with scheduled programs and standards",
+        "Managing equipment and resources",
+        "Responding to community service requests",
+        "Driving quality outcomes",
+        "Leading the delivery of vibrant, high-amenity open spaces",
+        "Balancing programmed and reactive maintenance needs"
+      ],
+      "employerQuestions": [
+        "Please ensure you address the key selection criteria outlined in the position description as part of your application",
+        "You may be required to undertake practical testing, work preference profiling / psychometric testing, functional capacity assessment (physical) or aptitude testing",
+        "The successful candidate will be asked to produce a clear Working with Children Check and will be asked to consent to a national police check (and where relevant an 'international criminal history check'), subject to the operation of spent conviction laws",
+        "Please note that people with criminal records are not automatically barred from applying for this position. Each application will be considered on its merits",
+        "The selection process also includes the requirement for reference checks"
+      ],
+      "otherDetails": [
+        "Highly effective interpersonal skills, incorporating verbal and written communication, listening, liaison, advocacy, facilitation skills, as well as excellence in customer service delivery",
+        "Demonstrated capacity to effectively manage time, establish priorities, and achieve business and team objectives, despite conflicting pressures",
+        "Demonstrated well developed computer literacy skills including the MS Office suite of programs as well as applicable Engineering Services software"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 220,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_modern-job-17.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_modern-job-17.md",
+      "timestamp": "2025-08-07T23:58:22.892Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    }
+  ]
+}

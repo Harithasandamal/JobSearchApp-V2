@@ -2,27 +2,17 @@ const express = require('express');
 const router = express.Router();
 
 const { 
-  startJobSearch, 
   getSearchStatus, 
-  getJobDetails,
-  getTestJobs, 
-  testManualJobScraping,
-  getMockScoredJobs, 
-  getMockAnalysis 
+  getJobDetails
 } = require('../controllers/search');
 
 const workflowLogger = require('../utils/WorkflowLogger');
 
 // Job search endpoints
-router.post('/search-jobs', startJobSearch);
 router.get('/search-status/:processId', getSearchStatus);
 router.get('/job-details/:processId', getJobDetails);
 
-// Test and mock endpoints
-router.get('/test-jobs', getTestJobs);
-router.get('/mock-scored-jobs', getMockScoredJobs);
-router.get('/mock-analysis', getMockAnalysis);
-router.get('/test-manual-scraping', testManualJobScraping);
+
 
 // Unified workflow logging endpoint
 router.post('/workflow-log', (req, res) => {

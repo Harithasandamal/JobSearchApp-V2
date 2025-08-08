@@ -5,20 +5,29 @@ class SeekApiService {
     this.baseUrl = API_BASE_URL;
   }
 
-  // Start a new job search
+  // Start a new job search using enhanced fast search
   async startSearch(searchParams, testMode = false) {
     try {
-      const params = { ...searchParams };
-      if (testMode) params.testMode = true;
-      console.log('🔍 API Service sending search params:', JSON.stringify(params, null, 2));
-      console.log('🔍 Request body being sent:', JSON.stringify(searchParams));
+      // Determine mode based on testMode
+      const mode = testMode ? 'light' : 'dark';
       
-      const response = await fetch(`${this.baseUrl}/search-jobs`, {
+      // Format parameters for enhanced fast search
+      const enhancedParams = {
+        keyword: searchParams.keyword || '',
+        location: searchParams.location,
+        distance: searchParams.distance,
+        postedAgo: searchParams.postedAgo,
+        mode: mode
+      };
+      
+      console.log('🔍 API Service sending enhanced search params:', JSON.stringify(enhancedParams, null, 2));
+      
+      const response = await fetch(`${this.baseUrl}/enhanced-fast-search`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(params),
+        body: JSON.stringify(enhancedParams),
       });
 
       if (!response.ok) {
@@ -29,15 +38,15 @@ class SeekApiService {
 
       return await response.json();
     } catch (error) {
-      console.error('Error starting search:', error);
+      console.error('Error starting enhanced search:', error);
       throw error;
     }
   }
 
-  // Get search status and results
+  // Get enhanced fast search status and results
   async getSearchStatus(processId) {
     try {
-      const response = await fetch(`${this.baseUrl}/search-status/${processId}`);
+      const response = await fetch(`${this.baseUrl}/enhanced-fast-search-status/${processId}`);
       
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -45,16 +54,16 @@ class SeekApiService {
 
       return await response.json();
     } catch (error) {
-      console.error('Error getting search status:', error);
+      console.error('Error getting enhanced search status:', error);
       throw error;
     }
   }
 
-  // Stop a search
+  // Stop enhanced fast search
   async stopSearch(processId) {
     try {
-      const response = await fetch(`${this.baseUrl}/search-stop/${processId}`, {
-        method: 'DELETE',
+      const response = await fetch(`${this.baseUrl}/enhanced-fast-search-stop/${processId}`, {
+        method: 'POST',
       });
 
       if (!response.ok) {
@@ -63,7 +72,7 @@ class SeekApiService {
 
       return await response.json();
     } catch (error) {
-      console.error('Error stopping search:', error);
+      console.error('Error stopping enhanced search:', error);
       throw error;
     }
   }

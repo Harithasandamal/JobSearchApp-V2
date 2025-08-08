@@ -1,17 +1,18 @@
 {
   "sampleUrls": [
-    "https://www.seek.com.au/job/85994049?ref=search-standalone&type=standard&origin=jobTitle#sol=f5c442d9c765b69183c0a9f36e76c3773779cff4",
-    "https://www.seek.com.au/job/85907804?ref=search-standalone&type=standard&origin=jobTitle#sol=ac705abd43f8e7aa11c57e26bdd7ef8de3e67313",
-    "https://www.seek.com.au/job/85912345?ref=search-standalone&type=standard&origin=jobTitle#sol=example123456789",
-    "https://www.seek.com.au/job/85967890?ref=search-standalone&type=standard&origin=jobTitle#sol=example987654321"
+    "https://www.seek.com.au/job/86135003?ref=search-standalone&type=standard&origin=jobTitle#sol=4384bcdcfccbedfcd4bebf7dded16defdfbc87e0",
+    "https://www.seek.com.au/job/86196241?ref=search-standalone&type=standard&origin=jobTitle#sol=2a10e4fa5983d84217c15449db34e2cd76d09133",
+    "https://www.seek.com.au/job/86135699?ref=search-standalone&type=standard&origin=jobTitle#sol=18fb1180580ef9d9903de15c31315dacd512e61c",
+    "https://www.seek.com.au/job/85994049?ref=search-standalone&type=standard&origin=jobTitle#sol=ccb0733bd063b5979f1574af7abec49f0f9115f6",
+    "https://www.seek.com.au/job/86181238?ref=search-standalone&type=promoted&origin=jobTitle#sol=5c26305cd637266b13bae7381258a6adad069905"
   ],
   "lastUpdated": "2025-02-08T12:00:00.000Z",
-  "description": "Test URLs for light mode. Update when URLs expire. No limit on number of URLs.",
-  "maxUrls": 10,
+  "description": "Real SEEK job URLs for light mode testing. Updated with current job listings.",
+  "maxUrls": 5,
   "recommendedUpdateFrequency": "weekly",
   "lightModeConfig": {
-    "maxJobs": 10,
-    "enableUnlimitedJobs": true,
+    "maxJobs": 5,
+    "enableUnlimitedJobs": false,
     "defaultJobLimit": 5
   }
 } 

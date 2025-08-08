@@ -111,16 +111,20 @@ function App() {
 
   // Log app initialization
   useEffect(() => {
-    workflowLogger.logAction('App initialized', `Theme: ${theme}, Screen: ${currentScreen}`);
+    workflowLogger.logAction('App loaded', `Theme: ${theme}`);
     workflowLogger.logScreenLoad('app');
   }, []);
 
-  // Log theme changes
+  // Log theme changes only when user actually changes theme (not on initial load)
+  const [hasInitialized, setHasInitialized] = useState(false);
+  
   useEffect(() => {
-    if (theme) {
+    if (hasInitialized && theme) {
       workflowLogger.logAction('Theme changed', `New theme: ${theme}`);
+    } else if (!hasInitialized) {
+      setHasInitialized(true);
     }
-  }, [theme]);
+  }, [theme, hasInitialized]);
 
   const resetApp = () => {
     workflowLogger.logAction('App reset', 'User clicked reset button');

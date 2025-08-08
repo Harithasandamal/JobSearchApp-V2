@@ -13,9 +13,8 @@ class WorkflowLogger {
     this.messageExpiryTime = 1000; // 1 second expiry for duplicate detection
     this.loadingStates = new Map(); // Track loading states for terminal effects
     
-    this.log('🚀 JOB SEARCH APP SESSION STARTED', 'system');
-    this.log(`📅 Session started at: ${this.sessionStartTime.toLocaleString()}`, 'system');
-    this.log('📋 Workflow Logger initialized - tracking user navigation and processes', 'system');
+    this.log('🚀 JOB SEARCH APP STARTED', 'system');
+    this.log('📋 Ready to help you find and analyze jobs', 'system');
     this.log('', 'system'); // Empty line for readability
   }
   
@@ -72,6 +71,31 @@ class WorkflowLogger {
     // Simplify process output messages
     if (message.includes('Processing job') && message.includes('Step')) {
       return message.replace(/Step \d+: /, ''); // Remove step numbers
+    }
+    
+    // Filter out technical configuration messages
+    if (message.includes('Light mode config:') || message.includes('maxJobs=') || message.includes('unlimited=')) {
+      return null; // Don't log configuration details
+    }
+    
+    // Filter out technical URL loading messages
+    if (message.includes('Loaded') && message.includes('test URLs')) {
+      return null; // Don't log URL loading details
+    }
+    
+    // Filter out technical progress update messages
+    if (message.includes('🔄 Progress update:') || message.includes('🔄 Light mode progress update:')) {
+      return null; // Don't log internal progress updates
+    }
+    
+    // Filter out technical browser messages
+    if (message.includes('Creating') && message.includes('browser instances')) {
+      return null; // Don't log browser creation details
+    }
+    
+    // Filter out technical timeout messages
+    if (message.includes('⏱️ Total operation timeout:')) {
+      return null; // Don't log timeout details
     }
     
     return message;

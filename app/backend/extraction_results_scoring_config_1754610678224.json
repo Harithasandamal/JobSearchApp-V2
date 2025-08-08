@@ -1,0 +1,258 @@
+{
+  "extractedJobs": [
+    {
+      "id": "modern-job-1",
+      "title": "Channel & Product Manager",
+      "company": "Falcon Young Consulting Pty Ltd",
+      "location": "Bayside & South Eastern Suburbs",
+      "url": "https://www.seek.com.au/job/86331546?type=standard&ref=search-standalone",
+      "postedAgo": "20 minutes",
+      "mandatoryRequirements": [
+        "History of success in dealing with wholesalers at a head office level",
+        "Experience in achieving growth through marketing initiatives",
+        "Ability to articulate an attractive value proposition"
+      ],
+      "preferredRequirements": [
+        "Experience in smart contract management",
+        "Ability to secure new retail channels",
+        "Experience in developing marketing campaigns",
+        "Experience in developing new programs for growth through in-store merchandising",
+        "Experience in developing collateral"
+      ],
+      "responsibilities": [
+        "Engagement with Electrical Wholesalers, Global & Online Distribution and Retail Channels",
+        "Delivering exceptional marketing campaigns",
+        "Working with internal marketing team to develop new programs",
+        "Developing trade agreements",
+        "Developing new programs for growth through in-store merchandising",
+        "Developing collateral",
+        "Articulating an attractive value proposition",
+        "Securing new retail channels"
+      ],
+      "employerQuestions": [
+        "Which of the following statements best describes your right to work in Australia?"
+      ],
+      "otherDetails": [
+        "Fun, engaging team environment",
+        "Globally recognised brand",
+        "Exciting growth"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 160,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_modern-job-1.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_modern-job-1.md",
+      "timestamp": "2025-08-07T23:51:30.159Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "modern-job-5",
+      "title": "IT Lab Technician",
+      "company": "Renew IT Group Pty Ltd",
+      "location": "Dandenong South",
+      "url": "https://www.seek.com.au/job/86331015?type=standard&ref=search-standalone",
+      "postedAgo": "1 hour",
+      "mandatoryRequirements": [
+        "Experience as a Level 2 IT Technician",
+        "Competency in IT hardware, systems and software",
+        "Strong verbal and written communication"
+      ],
+      "preferredRequirements": [
+        "TAFE or higher qualification",
+        "Experience in the IT Sector (HW/SW, Within Repair, Warehousing)",
+        "Customer service experience",
+        "Australian Security Clearance",
+        "Technical support experience"
+      ],
+      "responsibilities": [
+        "Secure sanitisation of IT Hardware",
+        "Processing and categorising new and used IT Hardware",
+        "Imaging and configuring new and used IT Hardware",
+        "Asset deployment",
+        "Break-fix and part harvesting of Hardware",
+        "Downstream management for Sustainable Recycling",
+        "Preparing wholesale orders for local or international export",
+        "Conducting collections of IT Hardware"
+      ],
+      "employerQuestions": [
+        "How many years' experience do you have as a Field Technician?",
+        "How many years' experience do you have in the IT industry?",
+        "Which of the following statements best describes your right to work in Australia?",
+        "Do you have a current Police Check (National Police Certificate) for employment?",
+        "How many years' experience do you have as a field service technician?"
+      ],
+      "otherDetails": [
+        "Strong work ethic",
+        "Reliability",
+        "Punctuality"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 240,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_modern-job-5.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_modern-job-5.md",
+      "timestamp": "2025-08-07T23:51:40.885Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "modern-job-6",
+      "title": "Collection & Delivery Team Member / IT Field Services",
+      "company": "Renew IT Group Pty Ltd",
+      "location": "Dandenong South",
+      "url": "https://www.seek.com.au/job/86330765?type=standard&ref=search-standalone",
+      "postedAgo": "1 hour",
+      "mandatoryRequirements": [
+        "Minimum C-class driver's license"
+      ],
+      "preferredRequirements": [
+        "TAFE or higher qualification",
+        "MR/HR license",
+        "Experience in IT sector (HW/SW, Within Repair, Warehousing)"
+      ],
+      "responsibilities": [
+        "Secure sanitisation of IT Hardware",
+        "Field service work (Perth and surrounding areas)",
+        "Processing and categorising new and used IT Hardware",
+        "Imaging and configuring new and used IT Hardware",
+        "Asset deployment",
+        "Break-fix and part harvesting of Hardware",
+        "Downstream management for Sustainable Recycling",
+        "Preparing wholesale orders for local or international export"
+      ],
+      "employerQuestions": [
+        "How many years' experience do you have as a Delivery Team Member?",
+        "Do you have a current Australian driver's licence?",
+        "How many years' experience do you have as a field service technician?",
+        "Do you have picker packer experience?",
+        "Which of the following statements best describes your right to work in Australia?"
+      ],
+      "otherDetails": [
+        "Competency in IT hardware and software",
+        "Strong verbal and written communication",
+        "Excellent customer service"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 180,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_modern-job-6.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_modern-job-6.md",
+      "timestamp": "2025-08-07T23:51:50.583Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "modern-job-8",
+      "title": "Early Childhood Educator (Diploma)",
+      "company": "Early Learning Victoria",
+      "location": "Noble Park",
+      "url": "https://www.seek.com.au/job/86330343?type=standard&ref=search-standalone",
+      "postedAgo": "1 hour",
+      "mandatoryRequirements": [
+        "ACECQA approved Diploma level qualification or actively working towards a Diploma in Early Childhood Education and Care",
+        "Valid 'Employee' Working with Children Check",
+        "Willingness to consent to a Police Check (to be arranged by Early Learning Victoria)"
+      ],
+      "preferredRequirements": [
+        "First Aid qualification",
+        "Anaphylaxis qualification",
+        "Asthma qualification",
+        "Food Handling Certificate",
+        "Safe Sleep Training"
+      ],
+      "responsibilities": [
+        "Support team to deliver high-quality early childhood education",
+        "Create positive learning environment for children",
+        "Build positive relationships with families, children, and colleagues",
+        "Ensure inclusive environment for children's learning and development",
+        "Coordinate teaching and learning strategies",
+        "Encourage reflective practice within team",
+        "Provide clear communication with families regarding child's development",
+        "Empower staff to facilitate meaningful interactions"
+      ],
+      "employerQuestions": [
+        "Demonstrates the Child Safety and Compliance role requirements",
+        "Personal Attributes - please see the Capabilities section above for more detail",
+        "High Quality Practice - please see the Capabilities section above for more detail",
+        "Positive Learning Environment - please see the Capabilities section above for more detail",
+        "For more information about the role and Early Learning Victoria please email any queries to Jenni.Menon@education.vic.gov.au"
+      ],
+      "otherDetails": [
+        "Effective communication skills",
+        "Relationship-building skills",
+        "Experience working with vulnerable children and families"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 240,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_modern-job-8.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_modern-job-8.md",
+      "timestamp": "2025-08-07T23:52:02.448Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    },
+    {
+      "id": "modern-job-9",
+      "title": "Arborist",
+      "company": "City of Greater Dandenong",
+      "location": "Dandenong",
+      "url": "https://www.seek.com.au/job/86330301?type=standard&ref=search-standalone",
+      "postedAgo": "1 hour",
+      "mandatoryRequirements": [
+        "Arboriculture trade qualification of Certificate 5 or Diploma level",
+        "Extensive knowledge and experience of Visual Tree Assessment",
+        "Demonstrated ability to effectively manage staff and contractors' performance"
+      ],
+      "preferredRequirements": [
+        "Certificate 2 in ESI Power line Management",
+        "Knowledge of arboriculture principles and technical applications",
+        "Experience in identifying potential tree risks",
+        "Proficiency in Microsoft Office applications including Word & Excel",
+        "Customer service skills with well-developed oral communication"
+      ],
+      "responsibilities": [
+        "Assist with inspection, prioritization, and coordination of customer service requests",
+        "Work closely with contractors to support timely and high-quality delivery of tree maintenance works",
+        "Respond to storm events and conduct risk assessments",
+        "Prepare work orders and assist with site audits and compliance checks",
+        "Contribute to maintaining the health, safety, and amenity of Council's tree assets"
+      ],
+      "employerQuestions": [
+        "Do you have a current valid Victorian Driver's License?",
+        "Are you comfortable working in a dynamic, field-based role?",
+        "Can you effectively manage staff and contractors' performance?",
+        "Do you have experience in identifying potential tree risks?",
+        "Are you proficient in Microsoft Office applications?"
+      ],
+      "otherDetails": [
+        "Strong interpersonal skills",
+        "Collaborative mindset",
+        "Keen eye for identifying and resolving tree-related risks"
+      ],
+      "checkedMandatory": [],
+      "checkedPreferred": [],
+      "checkedEmployerQuestions": [],
+      "checkedOtherDetails": [],
+      "compatibilityScore": 0,
+      "maxPossibleScore": 240,
+      "score": 0,
+      "htmlFilePath": "D:\\JobSearchApp V2\\app\\job-data\\job_modern-job-9.html",
+      "markdownPath": "D:\\JobSearchApp V2\\app\\job-data\\job_modern-job-9.md",
+      "timestamp": "2025-08-07T23:52:13.221Z",
+      "extractionMethod": "chatgpt-data-extraction"
+    }
+  ]
+}
